@@ -1143,6 +1143,27 @@ body{
   </div>
 </section>
 
+<!-- ===================== TIP JAR ===================== -->
+<section class="vf-promo">
+  <div class="vf-card" style="max-width:1020px; margin:0 auto; padding:20px;">
+    <div style="display:flex; align-items:flex-start; gap:14px;">
+      <div style="font-size:26px; line-height:1;">☕</div>
+      <div style="flex:1; min-width:200px;">
+        <h3 style="margin:0 0 6px;">Traktir Kopi</h3>
+        <p style="color:#8ea0ba; font-size:13px; line-height:1.7; margin:0 0 14px;">
+          Jika toolkit ini bermanfaat bagi perjalanan investasi Anda, dan Anda berkenan memberi sedikit apresiasi, saya akan sangat senang menerima secangkir kopi. Dukungan ini sepenuhnya sukarela — menggunakan dan membagikan toolkit ini ke sesama investor saja sudah berarti banyak bagi saya.
+        </p>
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+          <div style="font-family:'Poppins',sans-serif; font-size:13.5px; font-weight:600; color:#e4c77a; background:rgba(201,162,75,0.08); border:1px solid rgba(201,162,75,0.3); padding:8px 14px; border-radius:8px;">
+            GoPay: 0811207205
+          </div>
+          <button class="vf-mini-btn" id="copy-gopay-btn" type="button">Salin nomor</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== FAQ ===================== -->
 <section class="no-print" style="max-width:1020px; margin:26px auto 0; padding:0 20px;">
   <div style="background:linear-gradient(135deg,#16233a,#101a2c); border:1px solid #213249; border-radius:14px; padding:24px;">
@@ -1241,6 +1262,20 @@ function getRaw(id){
 function setVal(id, v){
   var el = document.getElementById(id);
   if(el) el.value = v;
+}
+function copyGopay(){
+  var number = '0811207205';
+  var btn = document.getElementById('copy-gopay-btn');
+  function showCopied(){
+    if(btn){
+      var orig = btn.textContent;
+      btn.textContent = 'Tersalin \u2713';
+      setTimeout(function(){ btn.textContent = orig; }, 2000);
+    }
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(number).then(showCopied).catch(function(){});
+  }
 }
 function pmt(rate, nper, pv, fv, type){
   if(fv === undefined) fv = 0;
@@ -1618,6 +1653,9 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('disclaimer-text').classList.toggle('open');
     document.getElementById('disclaimer-arrow').classList.toggle('open');
   });
+
+  var copyGopayBtn = document.getElementById('copy-gopay-btn');
+  if(copyGopayBtn) copyGopayBtn.addEventListener('click', copyGopay);
 
   // PDF export (uses browser's native print-to-PDF, no extra library needed)
   var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom'};
