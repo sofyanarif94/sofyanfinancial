@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="google-site-verification" content="yEDYCzDjYLghaDx6KYNGsLaw-_3tkxSzCfxQuCrKeUQ" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Stock Valuation Calculator — Sofyan Financial</title>
 <meta name="description" content="Free stock valuation calculator: Discounted Cash Flow, Dividend Discount Model, Equity Bond Valuation, and Financial Freedom. A beginner-friendly tool inspired by Warren Buffett's value investing approach." />
+<meta name="google-site-verification" content="yEDYCzDjYLghaDx6KYNGsLaw-_3tkxSzCfxQuCrKeUQ" />
 
 <link rel="canonical" href="https://sofyanfinancial.vercel.app/en/" />
 <link rel="alternate" hreflang="id" href="https://sofyanfinancial.vercel.app/" />
@@ -450,6 +450,53 @@ body{
   margin-top: 10px;
 }
 
+/* ============ Glossary accordion ============ */
+.vf-glossary-item{
+  border-bottom: 1px solid var(--border-soft);
+  padding: 14px 0;
+}
+.vf-glossary-item:last-child{ border-bottom:none; }
+.vf-glossary-item summary{
+  cursor:pointer;
+  font-family: var(--serif);
+  font-weight:600;
+  font-size:14.5px;
+  color: var(--text);
+  list-style:none;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.vf-glossary-item summary::-webkit-details-marker{ display:none; }
+.vf-glossary-item summary::after{
+  content:'+';
+  font-size:19px;
+  color: var(--gold);
+  flex-shrink:0;
+  width:20px;
+  text-align:center;
+}
+.vf-glossary-item[open] summary::after{ content:'\2212'; }
+.vf-glossary-item[open] summary{ color: var(--gold-soft); }
+.vf-glossary-body{
+  margin-top:10px;
+  font-size:13px;
+  color: var(--text-muted);
+  line-height:1.7;
+}
+.vf-glossary-formula{
+  font-family: var(--mono);
+  font-size:12.5px;
+  color: var(--gold-soft);
+  background: rgba(201,162,75,0.08);
+  border-left:2px solid var(--gold);
+  padding:8px 12px;
+  border-radius:0 6px 6px 0;
+  margin-top:8px;
+  display:inline-block;
+}
+
 /* ============ Promo / mentoring card ============ */
 .vf-promo{
   max-width: 1020px;
@@ -569,7 +616,7 @@ body{
 @media print{
   body{ background:#fff !important; color:#111 !important; padding:0 !important; }
   #vf-error-banner, .vf-tabs, .vf-toolbar, .vf-case, .vf-promo, .vf-footer,
-  .no-print, .vf-note-box, .vf-badge{ display:none !important; }
+  .no-print, .vf-note-box, .vf-badge, #panel-about, #panel-glossary{ display:none !important; }
   .vf-header{ border:none; background:none; padding:0 0 10px; }
   .vf-header-inner > div:first-child{ display:none !important; }
   .vf-header p{ display:none; }
@@ -646,6 +693,10 @@ body{
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"></path></svg>
     About Me
   </button>
+  <button class="vf-tab" data-tab="glossary">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+    Glossary
+  </button>
 </nav>
 
 <main class="vf-main">
@@ -667,6 +718,7 @@ body{
     <div class="vf-toolbar">
       <button class="vf-mini-btn" id="dcf-reset-btn">↺ Clear / reset</button>
       <button class="vf-mini-btn" id="dcf-pdf-btn">📄 Download as PDF</button>
+      <button class="vf-mini-btn" id="dcf-share-btn">🔗 Share Result</button>
     </div>
 
     <div class="vf-grid-2">
@@ -774,6 +826,7 @@ body{
     <div class="vf-toolbar">
       <button class="vf-mini-btn" id="ddm-reset-btn">↺ Clear / reset</button>
       <button class="vf-mini-btn" id="ddm-pdf-btn">📄 Download as PDF</button>
+      <button class="vf-mini-btn" id="ddm-share-btn">🔗 Share Result</button>
     </div>
 
     <div class="vf-grid-2">
@@ -872,6 +925,7 @@ body{
     <div class="vf-toolbar">
       <button class="vf-mini-btn" id="eb-reset-btn">↺ Clear / reset</button>
       <button class="vf-mini-btn" id="eb-pdf-btn">📄 Download as PDF</button>
+      <button class="vf-mini-btn" id="eb-share-btn">🔗 Share Result</button>
     </div>
 
     <div class="vf-grid-2">
@@ -976,6 +1030,7 @@ body{
     <div class="vf-toolbar">
       <button class="vf-mini-btn" id="ff-reset-btn">↺ Clear / reset</button>
       <button class="vf-mini-btn" id="ff-pdf-btn">📄 Download as PDF</button>
+      <button class="vf-mini-btn" id="ff-share-btn">🔗 Share Result</button>
     </div>
 
     <div class="vf-grid-2">
@@ -1060,14 +1115,19 @@ body{
     </div>
 
     <div class="vf-card" style="margin-bottom:18px;">
-      <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; margin-bottom:20px;">
+      <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:stretch; margin-bottom:20px;">
         <img src="/sofyan-photo.jpg" alt="Photo of Sofyan" style="width:120px; height:120px; border-radius:16px; object-fit:cover; border:1px solid rgba(201,162,75,0.4); flex-shrink:0;" />
-        <div style="flex:1; min-width:220px;">
+        <div style="flex:1; min-width:200px;">
           <h3 style="margin-top:0;">Sofyan</h3>
           <p style="color:#8ea0ba; font-size:13px; line-height:1.7; margin:0;">
             Value Investing educator and mentor with extensive experience in Indonesia's capital market.
           </p>
         </div>
+        <a href="https://www.youtube.com/@SofyanFinancial" target="_blank" rel="noopener" style="flex:0 0 200px; min-width:180px; display:flex; flex-direction:column; justify-content:center; gap:8px; text-decoration:none; padding:14px; border-radius:12px; background:rgba(226,52,47,0.08); border:1px solid rgba(226,52,47,0.25);">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="#e2342f"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5C1.6 4.3.8 5.1.5 6.2 0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+          <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#e9edf4;">Sofyan Financial</div>
+          <div style="font-size:11.5px; color:#8ea0ba; line-height:1.4;">Subscribe to my YouTube channel</div>
+        </a>
       </div>
 
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
@@ -1108,15 +1168,171 @@ body{
       </div>
     </div>
 
-    <div class="vf-card" style="margin-top:18px;">
-      <h3>Follow My Content</h3>
-      <a href="https://www.youtube.com/@SofyanFinancial" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:12px; text-decoration:none; padding:12px; border-radius:10px; background:rgba(226,52,47,0.08); border:1px solid rgba(226,52,47,0.25);">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="#e2342f"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5C1.6 4.3.8 5.1.5 6.2 0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
-        <div>
-          <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#e9edf4;">Sofyan Financial</div>
-          <div style="font-size:12px; color:#8ea0ba;">Subscribe to my YouTube channel for investing education content</div>
+  </section>
+
+  <!-- ===================== GLOSSARY ===================== -->
+  <section class="vf-panel" id="panel-glossary">
+    <div class="vf-section-title">
+      <span class="vf-eyebrow">Reference</span>
+      <h2>Investment Glossary</h2>
+      <p>A collection of basic stock investing terms and formulas, explained simply for beginner investors. Click each term to expand its explanation.</p>
+    </div>
+
+    <div class="vf-card">
+      <details class="vf-glossary-item">
+        <summary>Beta (β)</summary>
+        <div class="vf-glossary-body">
+          <p>Measures a stock's volatility or sensitivity relative to the overall market (e.g. IHSG). A beta of 1 means the stock moves in line with the market; above 1 means more volatile, below 1 means more stable. Used as an input in the DCF &amp; DDM calculators on this page.</p>
         </div>
-      </a>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Cost of Equity</summary>
+        <div class="vf-glossary-body">
+          <p>The return investors expect for bearing the risk of holding a stock. Usually calculated with the CAPM (Capital Asset Pricing Model), combining the risk-free rate, beta, and expected market return.</p>
+          <div class="vf-glossary-formula">Cost of Equity = Risk Free + Beta × (Market Return − Risk Free)</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Current Ratio</summary>
+        <div class="vf-glossary-body">
+          <p>The ratio of current assets to current liabilities, indicating a company's short-term liquidity — how well it can cover obligations due soon.</p>
+          <div class="vf-glossary-formula">Current Ratio = Current Assets ÷ Current Liabilities</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Debt to Equity Ratio (DER)</summary>
+        <div class="vf-glossary-body">
+          <p>The ratio of total debt to shareholders' equity. Shows how aggressively a company's operations are funded by debt versus its own capital. A very high DER signals greater financial risk.</p>
+          <div class="vf-glossary-formula">DER = Total Debt ÷ Total Equity</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Dividend Payout Ratio</summary>
+        <div class="vf-glossary-body">
+          <p>The percentage of net income paid out as dividends to shareholders. The remainder is retained by the company for expansion or operations.</p>
+          <div class="vf-glossary-formula">Payout Ratio = Total Dividends ÷ Net Income</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Dividend Per Share (DPS)</summary>
+        <div class="vf-glossary-body">
+          <p>The amount of cash dividend a company pays out for each share outstanding. The main input for the Dividend Discount Model (DDM) calculator on this page.</p>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Dividend Yield</summary>
+        <div class="vf-glossary-body">
+          <p>Dividend per share as a percentage of the current stock price — shows the cash "return" an investor gets from dividends alone, separate from potential price appreciation.</p>
+          <div class="vf-glossary-formula">Dividend Yield = DPS ÷ Stock Price</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Earning Per Share (EPS)</summary>
+        <div class="vf-glossary-body">
+          <p>A company's net income allocated to each outstanding share. One of the most basic fundamental figures, used in the Equity Bond Valuation calculator on this page.</p>
+          <div class="vf-glossary-formula">EPS = Net Income ÷ Shares Outstanding</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Enterprise Value (EV)</summary>
+        <div class="vf-glossary-body">
+          <p>The total value of a company from a full-acquisition standpoint — equity value (market cap) plus total debt, minus cash and cash equivalents.</p>
+          <div class="vf-glossary-formula">EV = Market Cap + Total Debt − Cash &amp; Equivalents</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>EV/EBITDA</summary>
+        <div class="vf-glossary-body">
+          <p>A ratio comparing Enterprise Value to EBITDA (earnings before interest, taxes, depreciation, and amortization). Useful for comparing companies across sectors or capital structures, since it's unaffected by how a company is financed (debt vs. equity).</p>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Intrinsic Value</summary>
+        <div class="vf-glossary-body">
+          <p>An estimate of a stock's fair value based on company fundamentals (projected earnings, dividends, or cash flow) — not the price shaped by momentary market sentiment. This is what every calculator on this page computes.</p>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Margin of Safety</summary>
+        <div class="vf-glossary-body">
+          <p>The gap between intrinsic value and the current market price — a "cushion" value investors look for before buying, to account for estimation errors or unexpected market conditions.</p>
+          <div class="vf-glossary-formula">Margin of Safety = (Intrinsic Value − Market Price) ÷ Intrinsic Value</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Market Capitalization (Market Cap)</summary>
+        <div class="vf-glossary-body">
+          <p>The total market value of a company's outstanding shares — the most common way to measure a company's "size" on the exchange.</p>
+          <div class="vf-glossary-formula">Market Cap = Stock Price × Shares Outstanding</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Net Profit Margin (NPM)</summary>
+        <div class="vf-glossary-body">
+          <p>Net income as a percentage of total revenue. Shows how efficiently a company converts sales into actual profit.</p>
+          <div class="vf-glossary-formula">NPM = Net Income ÷ Revenue</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Price to Book Value (PBV / P/B)</summary>
+        <div class="vf-glossary-body">
+          <p>The ratio of stock price to book value (net assets) per share. Often used to value banking and financial sector stocks, where asset value is more relevant than earnings projections.</p>
+          <div class="vf-glossary-formula">PBV = Stock Price ÷ Book Value per Share</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Price to Earning Ratio (PER / P/E)</summary>
+        <div class="vf-glossary-body">
+          <p>The ratio of stock price to net income per share (EPS). Shows how many times investors are willing to pay relative to the company's annual earnings. A low P/E can mean cheap (or a fundamental problem), a high P/E can mean expensive (or high growth expectations).</p>
+          <div class="vf-glossary-formula">PER = Stock Price ÷ EPS</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Return on Assets (ROA)</summary>
+        <div class="vf-glossary-body">
+          <p>Measures how efficiently a company generates profit from all the assets it owns, regardless of whether those assets are funded by debt or equity.</p>
+          <div class="vf-glossary-formula">ROA = Net Income ÷ Total Assets</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Return on Equity (ROE)</summary>
+        <div class="vf-glossary-body">
+          <p>Measures how efficiently a company generates profit from shareholders' invested capital. One of the most important profitability indicators in value investing.</p>
+          <div class="vf-glossary-formula">ROE = Net Income ÷ Total Equity</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Return on Investment (ROI)</summary>
+        <div class="vf-glossary-body">
+          <p>Measures the profit an investor earns relative to the capital invested — can be used to measure personal investment results, not just company performance.</p>
+          <div class="vf-glossary-formula">ROI = (Ending Value − Initial Capital) ÷ Initial Capital</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Terminal Value</summary>
+        <div class="vf-glossary-body">
+          <p>The projected value of a company's earnings/cash flow after the explicit projection period ends (e.g. after year 10), calculated assuming constant growth forever (perpetuity). A key component in the DCF and DDM calculators on this page.</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -1278,6 +1494,41 @@ function getRaw(id){
 function setVal(id, v){
   var el = document.getElementById(id);
   if(el) el.value = v;
+}
+var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom'};
+function buildShareText(key){
+  var lines = ['📊 ' + SHARE_TITLES[key] + ' Result — Sofyan Financial Stock Valuation Calculator'];
+  if(key === 'dcf'){
+    var v1 = document.getElementById('dcf-intrinsic'); var v2 = document.getElementById('dcf-coe');
+    if(v1) lines.push('Intrinsic Value: ' + v1.textContent + ' / share');
+    if(v2) lines.push('Cost of Equity: ' + v2.textContent);
+  } else if(key === 'ddm'){
+    var v3 = document.getElementById('ddm-companyvaluation-hero');
+    if(v3) lines.push('Company Valuation: ' + v3.textContent + ' / share');
+  } else if(key === 'eb'){
+    var v4 = document.getElementById('eb-irr');
+    if(v4) lines.push('Estimated Total Return (IRR): ' + v4.textContent);
+  } else if(key === 'ff'){
+    var v5 = document.getElementById('ff-fundfuture');
+    if(v5) lines.push('Financial Freedom Fund: ' + v5.textContent);
+  }
+  lines.push('Calculate your own for free at ' + location.origin + location.pathname);
+  return lines.join('\n');
+}
+function shareResult(key){
+  var text = buildShareText(key);
+  if(navigator.share){
+    navigator.share({title:'Stock Valuation Calculator - Sofyan Financial', text:text}).catch(function(){});
+  } else if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){
+      var btn = document.getElementById(key + '-share-btn');
+      if(btn){
+        var orig = btn.textContent;
+        btn.textContent = 'Copied ✓';
+        setTimeout(function(){ btn.textContent = orig; }, 2200);
+      }
+    }).catch(function(){});
+  }
 }
 function copyGopay(){
   var number = '0811207205';
@@ -1685,6 +1936,8 @@ document.addEventListener('DOMContentLoaded', function(){
   ['dcf','ddm','eb','ff'].forEach(function(key){
     var btn = document.getElementById(key + '-pdf-btn');
     if(btn) btn.addEventListener('click', function(){ printCalculator(key); });
+    var sbtn = document.getElementById(key + '-share-btn');
+    if(sbtn) sbtn.addEventListener('click', function(){ shareResult(key); });
   });
   window.addEventListener('beforeprint', function(){
     document.querySelectorAll('.vf-details').forEach(function(d){ d.setAttribute('data-was-open', d.open ? '1':'0'); d.open = true; });

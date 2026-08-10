@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta name="google-site-verification" content="yEDYCzDjYLghaDx6KYNGsLaw-_3tkxSzCfxQuCrKeUQ" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Kalkulator Valuasi Saham — Sofyan Financial</title>
 <meta name="description" content="Kalkulator valuasi saham gratis: Discounted Cash Flow, Dividend Discount Model, Equity Bond Valuation, dan Financial Freedom. Alat bantu investor pemula ala Warren Buffett." />
+<meta name="google-site-verification" content="yEDYCzDjYLghaDx6KYNGsLaw-_3tkxSzCfxQuCrKeUQ" />
 
 <link rel="canonical" href="https://sofyanfinancial.vercel.app/" />
 <link rel="alternate" hreflang="id" href="https://sofyanfinancial.vercel.app/" />
@@ -450,6 +450,53 @@ body{
   margin-top: 10px;
 }
 
+/* ============ Glossary accordion ============ */
+.vf-glossary-item{
+  border-bottom: 1px solid var(--border-soft);
+  padding: 14px 0;
+}
+.vf-glossary-item:last-child{ border-bottom:none; }
+.vf-glossary-item summary{
+  cursor:pointer;
+  font-family: var(--serif);
+  font-weight:600;
+  font-size:14.5px;
+  color: var(--text);
+  list-style:none;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.vf-glossary-item summary::-webkit-details-marker{ display:none; }
+.vf-glossary-item summary::after{
+  content:'+';
+  font-size:19px;
+  color: var(--gold);
+  flex-shrink:0;
+  width:20px;
+  text-align:center;
+}
+.vf-glossary-item[open] summary::after{ content:'\2212'; }
+.vf-glossary-item[open] summary{ color: var(--gold-soft); }
+.vf-glossary-body{
+  margin-top:10px;
+  font-size:13px;
+  color: var(--text-muted);
+  line-height:1.7;
+}
+.vf-glossary-formula{
+  font-family: var(--mono);
+  font-size:12.5px;
+  color: var(--gold-soft);
+  background: rgba(201,162,75,0.08);
+  border-left:2px solid var(--gold);
+  padding:8px 12px;
+  border-radius:0 6px 6px 0;
+  margin-top:8px;
+  display:inline-block;
+}
+
 /* ============ Promo / mentoring card ============ */
 .vf-promo{
   max-width: 1020px;
@@ -569,7 +616,7 @@ body{
 @media print{
   body{ background:#fff !important; color:#111 !important; padding:0 !important; }
   #vf-error-banner, .vf-tabs, .vf-toolbar, .vf-case, .vf-promo, .vf-footer,
-  .no-print, .vf-note-box, .vf-badge{ display:none !important; }
+  .no-print, .vf-note-box, .vf-badge, #panel-about, #panel-glossary{ display:none !important; }
   .vf-header{ border:none; background:none; padding:0 0 10px; }
   .vf-header-inner > div:first-child{ display:none !important; }
   .vf-header p{ display:none; }
@@ -646,6 +693,10 @@ body{
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"></path></svg>
     Tentang Saya
   </button>
+  <button class="vf-tab" data-tab="glossary">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+    Kamus Investasi
+  </button>
 </nav>
 
 <main class="vf-main">
@@ -667,6 +718,7 @@ body{
     <div class="vf-toolbar">
       <button class="vf-mini-btn" id="dcf-reset-btn">↺ Kosongkan / reset</button>
       <button class="vf-mini-btn" id="dcf-pdf-btn">📄 Unduh sebagai PDF</button>
+      <button class="vf-mini-btn" id="dcf-share-btn">🔗 Bagikan Hasil</button>
     </div>
 
     <div class="vf-grid-2">
@@ -774,6 +826,7 @@ body{
     <div class="vf-toolbar">
       <button class="vf-mini-btn" id="ddm-reset-btn">↺ Kosongkan / reset</button>
       <button class="vf-mini-btn" id="ddm-pdf-btn">📄 Unduh sebagai PDF</button>
+      <button class="vf-mini-btn" id="ddm-share-btn">🔗 Bagikan Hasil</button>
     </div>
 
     <div class="vf-grid-2">
@@ -872,6 +925,7 @@ body{
     <div class="vf-toolbar">
       <button class="vf-mini-btn" id="eb-reset-btn">↺ Kosongkan / reset</button>
       <button class="vf-mini-btn" id="eb-pdf-btn">📄 Unduh sebagai PDF</button>
+      <button class="vf-mini-btn" id="eb-share-btn">🔗 Bagikan Hasil</button>
     </div>
 
     <div class="vf-grid-2">
@@ -976,6 +1030,7 @@ body{
     <div class="vf-toolbar">
       <button class="vf-mini-btn" id="ff-reset-btn">↺ Kosongkan / reset</button>
       <button class="vf-mini-btn" id="ff-pdf-btn">📄 Unduh sebagai PDF</button>
+      <button class="vf-mini-btn" id="ff-share-btn">🔗 Bagikan Hasil</button>
     </div>
 
     <div class="vf-grid-2">
@@ -1060,14 +1115,19 @@ body{
     </div>
 
     <div class="vf-card" style="margin-bottom:18px;">
-      <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; margin-bottom:20px;">
+      <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:stretch; margin-bottom:20px;">
         <img src="/sofyan-photo.jpg" alt="Foto Sofyan" style="width:120px; height:120px; border-radius:16px; object-fit:cover; border:1px solid rgba(201,162,75,0.4); flex-shrink:0;" />
-        <div style="flex:1; min-width:220px;">
+        <div style="flex:1; min-width:200px;">
           <h3 style="margin-top:0;">Sofyan</h3>
           <p style="color:#8ea0ba; font-size:13px; line-height:1.7; margin:0;">
             Value Investing educator dan mentor dengan pengalaman panjang di pasar modal Indonesia.
           </p>
         </div>
+        <a href="https://www.youtube.com/@SofyanFinancial" target="_blank" rel="noopener" style="flex:0 0 200px; min-width:180px; display:flex; flex-direction:column; justify-content:center; gap:8px; text-decoration:none; padding:14px; border-radius:12px; background:rgba(226,52,47,0.08); border:1px solid rgba(226,52,47,0.25);">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="#e2342f"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5C1.6 4.3.8 5.1.5 6.2 0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+          <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#e9edf4;">Sofyan Financial</div>
+          <div style="font-size:11.5px; color:#8ea0ba; line-height:1.4;">Subscribe channel YouTube saya</div>
+        </a>
       </div>
 
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
@@ -1107,16 +1167,171 @@ body{
         </p>
       </div>
     </div>
+  </section>
 
-    <div class="vf-card" style="margin-top:18px;">
-      <h3>Ikuti Konten Saya</h3>
-      <a href="https://www.youtube.com/@SofyanFinancial" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:12px; text-decoration:none; padding:12px; border-radius:10px; background:rgba(226,52,47,0.08); border:1px solid rgba(226,52,47,0.25);">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="#e2342f"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5C1.6 4.3.8 5.1.5 6.2 0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
-        <div>
-          <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#e9edf4;">Sofyan Financial</div>
-          <div style="font-size:12px; color:#8ea0ba;">Subscribe channel YouTube saya untuk konten edukasi investasi</div>
+  <!-- ===================== GLOSSARY ===================== -->
+  <section class="vf-panel" id="panel-glossary">
+    <div class="vf-section-title">
+      <span class="vf-eyebrow">Referensi</span>
+      <h2>Kamus Investasi</h2>
+      <p>Kumpulan istilah dan rumus dasar investasi saham, dijelaskan sederhana untuk investor pemula. Klik tiap istilah untuk membuka penjelasannya.</p>
+    </div>
+
+    <div class="vf-card">
+      <details class="vf-glossary-item">
+        <summary>Beta (β)</summary>
+        <div class="vf-glossary-body">
+          <p>Mengukur volatilitas atau sensitivitas harga saham dibanding pergerakan pasar (IHSG). Beta 1 berarti pergerakan saham sejalan dengan pasar; beta di atas 1 berarti lebih fluktuatif dari pasar, di bawah 1 berarti lebih stabil. Dipakai sebagai salah satu input di kalkulator DCF &amp; DDM pada halaman ini.</p>
         </div>
-      </a>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Cost of Equity</summary>
+        <div class="vf-glossary-body">
+          <p>Tingkat imbal hasil yang diharapkan investor untuk menanggung risiko memiliki saham tersebut. Biasanya dihitung dengan model CAPM (Capital Asset Pricing Model), menggabungkan risk free rate, beta, dan expected market return.</p>
+          <div class="vf-glossary-formula">Cost of Equity = Risk Free + Beta × (Return Pasar − Risk Free)</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Current Ratio</summary>
+        <div class="vf-glossary-body">
+          <p>Rasio aset lancar dibanding kewajiban lancar, indikator likuiditas jangka pendek perusahaan — seberapa mampu perusahaan membayar utang yang jatuh tempo dalam waktu dekat.</p>
+          <div class="vf-glossary-formula">Current Ratio = Aset Lancar ÷ Kewajiban Lancar</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Debt to Equity Ratio (DER)</summary>
+        <div class="vf-glossary-body">
+          <p>Rasio total utang dibanding modal sendiri (ekuitas). Menunjukkan seberapa agresif operasional perusahaan didanai oleh utang dibanding modal pemegang saham. DER yang terlalu tinggi menandakan risiko keuangan yang lebih besar.</p>
+          <div class="vf-glossary-formula">DER = Total Utang ÷ Total Ekuitas</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Dividend Payout Ratio</summary>
+        <div class="vf-glossary-body">
+          <p>Persentase laba bersih yang dibagikan sebagai dividen ke pemegang saham. Sisanya ditahan perusahaan sebagai laba ditahan untuk ekspansi atau operasional.</p>
+          <div class="vf-glossary-formula">Payout Ratio = Total Dividen ÷ Laba Bersih</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Dividend Per Share (DPS)</summary>
+        <div class="vf-glossary-body">
+          <p>Jumlah dividen tunai yang dibagikan perusahaan untuk setiap satu lembar saham. Menjadi input utama di kalkulator Dividend Discount Model (DDM) pada halaman ini.</p>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Dividend Yield</summary>
+        <div class="vf-glossary-body">
+          <p>Persentase dividen per lembar dibanding harga saham saat ini — menunjukkan "imbal hasil" tunai yang diterima investor dari dividen saja, di luar potensi kenaikan harga saham.</p>
+          <div class="vf-glossary-formula">Dividend Yield = DPS ÷ Harga Saham</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Earning Per Share (EPS)</summary>
+        <div class="vf-glossary-body">
+          <p>Laba bersih perusahaan yang menjadi hak untuk setiap satu lembar saham beredar. Salah satu angka fundamental paling dasar, dipakai di kalkulator Equity Bond Valuation pada halaman ini.</p>
+          <div class="vf-glossary-formula">EPS = Laba Bersih ÷ Jumlah Saham Beredar</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Enterprise Value (EV)</summary>
+        <div class="vf-glossary-body">
+          <p>Nilai total perusahaan dari sudut pandang pengambilalihan penuh — mencakup nilai ekuitas (market cap) ditambah total utang, dikurangi kas dan setara kas yang dimiliki perusahaan.</p>
+          <div class="vf-glossary-formula">EV = Market Cap + Total Utang − Kas &amp; Setara Kas</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>EV/EBITDA</summary>
+        <div class="vf-glossary-body">
+          <p>Rasio yang membandingkan Enterprise Value dengan EBITDA (laba operasional sebelum bunga, pajak, depresiasi, dan amortisasi). Berguna untuk membandingkan perusahaan lintas sektor atau struktur modal berbeda, karena tidak terpengaruh cara perusahaan didanai (utang vs modal sendiri).</p>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Intrinsic Value</summary>
+        <div class="vf-glossary-body">
+          <p>Estimasi nilai wajar sebuah saham berdasarkan fundamental perusahaan (proyeksi laba, dividen, atau arus kas) — bukan harga yang terbentuk dari sentimen pasar sesaat. Inilah yang dihitung oleh semua kalkulator di halaman ini.</p>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Margin of Safety</summary>
+        <div class="vf-glossary-body">
+          <p>Selisih antara intrinsic value dan harga pasar saat ini — semacam "bantalan" keamanan yang dicari investor value investing sebelum membeli saham, untuk mengantisipasi kesalahan estimasi atau kondisi pasar yang tidak terduga.</p>
+          <div class="vf-glossary-formula">Margin of Safety = (Intrinsic Value − Harga Pasar) ÷ Intrinsic Value</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Market Capitalization (Market Cap)</summary>
+        <div class="vf-glossary-body">
+          <p>Total nilai pasar seluruh saham beredar suatu perusahaan — cara paling umum untuk mengukur "ukuran" sebuah perusahaan di bursa.</p>
+          <div class="vf-glossary-formula">Market Cap = Harga Saham × Jumlah Saham Beredar</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Net Profit Margin (NPM)</summary>
+        <div class="vf-glossary-body">
+          <p>Persentase laba bersih dibanding total pendapatan (omzet) perusahaan. Menunjukkan seberapa efisien perusahaan mengubah penjualan menjadi keuntungan bersih.</p>
+          <div class="vf-glossary-formula">NPM = Laba Bersih ÷ Pendapatan</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Price to Book Value (PBV / P/B)</summary>
+        <div class="vf-glossary-body">
+          <p>Rasio harga saham dibanding nilai buku (aset bersih) per lembar saham. Sering dipakai untuk menilai saham sektor perbankan dan keuangan, di mana nilai aset lebih relevan dibanding proyeksi laba.</p>
+          <div class="vf-glossary-formula">PBV = Harga Saham ÷ Book Value per Share</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Price to Earning Ratio (PER / P/E)</summary>
+        <div class="vf-glossary-body">
+          <p>Rasio harga saham dibanding laba bersih per lembar (EPS). Menunjukkan berapa kali investor bersedia membayar dibanding laba tahunan perusahaan. PER rendah bisa berarti murah (atau ada masalah fundamental), PER tinggi bisa berarti mahal (atau pasar berekspektasi tinggi terhadap pertumbuhannya).</p>
+          <div class="vf-glossary-formula">PER = Harga Saham ÷ EPS</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Return on Assets (ROA)</summary>
+        <div class="vf-glossary-body">
+          <p>Mengukur seberapa efisien perusahaan menghasilkan laba dari seluruh aset yang dimilikinya, tanpa memandang aset itu didanai dari utang atau modal sendiri.</p>
+          <div class="vf-glossary-formula">ROA = Laba Bersih ÷ Total Aset</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Return on Equity (ROE)</summary>
+        <div class="vf-glossary-body">
+          <p>Mengukur seberapa efisien perusahaan menghasilkan laba dari modal yang ditanamkan pemegang saham. Salah satu indikator profitabilitas paling penting dalam value investing.</p>
+          <div class="vf-glossary-formula">ROE = Laba Bersih ÷ Total Ekuitas</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Return on Investment (ROI)</summary>
+        <div class="vf-glossary-body">
+          <p>Mengukur seberapa besar keuntungan yang diperoleh investor dibanding modal yang diinvestasikan — bisa dipakai untuk mengukur hasil investasi saham secara personal, bukan hanya kinerja perusahaan.</p>
+          <div class="vf-glossary-formula">ROI = (Nilai Akhir − Modal Awal) ÷ Modal Awal</div>
+        </div>
+      </details>
+
+      <details class="vf-glossary-item">
+        <summary>Terminal Value</summary>
+        <div class="vf-glossary-body">
+          <p>Nilai proyeksi laba/arus kas perusahaan setelah periode proyeksi eksplisit berakhir (misal setelah tahun ke-10), dihitung dengan asumsi pertumbuhan konstan selamanya (perpetuity). Komponen penting dalam kalkulator DCF dan DDM pada halaman ini.</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -1148,9 +1363,9 @@ body{
 <section class="vf-promo">
   <div class="vf-card" style="max-width:1020px; margin:0 auto; padding:20px;">
     <div style="display:flex; align-items:flex-start; gap:14px;">
-      <div style="font-size:26px; line-height:1;">🗓️</div>
+      <div style="font-size:26px; line-height:1;">🎤</div>
       <div style="flex:1; min-width:200px;">
-        <h3 style="margin:0 0 6px;">Ingin Undang Saya Jadi Pembicara Perencanaan Keuangan?</h3>
+        <h3 style="margin:0 0 6px;">Undang Saya Jadi Pembicara</h3>
         <p style="color:#8ea0ba; font-size:13px; line-height:1.7; margin:0;">
           Sedang mencari pembicara untuk seminar, workshop, atau kelas perencanaan keuangan dan investasi? Silakan hubungi saya melalui <a href="https://wa.me/62811207205" target="_blank" rel="noopener" style="color:#e4c77a;">WhatsApp</a> untuk diskusi lebih lanjut.
         </p>
@@ -1278,6 +1493,41 @@ function getRaw(id){
 function setVal(id, v){
   var el = document.getElementById(id);
   if(el) el.value = v;
+}
+var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom'};
+function buildShareText(key){
+  var lines = ['\ud83d\udcca Hasil ' + SHARE_TITLES[key] + ' \u2014 Kalkulator Valuasi Saham Sofyan Financial'];
+  if(key === 'dcf'){
+    var v1 = document.getElementById('dcf-intrinsic'); var v2 = document.getElementById('dcf-coe');
+    if(v1) lines.push('Intrinsic Value: ' + v1.textContent + ' / lembar');
+    if(v2) lines.push('Cost of Equity: ' + v2.textContent);
+  } else if(key === 'ddm'){
+    var v3 = document.getElementById('ddm-companyvaluation-hero');
+    if(v3) lines.push('Company Valuation: ' + v3.textContent + ' / lembar');
+  } else if(key === 'eb'){
+    var v4 = document.getElementById('eb-irr');
+    if(v4) lines.push('Estimasi Total Return (IRR): ' + v4.textContent);
+  } else if(key === 'ff'){
+    var v5 = document.getElementById('ff-fundfuture');
+    if(v5) lines.push('Dana Financial Freedom: ' + v5.textContent);
+  }
+  lines.push('Hitung sendiri gratis di ' + location.origin + location.pathname);
+  return lines.join('\n');
+}
+function shareResult(key){
+  var text = buildShareText(key);
+  if(navigator.share){
+    navigator.share({title:'Kalkulator Valuasi Saham - Sofyan Financial', text:text}).catch(function(){});
+  } else if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){
+      var btn = document.getElementById(key + '-share-btn');
+      if(btn){
+        var orig = btn.textContent;
+        btn.textContent = 'Disalin \u2713';
+        setTimeout(function(){ btn.textContent = orig; }, 2200);
+      }
+    }).catch(function(){});
+  }
 }
 function copyGopay(){
   var number = '0811207205';
@@ -1685,6 +1935,8 @@ document.addEventListener('DOMContentLoaded', function(){
   ['dcf','ddm','eb','ff'].forEach(function(key){
     var btn = document.getElementById(key + '-pdf-btn');
     if(btn) btn.addEventListener('click', function(){ printCalculator(key); });
+    var sbtn = document.getElementById(key + '-share-btn');
+    if(sbtn) sbtn.addEventListener('click', function(){ shareResult(key); });
   });
   window.addEventListener('beforeprint', function(){
     document.querySelectorAll('.vf-details').forEach(function(d){ d.setAttribute('data-was-open', d.open ? '1':'0'); d.open = true; });
