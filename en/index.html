@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function(){
+  try{
+    var saved = localStorage.getItem('vf-theme');
+    document.documentElement.setAttribute('data-theme', saved || 'dark');
+  }catch(e){}
+})();
+</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Stock Valuation Calculator — Sofyan Financial</title>
-<meta name="description" content="Free stock valuation calculator: Discounted Cash Flow, Dividend Discount Model, Equity Bond Valuation, and Financial Freedom. A beginner-friendly tool inspired by Warren Buffett's value investing approach." />
+<title>Free Stock Valuation Calculator - Sofyan Financial</title>
+<meta name="description" content="Free stock valuation calculator: compute intrinsic value with DCF, DDM, Equity Bond & Financial Freedom methods. Beginner-friendly, Warren Buffett-inspired." />
 <meta name="google-site-verification" content="yEDYCzDjYLghaDx6KYNGsLaw-_3tkxSzCfxQuCrKeUQ" />
 
 <link rel="canonical" href="https://sofyanfinancial.vercel.app/en/" />
@@ -14,13 +22,13 @@
 
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:title" content="Free Stock Valuation Calculator — DCF, DDM, Equity Bond & Financial Freedom" />
-<meta property="og:description" content="Calculate fair stock value with 4 Warren Buffett-style methods: Discounted Cash Flow, Dividend Discount Model, Equity Bond Valuation, and a Financial Freedom simulator. Free, right in your browser." />
+<meta property="og:title" content="Free Stock Valuation Calculator - Sofyan Financial" />
+<meta property="og:description" content="Free stock valuation calculator: compute intrinsic value with DCF, DDM, Equity Bond & Financial Freedom methods. Beginner-friendly, Warren Buffett-inspired." />
 <meta property="og:url" content="https://sofyanfinancial.vercel.app/en/" />
 <meta property="og:image" content="https://sofyanfinancial.vercel.app/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Free Stock Valuation Calculator — Sofyan Financial" />
-<meta name="twitter:description" content="Calculate stock intrinsic value using DCF, DDM, Equity Bond Valuation & Financial Freedom. Free." />
+<meta name="twitter:title" content="Free Stock Valuation Calculator - Sofyan Financial" />
+<meta name="twitter:description" content="Free stock valuation calculator: compute intrinsic value with DCF, DDM, Equity Bond & Financial Freedom methods." />
 <meta name="twitter:image" content="https://sofyanfinancial.vercel.app/og-image.png" />
 
 <script type="application/ld+json">
@@ -61,6 +69,7 @@
 <style>
 :root{
   --bg:#0a1220;
+  --bg-glow:#12203a;
   --panel:#111d31;
   --card:#132339;
   --card-2:#0f1c2e;
@@ -77,14 +86,31 @@
   --sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --mono: 'SF Mono', 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
 }
+html[data-theme="light"]{
+  --bg:#f6f4ee;
+  --bg-glow:#ece4cf;
+  --panel:#ffffff;
+  --card:#ffffff;
+  --card-2:#faf8f2;
+  --border:#e3ddc9;
+  --border-soft:#ece7d8;
+  --gold:#a97c2f;
+  --gold-soft:#8a6323;
+  --text:#1c2434;
+  --text-muted:#5b6578;
+  --text-dim:#8590a1;
+  --positive:#1f8a5c;
+  --negative:#c94a3d;
+}
 *{box-sizing:border-box;}
 html,body{ margin:0; padding:0; }
 body{
-  background: radial-gradient(1200px 600px at 10% -10%, #12203a 0%, var(--bg) 55%);
+  background: radial-gradient(1200px 600px at 10% -10%, var(--bg-glow) 0%, var(--bg) 55%);
   color: var(--text);
   font-family: var(--sans);
   min-height: 100vh;
   padding-bottom: 40px;
+  transition: background .2s ease, color .2s ease;
 }
 .vf-header{
   padding: 28px 20px 18px;
@@ -450,6 +476,92 @@ body{
   margin-top: 10px;
 }
 
+/* ============ Sub-tabs (inside Valuation panel) ============ */
+.vf-subtabs{
+  display:flex;
+  gap:8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.vf-subtab{
+  padding: 9px 15px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--card-2);
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: all .15s ease;
+}
+.vf-subtab:hover{ color: var(--text); }
+.vf-subtab.active{
+  background: rgba(201,162,75,0.12);
+  border-color: var(--gold);
+  color: var(--gold-soft);
+}
+.vf-subpanel{ display:none; }
+.vf-subpanel.active{ display:block; }
+
+/* ============ Intro article (SEO content block) ============ */
+.vf-intro{
+  max-width: 1020px;
+  margin: 18px auto 0;
+  padding: 0 20px;
+}
+.vf-intro-card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+.vf-intro-card h2{
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--gold-soft);
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+.vf-intro-card > p{
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+.vf-intro-more summary{
+  cursor: pointer;
+  font-size: 12.5px;
+  color: var(--gold);
+  font-weight: 600;
+  margin-top: 10px;
+  list-style: none;
+}
+.vf-intro-more summary::-webkit-details-marker{ display:none; }
+.vf-intro-more-body{
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+}
+.vf-intro-more-body ul{
+  margin: 0 0 10px;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.vf-intro-more-body li{
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.vf-intro-more-body p{
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
 /* ============ Glossary accordion ============ */
 .vf-glossary-item{
   border-bottom: 1px solid var(--border-soft);
@@ -616,7 +728,9 @@ body{
 @media print{
   body{ background:#fff !important; color:#111 !important; padding:0 !important; }
   #vf-error-banner, .vf-tabs, .vf-toolbar, .vf-case, .vf-promo, .vf-footer,
-  .no-print, .vf-note-box, .vf-badge, #panel-about, #panel-glossary{ display:none !important; }
+  .no-print, .vf-note-box, .vf-badge, #panel-about, #panel-glossary, .vf-subtabs{ display:none !important; }
+  .vf-subpanel{ display:none !important; }
+  .vf-subpanel.active{ display:block !important; }
   .vf-header{ border:none; background:none; padding:0 0 10px; }
   .vf-header-inner > div:first-child{ display:none !important; }
   .vf-header p{ display:none; }
@@ -651,7 +765,7 @@ body{
 </style>
 </head>
 <body>
-<div id="vf-error-banner" style="display:none; position:fixed; top:0; left:0; right:0; z-index:999; background:#e2685a; color:#fff; font-family:var(--sans); font-size:12px; padding:10px 14px; line-height:1.4;"></div>
+<div id="vf-error-banner" style="display:none; position:fixed; top:0; left:0; right:0; z-index:999; background:var(--negative); color:#fff; font-family:var(--sans); font-size:12px; padding:10px 14px; line-height:1.4;"></div>
 
 <div class="print-only">
   <h2 style="font-family:'Poppins',sans-serif; margin:0;">Stock Valuation Calculator — Sofyan Financial</h2>
@@ -662,9 +776,15 @@ body{
   <div class="vf-header-inner">
     <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
       <span class="vf-kicker">Sofyan Financial · Value Investing Toolkit</span>
-      <div style="display:flex; gap:4px; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600;">
-        <a href="/" style="padding:5px 10px; border-radius:7px; color:#8ea0ba; text-decoration:none; border:1px solid transparent;">🇮🇩 ID</a>
-        <span style="padding:5px 10px; border-radius:7px; background:#132339; color:#e4c77a; border:1px solid #213249;">🇬🇧 EN</span>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+        <div style="display:flex; gap:4px; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600;">
+          <a href="/" style="padding:5px 10px; border-radius:7px; color:var(--text-muted); text-decoration:none; border:1px solid transparent;">🇮🇩 ID</a>
+          <span style="padding:5px 10px; border-radius:7px; background:var(--card); color:var(--gold-soft); border:1px solid var(--border);">🇬🇧 EN</span>
+        </div>
+        <div style="display:flex; gap:4px; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600;">
+          <button type="button" id="theme-dark-btn" style="padding:5px 10px; border-radius:7px; cursor:pointer; font-family:inherit; font-size:inherit; font-weight:inherit; border:1px solid var(--border); background:var(--card); color:var(--gold-soft);">🌙 Dark</button>
+          <button type="button" id="theme-light-btn" style="padding:5px 10px; border-radius:7px; cursor:pointer; font-family:inherit; font-size:inherit; font-weight:inherit; border:1px solid transparent; background:transparent; color:var(--text-muted);">☀️ Light</button>
+        </div>
       </div>
     </div>
     <h1>Stock Valuation Calculator</h1>
@@ -672,22 +792,33 @@ body{
   </div>
 </header>
 
+<section class="vf-intro no-print">
+  <div class="vf-intro-card">
+    <h2>How to Calculate a Stock's Intrinsic Value</h2>
+    <p>Calculating a stock's intrinsic value is an essential step before buying, value-investing style — so you know whether the market price is cheap or expensive relative to its fundamentals. This free stock calculator offers four valuation methods at once — pick a tab below to start calculating.</p>
+    <details class="vf-intro-more">
+      <summary>Read more →</summary>
+      <div class="vf-intro-more-body">
+        <ul>
+          <li><strong>Discounted Cash Flow (DCF)</strong> — calculates fair value from a company's projected net earnings over the next 10 years.</li>
+          <li><strong>Dividend Discount Model (DDM)</strong> — calculates fair value based on projected dividends an investor will receive.</li>
+          <li><strong>Equity Bond Valuation</strong> — a Warren Buffett-style method that treats a stock like a bond, comparing estimated returns against government bond yields.</li>
+          <li><strong>Financial Freedom Calculator</strong> — calculates how much retirement fund you need and the regular investment target to reach it.</li>
+        </ul>
+        <p>Each method has its own strengths and fits different types of companies — see the detailed explanation on each calculator tab below.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
 <nav class="vf-tabs">
-  <button class="vf-tab active" data-tab="dcf">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 5"></polyline><polyline points="14 5 21 5 21 12"></polyline></svg>
-    DCF
-  </button>
-  <button class="vf-tab" data-tab="ddm">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="21" x2="21" y2="21"></line><line x1="5" y1="21" x2="5" y2="10"></line><line x1="9" y1="21" x2="9" y2="10"></line><line x1="15" y1="21" x2="15" y2="10"></line><line x1="19" y1="21" x2="19" y2="10"></line><polygon points="12 3 21 9 3 9"></polygon></svg>
-    DDM
-  </button>
-  <button class="vf-tab" data-tab="eb">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"></line><line x1="5" y1="7" x2="19" y2="7"></line><path d="M5 7 L2.5 13.5 a3 3 0 0 0 5 0 Z"></path><path d="M19 7 L16.5 13.5 a3 3 0 0 0 5 0 Z"></path><line x1="8" y1="21" x2="16" y2="21"></line></svg>
-    Equity Bond
+  <button class="vf-tab active" data-tab="valuation">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="8" y1="10.5" x2="8.01" y2="10.5"></line><line x1="12" y1="10.5" x2="12.01" y2="10.5"></line><line x1="16" y1="10.5" x2="16.01" y2="10.5"></line><line x1="8" y1="14.5" x2="8.01" y2="14.5"></line><line x1="12" y1="14.5" x2="12.01" y2="14.5"></line><line x1="16" y1="14.5" x2="16.01" y2="14.5"></line><line x1="8" y1="18.5" x2="16" y2="18.5"></line></svg>
+    Valuation
   </button>
   <button class="vf-tab" data-tab="ff">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5.5"></circle><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"></circle></svg>
-    Financial Freedom
+    Retirement Fund
   </button>
   <button class="vf-tab" data-tab="about">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"></path></svg>
@@ -702,7 +833,20 @@ body{
 <main class="vf-main">
 
   <!-- ===================== DCF ===================== -->
-  <section class="vf-panel active" id="panel-dcf">
+  <section class="vf-panel active" id="panel-valuation">
+    <div class="vf-section-title">
+      <span class="vf-eyebrow">Valuation Methods</span>
+      <h2>Stock Valuation Calculator</h2>
+      <p>Three approaches to calculate a stock's fair value (intrinsic value) — pick the method that best fits the company you're analyzing.</p>
+    </div>
+
+    <div class="vf-subtabs">
+      <button class="vf-subtab active" data-subtab="dcf">Discounted Cash Flow</button>
+      <button class="vf-subtab" data-subtab="ddm">Dividend Discount Model</button>
+      <button class="vf-subtab" data-subtab="eb">Equity Bond Valuation</button>
+    </div>
+
+    <div class="vf-subpanel active" id="subpanel-dcf">
     <div class="vf-section-title">
       <span class="vf-eyebrow">Method 1</span>
       <h2>Discounted Cash Flow (Modified DCF)</h2>
@@ -807,10 +951,10 @@ body{
         </details>
       </div>
     </div>
-  </section>
+    </div>
 
-  <!-- ===================== DDM ===================== -->
-  <section class="vf-panel" id="panel-ddm">
+    <!-- ===================== DDM ===================== -->
+    <div class="vf-subpanel" id="subpanel-ddm">
     <div class="vf-section-title">
       <span class="vf-eyebrow">Method 2</span>
       <h2>Dividend Discount Model (Modified DDM)</h2>
@@ -906,10 +1050,10 @@ body{
         </details>
       </div>
     </div>
-  </section>
+    </div>
 
-  <!-- ===================== EQUITY BOND ===================== -->
-  <section class="vf-panel" id="panel-eb">
+    <!-- ===================== EQUITY BOND ===================== -->
+    <div class="vf-subpanel" id="subpanel-eb">
     <div class="vf-section-title">
       <span class="vf-eyebrow">Method 3 · Warren Buffett</span>
       <h2>Equity Bond Valuation</h2>
@@ -1011,13 +1155,14 @@ body{
         </details>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- ===================== FINANCIAL FREEDOM ===================== -->
   <section class="vf-panel" id="panel-ff">
     <div class="vf-section-title">
       <span class="vf-eyebrow">Bonus · adjusted for post-retirement inflation</span>
-      <h2>Financial Freedom Guideline</h2>
+      <h2>Calculating Your Retirement Fund Target (Financial Freedom)</h2>
       <p>How much money you need to set aside, and how much you need to invest regularly, so your monthly living costs are covered <strong>forever</strong> — including keeping up with inflation after retirement.</p>
     </div>
 
@@ -1119,33 +1264,33 @@ body{
         <img src="/sofyan-photo.jpg" alt="Photo of Sofyan" style="width:120px; height:120px; border-radius:16px; object-fit:cover; border:1px solid rgba(201,162,75,0.4); flex-shrink:0;" />
         <div style="flex:1; min-width:200px;">
           <h3 style="margin-top:0;">Sofyan</h3>
-          <p style="color:#8ea0ba; font-size:13px; line-height:1.7; margin:0;">
+          <p style="color:var(--text-muted); font-size:13px; line-height:1.7; margin:0;">
             Value Investing educator and mentor with extensive experience in Indonesia's capital market.
           </p>
         </div>
         <a href="https://www.youtube.com/@SofyanFinancial" target="_blank" rel="noopener" style="flex:0 0 200px; min-width:180px; display:flex; flex-direction:column; justify-content:center; gap:8px; text-decoration:none; padding:14px; border-radius:12px; background:rgba(226,52,47,0.08); border:1px solid rgba(226,52,47,0.25);">
           <svg viewBox="0 0 24 24" width="26" height="26" fill="#e2342f"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5C1.6 4.3.8 5.1.5 6.2 0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
-          <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#e9edf4;">Sofyan Financial</div>
-          <div style="font-size:11.5px; color:#8ea0ba; line-height:1.4;">Subscribe to my YouTube channel</div>
+          <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:var(--text);">Sofyan Financial</div>
+          <div style="font-size:11.5px; color:var(--text-muted); line-height:1.4;">Subscribe to my YouTube channel</div>
         </a>
       </div>
 
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
         <div style="background:rgba(201,162,75,0.06); border:1px solid rgba(201,162,75,0.25); border-radius:10px; padding:14px;">
-          <div style="font-family:'Poppins',sans-serif; font-size:22px; font-weight:700; color:#e4c77a;">12 Years</div>
-          <div style="font-size:12px; color:#8ea0ba; margin-top:2px;">Experience in Indonesia's capital market</div>
+          <div style="font-family:'Poppins',sans-serif; font-size:22px; font-weight:700; color:var(--gold-soft);">12 Years</div>
+          <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Experience in Indonesia's capital market</div>
         </div>
         <div style="background:rgba(201,162,75,0.06); border:1px solid rgba(201,162,75,0.25); border-radius:10px; padding:14px;">
-          <div style="font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; color:#e4c77a;">Certified &amp; Licensed</div>
-          <div style="font-size:12px; color:#8ea0ba; margin-top:2px;">Capital markets professional</div>
+          <div style="font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; color:var(--gold-soft);">Certified &amp; Licensed</div>
+          <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Capital markets professional</div>
         </div>
         <div style="background:rgba(201,162,75,0.06); border:1px solid rgba(201,162,75,0.25); border-radius:10px; padding:14px;">
-          <div style="font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; color:#e4c77a;">Active Practitioner</div>
-          <div style="font-size:12px; color:#8ea0ba; margin-top:2px;">Currently working at a securities firm</div>
+          <div style="font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; color:var(--gold-soft);">Active Practitioner</div>
+          <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Currently working at a securities firm</div>
         </div>
         <div style="background:rgba(201,162,75,0.06); border:1px solid rgba(201,162,75,0.25); border-radius:10px; padding:14px;">
-          <div style="font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; color:#e4c77a;">Best Advisor</div>
-          <div style="font-size:12px; color:#8ea0ba; margin-top:2px;">At an asset management (mutual fund) company</div>
+          <div style="font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; color:var(--gold-soft);">Best Advisor</div>
+          <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">At an asset management (mutual fund) company</div>
         </div>
       </div>
     </div>
@@ -1154,15 +1299,15 @@ body{
       <div class="vf-card">
         <h3>Investment Philosophy</h3>
         <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;">
-          <li style="display:flex; gap:8px; font-size:13px; color:#8ea0ba; line-height:1.6;"><span style="color:#4fb286; flex-shrink:0;">✅</span> Focused on fundamentals, not market sentiment</li>
-          <li style="display:flex; gap:8px; font-size:13px; color:#8ea0ba; line-height:1.6;"><span style="color:#4fb286; flex-shrink:0;">✅</span> Long-term thinking, Warren Buffett style</li>
-          <li style="display:flex; gap:8px; font-size:13px; color:#8ea0ba; line-height:1.6;"><span style="color:#4fb286; flex-shrink:0;">✅</span> Always look for a margin of safety before buying</li>
-          <li style="display:flex; gap:8px; font-size:13px; color:#8ea0ba; line-height:1.6;"><span style="color:#4fb286; flex-shrink:0;">✅</span> Deep research, not just following others' recommendations</li>
+          <li style="display:flex; gap:8px; font-size:13px; color:var(--text-muted); line-height:1.6;"><span style="color:var(--positive); flex-shrink:0;">✅</span> Focused on fundamentals, not market sentiment</li>
+          <li style="display:flex; gap:8px; font-size:13px; color:var(--text-muted); line-height:1.6;"><span style="color:var(--positive); flex-shrink:0;">✅</span> Long-term thinking, Warren Buffett style</li>
+          <li style="display:flex; gap:8px; font-size:13px; color:var(--text-muted); line-height:1.6;"><span style="color:var(--positive); flex-shrink:0;">✅</span> Always look for a margin of safety before buying</li>
+          <li style="display:flex; gap:8px; font-size:13px; color:var(--text-muted); line-height:1.6;"><span style="color:var(--positive); flex-shrink:0;">✅</span> Deep research, not just following others' recommendations</li>
         </ul>
       </div>
       <div class="vf-card">
         <h3>Why This Toolkit Was Built</h3>
-        <p style="color:#8ea0ba; font-size:13px; line-height:1.7; margin:0;">
+        <p style="color:var(--text-muted); font-size:13px; line-height:1.7; margin:0;">
           So capital market investors can understand how to calculate stock intrinsic value and build a financial planning target — without needing to be an Excel expert or finance graduate.
         </p>
       </div>
@@ -1367,8 +1512,8 @@ body{
       <div style="font-size:26px; line-height:1;">🎤</div>
       <div style="flex:1; min-width:200px;">
         <h3 style="margin:0 0 6px;">Invite Me to Speak</h3>
-        <p style="color:#8ea0ba; font-size:13px; line-height:1.7; margin:0;">
-          Looking for a speaker for a seminar, workshop, or class on financial planning and investing? Feel free to reach out via <a href="https://wa.me/62811207205" target="_blank" rel="noopener" style="color:#e4c77a;">WhatsApp</a> to discuss further.
+        <p style="color:var(--text-muted); font-size:13px; line-height:1.7; margin:0;">
+          Looking for a speaker for a seminar, workshop, or class on financial planning and investing? Feel free to reach out via <a href="https://wa.me/62811207205" target="_blank" rel="noopener" style="color:var(--gold-soft);">WhatsApp</a> to discuss further.
         </p>
       </div>
     </div>
@@ -1382,11 +1527,11 @@ body{
       <div style="font-size:26px; line-height:1;">☕</div>
       <div style="flex:1; min-width:200px;">
         <h3 style="margin:0 0 6px;">Buy Me a Coffee</h3>
-        <p style="color:#8ea0ba; font-size:13px; line-height:1.7; margin:0 0 14px;">
+        <p style="color:var(--text-muted); font-size:13px; line-height:1.7; margin:0 0 14px;">
           If this toolkit has been helpful for your investing journey and you'd like to show a bit of appreciation, I'd be genuinely grateful for a cup of coffee. This is entirely optional — simply using and sharing this toolkit with fellow investors already means a lot to me.
         </p>
         <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-          <div style="font-family:'Poppins',sans-serif; font-size:13.5px; font-weight:600; color:#e4c77a; background:rgba(201,162,75,0.08); border:1px solid rgba(201,162,75,0.3); padding:8px 14px; border-radius:8px;">
+          <div style="font-family:'Poppins',sans-serif; font-size:13.5px; font-weight:600; color:var(--gold-soft); background:rgba(201,162,75,0.08); border:1px solid rgba(201,162,75,0.3); padding:8px 14px; border-radius:8px;">
             GoPay (ID e-wallet): 0811207205
           </div>
           <button class="vf-mini-btn" id="copy-gopay-btn" type="button">Copy number</button>
@@ -1399,32 +1544,32 @@ body{
 <!-- ===================== FAQ ===================== -->
 <section class="no-print" style="max-width:1020px; margin:26px auto 0; padding:0 20px;">
   <div style="background:linear-gradient(135deg,#16233a,#101a2c); border:1px solid #213249; border-radius:14px; padding:24px;">
-    <span style="font-family:'Poppins',sans-serif; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#c9a24b;">FAQ</span>
-    <h3 style="font-family:'Poppins',sans-serif; font-size:19px; color:#e9edf4; margin:8px 0 16px;">Frequently Asked Questions About Stock Valuation</h3>
+    <span style="font-family:'Poppins',sans-serif; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold);">FAQ</span>
+    <h3 style="font-family:'Poppins',sans-serif; font-size:19px; color:var(--text); margin:8px 0 16px;">Frequently Asked Questions About Stock Valuation</h3>
 
     <div style="margin-bottom:16px;">
-      <p style="color:#e4c77a; font-weight:600; font-size:14px; margin:0 0 4px;">What is a stock's intrinsic value?</p>
-      <p style="color:#8ea0ba; font-size:13px; line-height:1.6; margin:0;">Intrinsic value is an estimate of a stock's fair value based on projected future earnings, dividends, or cash flows — not a price shaped by market sentiment. This calculator computes it using 4 methods: DCF, DDM, Equity Bond Valuation, and a Financial Freedom simulator.</p>
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">What is a stock's intrinsic value?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Intrinsic value is an estimate of a stock's fair value based on projected future earnings, dividends, or cash flows — not a price shaped by market sentiment. This calculator computes it using 4 methods: DCF, DDM, Equity Bond Valuation, and a Financial Freedom simulator.</p>
     </div>
 
     <div style="margin-bottom:16px;">
-      <p style="color:#e4c77a; font-weight:600; font-size:14px; margin:0 0 4px;">What's the difference between DCF and DDM in stock valuation?</p>
-      <p style="color:#8ea0ba; font-size:13px; line-height:1.6; margin:0;">DCF discounts a company's projected net earnings, while DDM discounts projected dividends per share. DDM is more accurate for companies that pay dividends regularly, while DCF is more flexible even if a company doesn't pay dividends yet.</p>
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">What's the difference between DCF and DDM in stock valuation?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">DCF discounts a company's projected net earnings, while DDM discounts projected dividends per share. DDM is more accurate for companies that pay dividends regularly, while DCF is more flexible even if a company doesn't pay dividends yet.</p>
     </div>
 
     <div style="margin-bottom:16px;">
-      <p style="color:#e4c77a; font-weight:600; font-size:14px; margin:0 0 4px;">What is Warren Buffett-style Equity Bond Valuation?</p>
-      <p style="color:#8ea0ba; font-size:13px; line-height:1.6; margin:0;">A method from the book "The Warren Buffett Stock Portfolio" that treats a stock like a bond — calculating the estimated total return (IRR) from the current price and comparing it to the 10-year government bond yield as a risk-free benchmark.</p>
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">What is Warren Buffett-style Equity Bond Valuation?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">A method from the book "The Warren Buffett Stock Portfolio" that treats a stock like a bond — calculating the estimated total return (IRR) from the current price and comparing it to the 10-year government bond yield as a risk-free benchmark.</p>
     </div>
 
     <div style="margin-bottom:16px;">
-      <p style="color:#e4c77a; font-weight:600; font-size:14px; margin:0 0 4px;">What's the difference between the DCF here and the DCF used by professional analysts?</p>
-      <p style="color:#8ea0ba; font-size:13px; line-height:1.6; margin:0;">The essence and formulas are exactly the same as those used by professional analysts (cash flow projections, discount rate, and terminal value). The difference is that this calculator is simplified and faster so retail investors can use it right away without building an Excel model from scratch — without changing the essence of the calculation.</p>
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">What's the difference between the DCF here and the DCF used by professional analysts?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">The essence and formulas are exactly the same as those used by professional analysts (cash flow projections, discount rate, and terminal value). The difference is that this calculator is simplified and faster so retail investors can use it right away without building an Excel model from scratch — without changing the essence of the calculation.</p>
     </div>
 
     <div>
-      <p style="color:#e4c77a; font-weight:600; font-size:14px; margin:0 0 4px;">Is this calculator free?</p>
-      <p style="color:#8ea0ba; font-size:13px; line-height:1.6; margin:0;">Yes, it's 100% free and works right in your browser — no login or app install needed.</p>
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Is this calculator free?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Yes, it's 100% free and works right in your browser — no login or app install needed.</p>
     </div>
   </div>
 </section>
@@ -1890,10 +2035,21 @@ document.addEventListener('DOMContentLoaded', function(){
     tab.addEventListener('click', function(){ activateTab(this.getAttribute('data-tab')); });
   });
 
+  // Sub-tabs inside "Valuation" panel
+  var subtabs = document.querySelectorAll('.vf-subtab');
+  var subpanels = document.querySelectorAll('.vf-subpanel');
+  function activateSubtab(id){
+    subtabs.forEach(function(t){ t.classList.toggle('active', t.getAttribute('data-subtab') === id); });
+    subpanels.forEach(function(p){ p.classList.toggle('active', p.id === 'subpanel-' + id); });
+  }
+  subtabs.forEach(function(tab){
+    tab.addEventListener('click', function(){ activateSubtab(this.getAttribute('data-subtab')); });
+  });
+
   // Live recalculation via delegation
-  document.getElementById('panel-dcf').addEventListener('input', renderDCF);
-  document.getElementById('panel-ddm').addEventListener('input', renderDDM);
-  document.getElementById('panel-eb').addEventListener('input', renderEB);
+  document.getElementById('subpanel-dcf').addEventListener('input', renderDCF);
+  document.getElementById('subpanel-ddm').addEventListener('input', renderDDM);
+  document.getElementById('subpanel-eb').addEventListener('input', renderEB);
   document.getElementById('panel-ff').addEventListener('input', renderFF);
   document.getElementById('panel-ff').addEventListener('change', renderFF);
 
@@ -1923,6 +2079,31 @@ document.addEventListener('DOMContentLoaded', function(){
 
   var copyGopayBtn = document.getElementById('copy-gopay-btn');
   if(copyGopayBtn) copyGopayBtn.addEventListener('click', copyGopay);
+
+  // Dark / Light mode toggle
+  function applyThemeButtons(){
+    var theme = document.documentElement.getAttribute('data-theme') || 'dark';
+    var darkBtn = document.getElementById('theme-dark-btn');
+    var lightBtn = document.getElementById('theme-light-btn');
+    if(darkBtn && lightBtn){
+      var activeStyle = {bg:'var(--card)', border:'var(--border)', color:'var(--gold-soft)'};
+      var inactiveStyle = {bg:'transparent', border:'transparent', color:'var(--text-muted)'};
+      var darkStyle = theme === 'light' ? inactiveStyle : activeStyle;
+      var lightStyle = theme === 'light' ? activeStyle : inactiveStyle;
+      darkBtn.style.background = darkStyle.bg; darkBtn.style.borderColor = darkStyle.border; darkBtn.style.color = darkStyle.color;
+      lightBtn.style.background = lightStyle.bg; lightBtn.style.borderColor = lightStyle.border; lightBtn.style.color = lightStyle.color;
+    }
+  }
+  function setTheme(theme){
+    document.documentElement.setAttribute('data-theme', theme);
+    try{ localStorage.setItem('vf-theme', theme); }catch(e){}
+    applyThemeButtons();
+  }
+  var themeDarkBtn = document.getElementById('theme-dark-btn');
+  var themeLightBtn = document.getElementById('theme-light-btn');
+  if(themeDarkBtn) themeDarkBtn.addEventListener('click', function(){ setTheme('dark'); });
+  if(themeLightBtn) themeLightBtn.addEventListener('click', function(){ setTheme('light'); });
+  applyThemeButtons();
 
   // PDF export (uses browser's native print-to-PDF, no extra library needed)
   var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom'};
