@@ -1289,6 +1289,22 @@ body{
         <div class="vf-avg-lots" id="avg-lots-container"></div>
         <button class="vf-mini-btn no-print" id="avg-add-lot-btn" type="button">+ Add Purchase</button>
 
+        <h3 class="spaced">Transaction Fee (Optional)</h3>
+        <div class="vf-field-row">
+          <div class="vf-field vf-field-wide">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:12.5px; color:var(--text-muted);">
+              <input type="checkbox" id="avg-fee-enabled" style="width:16px; height:16px; accent-color:var(--gold); cursor:pointer;">
+              Include broker buy fee in the calculation
+            </label>
+          </div>
+        </div>
+        <div class="vf-field-row" id="avg-fee-field" style="display:none;">
+          <div class="vf-field">
+            <label class="vf-label">Buy fee<span class="vf-label-sub">% of transaction value, per broker</span></label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="avg-fee-pct" value="0.15" step="0.01"><span class="vf-suffix">%</span></div>
+          </div>
+        </div>
+
         <h3 class="spaced">Current Market Price</h3>
         <div class="vf-field-row">
           <div class="vf-field">
@@ -1307,6 +1323,7 @@ body{
         </div>
         <div class="vf-result-list">
           <div class="vf-result-row"><span class="vf-result-label">Total cost</span><span class="vf-result-value" id="avg-totalcost">—</span></div>
+          <div class="vf-result-row" id="avg-fee-row" style="display:none;"><span class="vf-result-label">Total fee paid</span><span class="vf-result-value" id="avg-feeamount">—</span></div>
           <div class="vf-result-row"><span class="vf-result-label">Total shares</span><span class="vf-result-value" id="avg-totalqty">—</span></div>
           <div class="vf-result-row em"><span class="vf-result-label">Average price / share</span><span class="vf-result-value" id="avg-price2">—</span></div>
         </div>
@@ -2117,21 +2134,34 @@ function getAvgLots(){
   });
   return lots;
 }
-function calcAverage(lots, currentPrice){
-  var totalCost = 0, totalQty = 0;
-  lots.forEach(function(l){ totalCost += l.price * l.qty; totalQty += l.qty; });
+function calcAverage(lots, currentPrice, feePct){
+  var totalCostRaw = 0, totalQty = 0;
+  lots.forEach(function(l){ totalCostRaw += l.price * l.qty; totalQty += l.qty; });
+  var feeAmount = totalCostRaw * (feePct / 100);
+  var totalCost = totalCostRaw + feeAmount;
   var avgPrice = totalQty > 0 ? totalCost / totalQty : NaN;
   var gainLossPct = (currentPrice > 0 && avgPrice > 0) ? (currentPrice - avgPrice) / avgPrice : NaN;
-  return {totalCost:totalCost, totalQty:totalQty, avgPrice:avgPrice, gainLossPct:gainLossPct};
+  return {totalCostRaw:totalCostRaw, feeAmount:feeAmount, totalCost:totalCost, totalQty:totalQty, avgPrice:avgPrice, gainLossPct:gainLossPct};
 }
 function renderAverage(){
   var lots = getAvgLots();
   var currentPrice = getVal('avg-currentprice');
-  var r = calcAverage(lots, currentPrice);
+  var feeEnabled = document.getElementById('avg-fee-enabled').checked;
+  document.getElementById('avg-fee-field').style.display = feeEnabled ? '' : 'none';
+  var feePct = feeEnabled ? getVal('avg-fee-pct') : 0;
+  var r = calcAverage(lots, currentPrice, feePct);
   document.getElementById('avg-price').textContent = idr(r.avgPrice, 2);
   document.getElementById('avg-totalcost').textContent = idr(r.totalCost, 0);
   document.getElementById('avg-totalqty').textContent = fnum(r.totalQty, 0) + ' shares';
   document.getElementById('avg-price2').textContent = idr(r.avgPrice, 2);
+
+  var feeRow = document.getElementById('avg-fee-row');
+  if(feeEnabled && feePct > 0){
+    feeRow.style.display = '';
+    document.getElementById('avg-feeamount').textContent = idr(r.feeAmount, 0);
+  } else {
+    feeRow.style.display = 'none';
+  }
 
   var badge = document.getElementById('avg-badge');
   var cpRaw = getRaw('avg-currentprice');
@@ -2148,6 +2178,9 @@ var AVG_EXAMPLE = [{price:1200, qty:1000}, {price:900, qty:1000}];
 function applyAvgPreset(){
   setAvgLots(AVG_EXAMPLE);
   setVal('avg-currentprice', '');
+  document.getElementById('avg-fee-enabled').checked = false;
+  setVal('avg-fee-pct', 0.15);
+  renderAverage();
 }
 
 /* ============ Wire-up ============ */
@@ -2215,6 +2248,7 @@ document.addEventListener('DOMContentLoaded', function(){
     renderAverage();
   });
   document.getElementById('panel-average').addEventListener('input', renderAverage);
+  document.getElementById('panel-average').addEventListener('change', renderAverage);
   document.getElementById('panel-average').addEventListener('click', function(e){
     if(e.target.classList.contains('vf-lot-remove')){
       var lotId = e.target.getAttribute('data-lot');
