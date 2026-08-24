@@ -11,7 +11,7 @@
 </script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kalkulator Saham Gratis - Nilai Wajar Saham | Sofyan Financial</title>
+<title>Kalkulator Menghitung Nilai Wajar Valuasi Saham - Lengkap & Mudah | Bonus Cara Hitung Dana Financial Freedom</title>
 <meta name="description" content="Kalkulator saham gratis: hitung nilai wajar (intrinsic value) pakai DCF, DDM, Equity Bond & Financial Freedom. Cocok untuk investor pemula ala Warren Buffett." />
 <meta name="google-site-verification" content="yEDYCzDjYLghaDx6KYNGsLaw-_3tkxSzCfxQuCrKeUQ" />
 
@@ -22,12 +22,12 @@
 
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="id_ID" />
-<meta property="og:title" content="Kalkulator Saham Gratis - Nilai Wajar Saham | Sofyan Financial" />
+<meta property="og:title" content="Kalkulator Menghitung Nilai Wajar Valuasi Saham - Lengkap & Mudah | Bonus Cara Hitung Dana Financial Freedom" />
 <meta property="og:description" content="Kalkulator saham gratis: hitung nilai wajar (intrinsic value) pakai DCF, DDM, Equity Bond & Financial Freedom. Cocok untuk investor pemula ala Warren Buffett." />
 <meta property="og:url" content="https://sofyanfinancial.vercel.app/" />
 <meta property="og:image" content="https://sofyanfinancial.vercel.app/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Kalkulator Saham Gratis - Nilai Wajar Saham | Sofyan Financial" />
+<meta name="twitter:title" content="Kalkulator Menghitung Nilai Wajar Valuasi Saham - Lengkap & Mudah | Bonus Cara Hitung Dana Financial Freedom" />
 <meta name="twitter:description" content="Kalkulator saham gratis: hitung nilai wajar (intrinsic value) pakai DCF, DDM, Equity Bond & Financial Freedom." />
 <meta name="twitter:image" content="https://sofyanfinancial.vercel.app/og-image.png" />
 
@@ -35,7 +35,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Kalkulator Valuasi Saham - Sofyan Financial",
+  "name": "Kalkulator Menghitung Nilai Wajar Valuasi Saham - Lengkap & Mudah | Bonus Cara Hitung Dana Financial Freedom",
   "url": "https://sofyanfinancial.vercel.app/",
   "inLanguage": "id",
   "description": "Kalkulator valuasi saham gratis berbasis metode Discounted Cash Flow, Dividend Discount Model, Equity Bond Valuation, dan Financial Freedom untuk investor pemula.",
@@ -480,6 +480,33 @@ body{
   margin-top: 10px;
 }
 
+/* ============ Average saham lot rows ============ */
+.vf-avg-lots{
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.vf-avg-lot{
+  display:flex;
+  gap: 10px;
+  align-items:flex-end;
+  flex-wrap: wrap;
+}
+.vf-avg-lot .vf-field{ flex:1; min-width:110px; }
+.vf-lot-remove{
+  background: rgba(226,104,90,0.12);
+  border: 1px solid rgba(226,104,90,0.3);
+  color: var(--negative);
+  border-radius: 7px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.vf-lot-remove:hover{ background: rgba(226,104,90,0.22); }
+
 /* ============ Sub-tabs (inside Valuasi Saham panel) ============ */
 .vf-subtabs{
   display:flex;
@@ -804,6 +831,10 @@ body{
   <button class="vf-tab" data-tab="ff">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5.5"></circle><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"></circle></svg>
     Kalkulator Financial Freedom
+  </button>
+  <button class="vf-tab" data-tab="average">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+    Kalkulator Average Saham
   </button>
   <button class="vf-tab" data-tab="about">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"></path></svg>
@@ -1236,6 +1267,57 @@ body{
     </div>
   </section>
 
+  <!-- ===================== AVERAGE SAHAM ===================== -->
+  <section class="vf-panel" id="panel-average">
+    <div class="vf-section-title">
+      <span class="vf-eyebrow">Bonus</span>
+      <h2>Kalkulator Average Saham</h2>
+      <p>Hitung harga rata-rata (average) saham Anda setelah membeli di harga yang berbeda-beda — baik average down maupun average up. Cocok dipakai sebelum menambah posisi di saham yang sudah Anda pegang.</p>
+    </div>
+
+    <div class="vf-case">
+      <div class="vf-case-head"><span class="vf-case-tag">Contoh kasus</span></div>
+      <p><strong>Andi</strong> membeli saham PT Maju Jaya Tbk sebanyak <strong>1.000 lembar di harga Rp1.200</strong>. Sebulan kemudian harga turun ke <strong>Rp900</strong>, dan Andi memutuskan average down dengan membeli <strong>1.000 lembar lagi</strong>. Berapa harga rata-rata sahamnya sekarang?</p>
+      <button class="vf-case-btn" id="avg-example-btn">Muat contoh ini →</button>
+    </div>
+
+    <div class="vf-toolbar">
+      <button class="vf-mini-btn" id="avg-reset-btn">↺ Kosongkan / reset</button>
+      <button class="vf-mini-btn" id="avg-pdf-btn">📄 Unduh sebagai PDF</button>
+      <button class="vf-mini-btn" id="avg-share-btn">🔗 Bagikan Hasil</button>
+    </div>
+
+    <div class="vf-grid-2">
+      <div class="vf-card">
+        <h3>Riwayat Pembelian</h3>
+        <div class="vf-avg-lots" id="avg-lots-container"></div>
+        <button class="vf-mini-btn no-print" id="avg-add-lot-btn" type="button">+ Tambah Pembelian</button>
+
+        <h3 class="spaced">Harga Pasar Saat Ini</h3>
+        <div class="vf-field-row">
+          <div class="vf-field">
+            <label class="vf-label">Harga saham sekarang<span class="vf-label-sub">opsional, untuk lihat untung/rugi</span></label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="avg-currentprice" value=""><span class="vf-suffix">Rp</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vf-card vf-result-card">
+        <h3>Hasil</h3>
+        <div class="vf-hero-value">
+          <span class="vf-hero-label">Harga rata-rata baru</span>
+          <span class="vf-hero-number" id="avg-price">—</span>
+          <span class="vf-badge hidden" id="avg-badge"></span>
+        </div>
+        <div class="vf-result-list">
+          <div class="vf-result-row"><span class="vf-result-label">Total modal</span><span class="vf-result-value" id="avg-totalcost">—</span></div>
+          <div class="vf-result-row"><span class="vf-result-label">Total lembar</span><span class="vf-result-value" id="avg-totalqty">—</span></div>
+          <div class="vf-result-row em"><span class="vf-result-label">Harga rata-rata / lembar</span><span class="vf-result-value" id="avg-price2">—</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== ABOUT ME ===================== -->
   <section class="vf-panel" id="panel-about">
     <div class="vf-section-title">
@@ -1624,7 +1706,7 @@ function setVal(id, v){
   var el = document.getElementById(id);
   if(el) el.value = v;
 }
-var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom'};
+var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Saham'};
 function buildShareText(key){
   var lines = ['\ud83d\udcca Hasil ' + SHARE_TITLES[key] + ' \u2014 Kalkulator Valuasi Saham Sofyan Financial'];
   if(key === 'dcf'){
@@ -1640,6 +1722,9 @@ function buildShareText(key){
   } else if(key === 'ff'){
     var v5 = document.getElementById('ff-fundfuture');
     if(v5) lines.push('Dana Financial Freedom: ' + v5.textContent);
+  } else if(key === 'average'){
+    var v6 = document.getElementById('avg-price');
+    if(v6) lines.push('Harga Rata-Rata Baru: ' + v6.textContent + ' / lembar');
   }
   lines.push('Hitung sendiri gratis di ' + location.origin + location.pathname);
   return lines.join('\n');
@@ -2000,6 +2085,74 @@ function applyFFPreset(p){
   renderFF();
 }
 
+/* ============ Average Saham ============ */
+var avgLotCounter = 0;
+function createLotRow(price, qty){
+  avgLotCounter++;
+  var id = avgLotCounter;
+  var row = document.createElement('div');
+  row.className = 'vf-avg-lot';
+  row.setAttribute('data-lot-id', id);
+  row.innerHTML =
+    '<div class="vf-field"><label class="vf-label">Harga beli</label>' +
+    '<div class="vf-input-wrap"><input type="number" class="vf-input avg-lot-price" data-lot="' + id + '" value="' + price + '"><span class="vf-suffix">Rp</span></div></div>' +
+    '<div class="vf-field"><label class="vf-label">Jumlah lembar</label>' +
+    '<div class="vf-input-wrap"><input type="number" class="vf-input avg-lot-qty" data-lot="' + id + '" value="' + qty + '"><span class="vf-suffix">lbr</span></div></div>' +
+    '<button type="button" class="vf-lot-remove no-print" data-lot="' + id + '">\u2715</button>';
+  return row;
+}
+function setAvgLots(lots){
+  var container = document.getElementById('avg-lots-container');
+  container.innerHTML = '';
+  avgLotCounter = 0;
+  lots.forEach(function(l){ container.appendChild(createLotRow(l.price, l.qty)); });
+  renderAverage();
+}
+function getAvgLots(){
+  var priceInputs = document.querySelectorAll('.avg-lot-price');
+  var lots = [];
+  priceInputs.forEach(function(pi){
+    var lotId = pi.getAttribute('data-lot');
+    var qi = document.querySelector('.avg-lot-qty[data-lot="' + lotId + '"]');
+    var price = parseFloat(pi.value); if(isNaN(price)) price = 0;
+    var qty = qi ? parseFloat(qi.value) : 0; if(isNaN(qty)) qty = 0;
+    lots.push({price:price, qty:qty});
+  });
+  return lots;
+}
+function calcAverage(lots, currentPrice){
+  var totalCost = 0, totalQty = 0;
+  lots.forEach(function(l){ totalCost += l.price * l.qty; totalQty += l.qty; });
+  var avgPrice = totalQty > 0 ? totalCost / totalQty : NaN;
+  var gainLossPct = (currentPrice > 0 && avgPrice > 0) ? (currentPrice - avgPrice) / avgPrice : NaN;
+  return {totalCost:totalCost, totalQty:totalQty, avgPrice:avgPrice, gainLossPct:gainLossPct};
+}
+function renderAverage(){
+  var lots = getAvgLots();
+  var currentPrice = getVal('avg-currentprice');
+  var r = calcAverage(lots, currentPrice);
+  document.getElementById('avg-price').textContent = idr(r.avgPrice, 2);
+  document.getElementById('avg-totalcost').textContent = idr(r.totalCost, 0);
+  document.getElementById('avg-totalqty').textContent = fnum(r.totalQty, 0) + ' lembar';
+  document.getElementById('avg-price2').textContent = idr(r.avgPrice, 2);
+
+  var badge = document.getElementById('avg-badge');
+  var cpRaw = getRaw('avg-currentprice');
+  if(cpRaw !== '' && parseFloat(cpRaw) > 0 && !isNaN(r.gainLossPct)){
+    badge.classList.remove('hidden');
+    badge.classList.toggle('vf-badge-good', r.gainLossPct > 0);
+    badge.classList.toggle('vf-badge-bad', r.gainLossPct <= 0);
+    badge.textContent = (r.gainLossPct > 0 ? 'Untung' : 'Rugi') + ' ' + fpct(Math.abs(r.gainLossPct), 2) + ' dari harga rata-rata';
+  } else {
+    badge.classList.add('hidden');
+  }
+}
+var AVG_EXAMPLE = [{price:1200, qty:1000}, {price:900, qty:1000}];
+function applyAvgPreset(){
+  setAvgLots(AVG_EXAMPLE);
+  setVal('avg-currentprice', '');
+}
+
 /* ============ Wire-up ============ */
 document.addEventListener('DOMContentLoaded', function(){
  try {
@@ -2056,6 +2209,24 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('ff-example-btn').addEventListener('click', function(){ applyFFPreset(FF_EXAMPLE); });
   document.getElementById('ff-reset-btn').addEventListener('click', function(){ applyFFPreset(FF_EXAMPLE); });
 
+  // Average Saham
+  applyAvgPreset();
+  document.getElementById('avg-example-btn').addEventListener('click', applyAvgPreset);
+  document.getElementById('avg-reset-btn').addEventListener('click', applyAvgPreset);
+  document.getElementById('avg-add-lot-btn').addEventListener('click', function(){
+    document.getElementById('avg-lots-container').appendChild(createLotRow('', ''));
+    renderAverage();
+  });
+  document.getElementById('panel-average').addEventListener('input', renderAverage);
+  document.getElementById('panel-average').addEventListener('click', function(e){
+    if(e.target.classList.contains('vf-lot-remove')){
+      var lotId = e.target.getAttribute('data-lot');
+      var row = document.querySelector('.vf-avg-lot[data-lot-id="' + lotId + '"]');
+      if(row) row.remove();
+      renderAverage();
+    }
+  });
+
   document.getElementById('disclaimer-toggle').addEventListener('click', function(){
     document.getElementById('disclaimer-text').classList.toggle('open');
     document.getElementById('disclaimer-arrow').classList.toggle('open');
@@ -2090,7 +2261,7 @@ document.addEventListener('DOMContentLoaded', function(){
   applyThemeButtons();
 
   // PDF export (uses browser's native print-to-PDF, no extra library needed)
-  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom'};
+  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Saham'};
   function printCalculator(key){
     var meta = document.getElementById('print-meta');
     var now = new Date();
@@ -2098,7 +2269,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if(meta){ meta.textContent = 'Metode: ' + PDF_TITLES[key] + ' · Dicetak: ' + dateStr; }
     window.print();
   }
-  ['dcf','ddm','eb','ff'].forEach(function(key){
+  ['dcf','ddm','eb','ff','average'].forEach(function(key){
     var btn = document.getElementById(key + '-pdf-btn');
     if(btn) btn.addEventListener('click', function(){ printCalculator(key); });
     var sbtn = document.getElementById(key + '-share-btn');
