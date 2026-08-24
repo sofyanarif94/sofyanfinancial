@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://sofyanfinancial.vercel.app/sitemap.xml
