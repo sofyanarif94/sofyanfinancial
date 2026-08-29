@@ -476,6 +476,78 @@ body{
   margin-top: 10px;
 }
 
+/* ============ Risk profile sliders ============ */
+.vf-slider-item{ margin-bottom: 24px; }
+.vf-slider-item:last-child{ margin-bottom: 0; }
+.vf-slider-question{
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 10px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+input[type="range"].vf-slider{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--gold) 0%, var(--gold) var(--val, 50%), var(--border) var(--val, 50%), var(--border) 100%);
+  outline: none;
+  cursor: pointer;
+  margin: 6px 0;
+}
+input[type="range"].vf-slider::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  border: 2px solid var(--card);
+  box-shadow: 0 0 0 1.5px var(--gold);
+  cursor: pointer;
+}
+input[type="range"].vf-slider::-moz-range-thumb{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  border: 2px solid var(--card);
+  box-shadow: 0 0 0 1.5px var(--gold);
+  cursor: pointer;
+  border: none;
+}
+.vf-slider-labels{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 10.5px;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+.vf-slider-labels span{ max-width: 46%; }
+.vf-slider-labels span:last-child{ text-align: right; }
+.vf-risk-gauge{
+  height: 10px;
+  border-radius: 999px;
+  background: var(--border-soft);
+  overflow: hidden;
+  margin: 14px 0;
+}
+.vf-risk-gauge-fill{
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #4fb286, #c9a24b, #e2685a);
+  transition: width .2s ease;
+}
+.vf-risk-behavior-notes p{
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+.vf-risk-behavior-notes p:last-child{ margin-bottom: 0; }
+
 /* ============ Average stock lot rows ============ */
 .vf-avg-lots{
   display:flex;
@@ -758,6 +830,8 @@ body{
   .no-print, .vf-note-box, .vf-badge, #panel-about, #panel-glossary, .vf-subtabs{ display:none !important; }
   .vf-subpanel{ display:none !important; }
   .vf-subpanel.active{ display:block !important; }
+  #panel-riskprofile .vf-note-box{ display:flex !important; background:#fdf3f1 !important; border-color:#e2685a !important; color:#7a2e26 !important; }
+  #risk-category-badge{ display:inline-flex !important; background:#f7f2e7 !important; color:#a07d2e !important; }
   .vf-header{ border:none; background:none; padding:0 0 10px; }
   .vf-header-inner > div:first-child{ display:none !important; }
   .vf-header p{ display:none; }
@@ -831,6 +905,10 @@ body{
   <button class="vf-tab" data-tab="average">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
     Average Price Calculator
+  </button>
+  <button class="vf-tab" data-tab="riskprofile">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5A8 8 0 1 1 19.5 16.5"></path><line x1="12" y1="13" x2="15.2" y2="8.8"></line><circle cx="12" cy="13" r="1.3" fill="currentColor" stroke="none"></circle></svg>
+    Risk Profile
   </button>
   <button class="vf-tab" data-tab="about">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"></path></svg>
@@ -1228,9 +1306,24 @@ body{
             </select>
           </div>
         </div>
-        <div class="vf-note-box vf-note-info">
+        <h3 class="spaced">Retirement Fund Calculation Mode</h3>
+        <div class="vf-field-row">
+          <div class="vf-field vf-field-wide">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:12.5px; color:var(--text-muted);">
+              <input type="checkbox" id="ff-perpetuity-enabled" checked style="width:16px; height:16px; accent-color:var(--gold); cursor:pointer;">
+              Use Growing Perpetuity mode (fund lasts forever)
+            </label>
+          </div>
+        </div>
+        <div class="vf-field-row" id="ff-duration-field" style="display:none;">
+          <div class="vf-field">
+            <label class="vf-label">Fund duration<span class="vf-label-sub">years, after retirement</span></label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ff-duration-years" value="20"><span class="vf-suffix">yr</span></div>
+          </div>
+        </div>
+        <div class="vf-note-box vf-note-info" style="font-weight:600;">
           <span class="ic">ℹ️</span>
-          <span>Your retirement fund is calculated using a <strong>growing perpetuity</strong>: Annual Need ÷ (Bond Yield − Inflation). This ensures the fund keeps growing to keep pace with inflation after you retire — not just be enough on day one of retirement.</span>
+          <span><strong>Growing Perpetuity</strong> = the fund is calculated to <strong>never run out for life</strong>, continuously growing to keep pace with inflation. This results in a <strong>much larger</strong> fund, but it's the safest option since it will never be depleted.<br><br><strong>Without Perpetuity</strong> = the fund is calculated to last only for a set duration (e.g. 20 years), after which it will be <strong>depleted</strong>. This results in a <strong>much smaller</strong> required fund, but you'll need another plan once that duration ends (other income, inheritance, or insurance).</span>
         </div>
         <div class="vf-note-box vf-note-warn hidden" id="ff-warn">
           <span class="ic">⚠️</span>
@@ -1328,6 +1421,132 @@ body{
           <div class="vf-result-row em"><span class="vf-result-label">Average price / share</span><span class="vf-result-value" id="avg-price2">—</span></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===================== RISK PROFILE ===================== -->
+  <section class="vf-panel" id="panel-riskprofile">
+    <div class="vf-section-title">
+      <span class="vf-eyebrow">Know Yourself</span>
+      <h2>Risk Profile &amp; Investor Behavior Questionnaire</h2>
+      <p>15 in-depth questions to understand your financial capacity, risk tolerance, experience, and investment behavior — drag each slider to match your real situation, results calculate automatically below.</p>
+    </div>
+
+    <div class="vf-note-box vf-note-warn">
+      <span class="ic">⚠️</span>
+      <span>This is an educational self-reflection questionnaire, <strong>not an official risk profile (KYC)</strong> used for opening a securities account or product recommendations from any financial institution. For official investment purposes, your risk profile will be reassessed by the securities firm/investment manager where you're registered, per their required procedure.</span>
+    </div>
+
+    <div class="vf-toolbar">
+      <button class="vf-mini-btn" id="risk-reset-btn">↺ Clear / reset</button>
+      <button class="vf-mini-btn" id="risk-pdf-btn">📄 Download as PDF</button>
+      <button class="vf-mini-btn" id="risk-share-btn">🔗 Share Result</button>
+    </div>
+
+    <div class="vf-card" style="margin-bottom:16px;">
+      <h3>Part 1 — Financial Capacity &amp; Risk Tolerance</h3>
+
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">1. When will you need this investment money?</div>
+        <input type="range" class="vf-slider" id="risk-q1" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Less than 1 year</span><span>More than 10 years</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">2. How stable is your current income?</div>
+        <input type="range" class="vf-slider" id="risk-q2" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Very unstable</span><span>Very stable (fixed salary)</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">3. How large is this investment relative to your total wealth?</div>
+        <input type="range" class="vf-slider" id="risk-q3" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Almost all my savings</span><span>Just a small portion</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">4. How prepared is your emergency fund outside of this investment?</div>
+        <input type="range" class="vf-slider" id="risk-q4" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>I don't have one at all</span><span>Already &gt;6 months of expenses</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">5. If your portfolio drops 20% in a month, how do you react?</div>
+        <input type="range" class="vf-slider" id="risk-q5" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Panic & sell everything</span><span>Stay calm, even buy more</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">6. Which do you prefer?</div>
+        <input type="range" class="vf-slider" id="risk-q6" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Small but certain gains</span><span>Big gains even with big loss risk</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">7. What's your past experience dealing with investment losses?</div>
+        <input type="range" class="vf-slider" id="risk-q7" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Never experienced it & fear it</span><span>Already used to it, part of the process</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">8. How do you feel seeing prices go up and down daily?</div>
+        <input type="range" class="vf-slider" id="risk-q8" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Very stressful</span><span>Calm, it's normal</span></div>
+      </div>
+    </div>
+
+    <div class="vf-card" style="margin-bottom:16px;">
+      <h3>Part 2 — Investment Experience &amp; Knowledge</h3>
+
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">9. How long have you been investing in the capital market?</div>
+        <input type="range" class="vf-slider" id="risk-q9" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Just starting out</span><span>More than 5 years</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">10. How well do you understand investment products (stocks, bonds, mutual funds)?</div>
+        <input type="range" class="vf-slider" id="risk-q10" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Still a beginner</span><span>Very knowledgeable</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">11. How often do you monitor your investment portfolio?</div>
+        <input type="range" class="vf-slider" id="risk-q11" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Rarely, once a month</span><span>Almost every day</span></div>
+      </div>
+    </div>
+
+    <div class="vf-card" style="margin-bottom:16px;">
+      <h3>Part 3 — Goals &amp; Investment Behavior</h3>
+
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">12. What is your main investment goal?</div>
+        <input type="range" class="vf-slider" id="risk-q12" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Keep my money safe</span><span>Grow my money as fast as possible</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">13. How do you usually make investment decisions?</div>
+        <input type="range" class="vf-slider" id="risk-q13" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>In-depth research first, then decide</span><span>Follow instinct or the current trend</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">14. How often do you buy stocks just because they're trending?</div>
+        <input type="range" class="vf-slider" id="risk-q14" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Never influenced by that</span><span>Often follow the crowd</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">15. How patient are you waiting for long-term investment results?</div>
+        <input type="range" class="vf-slider" id="risk-q15" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Want to see results quickly</span><span>Patient for years if needed</span></div>
+      </div>
+    </div>
+
+    <div class="vf-card vf-result-card">
+      <h3>Your Risk Profile Result</h3>
+      <div class="vf-hero-value">
+        <span class="vf-hero-label">Risk Profile Score (from Part 1 &amp; 2)</span>
+        <span class="vf-hero-number" id="risk-score">50 / 100</span>
+        <span class="vf-badge vf-badge-good" id="risk-category-badge">Moderate</span>
+      </div>
+      <div class="vf-risk-gauge"><div class="vf-risk-gauge-fill" id="risk-gauge-fill" style="width:50%;"></div></div>
+      <p id="risk-desc" style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;"></p>
+
+      <h3 class="spaced">Suggested Product Allocation</h3>
+      <p id="risk-allocation" style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;"></p>
+
+      <div class="vf-risk-behavior-notes" id="risk-behavior-notes" style="display:none; margin-top:16px; padding-top:14px; border-top:1px dashed var(--border);"></div>
     </div>
   </section>
 
@@ -1720,7 +1939,7 @@ function setVal(id, v){
   var el = document.getElementById(id);
   if(el) el.value = v;
 }
-var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Average Stock Price Calculator'};
+var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Average Stock Price Calculator', riskprofile:'Investor Risk Profile'};
 function buildShareText(key){
   var lines = ['📊 ' + SHARE_TITLES[key] + ' Result — Sofyan Financial Stock Valuation Calculator'];
   if(key === 'dcf'){
@@ -1739,6 +1958,11 @@ function buildShareText(key){
   } else if(key === 'average'){
     var v6 = document.getElementById('avg-price');
     if(v6) lines.push('New Average Price: ' + v6.textContent + ' / share');
+  } else if(key === 'riskprofile'){
+    var v7 = document.getElementById('risk-score');
+    var v8 = document.getElementById('risk-category-badge');
+    if(v7) lines.push('Risk Profile Score: ' + v7.textContent);
+    if(v8) lines.push('Category: ' + v8.textContent);
   }
   lines.push('Calculate your own for free at ' + location.origin + location.pathname);
   return lines.join('\n');
@@ -2045,6 +2269,14 @@ function applyEBPreset(p){
 
 /* ============ Financial Freedom ============ */
 var SBN_YIELD = 0.067;
+function pvGrowingAnnuity(C, r, g, n){
+  if(n <= 0) return 0;
+  if(Math.abs(r - g) < 1e-9){
+    return (C * n) / (1 + r);
+  }
+  var ratio = (1 + g) / (1 + r);
+  return (C / (r - g)) * (1 - Math.pow(ratio, n));
+}
 function calcFF(input){
   var infl = input.inflation/100;
   var productReturn = input.productReturnPct/100;
@@ -2053,9 +2285,17 @@ function calcFF(input){
   var monthlyFuture = annualFuture/12;
 
   var realSafeRate = SBN_YIELD - infl;
-  var valid = realSafeRate > 0;
-  var fundToday = valid ? annualNow/realSafeRate : NaN;
-  var fundFuture = valid ? annualFuture/realSafeRate : NaN;
+  var fundToday, fundFuture, valid;
+  if(input.usePerpetuity){
+    valid = realSafeRate > 0;
+    fundToday = valid ? annualNow/realSafeRate : NaN;
+    fundFuture = valid ? annualFuture/realSafeRate : NaN;
+  } else {
+    valid = true;
+    var n = input.durationYears > 0 ? input.durationYears : 20;
+    fundToday = pvGrowingAnnuity(annualNow, SBN_YIELD, infl, n);
+    fundFuture = pvGrowingAnnuity(annualFuture, SBN_YIELD, infl, n);
+  }
 
   var monthlyInvest = valid ? pmt(productReturn/12, input.years*12, 0, -fundFuture, 1) : NaN;
   var quarterlyInvest = valid ? pmt(productReturn/4, input.years*4, 0, -fundFuture, 1) : NaN;
@@ -2070,14 +2310,19 @@ function renderFF(){
   var age = getVal('ff-age');
   var select = document.getElementById('ff-product');
   var productReturnPct = parseFloat(select.options[select.selectedIndex].getAttribute('data-return'));
+  var usePerpetuity = document.getElementById('ff-perpetuity-enabled').checked;
+  document.getElementById('ff-duration-field').style.display = usePerpetuity ? 'none' : '';
   var r = calcFF({
     years: years,
     monthlyCostNow: getVal('ff-monthlycost'),
     inflation: getVal('ff-inflation'),
-    productReturnPct: productReturnPct
+    productReturnPct: productReturnPct,
+    usePerpetuity: usePerpetuity,
+    durationYears: getVal('ff-duration-years')
   });
   document.getElementById('ff-warn').classList.toggle('hidden', r.valid);
-  document.getElementById('ff-target-label').textContent = 'Fund needed at age ' + (age+years);
+  var modeLabel = usePerpetuity ? '(Growing Perpetuity mode)' : '(no-perpetuity mode, ' + (getVal('ff-duration-years') || 20) + ' years)';
+  document.getElementById('ff-target-label').textContent = 'Fund needed at age ' + (age+years) + ' ' + modeLabel;
   document.getElementById('ff-fundfuture').textContent = idr(r.fundFuture,0);
   document.getElementById('ff-monthlyfuture').textContent = idr(r.monthlyFuture,0);
   document.getElementById('ff-annualfuture').textContent = idr(r.annualFuture,0);
@@ -2096,6 +2341,8 @@ function applyFFPreset(p){
   setVal('ff-monthlycost', p.monthlycost);
   setVal('ff-inflation', p.inflation);
   document.getElementById('ff-product').value = p.product;
+  document.getElementById('ff-perpetuity-enabled').checked = true;
+  setVal('ff-duration-years', 20);
   renderFF();
 }
 
@@ -2183,6 +2430,86 @@ function applyAvgPreset(){
   renderAverage();
 }
 
+/* ============ Risk Profile Questionnaire ============ */
+var RISK_MAIN_IDS = ['risk-q1','risk-q2','risk-q3','risk-q4','risk-q5','risk-q6','risk-q7','risk-q8','risk-q9','risk-q10','risk-q11'];
+var RISK_ALL_IDS = RISK_MAIN_IDS.concat(['risk-q12','risk-q13','risk-q14','risk-q15']);
+
+function getSliderVal(id){
+  var el = document.getElementById(id);
+  return el ? parseFloat(el.value) : 50;
+}
+function updateSliderFill(slider){
+  slider.style.setProperty('--val', slider.value + '%');
+}
+
+function renderRiskProfile(){
+  var total = 0;
+  RISK_MAIN_IDS.forEach(function(id){ total += getSliderVal(id); });
+  var score = total / RISK_MAIN_IDS.length;
+
+  var category, desc, allocation;
+  if(score <= 20){
+    category = 'Very Conservative';
+    desc = 'You strongly prioritize the safety and stability of your money, with low tolerance for fluctuations in investment value. Your top priority is capital preservation, not aggressive growth.';
+    allocation = '80% Time Deposit / Money Market Fund, 15% Fixed Income Fund (Bonds), 5% Balanced Fund.';
+  } else if(score <= 40){
+    category = 'Conservative';
+    desc = 'You prioritize safety, but are reasonably open to a bit of risk for returns higher than a regular deposit.';
+    allocation = '60% Bonds / Fixed Income Fund, 25% Balanced Fund, 15% stable Blue Chip Stocks.';
+  } else if(score <= 60){
+    category = 'Moderate';
+    desc = 'You seek a balance between growth and safety — able to tolerate short-term fluctuations for better long-term potential.';
+    allocation = '40% Stocks (blue chip & value investing focus), 35% Bonds / Fixed Income Fund, 25% Balanced Fund.';
+  } else if(score <= 80){
+    category = 'Aggressive';
+    desc = 'You are fairly comfortable with risk and fluctuation in pursuit of higher long-term growth.';
+    allocation = '65% Stocks (including mid & small cap), 20% Equity Fund, 15% Bonds as a portfolio balancer.';
+  } else {
+    category = 'Very Aggressive';
+    desc = 'You have high risk tolerance and are comfortable with large volatility in pursuit of maximum growth potential.';
+    allocation = '80% Stocks (including growth & small cap), 15% Equity Fund, 5% liquid instruments as reserve.';
+  }
+
+  document.getElementById('risk-score').textContent = Math.round(score) + ' / 100';
+  document.getElementById('risk-category-badge').textContent = category;
+  document.getElementById('risk-desc').textContent = desc;
+  document.getElementById('risk-allocation').textContent = allocation;
+  document.getElementById('risk-gauge-fill').style.width = score + '%';
+
+  var badge = document.getElementById('risk-category-badge');
+  badge.classList.remove('vf-badge-good', 'vf-badge-bad');
+  badge.classList.add(score >= 41 ? 'vf-badge-good' : 'vf-badge-bad');
+
+  var goal = getSliderVal('risk-q12');
+  var decision = getSliderVal('risk-q13');
+  var fomo = getSliderVal('risk-q14');
+  var patience = getSliderVal('risk-q15');
+  var notes = [];
+  if(fomo > 60 && decision > 60){
+    notes.push('⚠️ You show a tendency to follow trends or make quick decisions without deep research. Before buying a trending stock, try checking its fair value first in the <strong>Stock Valuation Calculator</strong> tab.');
+  }
+  if(patience < 40){
+    notes.push('⚠️ You tend to want quick investment results. Many value investing strategies (like the ones used in this calculator) take years to prove out — consider aligning your timeframe expectations.');
+  }
+  if(goal > 70 && score < 40){
+    notes.push('⚠️ Your investment goal is aggressive, but your risk capacity and tolerance are conservative. Consider a gradual approach — start with a small portion in more aggressive products while building experience and an emergency fund.');
+  }
+  var notesBox = document.getElementById('risk-behavior-notes');
+  if(notes.length > 0){
+    notesBox.style.display = 'block';
+    notesBox.innerHTML = notes.map(function(n){ return '<p>' + n + '</p>'; }).join('');
+  } else {
+    notesBox.style.display = 'none';
+  }
+}
+function resetRiskProfile(){
+  RISK_ALL_IDS.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){ el.value = 50; updateSliderFill(el); }
+  });
+  renderRiskProfile();
+}
+
 /* ============ Wire-up ============ */
 document.addEventListener('DOMContentLoaded', function(){
  try {
@@ -2258,6 +2585,14 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 
+  // Risk Profile Questionnaire
+  document.querySelectorAll('#panel-riskprofile .vf-slider').forEach(function(s){
+    updateSliderFill(s);
+    s.addEventListener('input', function(){ updateSliderFill(s); renderRiskProfile(); });
+  });
+  document.getElementById('risk-reset-btn').addEventListener('click', resetRiskProfile);
+  renderRiskProfile();
+
   document.getElementById('disclaimer-toggle').addEventListener('click', function(){
     document.getElementById('disclaimer-text').classList.toggle('open');
     document.getElementById('disclaimer-arrow').classList.toggle('open');
@@ -2292,7 +2627,7 @@ document.addEventListener('DOMContentLoaded', function(){
   applyThemeButtons();
 
   // PDF export (uses browser's native print-to-PDF, no extra library needed)
-  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Average Stock Price Calculator'};
+  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Average Stock Price Calculator', riskprofile:'Investor Risk Profile'};
   function printCalculator(key){
     var meta = document.getElementById('print-meta');
     var now = new Date();
@@ -2300,7 +2635,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if(meta){ meta.textContent = 'Method: ' + PDF_TITLES[key] + ' · Generated: ' + dateStr; }
     window.print();
   }
-  ['dcf','ddm','eb','ff','average'].forEach(function(key){
+  ['dcf','ddm','eb','ff','average','riskprofile'].forEach(function(key){
     var btn = document.getElementById(key + '-pdf-btn');
     if(btn) btn.addEventListener('click', function(){ printCalculator(key); });
     var sbtn = document.getElementById(key + '-share-btn');
