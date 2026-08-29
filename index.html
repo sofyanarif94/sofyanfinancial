@@ -480,6 +480,78 @@ body{
   margin-top: 10px;
 }
 
+/* ============ Risk profile sliders ============ */
+.vf-slider-item{ margin-bottom: 24px; }
+.vf-slider-item:last-child{ margin-bottom: 0; }
+.vf-slider-question{
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 10px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+input[type="range"].vf-slider{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--gold) 0%, var(--gold) var(--val, 50%), var(--border) var(--val, 50%), var(--border) 100%);
+  outline: none;
+  cursor: pointer;
+  margin: 6px 0;
+}
+input[type="range"].vf-slider::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  border: 2px solid var(--card);
+  box-shadow: 0 0 0 1.5px var(--gold);
+  cursor: pointer;
+}
+input[type="range"].vf-slider::-moz-range-thumb{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  border: 2px solid var(--card);
+  box-shadow: 0 0 0 1.5px var(--gold);
+  cursor: pointer;
+  border: none;
+}
+.vf-slider-labels{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 10.5px;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+.vf-slider-labels span{ max-width: 46%; }
+.vf-slider-labels span:last-child{ text-align: right; }
+.vf-risk-gauge{
+  height: 10px;
+  border-radius: 999px;
+  background: var(--border-soft);
+  overflow: hidden;
+  margin: 14px 0;
+}
+.vf-risk-gauge-fill{
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #4fb286, #c9a24b, #e2685a);
+  transition: width .2s ease;
+}
+.vf-risk-behavior-notes p{
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+.vf-risk-behavior-notes p:last-child{ margin-bottom: 0; }
+
 /* ============ Average saham lot rows ============ */
 .vf-avg-lots{
   display:flex;
@@ -762,6 +834,8 @@ body{
   .no-print, .vf-note-box, .vf-badge, #panel-about, #panel-glossary, .vf-subtabs{ display:none !important; }
   .vf-subpanel{ display:none !important; }
   .vf-subpanel.active{ display:block !important; }
+  #panel-riskprofile .vf-note-box{ display:flex !important; background:#fdf3f1 !important; border-color:#e2685a !important; color:#7a2e26 !important; }
+  #risk-category-badge{ display:inline-flex !important; background:#f7f2e7 !important; color:#a07d2e !important; }
   .vf-header{ border:none; background:none; padding:0 0 10px; }
   .vf-header-inner > div:first-child{ display:none !important; }
   .vf-header p{ display:none; }
@@ -835,6 +909,10 @@ body{
   <button class="vf-tab" data-tab="average">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
     Kalkulator Average Saham
+  </button>
+  <button class="vf-tab" data-tab="riskprofile">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5A8 8 0 1 1 19.5 16.5"></path><line x1="12" y1="13" x2="15.2" y2="8.8"></line><circle cx="12" cy="13" r="1.3" fill="currentColor" stroke="none"></circle></svg>
+    Profil Risiko
   </button>
   <button class="vf-tab" data-tab="about">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"></path></svg>
@@ -1232,9 +1310,24 @@ body{
             </select>
           </div>
         </div>
-        <div class="vf-note-box vf-note-info">
+        <h3 class="spaced">Mode Perhitungan Dana Pensiun</h3>
+        <div class="vf-field-row">
+          <div class="vf-field vf-field-wide">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:12.5px; color:var(--text-muted);">
+              <input type="checkbox" id="ff-perpetuity-enabled" checked style="width:16px; height:16px; accent-color:var(--gold); cursor:pointer;">
+              Gunakan mode Growing Perpetuity (dana bertahan selamanya)
+            </label>
+          </div>
+        </div>
+        <div class="vf-field-row" id="ff-duration-field" style="display:none;">
+          <div class="vf-field">
+            <label class="vf-label">Durasi dana bertahan<span class="vf-label-sub">tahun, setelah pensiun</span></label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ff-duration-years" value="20"><span class="vf-suffix">th</span></div>
+          </div>
+        </div>
+        <div class="vf-note-box vf-note-info" style="font-weight:600;">
           <span class="ic">ℹ️</span>
-          <span>Dana pensiun dihitung dengan <strong>growing perpetuity</strong>: Kebutuhan Tahunan ÷ (Yield SBN − Inflasi). Ini memastikan dana terus tumbuh mengimbangi inflasi setelah Anda pensiun — bukan sekadar cukup di hari pertama pensiun.</span>
+          <span><strong>Growing Perpetuity</strong> = dana dihitung agar <strong>tidak pernah habis seumur hidup</strong>, terus tumbuh mengimbangi inflasi. Hasilnya jumlah dana jauh <strong>lebih besar</strong>, tapi paling aman karena tidak akan pernah kehabisan.<br><br><strong>Tanpa Perpetuity</strong> = dana dihitung untuk bertahan hanya sampai durasi tertentu (misal 20 tahun), setelah itu dana akan <strong>habis</strong>. Hasilnya jumlah dana dibutuhkan jauh <strong>lebih kecil</strong>, tapi Anda perlu rencana lain setelah durasi itu berakhir (penghasilan lain, warisan, atau asuransi/BPJS).</span>
         </div>
         <div class="vf-note-box vf-note-warn hidden" id="ff-warn">
           <span class="ic">⚠️</span>
@@ -1332,6 +1425,132 @@ body{
           <div class="vf-result-row em"><span class="vf-result-label">Harga rata-rata / lembar</span><span class="vf-result-value" id="avg-price2">—</span></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===================== RISK PROFILE ===================== -->
+  <section class="vf-panel" id="panel-riskprofile">
+    <div class="vf-section-title">
+      <span class="vf-eyebrow">Kenali Diri Anda</span>
+      <h2>Kuesioner Profil Risiko & Watak Investasi</h2>
+      <p>15 pertanyaan mendalam untuk memahami kapasitas finansial, toleransi risiko, pengalaman, dan watak perilaku investasi Anda — geser slider sesuai kondisi Anda yang sebenarnya, hasil terhitung otomatis di bagian bawah.</p>
+    </div>
+
+    <div class="vf-note-box vf-note-warn">
+      <span class="ic">⚠️</span>
+      <span>Ini adalah kuesioner edukasi untuk refleksi diri, <strong>bukan profil risiko resmi (KYC)</strong> yang dipakai untuk pembukaan rekening efek atau rekomendasi produk dari lembaga keuangan manapun. Untuk keperluan investasi resmi, profil risiko Anda akan dinilai ulang oleh sekuritas/manajer investasi tempat Anda terdaftar sesuai prosedur yang berlaku.</span>
+    </div>
+
+    <div class="vf-toolbar">
+      <button class="vf-mini-btn" id="risk-reset-btn">↺ Kosongkan / reset</button>
+      <button class="vf-mini-btn" id="risk-pdf-btn">📄 Unduh sebagai PDF</button>
+      <button class="vf-mini-btn" id="risk-share-btn">🔗 Bagikan Hasil</button>
+    </div>
+
+    <div class="vf-card" style="margin-bottom:16px;">
+      <h3>Bagian 1 — Kapasitas Finansial & Toleransi Risiko</h3>
+
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">1. Kapan dana investasi ini akan Anda gunakan?</div>
+        <input type="range" class="vf-slider" id="risk-q1" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Kurang dari 1 tahun</span><span>Lebih dari 10 tahun</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">2. Seberapa stabil pendapatan Anda saat ini?</div>
+        <input type="range" class="vf-slider" id="risk-q2" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Sangat tidak stabil</span><span>Sangat stabil (gaji tetap)</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">3. Berapa besar porsi dana ini dari total kekayaan Anda?</div>
+        <input type="range" class="vf-slider" id="risk-q3" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Hampir seluruh tabungan saya</span><span>Hanya sebagian kecil</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">4. Seberapa siap dana darurat Anda di luar dana investasi ini?</div>
+        <input type="range" class="vf-slider" id="risk-q4" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Belum punya sama sekali</span><span>Sudah &gt;6 bulan pengeluaran</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">5. Jika portofolio Anda turun 20% dalam sebulan, apa reaksi Anda?</div>
+        <input type="range" class="vf-slider" id="risk-q5" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Panik & jual semua</span><span>Tenang, bahkan nambah beli</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">6. Mana yang lebih Anda sukai?</div>
+        <input type="range" class="vf-slider" id="risk-q6" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Untung kecil tapi pasti</span><span>Untung besar walau bisa rugi besar</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">7. Bagaimana pengalaman Anda menghadapi kerugian investasi sebelumnya?</div>
+        <input type="range" class="vf-slider" id="risk-q7" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Belum pernah & takut membayangkannya</span><span>Sudah terbiasa, itu bagian dari proses</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">8. Bagaimana perasaan Anda melihat harga naik-turun tiap hari?</div>
+        <input type="range" class="vf-slider" id="risk-q8" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Sangat mengganggu pikiran</span><span>Santai, itu hal biasa</span></div>
+      </div>
+    </div>
+
+    <div class="vf-card" style="margin-bottom:16px;">
+      <h3>Bagian 2 — Pengalaman & Pengetahuan Investasi</h3>
+
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">9. Sudah berapa lama Anda berinvestasi di pasar modal?</div>
+        <input type="range" class="vf-slider" id="risk-q9" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Baru mulai</span><span>Lebih dari 5 tahun</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">10. Seberapa paham Anda soal produk investasi (saham, obligasi, reksadana)?</div>
+        <input type="range" class="vf-slider" id="risk-q10" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Masih awam</span><span>Sangat paham</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">11. Seberapa sering Anda memantau portofolio investasi Anda?</div>
+        <input type="range" class="vf-slider" id="risk-q11" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Jarang, sebulan sekali</span><span>Hampir tiap hari</span></div>
+      </div>
+    </div>
+
+    <div class="vf-card" style="margin-bottom:16px;">
+      <h3>Bagian 3 — Tujuan & Watak Perilaku Investasi</h3>
+
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">12. Apa tujuan utama investasi Anda?</div>
+        <input type="range" class="vf-slider" id="risk-q12" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Menjaga nilai uang tetap aman</span><span>Mengembangkan uang secepat mungkin</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">13. Bagaimana cara Anda biasanya mengambil keputusan investasi?</div>
+        <input type="range" class="vf-slider" id="risk-q13" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Riset mendalam dulu, baru putuskan</span><span>Ikut insting atau tren yang sedang ramai</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">14. Seberapa sering Anda "ikut-ikutan" beli saham yang sedang ramai dibicarakan?</div>
+        <input type="range" class="vf-slider" id="risk-q14" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Tidak pernah terpengaruh</span><span>Sering ikut-ikutan</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">15. Seberapa sabar Anda menunggu hasil investasi jangka panjang?</div>
+        <input type="range" class="vf-slider" id="risk-q15" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Ingin cepat lihat hasil</span><span>Sabar menunggu bertahun-tahun</span></div>
+      </div>
+    </div>
+
+    <div class="vf-card vf-result-card">
+      <h3>Hasil Profil Risiko Anda</h3>
+      <div class="vf-hero-value">
+        <span class="vf-hero-label">Skor Profil Risiko (dari Bagian 1 &amp; 2)</span>
+        <span class="vf-hero-number" id="risk-score">50 / 100</span>
+        <span class="vf-badge vf-badge-good" id="risk-category-badge">Moderat</span>
+      </div>
+      <div class="vf-risk-gauge"><div class="vf-risk-gauge-fill" id="risk-gauge-fill" style="width:50%;"></div></div>
+      <p id="risk-desc" style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;"></p>
+
+      <h3 class="spaced">Saran Alokasi Produk</h3>
+      <p id="risk-allocation" style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;"></p>
+
+      <div class="vf-risk-behavior-notes" id="risk-behavior-notes" style="display:none; margin-top:16px; padding-top:14px; border-top:1px dashed var(--border);"></div>
     </div>
   </section>
 
@@ -1723,7 +1942,7 @@ function setVal(id, v){
   var el = document.getElementById(id);
   if(el) el.value = v;
 }
-var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Saham'};
+var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Saham', riskprofile:'Profil Risiko Investor'};
 function buildShareText(key){
   var lines = ['\ud83d\udcca Hasil ' + SHARE_TITLES[key] + ' \u2014 Kalkulator Valuasi Saham Sofyan Financial'];
   if(key === 'dcf'){
@@ -1742,6 +1961,11 @@ function buildShareText(key){
   } else if(key === 'average'){
     var v6 = document.getElementById('avg-price');
     if(v6) lines.push('Harga Rata-Rata Baru: ' + v6.textContent + ' / lembar');
+  } else if(key === 'riskprofile'){
+    var v7 = document.getElementById('risk-score');
+    var v8 = document.getElementById('risk-category-badge');
+    if(v7) lines.push('Skor Profil Risiko: ' + v7.textContent);
+    if(v8) lines.push('Kategori: ' + v8.textContent);
   }
   lines.push('Hitung sendiri gratis di ' + location.origin + location.pathname);
   return lines.join('\n');
@@ -2048,6 +2272,14 @@ function applyEBPreset(p){
 
 /* ============ Financial Freedom ============ */
 var SBN_YIELD = 0.067;
+function pvGrowingAnnuity(C, r, g, n){
+  if(n <= 0) return 0;
+  if(Math.abs(r - g) < 1e-9){
+    return (C * n) / (1 + r);
+  }
+  var ratio = (1 + g) / (1 + r);
+  return (C / (r - g)) * (1 - Math.pow(ratio, n));
+}
 function calcFF(input){
   var infl = input.inflation/100;
   var productReturn = input.productReturnPct/100;
@@ -2056,9 +2288,17 @@ function calcFF(input){
   var monthlyFuture = annualFuture/12;
 
   var realSafeRate = SBN_YIELD - infl;
-  var valid = realSafeRate > 0;
-  var fundToday = valid ? annualNow/realSafeRate : NaN;
-  var fundFuture = valid ? annualFuture/realSafeRate : NaN;
+  var fundToday, fundFuture, valid;
+  if(input.usePerpetuity){
+    valid = realSafeRate > 0;
+    fundToday = valid ? annualNow/realSafeRate : NaN;
+    fundFuture = valid ? annualFuture/realSafeRate : NaN;
+  } else {
+    valid = true;
+    var n = input.durationYears > 0 ? input.durationYears : 20;
+    fundToday = pvGrowingAnnuity(annualNow, SBN_YIELD, infl, n);
+    fundFuture = pvGrowingAnnuity(annualFuture, SBN_YIELD, infl, n);
+  }
 
   var monthlyInvest = valid ? pmt(productReturn/12, input.years*12, 0, -fundFuture, 1) : NaN;
   var quarterlyInvest = valid ? pmt(productReturn/4, input.years*4, 0, -fundFuture, 1) : NaN;
@@ -2073,14 +2313,19 @@ function renderFF(){
   var age = getVal('ff-age');
   var select = document.getElementById('ff-product');
   var productReturnPct = parseFloat(select.options[select.selectedIndex].getAttribute('data-return'));
+  var usePerpetuity = document.getElementById('ff-perpetuity-enabled').checked;
+  document.getElementById('ff-duration-field').style.display = usePerpetuity ? 'none' : '';
   var r = calcFF({
     years: years,
     monthlyCostNow: getVal('ff-monthlycost'),
     inflation: getVal('ff-inflation'),
-    productReturnPct: productReturnPct
+    productReturnPct: productReturnPct,
+    usePerpetuity: usePerpetuity,
+    durationYears: getVal('ff-duration-years')
   });
   document.getElementById('ff-warn').classList.toggle('hidden', r.valid);
-  document.getElementById('ff-target-label').textContent = 'Dana dibutuhkan saat usia ' + (age+years) + ' tahun';
+  var modeLabel = usePerpetuity ? '(mode Growing Perpetuity)' : '(mode tanpa perpetuity, ' + (getVal('ff-duration-years') || 20) + ' tahun)';
+  document.getElementById('ff-target-label').textContent = 'Dana dibutuhkan saat usia ' + (age+years) + ' tahun ' + modeLabel;
   document.getElementById('ff-fundfuture').textContent = idr(r.fundFuture,0);
   document.getElementById('ff-monthlyfuture').textContent = idr(r.monthlyFuture,0);
   document.getElementById('ff-annualfuture').textContent = idr(r.annualFuture,0);
@@ -2099,6 +2344,8 @@ function applyFFPreset(p){
   setVal('ff-monthlycost', p.monthlycost);
   setVal('ff-inflation', p.inflation);
   document.getElementById('ff-product').value = p.product;
+  document.getElementById('ff-perpetuity-enabled').checked = true;
+  setVal('ff-duration-years', 20);
   renderFF();
 }
 
@@ -2186,6 +2433,87 @@ function applyAvgPreset(){
   renderAverage();
 }
 
+/* ============ Risk Profile Questionnaire ============ */
+var RISK_MAIN_IDS = ['risk-q1','risk-q2','risk-q3','risk-q4','risk-q5','risk-q6','risk-q7','risk-q8','risk-q9','risk-q10','risk-q11'];
+var RISK_ALL_IDS = RISK_MAIN_IDS.concat(['risk-q12','risk-q13','risk-q14','risk-q15']);
+
+function getSliderVal(id){
+  var el = document.getElementById(id);
+  return el ? parseFloat(el.value) : 50;
+}
+function updateSliderFill(slider){
+  slider.style.setProperty('--val', slider.value + '%');
+}
+
+function renderRiskProfile(){
+  var total = 0;
+  RISK_MAIN_IDS.forEach(function(id){ total += getSliderVal(id); });
+  var score = total / RISK_MAIN_IDS.length;
+
+  var category, desc, allocation;
+  if(score <= 20){
+    category = 'Sangat Konservatif';
+    desc = 'Anda sangat mengutamakan keamanan dana dan kestabilan, dengan toleransi rendah terhadap fluktuasi nilai investasi. Prioritas utama Anda adalah menjaga modal, bukan mengejar pertumbuhan agresif.';
+    allocation = '80% Deposito / Reksadana Pasar Uang, 15% Reksadana Pendapatan Tetap (Obligasi), 5% Reksadana Campuran.';
+  } else if(score <= 40){
+    category = 'Konservatif';
+    desc = 'Anda mengutamakan keamanan dana, namun cukup terbuka pada sedikit risiko demi hasil yang lebih tinggi dari deposito biasa.';
+    allocation = '60% Obligasi / Reksadana Pendapatan Tetap, 25% Reksadana Campuran, 15% Saham Blue Chip yang stabil.';
+  } else if(score <= 60){
+    category = 'Moderat';
+    desc = 'Anda mencari keseimbangan antara pertumbuhan dan keamanan — bisa menerima fluktuasi jangka pendek demi potensi hasil jangka panjang yang lebih baik.';
+    allocation = '40% Saham (fokus blue chip & value investing), 35% Obligasi / Reksadana Pendapatan Tetap, 25% Reksadana Campuran.';
+  } else if(score <= 80){
+    category = 'Agresif';
+    desc = 'Anda cukup nyaman dengan risiko dan fluktuasi nilai investasi demi mengejar pertumbuhan dana yang lebih tinggi dalam jangka panjang.';
+    allocation = '65% Saham (termasuk mid & small cap), 20% Reksadana Saham, 15% Obligasi sebagai penyeimbang portofolio.';
+  } else {
+    category = 'Sangat Agresif';
+    desc = 'Anda memiliki toleransi risiko tinggi dan nyaman menghadapi volatilitas besar demi mengejar potensi pertumbuhan dana yang maksimal.';
+    allocation = '80% Saham (termasuk saham growth & small cap), 15% Reksadana Saham, 5% instrumen likuid sebagai cadangan.';
+  }
+
+  document.getElementById('risk-score').textContent = Math.round(score) + ' / 100';
+  document.getElementById('risk-category-badge').textContent = category;
+  document.getElementById('risk-desc').textContent = desc;
+  document.getElementById('risk-allocation').textContent = allocation;
+  document.getElementById('risk-gauge-fill').style.width = score + '%';
+
+  var badge = document.getElementById('risk-category-badge');
+  badge.classList.remove('vf-badge-good', 'vf-badge-bad');
+  badge.classList.add(score >= 41 ? 'vf-badge-good' : 'vf-badge-bad');
+
+  // Behavioral notes (Bagian 3 — tidak masuk skor utama)
+  var goal = getSliderVal('risk-q12');
+  var decision = getSliderVal('risk-q13');
+  var fomo = getSliderVal('risk-q14');
+  var patience = getSliderVal('risk-q15');
+  var notes = [];
+  if(fomo > 60 && decision > 60){
+    notes.push('\u26A0\uFE0F Anda menunjukkan kecenderungan mengikuti tren atau mengambil keputusan cepat tanpa riset mendalam. Sebelum membeli saham yang sedang ramai dibicarakan, coba biasakan cek dulu nilai wajarnya di tab <strong>Kalkulator Valuasi Saham</strong>.');
+  }
+  if(patience < 40){
+    notes.push('\u26A0\uFE0F Anda cenderung ingin melihat hasil investasi dengan cepat. Banyak strategi value investing (seperti yang dipakai di kalkulator ini) butuh waktu bertahun-tahun untuk terbukti hasilnya — pertimbangkan menyelaraskan ekspektasi jangka waktu Anda.');
+  }
+  if(goal > 70 && score < 40){
+    notes.push('\u26A0\uFE0F Tujuan investasi Anda tergolong agresif, namun kapasitas dan toleransi risiko Anda tergolong konservatif. Pertimbangkan pendekatan bertahap — mulai porsi kecil di produk lebih agresif sambil membangun pengalaman dan dana darurat.');
+  }
+  var notesBox = document.getElementById('risk-behavior-notes');
+  if(notes.length > 0){
+    notesBox.style.display = 'block';
+    notesBox.innerHTML = notes.map(function(n){ return '<p>' + n + '</p>'; }).join('');
+  } else {
+    notesBox.style.display = 'none';
+  }
+}
+function resetRiskProfile(){
+  RISK_ALL_IDS.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){ el.value = 50; updateSliderFill(el); }
+  });
+  renderRiskProfile();
+}
+
 /* ============ Wire-up ============ */
 document.addEventListener('DOMContentLoaded', function(){
  try {
@@ -2261,6 +2589,14 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 
+  // Risk Profile Questionnaire
+  document.querySelectorAll('#panel-riskprofile .vf-slider').forEach(function(s){
+    updateSliderFill(s);
+    s.addEventListener('input', function(){ updateSliderFill(s); renderRiskProfile(); });
+  });
+  document.getElementById('risk-reset-btn').addEventListener('click', resetRiskProfile);
+  renderRiskProfile();
+
   document.getElementById('disclaimer-toggle').addEventListener('click', function(){
     document.getElementById('disclaimer-text').classList.toggle('open');
     document.getElementById('disclaimer-arrow').classList.toggle('open');
@@ -2295,7 +2631,7 @@ document.addEventListener('DOMContentLoaded', function(){
   applyThemeButtons();
 
   // PDF export (uses browser's native print-to-PDF, no extra library needed)
-  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Saham'};
+  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Saham', riskprofile:'Profil Risiko Investor'};
   function printCalculator(key){
     var meta = document.getElementById('print-meta');
     var now = new Date();
@@ -2303,7 +2639,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if(meta){ meta.textContent = 'Metode: ' + PDF_TITLES[key] + ' · Dicetak: ' + dateStr; }
     window.print();
   }
-  ['dcf','ddm','eb','ff','average'].forEach(function(key){
+  ['dcf','ddm','eb','ff','average','riskprofile'].forEach(function(key){
     var btn = document.getElementById(key + '-pdf-btn');
     if(btn) btn.addEventListener('click', function(){ printCalculator(key); });
     var sbtn = document.getElementById(key + '-share-btn');
