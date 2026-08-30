@@ -908,7 +908,7 @@ input[type="range"].vf-slider::-moz-range-thumb{
   </button>
   <button class="vf-tab" data-tab="riskprofile">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5A8 8 0 1 1 19.5 16.5"></path><line x1="12" y1="13" x2="15.2" y2="8.8"></line><circle cx="12" cy="13" r="1.3" fill="currentColor" stroke="none"></circle></svg>
-    Risk Profile
+    Fitting-Your-Portfolio
   </button>
   <button class="vf-tab" data-tab="about">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"></path></svg>
@@ -1428,8 +1428,8 @@ input[type="range"].vf-slider::-moz-range-thumb{
   <section class="vf-panel" id="panel-riskprofile">
     <div class="vf-section-title">
       <span class="vf-eyebrow">Know Yourself</span>
-      <h2>Risk Profile &amp; Investor Behavior Questionnaire</h2>
-      <p>15 in-depth questions to understand your financial capacity, risk tolerance, experience, and investment behavior — drag each slider to match your real situation, results calculate automatically below.</p>
+      <h2>Fitting-Your-Portfolio</h2>
+      <p>23 in-depth questions to understand your financial capacity, risk tolerance, experience, investment behavior, dividend vs capital gain preference, and management style — drag each slider to match your real situation, results calculate automatically below.</p>
     </div>
 
     <div class="vf-note-box vf-note-warn">
@@ -1533,6 +1533,56 @@ input[type="range"].vf-slider::-moz-range-thumb{
       </div>
     </div>
 
+    <div class="vf-card" style="margin-bottom:16px;">
+      <h3>Part 4 — Dividend vs Capital Gain Preference</h3>
+
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">16. Which is more appealing to you in a stock?</div>
+        <input type="range" class="vf-slider" id="risk-q16" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Regular yearly dividends, even if price is flat</span><span>Price appreciation potential, even with no dividend</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">17. Do you need regular cash flow income from your investments right now?</div>
+        <input type="range" class="vf-slider" id="risk-q17" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>No, I reinvest all the returns</span><span>Yes, I rely on it as regular income</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">18. What's your view on stocks that never pay dividends but grow fast (e.g. many tech stocks)?</div>
+        <input type="range" class="vf-slider" id="risk-q18" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Not appealing, I still want dividends</span><span>Very appealing, price growth is what matters</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">19. How important is a company's Dividend Payout Ratio when you pick a stock?</div>
+        <input type="range" class="vf-slider" id="risk-q19" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Not important at all</span><span>Very important, a main consideration</span></div>
+      </div>
+    </div>
+
+    <div class="vf-card" style="margin-bottom:16px;">
+      <h3>Part 5 — Investment Management Style</h3>
+
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">20. How do you want to manage your investments?</div>
+        <input type="range" class="vf-slider" id="risk-q20" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>I want to pick & manage stocks myself</span><span>I want it handled by a professional fund manager</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">21. How much time can you spare each week for investment research & monitoring?</div>
+        <input type="range" class="vf-slider" id="risk-q21" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Very little / almost no time</span><span>Quite a lot, I enjoy researching myself</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">22. How confident are you analyzing financial statements or macroeconomic conditions yourself?</div>
+        <input type="range" class="vf-slider" id="risk-q22" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Not confident at all</span><span>Very confident</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">23. If you had to choose, who would you trust more for investment decisions?</div>
+        <input type="range" class="vf-slider" id="risk-q23" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Fully trust a professional fund manager</span><span>Trust my own analysis more</span></div>
+      </div>
+    </div>
+
     <div class="vf-card vf-result-card">
       <h3>Your Risk Profile Result</h3>
       <div class="vf-hero-value">
@@ -1545,6 +1595,18 @@ input[type="range"].vf-slider::-moz-range-thumb{
 
       <h3 class="spaced">Suggested Product Allocation</h3>
       <p id="risk-allocation" style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;"></p>
+
+      <h3 class="spaced">Dividend vs Capital Gain Orientation</h3>
+      <div class="vf-hero-value" style="padding:6px 0 10px;">
+        <span class="vf-badge vf-badge-good" id="risk-dividend-badge">Balanced</span>
+      </div>
+      <p id="risk-dividend-desc" style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;"></p>
+
+      <h3 class="spaced">Management Style: Mutual Fund or Direct Stocks?</h3>
+      <div class="vf-hero-value" style="padding:6px 0 10px;">
+        <span class="vf-badge vf-badge-good" id="risk-management-badge">Combination</span>
+      </div>
+      <p id="risk-management-desc" style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;"></p>
 
       <div class="vf-risk-behavior-notes" id="risk-behavior-notes" style="display:none; margin-top:16px; padding-top:14px; border-top:1px dashed var(--border);"></div>
     </div>
@@ -2432,7 +2494,9 @@ function applyAvgPreset(){
 
 /* ============ Risk Profile Questionnaire ============ */
 var RISK_MAIN_IDS = ['risk-q1','risk-q2','risk-q3','risk-q4','risk-q5','risk-q6','risk-q7','risk-q8','risk-q9','risk-q10','risk-q11'];
-var RISK_ALL_IDS = RISK_MAIN_IDS.concat(['risk-q12','risk-q13','risk-q14','risk-q15']);
+var RISK_DIVIDEND_IDS = ['risk-q16','risk-q17','risk-q18','risk-q19'];
+var RISK_MANAGEMENT_IDS = ['risk-q20','risk-q21','risk-q22','risk-q23'];
+var RISK_ALL_IDS = RISK_MAIN_IDS.concat(['risk-q12','risk-q13','risk-q14','risk-q15']).concat(RISK_DIVIDEND_IDS).concat(RISK_MANAGEMENT_IDS);
 
 function getSliderVal(id){
   var el = document.getElementById(id);
@@ -2441,11 +2505,14 @@ function getSliderVal(id){
 function updateSliderFill(slider){
   slider.style.setProperty('--val', slider.value + '%');
 }
+function avgOf(ids){
+  var total = 0;
+  ids.forEach(function(id){ total += getSliderVal(id); });
+  return total / ids.length;
+}
 
 function renderRiskProfile(){
-  var total = 0;
-  RISK_MAIN_IDS.forEach(function(id){ total += getSliderVal(id); });
-  var score = total / RISK_MAIN_IDS.length;
+  var score = avgOf(RISK_MAIN_IDS);
 
   var category, desc, allocation;
   if(score <= 20){
@@ -2480,6 +2547,44 @@ function renderRiskProfile(){
   badge.classList.remove('vf-badge-good', 'vf-badge-bad');
   badge.classList.add(score >= 41 ? 'vf-badge-good' : 'vf-badge-bad');
 
+  // Part 4 — Dividend vs Capital Gain Orientation
+  var dividendScore = avgOf(RISK_DIVIDEND_IDS);
+  var divCategory, divDesc;
+  if(dividendScore <= 35){
+    divCategory = 'Dividend Investor';
+    divDesc = 'You prefer regular income from dividends over chasing stock price gains. Focus on stocks with high, consistent dividend yields (typically banking, consumer staples, utilities) or dividend-oriented fixed income/balanced funds.';
+  } else if(dividendScore <= 65){
+    divCategory = 'Balanced (Dividend & Capital Gain)';
+    divDesc = 'You are open to a combination of dividends and capital gains. A mixed portfolio works well — some stable dividend stocks, some growth stocks for price appreciation potential.';
+  } else {
+    divCategory = 'Capital Gain / Growth Investor';
+    divDesc = 'You are more interested in chasing stock price gains than regular dividend income. Focus on growth stocks (often in tech, consumer discretionary) even with minimal or no dividends.';
+  }
+  var divBadge = document.getElementById('risk-dividend-badge');
+  divBadge.textContent = divCategory;
+  divBadge.classList.remove('vf-badge-good', 'vf-badge-bad');
+  divBadge.classList.add('vf-badge-good');
+  document.getElementById('risk-dividend-desc').textContent = divDesc;
+
+  // Part 5 — Management Style: Mutual Fund vs Direct Stocks
+  var mgmtScore = avgOf(RISK_MANAGEMENT_IDS);
+  var mgmtCategory, mgmtDesc;
+  if(mgmtScore <= 35){
+    mgmtCategory = 'Better Suited to Managed Funds';
+    mgmtDesc = 'You are more comfortable handing off investment management to a professional. Mutual funds (matching your risk category above) are likely a better fit than picking individual stocks yourself.';
+  } else if(mgmtScore <= 65){
+    mgmtCategory = 'Combination (Funds + Direct Stocks)';
+    mgmtDesc = 'You are fairly comfortable with a combination — part of your money managed by a fund manager, part managed yourself in stocks you truly understand.';
+  } else {
+    mgmtCategory = 'Better Suited to Self-Managed Stocks';
+    mgmtDesc = 'You have the interest and confidence to pick stocks yourself. Make use of the Stock Valuation Calculator tab on this site to research before buying.';
+  }
+  var mgmtBadge = document.getElementById('risk-management-badge');
+  mgmtBadge.textContent = mgmtCategory;
+  mgmtBadge.classList.remove('vf-badge-good', 'vf-badge-bad');
+  mgmtBadge.classList.add('vf-badge-good');
+  document.getElementById('risk-management-desc').textContent = mgmtDesc;
+
   var goal = getSliderVal('risk-q12');
   var decision = getSliderVal('risk-q13');
   var fomo = getSliderVal('risk-q14');
@@ -2493,6 +2598,12 @@ function renderRiskProfile(){
   }
   if(goal > 70 && score < 40){
     notes.push('⚠️ Your investment goal is aggressive, but your risk capacity and tolerance are conservative. Consider a gradual approach — start with a small portion in more aggressive products while building experience and an emergency fund.');
+  }
+  if(dividendScore > 65 && mgmtScore <= 35){
+    notes.push('⚠️ You lean toward growth stocks (minimal dividends), but also prefer professional management. This combination fits a growth-focused Equity Fund better than picking individual growth stocks yourself.');
+  }
+  if(dividendScore <= 35 && mgmtScore > 65){
+    notes.push('⚠️ You lean toward dividend stocks and want to self-manage. Make use of the Glossary tab on this site to understand terms like Dividend Yield & Payout Ratio before picking dividend stocks yourself.');
   }
   var notesBox = document.getElementById('risk-behavior-notes');
   if(notes.length > 0){
