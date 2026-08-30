@@ -912,7 +912,7 @@ input[type="range"].vf-slider::-moz-range-thumb{
   </button>
   <button class="vf-tab" data-tab="riskprofile">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5A8 8 0 1 1 19.5 16.5"></path><line x1="12" y1="13" x2="15.2" y2="8.8"></line><circle cx="12" cy="13" r="1.3" fill="currentColor" stroke="none"></circle></svg>
-    Profil Risiko
+    Fitting-Your-Portfolio
   </button>
   <button class="vf-tab" data-tab="about">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"></path></svg>
@@ -1432,8 +1432,8 @@ input[type="range"].vf-slider::-moz-range-thumb{
   <section class="vf-panel" id="panel-riskprofile">
     <div class="vf-section-title">
       <span class="vf-eyebrow">Kenali Diri Anda</span>
-      <h2>Kuesioner Profil Risiko & Watak Investasi</h2>
-      <p>15 pertanyaan mendalam untuk memahami kapasitas finansial, toleransi risiko, pengalaman, dan watak perilaku investasi Anda — geser slider sesuai kondisi Anda yang sebenarnya, hasil terhitung otomatis di bagian bawah.</p>
+      <h2>Fitting-Your-Portfolio</h2>
+      <p>23 pertanyaan mendalam untuk memahami kapasitas finansial, toleransi risiko, pengalaman, watak perilaku, preferensi dividen vs capital gain, hingga gaya pengelolaan investasi Anda — geser slider sesuai kondisi Anda yang sebenarnya, hasil terhitung otomatis di bagian bawah.</p>
     </div>
 
     <div class="vf-note-box vf-note-warn">
@@ -1537,6 +1537,56 @@ input[type="range"].vf-slider::-moz-range-thumb{
       </div>
     </div>
 
+    <div class="vf-card" style="margin-bottom:16px;">
+      <h3>Bagian 4 — Preferensi Dividen vs Capital Gain</h3>
+
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">16. Mana yang lebih menarik buat Anda dari sebuah saham?</div>
+        <input type="range" class="vf-slider" id="risk-q16" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Dividen rutin tiap tahun, walau harga stagnan</span><span>Potensi kenaikan harga, walau tanpa dividen</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">17. Apakah Anda membutuhkan penghasilan rutin (cash flow) dari investasi Anda saat ini?</div>
+        <input type="range" class="vf-slider" id="risk-q17" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Tidak, saya reinvestasikan semua keuntungan</span><span>Ya, saya andalkan sebagai penghasilan rutin</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">18. Bagaimana pandangan Anda soal saham yang tidak pernah bagi dividen tapi tumbuh pesat (contoh: banyak saham teknologi)?</div>
+        <input type="range" class="vf-slider" id="risk-q18" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Kurang menarik, saya tetap mau dividen</span><span>Sangat menarik, yang penting harga naik</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">19. Seberapa penting Dividend Payout Ratio perusahaan bagi Anda saat memilih saham?</div>
+        <input type="range" class="vf-slider" id="risk-q19" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Tidak penting sama sekali</span><span>Sangat penting, jadi pertimbangan utama</span></div>
+      </div>
+    </div>
+
+    <div class="vf-card" style="margin-bottom:16px;">
+      <h3>Bagian 5 — Gaya Pengelolaan Investasi</h3>
+
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">20. Bagaimana Anda ingin mengelola investasi Anda?</div>
+        <input type="range" class="vf-slider" id="risk-q20" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Ingin memilih & mengelola saham sendiri</span><span>Ingin diserahkan ke manajer investasi profesional</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">21. Berapa banyak waktu yang bisa Anda luangkan untuk riset & memantau investasi tiap minggu?</div>
+        <input type="range" class="vf-slider" id="risk-q21" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Sangat sedikit / hampir tidak ada waktu</span><span>Cukup banyak, saya senang riset sendiri</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">22. Seberapa percaya diri Anda menganalisis laporan keuangan atau kondisi ekonomi makro sendiri?</div>
+        <input type="range" class="vf-slider" id="risk-q22" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Tidak percaya diri sama sekali</span><span>Sangat percaya diri</span></div>
+      </div>
+      <div class="vf-slider-item">
+        <div class="vf-slider-question">23. Jika harus memilih, Anda lebih percaya pada siapa untuk keputusan investasi?</div>
+        <input type="range" class="vf-slider" id="risk-q23" min="0" max="100" value="50" step="1">
+        <div class="vf-slider-labels"><span>Sepenuhnya percaya fund manager profesional</span><span>Lebih percaya analisis saya sendiri</span></div>
+      </div>
+    </div>
+
     <div class="vf-card vf-result-card">
       <h3>Hasil Profil Risiko Anda</h3>
       <div class="vf-hero-value">
@@ -1549,6 +1599,18 @@ input[type="range"].vf-slider::-moz-range-thumb{
 
       <h3 class="spaced">Saran Alokasi Produk</h3>
       <p id="risk-allocation" style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;"></p>
+
+      <h3 class="spaced">Orientasi Dividen vs Capital Gain</h3>
+      <div class="vf-hero-value" style="padding:6px 0 10px;">
+        <span class="vf-badge vf-badge-good" id="risk-dividend-badge">Seimbang</span>
+      </div>
+      <p id="risk-dividend-desc" style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;"></p>
+
+      <h3 class="spaced">Gaya Pengelolaan: Reksa Dana atau Saham Langsung?</h3>
+      <div class="vf-hero-value" style="padding:6px 0 10px;">
+        <span class="vf-badge vf-badge-good" id="risk-management-badge">Kombinasi</span>
+      </div>
+      <p id="risk-management-desc" style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;"></p>
 
       <div class="vf-risk-behavior-notes" id="risk-behavior-notes" style="display:none; margin-top:16px; padding-top:14px; border-top:1px dashed var(--border);"></div>
     </div>
@@ -2435,7 +2497,9 @@ function applyAvgPreset(){
 
 /* ============ Risk Profile Questionnaire ============ */
 var RISK_MAIN_IDS = ['risk-q1','risk-q2','risk-q3','risk-q4','risk-q5','risk-q6','risk-q7','risk-q8','risk-q9','risk-q10','risk-q11'];
-var RISK_ALL_IDS = RISK_MAIN_IDS.concat(['risk-q12','risk-q13','risk-q14','risk-q15']);
+var RISK_DIVIDEND_IDS = ['risk-q16','risk-q17','risk-q18','risk-q19'];
+var RISK_MANAGEMENT_IDS = ['risk-q20','risk-q21','risk-q22','risk-q23'];
+var RISK_ALL_IDS = RISK_MAIN_IDS.concat(['risk-q12','risk-q13','risk-q14','risk-q15']).concat(RISK_DIVIDEND_IDS).concat(RISK_MANAGEMENT_IDS);
 
 function getSliderVal(id){
   var el = document.getElementById(id);
@@ -2444,11 +2508,14 @@ function getSliderVal(id){
 function updateSliderFill(slider){
   slider.style.setProperty('--val', slider.value + '%');
 }
+function avgOf(ids){
+  var total = 0;
+  ids.forEach(function(id){ total += getSliderVal(id); });
+  return total / ids.length;
+}
 
 function renderRiskProfile(){
-  var total = 0;
-  RISK_MAIN_IDS.forEach(function(id){ total += getSliderVal(id); });
-  var score = total / RISK_MAIN_IDS.length;
+  var score = avgOf(RISK_MAIN_IDS);
 
   var category, desc, allocation;
   if(score <= 20){
@@ -2483,6 +2550,44 @@ function renderRiskProfile(){
   badge.classList.remove('vf-badge-good', 'vf-badge-bad');
   badge.classList.add(score >= 41 ? 'vf-badge-good' : 'vf-badge-bad');
 
+  // Bagian 4 — Orientasi Dividen vs Capital Gain
+  var dividendScore = avgOf(RISK_DIVIDEND_IDS);
+  var divCategory, divDesc;
+  if(dividendScore <= 35){
+    divCategory = 'Investor Dividen';
+    divDesc = 'Anda lebih menyukai penghasilan rutin dari dividen dibanding mengejar kenaikan harga saham. Cocok fokus ke saham dengan dividend yield tinggi & konsisten (umumnya sektor perbankan, consumer staples, utilities) atau reksa dana pendapatan tetap/campuran berorientasi dividen.';
+  } else if(dividendScore <= 65){
+    divCategory = 'Seimbang (Dividen & Capital Gain)';
+    divDesc = 'Anda terbuka pada kombinasi dividen dan capital gain. Cocok membangun portofolio campuran — sebagian saham dividen yang stabil, sebagian saham growth untuk potensi kenaikan harga.';
+  } else {
+    divCategory = 'Investor Capital Gain / Growth';
+    divDesc = 'Anda lebih tertarik mengejar kenaikan harga saham dibanding penghasilan dividen rutin. Cocok fokus ke saham growth (sering di sektor teknologi, consumer discretionary) meski minim atau tanpa dividen.';
+  }
+  var divBadge = document.getElementById('risk-dividend-badge');
+  divBadge.textContent = divCategory;
+  divBadge.classList.remove('vf-badge-good', 'vf-badge-bad');
+  divBadge.classList.add('vf-badge-good');
+  document.getElementById('risk-dividend-desc').textContent = divDesc;
+
+  // Bagian 5 — Gaya Pengelolaan: Reksa Dana vs Saham Langsung
+  var mgmtScore = avgOf(RISK_MANAGEMENT_IDS);
+  var mgmtCategory, mgmtDesc;
+  if(mgmtScore <= 35){
+    mgmtCategory = 'Lebih Cocok Dikelola (Reksa Dana)';
+    mgmtDesc = 'Anda lebih nyaman menyerahkan pengelolaan investasi ke profesional. Reksa dana (sesuai kategori risiko Anda di atas) kemungkinan lebih cocok dibanding memilih saham sendiri satu per satu.';
+  } else if(mgmtScore <= 65){
+    mgmtCategory = 'Kombinasi (Reksa Dana + Saham Langsung)';
+    mgmtDesc = 'Anda cukup nyaman dengan kombinasi — sebagian dana dikelola manajer investasi lewat reksa dana, sebagian lagi Anda kelola sendiri di saham-saham yang benar-benar Anda pahami.';
+  } else {
+    mgmtCategory = 'Lebih Cocok Kelola Sendiri (Saham Langsung)';
+    mgmtDesc = 'Anda punya minat dan kepercayaan diri untuk memilih saham sendiri. Manfaatkan tab Kalkulator Valuasi Saham di situs ini untuk riset sebelum membeli.';
+  }
+  var mgmtBadge = document.getElementById('risk-management-badge');
+  mgmtBadge.textContent = mgmtCategory;
+  mgmtBadge.classList.remove('vf-badge-good', 'vf-badge-bad');
+  mgmtBadge.classList.add('vf-badge-good');
+  document.getElementById('risk-management-desc').textContent = mgmtDesc;
+
   // Behavioral notes (Bagian 3 — tidak masuk skor utama)
   var goal = getSliderVal('risk-q12');
   var decision = getSliderVal('risk-q13');
@@ -2497,6 +2602,12 @@ function renderRiskProfile(){
   }
   if(goal > 70 && score < 40){
     notes.push('\u26A0\uFE0F Tujuan investasi Anda tergolong agresif, namun kapasitas dan toleransi risiko Anda tergolong konservatif. Pertimbangkan pendekatan bertahap — mulai porsi kecil di produk lebih agresif sambil membangun pengalaman dan dana darurat.');
+  }
+  if(dividendScore > 65 && mgmtScore <= 35){
+    notes.push('\u26A0\uFE0F Anda condong ke saham growth (minim dividen), tapi juga lebih nyaman dikelola profesional. Kombinasi ini cocok dengan Reksa Dana Saham yang fokus growth, dibanding memilih saham growth sendiri secara langsung.');
+  }
+  if(dividendScore <= 35 && mgmtScore > 65){
+    notes.push('\u26A0\uFE0F Anda condong ke saham dividen dan ingin kelola sendiri. Manfaatkan Kamus Investasi di situs ini untuk memahami istilah seperti Dividend Yield & Payout Ratio sebelum memilih saham dividen sendiri.');
   }
   var notesBox = document.getElementById('risk-behavior-notes');
   if(notes.length > 0){
