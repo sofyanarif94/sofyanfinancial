@@ -2511,36 +2511,68 @@ function avgOf(ids){
   return total / ids.length;
 }
 
+function buildAllocation(mainScore, mgmtScore, dividendScore, experienceScore){
+  var equityPct, bondPct, cashPct;
+  if(mainScore <= 20){ equityPct = 10; bondPct = 75; cashPct = 15; }
+  else if(mainScore <= 40){ equityPct = 25; bondPct = 60; cashPct = 15; }
+  else if(mainScore <= 60){ equityPct = 50; bondPct = 40; cashPct = 10; }
+  else if(mainScore <= 80){ equityPct = 70; bondPct = 20; cashPct = 10; }
+  else { equityPct = 85; bondPct = 5; cashPct = 10; }
+
+  var style = dividendScore <= 35 ? 'high-yield stable dividend stocks' : (dividendScore <= 65 ? 'a mix of dividend & growth stocks' : 'growth/capital gain stocks');
+  var selfDirected = mgmtScore > 60 && experienceScore > 55;
+  var preferManaged = mgmtScore <= 35;
+
+  var parts = [];
+  if(selfDirected){
+    parts.push(equityPct + '% Direct Stocks (' + style + ') — picked &amp; managed yourself, with no Equity Fund since your experience and confidence are already high.');
+    var reserve = Math.min(bondPct, 15);
+    var remainingBond = bondPct - reserve;
+    if(remainingBond > 0){
+      parts.push(remainingBond + '% Bonds / Fixed Income Fund as a balancer.');
+    }
+    parts.push((reserve + cashPct) + '% Money Market Fund / Time Deposit / Cash — ready reserve to add to your position during a market correction or crash.');
+  } else if(preferManaged){
+    parts.push(equityPct + '% Equity Fund (' + style + ').');
+    parts.push(bondPct + '% Bonds / Fixed Income Fund.');
+    parts.push(cashPct + '% Money Market Fund / Time Deposit for liquidity.');
+  } else {
+    var half = Math.round(equityPct / 2);
+    parts.push(half + '% Equity Fund + ' + (equityPct - half) + '% Direct Stocks (' + style + ').');
+    parts.push(bondPct + '% Bonds / Fixed Income Fund.');
+    parts.push(cashPct + '% Money Market Fund / Time Deposit for liquidity.');
+  }
+  return parts.join(' ');
+}
 function renderRiskProfile(){
   var score = avgOf(RISK_MAIN_IDS);
+  var experienceScore = avgOf(['risk-q9', 'risk-q10']);
+  var dividendScore = avgOf(RISK_DIVIDEND_IDS);
+  var mgmtScore = avgOf(RISK_MANAGEMENT_IDS);
 
-  var category, desc, allocation;
+  var category, desc;
   if(score <= 20){
     category = 'Very Conservative';
     desc = 'You strongly prioritize the safety and stability of your money, with low tolerance for fluctuations in investment value. Your top priority is capital preservation, not aggressive growth.';
-    allocation = '80% Time Deposit / Money Market Fund, 15% Fixed Income Fund (Bonds), 5% Balanced Fund.';
   } else if(score <= 40){
     category = 'Conservative';
     desc = 'You prioritize safety, but are reasonably open to a bit of risk for returns higher than a regular deposit.';
-    allocation = '60% Bonds / Fixed Income Fund, 25% Balanced Fund, 15% stable Blue Chip Stocks.';
   } else if(score <= 60){
     category = 'Moderate';
     desc = 'You seek a balance between growth and safety — able to tolerate short-term fluctuations for better long-term potential.';
-    allocation = '40% Stocks (blue chip & value investing focus), 35% Bonds / Fixed Income Fund, 25% Balanced Fund.';
   } else if(score <= 80){
     category = 'Aggressive';
     desc = 'You are fairly comfortable with risk and fluctuation in pursuit of higher long-term growth.';
-    allocation = '65% Stocks (including mid & small cap), 20% Equity Fund, 15% Bonds as a portfolio balancer.';
   } else {
     category = 'Very Aggressive';
     desc = 'You have high risk tolerance and are comfortable with large volatility in pursuit of maximum growth potential.';
-    allocation = '80% Stocks (including growth & small cap), 15% Equity Fund, 5% liquid instruments as reserve.';
   }
+  var allocation = buildAllocation(score, mgmtScore, dividendScore, experienceScore);
 
   document.getElementById('risk-score').textContent = Math.round(score) + ' / 100';
   document.getElementById('risk-category-badge').textContent = category;
   document.getElementById('risk-desc').textContent = desc;
-  document.getElementById('risk-allocation').textContent = allocation;
+  document.getElementById('risk-allocation').innerHTML = allocation;
   document.getElementById('risk-gauge-fill').style.width = score + '%';
 
   var badge = document.getElementById('risk-category-badge');
@@ -2548,7 +2580,6 @@ function renderRiskProfile(){
   badge.classList.add(score >= 41 ? 'vf-badge-good' : 'vf-badge-bad');
 
   // Part 4 — Dividend vs Capital Gain Orientation
-  var dividendScore = avgOf(RISK_DIVIDEND_IDS);
   var divCategory, divDesc;
   if(dividendScore <= 35){
     divCategory = 'Dividend Investor';
@@ -2567,22 +2598,25 @@ function renderRiskProfile(){
   document.getElementById('risk-dividend-desc').textContent = divDesc;
 
   // Part 5 — Management Style: Mutual Fund vs Direct Stocks
-  var mgmtScore = avgOf(RISK_MANAGEMENT_IDS);
   var mgmtCategory, mgmtDesc;
+  var selfDirectedConfirmed = mgmtScore > 60 && experienceScore > 55;
   if(mgmtScore <= 35){
     mgmtCategory = 'Better Suited to Managed Funds';
     mgmtDesc = 'You are more comfortable handing off investment management to a professional. Mutual funds (matching your risk category above) are likely a better fit than picking individual stocks yourself.';
   } else if(mgmtScore <= 65){
     mgmtCategory = 'Combination (Funds + Direct Stocks)';
     mgmtDesc = 'You are fairly comfortable with a combination — part of your money managed by a fund manager, part managed yourself in stocks you truly understand.';
-  } else {
+  } else if(selfDirectedConfirmed){
     mgmtCategory = 'Better Suited to Self-Managed Stocks';
-    mgmtDesc = 'You have the interest and confidence to pick stocks yourself. Make use of the Stock Valuation Calculator tab on this site to research before buying.';
+    mgmtDesc = 'You have the interest, experience, and confidence to pick stocks yourself. Make use of the Stock Valuation Calculator tab on this site to research before buying.';
+  } else {
+    mgmtCategory = 'Want to Self-Manage, But Build Experience First';
+    mgmtDesc = 'You want to pick stocks yourself, but your experience and product knowledge are still fairly limited. Consider starting with an Equity Fund while you learn, then gradually shift to direct stocks.';
   }
   var mgmtBadge = document.getElementById('risk-management-badge');
   mgmtBadge.textContent = mgmtCategory;
   mgmtBadge.classList.remove('vf-badge-good', 'vf-badge-bad');
-  mgmtBadge.classList.add('vf-badge-good');
+  mgmtBadge.classList.add(selfDirectedConfirmed || mgmtScore <= 65 ? 'vf-badge-good' : 'vf-badge-bad');
   document.getElementById('risk-management-desc').textContent = mgmtDesc;
 
   var goal = getSliderVal('risk-q12');
@@ -2604,6 +2638,12 @@ function renderRiskProfile(){
   }
   if(dividendScore <= 35 && mgmtScore > 65){
     notes.push('⚠️ You lean toward dividend stocks and want to self-manage. Make use of the Glossary tab on this site to understand terms like Dividend Yield & Payout Ratio before picking dividend stocks yourself.');
+  }
+  if(mgmtScore > 60 && experienceScore <= 55){
+    notes.push('⚠️ You want to manage your own investments, but your experience &amp; product knowledge (Part 2) are still fairly limited. That\'s why the allocation above points you to an Equity Fund first — not straight to direct stocks — until your experience grows.');
+  }
+  if(selfDirectedConfirmed && score >= 61){
+    notes.push('✅ Because your experience and confidence are already high, the allocation above <strong>deliberately excludes an Equity Fund</strong> — your equity portion is entirely direct stocks, with a Money Market Fund/Deposit/Cash reserve as ammunition to add to your position when prices drop.');
   }
   var notesBox = document.getElementById('risk-behavior-notes');
   if(notes.length > 0){

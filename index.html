@@ -2514,36 +2514,68 @@ function avgOf(ids){
   return total / ids.length;
 }
 
+function buildAllocation(mainScore, mgmtScore, dividendScore, experienceScore){
+  var equityPct, bondPct, cashPct;
+  if(mainScore <= 20){ equityPct = 10; bondPct = 75; cashPct = 15; }
+  else if(mainScore <= 40){ equityPct = 25; bondPct = 60; cashPct = 15; }
+  else if(mainScore <= 60){ equityPct = 50; bondPct = 40; cashPct = 10; }
+  else if(mainScore <= 80){ equityPct = 70; bondPct = 20; cashPct = 10; }
+  else { equityPct = 85; bondPct = 5; cashPct = 10; }
+
+  var style = dividendScore <= 35 ? 'saham dividen tinggi &amp; stabil' : (dividendScore <= 65 ? 'kombinasi saham dividen &amp; growth' : 'saham growth/capital gain');
+  var selfDirected = mgmtScore > 60 && experienceScore > 55;
+  var preferManaged = mgmtScore <= 35;
+
+  var parts = [];
+  if(selfDirected){
+    parts.push(equityPct + '% Saham Langsung (' + style + ') — dipilih &amp; dikelola sendiri, tanpa Reksadana Saham karena jam terbang dan kepercayaan diri Anda sudah cukup tinggi.');
+    var reserve = Math.min(bondPct, 15);
+    var remainingBond = bondPct - reserve;
+    if(remainingBond > 0){
+      parts.push(remainingBond + '% Obligasi / Reksadana Pendapatan Tetap sebagai penyeimbang.');
+    }
+    parts.push((reserve + cashPct) + '% Reksadana Pasar Uang / Deposito / Cash — dana cadangan siap pakai untuk menambah posisi saat market terkoreksi atau crash.');
+  } else if(preferManaged){
+    parts.push(equityPct + '% Reksadana Saham (' + style + ').');
+    parts.push(bondPct + '% Obligasi / Reksadana Pendapatan Tetap.');
+    parts.push(cashPct + '% Reksadana Pasar Uang / Deposito untuk likuiditas.');
+  } else {
+    var half = Math.round(equityPct / 2);
+    parts.push(half + '% Reksadana Saham + ' + (equityPct - half) + '% Saham Langsung (' + style + ').');
+    parts.push(bondPct + '% Obligasi / Reksadana Pendapatan Tetap.');
+    parts.push(cashPct + '% Reksadana Pasar Uang / Deposito untuk likuiditas.');
+  }
+  return parts.join(' ');
+}
 function renderRiskProfile(){
   var score = avgOf(RISK_MAIN_IDS);
+  var experienceScore = avgOf(['risk-q9', 'risk-q10']);
+  var dividendScore = avgOf(RISK_DIVIDEND_IDS);
+  var mgmtScore = avgOf(RISK_MANAGEMENT_IDS);
 
-  var category, desc, allocation;
+  var category, desc;
   if(score <= 20){
     category = 'Sangat Konservatif';
     desc = 'Anda sangat mengutamakan keamanan dana dan kestabilan, dengan toleransi rendah terhadap fluktuasi nilai investasi. Prioritas utama Anda adalah menjaga modal, bukan mengejar pertumbuhan agresif.';
-    allocation = '80% Deposito / Reksadana Pasar Uang, 15% Reksadana Pendapatan Tetap (Obligasi), 5% Reksadana Campuran.';
   } else if(score <= 40){
     category = 'Konservatif';
     desc = 'Anda mengutamakan keamanan dana, namun cukup terbuka pada sedikit risiko demi hasil yang lebih tinggi dari deposito biasa.';
-    allocation = '60% Obligasi / Reksadana Pendapatan Tetap, 25% Reksadana Campuran, 15% Saham Blue Chip yang stabil.';
   } else if(score <= 60){
     category = 'Moderat';
     desc = 'Anda mencari keseimbangan antara pertumbuhan dan keamanan — bisa menerima fluktuasi jangka pendek demi potensi hasil jangka panjang yang lebih baik.';
-    allocation = '40% Saham (fokus blue chip & value investing), 35% Obligasi / Reksadana Pendapatan Tetap, 25% Reksadana Campuran.';
   } else if(score <= 80){
     category = 'Agresif';
     desc = 'Anda cukup nyaman dengan risiko dan fluktuasi nilai investasi demi mengejar pertumbuhan dana yang lebih tinggi dalam jangka panjang.';
-    allocation = '65% Saham (termasuk mid & small cap), 20% Reksadana Saham, 15% Obligasi sebagai penyeimbang portofolio.';
   } else {
     category = 'Sangat Agresif';
     desc = 'Anda memiliki toleransi risiko tinggi dan nyaman menghadapi volatilitas besar demi mengejar potensi pertumbuhan dana yang maksimal.';
-    allocation = '80% Saham (termasuk saham growth & small cap), 15% Reksadana Saham, 5% instrumen likuid sebagai cadangan.';
   }
+  var allocation = buildAllocation(score, mgmtScore, dividendScore, experienceScore);
 
   document.getElementById('risk-score').textContent = Math.round(score) + ' / 100';
   document.getElementById('risk-category-badge').textContent = category;
   document.getElementById('risk-desc').textContent = desc;
-  document.getElementById('risk-allocation').textContent = allocation;
+  document.getElementById('risk-allocation').innerHTML = allocation;
   document.getElementById('risk-gauge-fill').style.width = score + '%';
 
   var badge = document.getElementById('risk-category-badge');
@@ -2551,7 +2583,6 @@ function renderRiskProfile(){
   badge.classList.add(score >= 41 ? 'vf-badge-good' : 'vf-badge-bad');
 
   // Bagian 4 — Orientasi Dividen vs Capital Gain
-  var dividendScore = avgOf(RISK_DIVIDEND_IDS);
   var divCategory, divDesc;
   if(dividendScore <= 35){
     divCategory = 'Investor Dividen';
@@ -2570,22 +2601,25 @@ function renderRiskProfile(){
   document.getElementById('risk-dividend-desc').textContent = divDesc;
 
   // Bagian 5 — Gaya Pengelolaan: Reksa Dana vs Saham Langsung
-  var mgmtScore = avgOf(RISK_MANAGEMENT_IDS);
   var mgmtCategory, mgmtDesc;
+  var selfDirectedConfirmed = mgmtScore > 60 && experienceScore > 55;
   if(mgmtScore <= 35){
     mgmtCategory = 'Lebih Cocok Dikelola (Reksa Dana)';
     mgmtDesc = 'Anda lebih nyaman menyerahkan pengelolaan investasi ke profesional. Reksa dana (sesuai kategori risiko Anda di atas) kemungkinan lebih cocok dibanding memilih saham sendiri satu per satu.';
   } else if(mgmtScore <= 65){
     mgmtCategory = 'Kombinasi (Reksa Dana + Saham Langsung)';
     mgmtDesc = 'Anda cukup nyaman dengan kombinasi — sebagian dana dikelola manajer investasi lewat reksa dana, sebagian lagi Anda kelola sendiri di saham-saham yang benar-benar Anda pahami.';
-  } else {
+  } else if(selfDirectedConfirmed){
     mgmtCategory = 'Lebih Cocok Kelola Sendiri (Saham Langsung)';
-    mgmtDesc = 'Anda punya minat dan kepercayaan diri untuk memilih saham sendiri. Manfaatkan tab Kalkulator Valuasi Saham di situs ini untuk riset sebelum membeli.';
+    mgmtDesc = 'Anda punya minat, jam terbang, dan kepercayaan diri untuk memilih saham sendiri. Manfaatkan tab Kalkulator Valuasi Saham di situs ini untuk riset sebelum membeli.';
+  } else {
+    mgmtCategory = 'Ingin Kelola Sendiri, Tapi Bangun Jam Terbang Dulu';
+    mgmtDesc = 'Anda ingin memilih saham sendiri, tapi pengalaman dan pemahaman produk Anda masih tergolong terbatas. Pertimbangkan mulai dari Reksa Dana Saham sambil belajar, baru bertahap pindah ke saham langsung.';
   }
   var mgmtBadge = document.getElementById('risk-management-badge');
   mgmtBadge.textContent = mgmtCategory;
   mgmtBadge.classList.remove('vf-badge-good', 'vf-badge-bad');
-  mgmtBadge.classList.add('vf-badge-good');
+  mgmtBadge.classList.add(selfDirectedConfirmed || mgmtScore <= 65 ? 'vf-badge-good' : 'vf-badge-bad');
   document.getElementById('risk-management-desc').textContent = mgmtDesc;
 
   // Behavioral notes (Bagian 3 — tidak masuk skor utama)
@@ -2608,6 +2642,12 @@ function renderRiskProfile(){
   }
   if(dividendScore <= 35 && mgmtScore > 65){
     notes.push('\u26A0\uFE0F Anda condong ke saham dividen dan ingin kelola sendiri. Manfaatkan Kamus Investasi di situs ini untuk memahami istilah seperti Dividend Yield & Payout Ratio sebelum memilih saham dividen sendiri.');
+  }
+  if(mgmtScore > 60 && experienceScore <= 55){
+    notes.push('\u26A0\uFE0F Anda ingin mengelola investasi sendiri, tapi pengalaman &amp; pemahaman produk Anda (Bagian 2) masih tergolong terbatas. Ini sebabnya alokasi di atas mengarahkan Anda ke Reksa Dana Saham dulu — bukan langsung saham sendiri — sampai jam terbang Anda bertambah.');
+  }
+  if(selfDirectedConfirmed && score >= 61){
+    notes.push('\u2705 Karena jam terbang dan kepercayaan diri Anda sudah tinggi, alokasi di atas <strong>sengaja tidak menyertakan Reksadana Saham</strong> — porsi ekuitas Anda sepenuhnya saham langsung, dengan cadangan Reksadana Pasar Uang/Deposito/Cash sebagai amunisi tambah posisi saat harga turun.');
   }
   var notesBox = document.getElementById('risk-behavior-notes');
   if(notes.length > 0){
