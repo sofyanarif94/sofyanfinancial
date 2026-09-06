@@ -1422,6 +1422,42 @@ input[type="range"].vf-slider::-moz-range-thumb{
         </div>
       </div>
     </div>
+
+    <div class="vf-card" style="margin-top:18px;">
+      <h3>🎯 Target Average Price Calculator</h3>
+      <p style="font-size:12.5px; color:var(--text-muted); line-height:1.6; margin:0 0 16px;">Want your average price to hit a specific number? Calculate how many shares and how much extra capital you need to get there.</p>
+
+      <div class="vf-field-row">
+        <div class="vf-field">
+          <label class="vf-label">Your current average price</label>
+          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-current-avg" value="1200"><span class="vf-suffix">Rp</span></div>
+        </div>
+        <div class="vf-field">
+          <label class="vf-label">Current number of shares</label>
+          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-current-lots" value="1000"><span class="vf-suffix">shr</span></div>
+        </div>
+      </div>
+      <div class="vf-field-row">
+        <div class="vf-field">
+          <label class="vf-label">Desired target average price</label>
+          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-avg-price" value="1000"><span class="vf-suffix">Rp</span></div>
+        </div>
+        <div class="vf-field">
+          <label class="vf-label">Planned additional buy price</label>
+          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-buy-price" value="900"><span class="vf-suffix">Rp</span></div>
+        </div>
+      </div>
+
+      <div class="vf-note-box vf-note-warn hidden" id="target-warn">
+        <span class="ic">⚠️</span>
+        <span>This target average price can't be reached with the buy price you entered. The target must sit between your current average price and your planned buy price (for example, you can't target an average below the buy price itself).</span>
+      </div>
+
+      <div class="vf-result-list" id="target-result-list">
+        <div class="vf-result-row"><span class="vf-result-label">Additional shares needed</span><span class="vf-result-value" id="target-lots-needed">—</span></div>
+        <div class="vf-result-row em"><span class="vf-result-label">Additional capital needed</span><span class="vf-result-value" id="target-capital-needed">—</span></div>
+      </div>
+    </div>
   </section>
 
   <!-- ===================== RISK PROFILE ===================== -->
@@ -2492,6 +2528,36 @@ function applyAvgPreset(){
   renderAverage();
 }
 
+/* ============ Target Average Price ============ */
+function calcTargetAverage(currentAvg, currentQtyShares, targetPrice, newPrice){
+  var Q = currentQtyShares;
+  var C = currentAvg * Q;
+  if(Math.abs(newPrice - targetPrice) < 1e-9){
+    return {feasible:false};
+  }
+  var qtyNewShares = (targetPrice * Q - C) / (newPrice - targetPrice);
+  var feasible = qtyNewShares > 0 && isFinite(qtyNewShares);
+  return {feasible:feasible, qtyNewLots:qtyNewShares, capitalNeeded:qtyNewShares * newPrice};
+}
+function renderTargetAverage(){
+  var currentAvg = getVal('target-current-avg');
+  var currentLots = getVal('target-current-lots');
+  var targetPrice = getVal('target-avg-price');
+  var newPrice = getVal('target-buy-price');
+  var r = calcTargetAverage(currentAvg, currentLots, targetPrice, newPrice);
+  var warn = document.getElementById('target-warn');
+  var resultList = document.getElementById('target-result-list');
+  if(r.feasible){
+    warn.classList.add('hidden');
+    resultList.style.display = '';
+    document.getElementById('target-lots-needed').textContent = fnum(Math.ceil(r.qtyNewLots), 0) + ' shares';
+    document.getElementById('target-capital-needed').textContent = idr(r.capitalNeeded, 0);
+  } else {
+    warn.classList.remove('hidden');
+    resultList.style.display = 'none';
+  }
+}
+
 /* ============ Risk Profile Questionnaire ============ */
 var RISK_MAIN_IDS = ['risk-q1','risk-q2','risk-q3','risk-q4','risk-q5','risk-q6','risk-q7','risk-q8','risk-q9','risk-q10','risk-q11'];
 var RISK_DIVIDEND_IDS = ['risk-q16','risk-q17','risk-q18','risk-q19'];
@@ -2735,6 +2801,8 @@ document.addEventListener('DOMContentLoaded', function(){
       renderAverage();
     }
   });
+  document.getElementById('panel-average').addEventListener('input', renderTargetAverage);
+  renderTargetAverage();
 
   // Risk Profile Questionnaire
   document.querySelectorAll('#panel-riskprofile .vf-slider').forEach(function(s){
