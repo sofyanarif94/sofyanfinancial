@@ -1370,7 +1370,7 @@ input[type="range"].vf-slider::-moz-range-thumb{
 
     <div class="vf-case">
       <div class="vf-case-head"><span class="vf-case-tag">Contoh kasus</span></div>
-      <p><strong>Andi</strong> membeli saham PT Maju Jaya Tbk sebanyak <strong>1.000 lembar di harga Rp1.200</strong>. Sebulan kemudian harga turun ke <strong>Rp900</strong>, dan Andi memutuskan average down dengan membeli <strong>1.000 lembar lagi</strong>. Berapa harga rata-rata sahamnya sekarang?</p>
+      <p><strong>Andi</strong> membeli saham PT Maju Jaya Tbk sebanyak <strong>10 lot (1.000 lembar) di harga Rp1.200</strong>. Sebulan kemudian harga turun ke <strong>Rp900</strong>, dan Andi memutuskan average down dengan membeli <strong>10 lot (1.000 lembar) lagi</strong>. Berapa harga rata-rata sahamnya sekarang?</p>
       <button class="vf-case-btn" id="avg-example-btn">Muat contoh ini →</button>
     </div>
 
@@ -1421,9 +1421,45 @@ input[type="range"].vf-slider::-moz-range-thumb{
         <div class="vf-result-list">
           <div class="vf-result-row"><span class="vf-result-label">Total modal</span><span class="vf-result-value" id="avg-totalcost">—</span></div>
           <div class="vf-result-row" id="avg-fee-row" style="display:none;"><span class="vf-result-label">Total fee dibayar</span><span class="vf-result-value" id="avg-feeamount">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label">Total lembar</span><span class="vf-result-value" id="avg-totalqty">—</span></div>
+          <div class="vf-result-row"><span class="vf-result-label">Total lot</span><span class="vf-result-value" id="avg-totalqty">—</span></div>
           <div class="vf-result-row em"><span class="vf-result-label">Harga rata-rata / lembar</span><span class="vf-result-value" id="avg-price2">—</span></div>
         </div>
+      </div>
+    </div>
+
+    <div class="vf-card" style="margin-top:18px;">
+      <h3>🎯 Kalkulator Target Average Price</h3>
+      <p style="font-size:12.5px; color:var(--text-muted); line-height:1.6; margin:0 0 16px;">Ingin average price Anda tepat di angka tertentu? Hitung berapa lot dan modal tambahan yang Anda butuhkan untuk mencapainya.</p>
+
+      <div class="vf-field-row">
+        <div class="vf-field">
+          <label class="vf-label">Average price Anda saat ini</label>
+          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-current-avg" value="1200"><span class="vf-suffix">Rp</span></div>
+        </div>
+        <div class="vf-field">
+          <label class="vf-label">Jumlah lot saat ini</label>
+          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-current-lots" value="10"><span class="vf-suffix">lot</span></div>
+        </div>
+      </div>
+      <div class="vf-field-row">
+        <div class="vf-field">
+          <label class="vf-label">Target average price yang diinginkan</label>
+          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-avg-price" value="1000"><span class="vf-suffix">Rp</span></div>
+        </div>
+        <div class="vf-field">
+          <label class="vf-label">Rencana harga beli tambahan</label>
+          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-buy-price" value="900"><span class="vf-suffix">Rp</span></div>
+        </div>
+      </div>
+
+      <div class="vf-note-box vf-note-warn hidden" id="target-warn">
+        <span class="ic">⚠️</span>
+        <span>Target average price ini tidak bisa dicapai dengan harga beli tambahan yang Anda masukkan. Target harus berada di antara average price saat ini dan harga beli rencana Anda (misalnya, tidak bisa menargetkan average di bawah harga beli tambahan itu sendiri).</span>
+      </div>
+
+      <div class="vf-result-list" id="target-result-list">
+        <div class="vf-result-row"><span class="vf-result-label">Jumlah lot tambahan yang perlu dibeli</span><span class="vf-result-value" id="target-lots-needed">—</span></div>
+        <div class="vf-result-row em"><span class="vf-result-label">Modal tambahan dibutuhkan</span><span class="vf-result-value" id="target-capital-needed">—</span></div>
       </div>
     </div>
   </section>
@@ -2413,6 +2449,7 @@ function applyFFPreset(p){
 
 /* ============ Average Saham ============ */
 var avgLotCounter = 0;
+var LOT_SIZE = 100;
 function createLotRow(price, qty){
   avgLotCounter++;
   var id = avgLotCounter;
@@ -2422,8 +2459,8 @@ function createLotRow(price, qty){
   row.innerHTML =
     '<div class="vf-field"><label class="vf-label">Harga beli</label>' +
     '<div class="vf-input-wrap"><input type="number" class="vf-input avg-lot-price" data-lot="' + id + '" value="' + price + '"><span class="vf-suffix">Rp</span></div></div>' +
-    '<div class="vf-field"><label class="vf-label">Jumlah lembar</label>' +
-    '<div class="vf-input-wrap"><input type="number" class="vf-input avg-lot-qty" data-lot="' + id + '" value="' + qty + '"><span class="vf-suffix">lbr</span></div></div>' +
+    '<div class="vf-field"><label class="vf-label">Jumlah lot</label>' +
+    '<div class="vf-input-wrap"><input type="number" class="vf-input avg-lot-qty" data-lot="' + id + '" value="' + qty + '"><span class="vf-suffix">lot</span></div></div>' +
     '<button type="button" class="vf-lot-remove no-print" data-lot="' + id + '">\u2715</button>';
   return row;
 }
@@ -2448,10 +2485,10 @@ function getAvgLots(){
 }
 function calcAverage(lots, currentPrice, feePct){
   var totalCostRaw = 0, totalQty = 0;
-  lots.forEach(function(l){ totalCostRaw += l.price * l.qty; totalQty += l.qty; });
+  lots.forEach(function(l){ totalCostRaw += l.price * l.qty * LOT_SIZE; totalQty += l.qty; });
   var feeAmount = totalCostRaw * (feePct / 100);
   var totalCost = totalCostRaw + feeAmount;
-  var avgPrice = totalQty > 0 ? totalCost / totalQty : NaN;
+  var avgPrice = totalQty > 0 ? totalCost / (totalQty * LOT_SIZE) : NaN;
   var gainLossPct = (currentPrice > 0 && avgPrice > 0) ? (currentPrice - avgPrice) / avgPrice : NaN;
   return {totalCostRaw:totalCostRaw, feeAmount:feeAmount, totalCost:totalCost, totalQty:totalQty, avgPrice:avgPrice, gainLossPct:gainLossPct};
 }
@@ -2464,7 +2501,7 @@ function renderAverage(){
   var r = calcAverage(lots, currentPrice, feePct);
   document.getElementById('avg-price').textContent = idr(r.avgPrice, 2);
   document.getElementById('avg-totalcost').textContent = idr(r.totalCost, 0);
-  document.getElementById('avg-totalqty').textContent = fnum(r.totalQty, 0) + ' lembar';
+  document.getElementById('avg-totalqty').textContent = fnum(r.totalQty, 0) + ' lot';
   document.getElementById('avg-price2').textContent = idr(r.avgPrice, 2);
 
   var feeRow = document.getElementById('avg-fee-row');
@@ -2486,13 +2523,45 @@ function renderAverage(){
     badge.classList.add('hidden');
   }
 }
-var AVG_EXAMPLE = [{price:1200, qty:1000}, {price:900, qty:1000}];
+var AVG_EXAMPLE = [{price:1200, qty:10}, {price:900, qty:10}];
 function applyAvgPreset(){
   setAvgLots(AVG_EXAMPLE);
   setVal('avg-currentprice', '');
   document.getElementById('avg-fee-enabled').checked = false;
   setVal('avg-fee-pct', 0.15);
   renderAverage();
+}
+
+/* ============ Target Average Price ============ */
+function calcTargetAverage(currentAvg, currentQtyLots, targetPrice, newPrice){
+  var Q = currentQtyLots * LOT_SIZE;
+  var C = currentAvg * Q;
+  if(Math.abs(newPrice - targetPrice) < 1e-9){
+    return {feasible:false};
+  }
+  var qtyNewShares = (targetPrice * Q - C) / (newPrice - targetPrice);
+  var feasible = qtyNewShares > 0 && isFinite(qtyNewShares);
+  var qtyNewLots = qtyNewShares / LOT_SIZE;
+  var capitalNeeded = qtyNewShares * newPrice;
+  return {feasible:feasible, qtyNewLots:qtyNewLots, capitalNeeded:capitalNeeded};
+}
+function renderTargetAverage(){
+  var currentAvg = getVal('target-current-avg');
+  var currentLots = getVal('target-current-lots');
+  var targetPrice = getVal('target-avg-price');
+  var newPrice = getVal('target-buy-price');
+  var r = calcTargetAverage(currentAvg, currentLots, targetPrice, newPrice);
+  var warn = document.getElementById('target-warn');
+  var resultList = document.getElementById('target-result-list');
+  if(r.feasible){
+    warn.classList.add('hidden');
+    resultList.style.display = '';
+    document.getElementById('target-lots-needed').textContent = fnum(Math.ceil(r.qtyNewLots), 0) + ' lot';
+    document.getElementById('target-capital-needed').textContent = idr(r.capitalNeeded, 0);
+  } else {
+    warn.classList.remove('hidden');
+    resultList.style.display = 'none';
+  }
 }
 
 /* ============ Risk Profile Questionnaire ============ */
@@ -2739,6 +2808,8 @@ document.addEventListener('DOMContentLoaded', function(){
       renderAverage();
     }
   });
+  document.getElementById('panel-average').addEventListener('input', renderTargetAverage);
+  renderTargetAverage();
 
   // Risk Profile Questionnaire
   document.querySelectorAll('#panel-riskprofile .vf-slider').forEach(function(s){
