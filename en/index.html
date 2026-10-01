@@ -12,7 +12,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Complete & Easy Stock Intrinsic Value Calculator | Bonus Financial Freedom Calculator</title>
-<meta name="description" content="Free stock valuation calculator: compute intrinsic value with DCF, DDM, Equity Bond & Financial Freedom methods. Beginner-friendly, Warren Buffett-inspired." />
+<meta name="description" content="The most complete free stock calculator: compute intrinsic &amp; fair value (DCF), average stock price, and target stock price, Warren Buffett style." />
+<meta name="keywords" content="stock intrinsic value calculator, most complete free stock calculator, free fair value stock calculator, stock fair value calculator, stock valuation calculator, how to calculate stock valuation, DCF stock calculator, discounted cash flow calculator, Warren Buffett calculator, average stock price calculator, stock average price calculator, value investing calculator, cheap stock calculator, target stock price valuation, target stock price calculator" />
 <meta name="google-site-verification" content="yEDYCzDjYLghaDx6KYNGsLaw-_3tkxSzCfxQuCrKeUQ" />
 
 <link rel="canonical" href="https://sofyanfinancial.vercel.app/en/" />
@@ -23,12 +24,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:title" content="Complete & Easy Stock Intrinsic Value Calculator | Bonus Financial Freedom Calculator" />
-<meta property="og:description" content="Free stock valuation calculator: compute intrinsic value with DCF, DDM, Equity Bond & Financial Freedom methods. Beginner-friendly, Warren Buffett-inspired." />
+<meta property="og:description" content="The most complete free stock calculator: compute intrinsic &amp; fair value (DCF), average stock price, and target stock price, Warren Buffett style." />
 <meta property="og:url" content="https://sofyanfinancial.vercel.app/en/" />
 <meta property="og:image" content="https://sofyanfinancial.vercel.app/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Complete & Easy Stock Intrinsic Value Calculator | Bonus Financial Freedom Calculator" />
-<meta name="twitter:description" content="Free stock valuation calculator: compute intrinsic value with DCF, DDM, Equity Bond & Financial Freedom methods." />
+<meta name="twitter:description" content="The most complete free stock calculator: compute intrinsic &amp; fair value (DCF), average stock price, and target stock price, Warren Buffett style." />
 <meta name="twitter:image" content="https://sofyanfinancial.vercel.app/og-image.png" />
 
 <script type="application/ld+json">
@@ -38,9 +39,19 @@
   "name": "Complete & Easy Stock Intrinsic Value Calculator | Bonus Financial Freedom Calculator",
   "url": "https://sofyanfinancial.vercel.app/en/",
   "inLanguage": "en",
-  "description": "Free stock valuation calculator using Discounted Cash Flow, Dividend Discount Model, Equity Bond Valuation, and Financial Freedom methods for beginner investors.",
+  "description": "The most complete free stock calculator: compute intrinsic and fair value using Discounted Cash Flow (DCF), Dividend Discount Model (DDM), Equity Bond Valuation Warren Buffett style, average stock price, target stock price, Financial Freedom, and investor portfolio profile.",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web Browser",
+  "featureList": [
+    "Discounted Cash Flow (DCF) calculator for stock fair value",
+    "Dividend Discount Model (DDM) calculator",
+    "Equity Bond Valuation calculator, Warren Buffett style",
+    "Average Stock Price calculator",
+    "Target Stock Price calculator",
+    "Financial Freedom calculator",
+    "Investor Portfolio Profile questionnaire",
+    "Investment Glossary"
+  ],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "IDR" },
   "author": { "@type": "Organization", "name": "Sofyan Financial" }
 }
@@ -906,6 +917,10 @@ input[type="range"].vf-slider::-moz-range-thumb{
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
     Average Price Calculator
   </button>
+  <button class="vf-tab" data-tab="target">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle><line x1="19" y1="5" x2="15.5" y2="8.5"></line><line x1="19" y1="5" x2="19" y2="9"></line><line x1="19" y1="5" x2="15" y2="5"></line></svg>
+    Target Price Calculator
+  </button>
   <button class="vf-tab" data-tab="riskprofile">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5A8 8 0 1 1 19.5 16.5"></path><line x1="12" y1="13" x2="15.2" y2="8.8"></line><circle cx="12" cy="13" r="1.3" fill="currentColor" stroke="none"></circle></svg>
     Fitting-Your-Portfolio
@@ -1422,40 +1437,66 @@ input[type="range"].vf-slider::-moz-range-thumb{
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="vf-card" style="margin-top:18px;">
-      <h3>🎯 Target Average Price Calculator</h3>
-      <p style="font-size:12.5px; color:var(--text-muted); line-height:1.6; margin:0 0 16px;">Want your average price to hit a specific number? Calculate how many shares and how much extra capital you need to get there.</p>
+  <!-- ===================== TARGET PRICE ===================== -->
+  <section class="vf-panel" id="panel-target">
+    <div class="vf-section-title">
+      <span class="vf-eyebrow">Buy Planning</span>
+      <h2>Target Stock Price Calculator</h2>
+      <p>Want your average stock price to land on a specific number? This target price calculator computes how many shares and how much extra capital you need to reach your desired average price.</p>
+    </div>
 
-      <div class="vf-field-row">
-        <div class="vf-field">
-          <label class="vf-label">Your current average price</label>
-          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-current-avg" value="1200"><span class="vf-suffix">Rp</span></div>
+    <div class="vf-case">
+      <div class="vf-case-head"><span class="vf-case-tag">Example case</span></div>
+      <p><strong>Budi</strong> holds <strong>1,000 shares</strong> with an average price of <strong>Rp1,200</strong>. The price has now dropped to <strong>Rp900</strong>, and Budi wants his average price to fall to exactly <strong>Rp1,000</strong>. How many additional shares does he need to buy, and how much capital is required?</p>
+      <button class="vf-case-btn" id="target-example-btn">Load this example →</button>
+    </div>
+
+    <div class="vf-toolbar">
+      <button class="vf-mini-btn" id="target-reset-btn">↺ Clear / reset</button>
+      <button class="vf-mini-btn" id="target-pdf-btn">📄 Download as PDF</button>
+      <button class="vf-mini-btn" id="target-share-btn">🔗 Share Result</button>
+    </div>
+
+    <div class="vf-grid-2">
+      <div class="vf-card">
+        <h3>Your Current Position</h3>
+        <div class="vf-field-row">
+          <div class="vf-field">
+            <label class="vf-label">Your current average price</label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-current-avg" value="1200"><span class="vf-suffix">Rp</span></div>
+          </div>
+          <div class="vf-field">
+            <label class="vf-label">Current number of shares</label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-current-lots" value="1000"><span class="vf-suffix">shr</span></div>
+          </div>
         </div>
-        <div class="vf-field">
-          <label class="vf-label">Current number of shares</label>
-          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-current-lots" value="1000"><span class="vf-suffix">shr</span></div>
+
+        <h3 class="spaced">Your Desired Target</h3>
+        <div class="vf-field-row">
+          <div class="vf-field">
+            <label class="vf-label">Desired target average price</label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-avg-price" value="1000"><span class="vf-suffix">Rp</span></div>
+          </div>
+          <div class="vf-field">
+            <label class="vf-label">Planned additional buy price</label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-buy-price" value="900"><span class="vf-suffix">Rp</span></div>
+          </div>
+        </div>
+
+        <div class="vf-note-box vf-note-warn hidden" id="target-warn">
+          <span class="ic">⚠️</span>
+          <span>This target average price can't be reached with the buy price you entered. The target must sit between your current average price and your planned buy price (for example, you can't target an average below the buy price itself).</span>
         </div>
       </div>
-      <div class="vf-field-row">
-        <div class="vf-field">
-          <label class="vf-label">Desired target average price</label>
-          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-avg-price" value="1000"><span class="vf-suffix">Rp</span></div>
-        </div>
-        <div class="vf-field">
-          <label class="vf-label">Planned additional buy price</label>
-          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-buy-price" value="900"><span class="vf-suffix">Rp</span></div>
-        </div>
-      </div>
 
-      <div class="vf-note-box vf-note-warn hidden" id="target-warn">
-        <span class="ic">⚠️</span>
-        <span>This target average price can't be reached with the buy price you entered. The target must sit between your current average price and your planned buy price (for example, you can't target an average below the buy price itself).</span>
-      </div>
-
-      <div class="vf-result-list" id="target-result-list">
-        <div class="vf-result-row"><span class="vf-result-label">Additional shares needed</span><span class="vf-result-value" id="target-lots-needed">—</span></div>
-        <div class="vf-result-row em"><span class="vf-result-label">Additional capital needed</span><span class="vf-result-value" id="target-capital-needed">—</span></div>
+      <div class="vf-card vf-result-card">
+        <h3>Result</h3>
+        <div class="vf-result-list" id="target-result-list">
+          <div class="vf-result-row em"><span class="vf-result-label">Additional shares needed</span><span class="vf-result-value" id="target-lots-needed">—</span></div>
+          <div class="vf-result-row em"><span class="vf-result-label">Additional capital needed</span><span class="vf-result-value" id="target-capital-needed">—</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1968,6 +2009,31 @@ input[type="range"].vf-slider::-moz-range-thumb{
       <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Is this calculator free?</p>
       <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Yes, it's 100% free and works right in your browser — no login or app install needed.</p>
     </div>
+
+    <div style="margin-top:16px;">
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">How do you calculate stock valuation?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">There are several ways to calculate stock valuation: Discounted Cash Flow (DCF) from earnings projections, Dividend Discount Model (DDM) from dividend projections, or Equity Bond Valuation Warren Buffett style, which compares a stock to a bond. All three are available free on the "Stock Valuation Calculator" tab of this site.</p>
+    </div>
+
+    <div style="margin-top:16px;">
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">What is a DCF (Discounted Cash Flow) stock calculator?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">A DCF stock calculator is a tool that computes a stock's fair value by discounting projected net earnings over the next 10 years using the Cost of Equity, plus a terminal value. It's the most common valuation method used by professional analysts and value investors like Warren Buffett.</p>
+    </div>
+
+    <div style="margin-top:16px;">
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">How do you calculate average stock price?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Average stock price is calculated from total capital across all purchases divided by total shares owned. The Average Price Calculator on this site computes it automatically, including an optional broker fee, and supports multiple purchase prices at once (averaging up or down).</p>
+    </div>
+
+    <div style="margin-top:16px;">
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">What is a target stock price calculator?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">A target stock price calculator works in reverse of a regular average calculator — you set your desired target average price first, and it calculates how many shares and how much extra capital you need to buy to reach that target.</p>
+    </div>
+
+    <div style="margin-top:16px;">
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">What is value investing?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Value investing is an investment strategy popularized by Warren Buffett — buying stocks below their intrinsic value and holding them long-term. Every calculator on this site (DCF, DDM, Equity Bond Valuation) is built on that value investing principle.</p>
+    </div>
   </div>
 </section>
 
@@ -1980,7 +2046,12 @@ input[type="range"].vf-slider::-moz-range-thumb{
     {"@type":"Question","name":"What is the difference between DCF and DDM in stock valuation?","acceptedAnswer":{"@type":"Answer","text":"DCF discounts projected net earnings, while DDM discounts projected dividends per share."}},
     {"@type":"Question","name":"What is Warren Buffett-style Equity Bond Valuation?","acceptedAnswer":{"@type":"Answer","text":"A method that treats a stock like a bond, comparing the estimated IRR of the stock to the 10-year government bond yield."}},
     {"@type":"Question","name":"Is this stock valuation calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes, this calculator is 100% free to use directly in your browser."}},
-    {"@type":"Question","name":"What's the difference between the DCF here and the DCF used by professional analysts?","acceptedAnswer":{"@type":"Answer","text":"The essence and formulas are the same as those used by professional analysts. This calculator is simplified and faster so retail investors can use it without building an Excel model from scratch, without changing the essence of the calculation."}}
+    {"@type":"Question","name":"What's the difference between the DCF here and the DCF used by professional analysts?","acceptedAnswer":{"@type":"Answer","text":"The essence and formulas are the same as those used by professional analysts. This calculator is simplified and faster so retail investors can use it without building an Excel model from scratch."}},
+    {"@type":"Question","name":"How do you calculate stock valuation?","acceptedAnswer":{"@type":"Answer","text":"Stock valuation can be calculated with Discounted Cash Flow (DCF), Dividend Discount Model (DDM), or Equity Bond Valuation Warren Buffett style, all available free on this calculator."}},
+    {"@type":"Question","name":"What is a DCF stock calculator?","acceptedAnswer":{"@type":"Answer","text":"A DCF stock calculator computes a stock's fair value by discounting projected net earnings over 10 years using the Cost of Equity, plus a terminal value."}},
+    {"@type":"Question","name":"How do you calculate average stock price?","acceptedAnswer":{"@type":"Answer","text":"Average stock price is calculated from total capital across all purchases divided by total shares owned, including an optional broker fee."}},
+    {"@type":"Question","name":"What is a target stock price calculator?","acceptedAnswer":{"@type":"Answer","text":"A target stock price calculator computes how many shares and how much extra capital you need to buy to reach a desired target average price."}},
+    {"@type":"Question","name":"What is value investing?","acceptedAnswer":{"@type":"Answer","text":"Value investing is a Warren Buffett-style investment strategy of buying stocks below their intrinsic value and holding them long-term."}}
   ]
 }
 </script>
@@ -2037,7 +2108,7 @@ function setVal(id, v){
   var el = document.getElementById(id);
   if(el) el.value = v;
 }
-var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Average Stock Price Calculator', riskprofile:'Investor Risk Profile'};
+var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Average Stock Price Calculator', target:'Target Stock Price Calculator', riskprofile:'Investor Risk Profile'};
 function buildShareText(key){
   var lines = ['📊 ' + SHARE_TITLES[key] + ' Result — Sofyan Financial Stock Valuation Calculator'];
   if(key === 'dcf'){
@@ -2056,6 +2127,11 @@ function buildShareText(key){
   } else if(key === 'average'){
     var v6 = document.getElementById('avg-price');
     if(v6) lines.push('New Average Price: ' + v6.textContent + ' / share');
+  } else if(key === 'target'){
+    var v9 = document.getElementById('target-lots-needed');
+    var v10 = document.getElementById('target-capital-needed');
+    if(v9) lines.push('Additional Shares Needed: ' + v9.textContent);
+    if(v10) lines.push('Additional Capital: ' + v10.textContent);
   } else if(key === 'riskprofile'){
     var v7 = document.getElementById('risk-score');
     var v8 = document.getElementById('risk-category-badge');
@@ -2557,6 +2633,13 @@ function renderTargetAverage(){
     resultList.style.display = 'none';
   }
 }
+function applyTargetPreset(){
+  setVal('target-current-avg', 1200);
+  setVal('target-current-lots', 1000);
+  setVal('target-avg-price', 1000);
+  setVal('target-buy-price', 900);
+  renderTargetAverage();
+}
 
 /* ============ Risk Profile Questionnaire ============ */
 var RISK_MAIN_IDS = ['risk-q1','risk-q2','risk-q3','risk-q4','risk-q5','risk-q6','risk-q7','risk-q8','risk-q9','risk-q10','risk-q11'];
@@ -2801,7 +2884,11 @@ document.addEventListener('DOMContentLoaded', function(){
       renderAverage();
     }
   });
-  document.getElementById('panel-average').addEventListener('input', renderTargetAverage);
+
+  // Target Price
+  document.getElementById('panel-target').addEventListener('input', renderTargetAverage);
+  document.getElementById('target-example-btn').addEventListener('click', applyTargetPreset);
+  document.getElementById('target-reset-btn').addEventListener('click', applyTargetPreset);
   renderTargetAverage();
 
   // Risk Profile Questionnaire
@@ -2846,7 +2933,7 @@ document.addEventListener('DOMContentLoaded', function(){
   applyThemeButtons();
 
   // PDF export (uses browser's native print-to-PDF, no extra library needed)
-  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Average Stock Price Calculator', riskprofile:'Investor Risk Profile'};
+  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Average Stock Price Calculator', target:'Target Stock Price Calculator', riskprofile:'Investor Risk Profile'};
   function printCalculator(key){
     var meta = document.getElementById('print-meta');
     var now = new Date();
@@ -2854,7 +2941,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if(meta){ meta.textContent = 'Method: ' + PDF_TITLES[key] + ' · Generated: ' + dateStr; }
     window.print();
   }
-  ['dcf','ddm','eb','ff','average','riskprofile'].forEach(function(key){
+  ['dcf','ddm','eb','ff','average','target','riskprofile'].forEach(function(key){
     var btn = document.getElementById(key + '-pdf-btn');
     if(btn) btn.addEventListener('click', function(){ printCalculator(key); });
     var sbtn = document.getElementById(key + '-share-btn');
