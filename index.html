@@ -12,7 +12,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Kalkulator Menghitung Nilai Wajar Valuasi Saham - Lengkap & Mudah | Bonus Cara Hitung Dana Financial Freedom</title>
-<meta name="description" content="Kalkulator saham gratis: hitung nilai wajar (intrinsic value) pakai DCF, DDM, Equity Bond & Financial Freedom. Cocok untuk investor pemula ala Warren Buffett." />
+<meta name="description" content="Kalkulator saham gratis paling lengkap: hitung nilai wajar &amp; intrinsik saham (DCF), average harga saham, dan target harga saham ala Warren Buffett." />
+<meta name="keywords" content="kalkulator nilai intrinsik saham, kalkulator saham paling lengkap gratis, kalkulator nilai wajar saham gratis dan lengkap, kalkulator menghitung harga wajar saham, kalkulator menghitung valuasi saham, cara menghitung valuasi saham, kalkulator dcf saham, kalkulator discounted cash flow, kalkulator warren buffett, menghitung average saham, kalkulator menghitung rata-rata harga saham, kalkulator value investing, kalkulator saham murah, valuasi target harga saham, kalkulator target harga saham, kalkulator saham lengkap murah gratis" />
 <meta name="google-site-verification" content="yEDYCzDjYLghaDx6KYNGsLaw-_3tkxSzCfxQuCrKeUQ" />
 
 <link rel="canonical" href="https://sofyanfinancial.vercel.app/" />
@@ -23,12 +24,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="id_ID" />
 <meta property="og:title" content="Kalkulator Menghitung Nilai Wajar Valuasi Saham - Lengkap & Mudah | Bonus Cara Hitung Dana Financial Freedom" />
-<meta property="og:description" content="Kalkulator saham gratis: hitung nilai wajar (intrinsic value) pakai DCF, DDM, Equity Bond & Financial Freedom. Cocok untuk investor pemula ala Warren Buffett." />
+<meta property="og:description" content="Kalkulator saham gratis paling lengkap: hitung nilai wajar &amp; intrinsik saham (DCF), average harga saham, dan target harga saham ala Warren Buffett." />
 <meta property="og:url" content="https://sofyanfinancial.vercel.app/" />
 <meta property="og:image" content="https://sofyanfinancial.vercel.app/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Kalkulator Menghitung Nilai Wajar Valuasi Saham - Lengkap & Mudah | Bonus Cara Hitung Dana Financial Freedom" />
-<meta name="twitter:description" content="Kalkulator saham gratis: hitung nilai wajar (intrinsic value) pakai DCF, DDM, Equity Bond & Financial Freedom." />
+<meta name="twitter:description" content="Kalkulator saham gratis paling lengkap: hitung nilai wajar &amp; intrinsik saham (DCF), average harga saham, dan target harga saham ala Warren Buffett." />
 <meta name="twitter:image" content="https://sofyanfinancial.vercel.app/og-image.png" />
 
 <script type="application/ld+json">
@@ -38,9 +39,19 @@
   "name": "Kalkulator Menghitung Nilai Wajar Valuasi Saham - Lengkap & Mudah | Bonus Cara Hitung Dana Financial Freedom",
   "url": "https://sofyanfinancial.vercel.app/",
   "inLanguage": "id",
-  "description": "Kalkulator valuasi saham gratis berbasis metode Discounted Cash Flow, Dividend Discount Model, Equity Bond Valuation, dan Financial Freedom untuk investor pemula.",
+  "description": "Kalkulator saham gratis paling lengkap: hitung nilai wajar dan nilai intrinsik saham dengan metode Discounted Cash Flow (DCF), Dividend Discount Model (DDM), Equity Bond Valuation ala Warren Buffett, average harga saham, target harga saham, Financial Freedom, dan profil portofolio investor.",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web Browser",
+  "featureList": [
+    "Kalkulator Discounted Cash Flow (DCF) untuk menghitung nilai wajar saham",
+    "Kalkulator Dividend Discount Model (DDM)",
+    "Kalkulator Equity Bond Valuation ala Warren Buffett",
+    "Kalkulator Average (rata-rata) Harga Saham",
+    "Kalkulator Target Harga Saham",
+    "Kalkulator Financial Freedom",
+    "Kuesioner Profil Portofolio Investor",
+    "Kamus Investasi"
+  ],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "IDR" },
   "author": { "@type": "Organization", "name": "Sofyan Financial" }
 }
@@ -910,6 +921,10 @@ input[type="range"].vf-slider::-moz-range-thumb{
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
     Kalkulator Average Saham
   </button>
+  <button class="vf-tab" data-tab="target">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle><line x1="19" y1="5" x2="15.5" y2="8.5"></line><line x1="19" y1="5" x2="19" y2="9"></line><line x1="19" y1="5" x2="15" y2="5"></line></svg>
+    Kalkulator Target Harga Saham
+  </button>
   <button class="vf-tab" data-tab="riskprofile">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5A8 8 0 1 1 19.5 16.5"></path><line x1="12" y1="13" x2="15.2" y2="8.8"></line><circle cx="12" cy="13" r="1.3" fill="currentColor" stroke="none"></circle></svg>
     Fitting-Your-Portfolio
@@ -1426,40 +1441,66 @@ input[type="range"].vf-slider::-moz-range-thumb{
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="vf-card" style="margin-top:18px;">
-      <h3>🎯 Kalkulator Target Average Price</h3>
-      <p style="font-size:12.5px; color:var(--text-muted); line-height:1.6; margin:0 0 16px;">Ingin average price Anda tepat di angka tertentu? Hitung berapa lot dan modal tambahan yang Anda butuhkan untuk mencapainya.</p>
+  <!-- ===================== TARGET HARGA SAHAM ===================== -->
+  <section class="vf-panel" id="panel-target">
+    <div class="vf-section-title">
+      <span class="vf-eyebrow">Perencanaan Beli</span>
+      <h2>Kalkulator Target Harga Saham</h2>
+      <p>Ingin average price saham Anda tepat di angka tertentu? Kalkulator target harga saham ini menghitung berapa lot dan modal tambahan yang dibutuhkan untuk mencapai target average price yang Anda inginkan.</p>
+    </div>
 
-      <div class="vf-field-row">
-        <div class="vf-field">
-          <label class="vf-label">Average price Anda saat ini</label>
-          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-current-avg" value="1200"><span class="vf-suffix">Rp</span></div>
+    <div class="vf-case">
+      <div class="vf-case-head"><span class="vf-case-tag">Contoh kasus</span></div>
+      <p><strong>Budi</strong> punya <strong>10 lot saham</strong> dengan average price <strong>Rp1.200</strong>. Harga sekarang turun ke <strong>Rp900</strong>, dan Budi ingin average price-nya turun jadi tepat <strong>Rp1.000</strong>. Berapa lot tambahan yang harus dibeli, dan berapa modal yang dibutuhkan?</p>
+      <button class="vf-case-btn" id="target-example-btn">Muat contoh ini →</button>
+    </div>
+
+    <div class="vf-toolbar">
+      <button class="vf-mini-btn" id="target-reset-btn">↺ Kosongkan / reset</button>
+      <button class="vf-mini-btn" id="target-pdf-btn">📄 Unduh sebagai PDF</button>
+      <button class="vf-mini-btn" id="target-share-btn">🔗 Bagikan Hasil</button>
+    </div>
+
+    <div class="vf-grid-2">
+      <div class="vf-card">
+        <h3>Posisi Anda Saat Ini</h3>
+        <div class="vf-field-row">
+          <div class="vf-field">
+            <label class="vf-label">Average price Anda saat ini</label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-current-avg" value="1200"><span class="vf-suffix">Rp</span></div>
+          </div>
+          <div class="vf-field">
+            <label class="vf-label">Jumlah lot saat ini</label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-current-lots" value="10"><span class="vf-suffix">lot</span></div>
+          </div>
         </div>
-        <div class="vf-field">
-          <label class="vf-label">Jumlah lot saat ini</label>
-          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-current-lots" value="10"><span class="vf-suffix">lot</span></div>
+
+        <h3 class="spaced">Target yang Diinginkan</h3>
+        <div class="vf-field-row">
+          <div class="vf-field">
+            <label class="vf-label">Target average price yang diinginkan</label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-avg-price" value="1000"><span class="vf-suffix">Rp</span></div>
+          </div>
+          <div class="vf-field">
+            <label class="vf-label">Rencana harga beli tambahan</label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-buy-price" value="900"><span class="vf-suffix">Rp</span></div>
+          </div>
+        </div>
+
+        <div class="vf-note-box vf-note-warn hidden" id="target-warn">
+          <span class="ic">⚠️</span>
+          <span>Target average price ini tidak bisa dicapai dengan harga beli tambahan yang Anda masukkan. Target harus berada di antara average price saat ini dan harga beli rencana Anda (misalnya, tidak bisa menargetkan average di bawah harga beli tambahan itu sendiri).</span>
         </div>
       </div>
-      <div class="vf-field-row">
-        <div class="vf-field">
-          <label class="vf-label">Target average price yang diinginkan</label>
-          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-avg-price" value="1000"><span class="vf-suffix">Rp</span></div>
-        </div>
-        <div class="vf-field">
-          <label class="vf-label">Rencana harga beli tambahan</label>
-          <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-buy-price" value="900"><span class="vf-suffix">Rp</span></div>
-        </div>
-      </div>
 
-      <div class="vf-note-box vf-note-warn hidden" id="target-warn">
-        <span class="ic">⚠️</span>
-        <span>Target average price ini tidak bisa dicapai dengan harga beli tambahan yang Anda masukkan. Target harus berada di antara average price saat ini dan harga beli rencana Anda (misalnya, tidak bisa menargetkan average di bawah harga beli tambahan itu sendiri).</span>
-      </div>
-
-      <div class="vf-result-list" id="target-result-list">
-        <div class="vf-result-row"><span class="vf-result-label">Jumlah lot tambahan yang perlu dibeli</span><span class="vf-result-value" id="target-lots-needed">—</span></div>
-        <div class="vf-result-row em"><span class="vf-result-label">Modal tambahan dibutuhkan</span><span class="vf-result-value" id="target-capital-needed">—</span></div>
+      <div class="vf-card vf-result-card">
+        <h3>Hasil</h3>
+        <div class="vf-result-list" id="target-result-list">
+          <div class="vf-result-row em"><span class="vf-result-label">Jumlah lot tambahan yang perlu dibeli</span><span class="vf-result-value" id="target-lots-needed">—</span></div>
+          <div class="vf-result-row em"><span class="vf-result-label">Modal tambahan dibutuhkan</span><span class="vf-result-value" id="target-capital-needed">—</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1971,6 +2012,31 @@ input[type="range"].vf-slider::-moz-range-thumb{
       <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Apakah kalkulator ini gratis?</p>
       <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Ya, 100% gratis dan bisa langsung dipakai di browser tanpa perlu login atau install aplikasi.</p>
     </div>
+
+    <div style="margin-top:16px;">
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Bagaimana cara menghitung valuasi saham?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Ada beberapa cara menghitung valuasi saham: Discounted Cash Flow (DCF) dari proyeksi laba, Dividend Discount Model (DDM) dari proyeksi dividen, atau Equity Bond Valuation ala Warren Buffett yang membandingkan saham dengan obligasi. Ketiganya tersedia gratis di tab "Kalkulator Valuasi Saham" pada situs ini.</p>
+    </div>
+
+    <div style="margin-top:16px;">
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Apa itu kalkulator DCF (Discounted Cash Flow) saham?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Kalkulator DCF saham adalah alat bantu menghitung nilai wajar saham dengan mendiskon proyeksi laba bersih 10 tahun ke depan memakai Cost of Equity, ditambah terminal value. Ini metode valuasi paling umum dipakai analis profesional maupun investor value investing seperti Warren Buffett.</p>
+    </div>
+
+    <div style="margin-top:16px;">
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Bagaimana cara menghitung average (rata-rata) harga saham?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Average harga saham dihitung dari total modal seluruh pembelian dibagi total lot/lembar yang dimiliki. Kalkulator Average Saham di situs ini menghitungnya otomatis, termasuk opsi fee beli sekuritas, dan bisa menambah beberapa harga pembelian sekaligus (average up maupun average down).</p>
+    </div>
+
+    <div style="margin-top:16px;">
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Apa itu kalkulator target harga saham?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Kalkulator target harga saham menghitung kebalikan dari kalkulator average biasa — Anda tentukan dulu target average price yang diinginkan, lalu kalkulator ini menghitung berapa lot dan modal tambahan yang perlu dibeli untuk mencapai target tersebut.</p>
+    </div>
+
+    <div style="margin-top:16px;">
+      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Apa itu value investing?</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Value investing adalah strategi investasi yang dipopulerkan Warren Buffett — membeli saham di harga di bawah nilai wajarnya (intrinsic value), lalu menahannya dalam jangka panjang. Semua kalkulator di situs ini (DCF, DDM, Equity Bond Valuation) dibangun berdasarkan prinsip value investing tersebut.</p>
+    </div>
   </div>
 </section>
 
@@ -1983,7 +2049,12 @@ input[type="range"].vf-slider::-moz-range-thumb{
     {"@type":"Question","name":"Apa bedanya DCF dan DDM dalam valuasi saham?","acceptedAnswer":{"@type":"Answer","text":"DCF mendiskon proyeksi laba bersih, sedangkan DDM mendiskon proyeksi dividen per lembar saham."}},
     {"@type":"Question","name":"Apa itu Equity Bond Valuation ala Warren Buffett?","acceptedAnswer":{"@type":"Answer","text":"Metode yang memperlakukan saham seperti obligasi, membandingkan estimasi IRR saham dengan yield SBN 10 tahun."}},
     {"@type":"Question","name":"Apakah kalkulator valuasi saham ini gratis?","acceptedAnswer":{"@type":"Answer","text":"Ya, kalkulator ini 100% gratis digunakan langsung di browser."}},
-    {"@type":"Question","name":"Apa bedanya DCF di kalkulator ini dengan DCF yang dipakai analis profesional?","acceptedAnswer":{"@type":"Answer","text":"Esensi dan rumusnya sama persis dengan yang dipakai analis profesional (proyeksi arus kas, discount rate, dan terminal value). Bedanya, kalkulator ini disederhanakan dan dipercepat agar bisa langsung dipakai investor ritel tanpa perlu membangun model Excel dari nol."}}
+    {"@type":"Question","name":"Apa bedanya DCF di kalkulator ini dengan DCF yang dipakai analis profesional?","acceptedAnswer":{"@type":"Answer","text":"Esensi dan rumusnya sama persis dengan yang dipakai analis profesional. Kalkulator ini disederhanakan dan dipercepat agar bisa langsung dipakai investor ritel tanpa perlu membangun model Excel dari nol."}},
+    {"@type":"Question","name":"Bagaimana cara menghitung valuasi saham?","acceptedAnswer":{"@type":"Answer","text":"Cara menghitung valuasi saham antara lain dengan Discounted Cash Flow (DCF), Dividend Discount Model (DDM), atau Equity Bond Valuation ala Warren Buffett, tersedia gratis di kalkulator ini."}},
+    {"@type":"Question","name":"Apa itu kalkulator DCF saham?","acceptedAnswer":{"@type":"Answer","text":"Kalkulator DCF saham menghitung nilai wajar saham dengan mendiskon proyeksi laba bersih 10 tahun ke depan memakai Cost of Equity, ditambah terminal value."}},
+    {"@type":"Question","name":"Bagaimana cara menghitung average harga saham?","acceptedAnswer":{"@type":"Answer","text":"Average harga saham dihitung dari total modal seluruh pembelian dibagi total lot yang dimiliki, termasuk opsi fee beli sekuritas."}},
+    {"@type":"Question","name":"Apa itu kalkulator target harga saham?","acceptedAnswer":{"@type":"Answer","text":"Kalkulator target harga saham menghitung berapa lot dan modal tambahan yang perlu dibeli untuk mencapai target average price yang diinginkan."}},
+    {"@type":"Question","name":"Apa itu value investing?","acceptedAnswer":{"@type":"Answer","text":"Value investing adalah strategi investasi ala Warren Buffett yaitu membeli saham di bawah nilai wajarnya lalu menahannya dalam jangka panjang."}}
   ]
 }
 </script>
@@ -2040,7 +2111,7 @@ function setVal(id, v){
   var el = document.getElementById(id);
   if(el) el.value = v;
 }
-var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Saham', riskprofile:'Profil Risiko Investor'};
+var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Saham', target:'Kalkulator Target Harga Saham', riskprofile:'Profil Risiko Investor'};
 function buildShareText(key){
   var lines = ['\ud83d\udcca Hasil ' + SHARE_TITLES[key] + ' \u2014 Kalkulator Valuasi Saham Sofyan Financial'];
   if(key === 'dcf'){
@@ -2059,6 +2130,11 @@ function buildShareText(key){
   } else if(key === 'average'){
     var v6 = document.getElementById('avg-price');
     if(v6) lines.push('Harga Rata-Rata Baru: ' + v6.textContent + ' / lembar');
+  } else if(key === 'target'){
+    var v9 = document.getElementById('target-lots-needed');
+    var v10 = document.getElementById('target-capital-needed');
+    if(v9) lines.push('Lot Tambahan Dibutuhkan: ' + v9.textContent);
+    if(v10) lines.push('Modal Tambahan: ' + v10.textContent);
   } else if(key === 'riskprofile'){
     var v7 = document.getElementById('risk-score');
     var v8 = document.getElementById('risk-category-badge');
@@ -2563,6 +2639,13 @@ function renderTargetAverage(){
     resultList.style.display = 'none';
   }
 }
+function applyTargetPreset(){
+  setVal('target-current-avg', 1200);
+  setVal('target-current-lots', 10);
+  setVal('target-avg-price', 1000);
+  setVal('target-buy-price', 900);
+  renderTargetAverage();
+}
 
 /* ============ Risk Profile Questionnaire ============ */
 var RISK_MAIN_IDS = ['risk-q1','risk-q2','risk-q3','risk-q4','risk-q5','risk-q6','risk-q7','risk-q8','risk-q9','risk-q10','risk-q11'];
@@ -2808,7 +2891,11 @@ document.addEventListener('DOMContentLoaded', function(){
       renderAverage();
     }
   });
-  document.getElementById('panel-average').addEventListener('input', renderTargetAverage);
+
+  // Target Harga Saham
+  document.getElementById('panel-target').addEventListener('input', renderTargetAverage);
+  document.getElementById('target-example-btn').addEventListener('click', applyTargetPreset);
+  document.getElementById('target-reset-btn').addEventListener('click', applyTargetPreset);
   renderTargetAverage();
 
   // Risk Profile Questionnaire
@@ -2853,7 +2940,7 @@ document.addEventListener('DOMContentLoaded', function(){
   applyThemeButtons();
 
   // PDF export (uses browser's native print-to-PDF, no extra library needed)
-  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Saham', riskprofile:'Profil Risiko Investor'};
+  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Saham', target:'Kalkulator Target Harga Saham', riskprofile:'Profil Risiko Investor'};
   function printCalculator(key){
     var meta = document.getElementById('print-meta');
     var now = new Date();
@@ -2861,7 +2948,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if(meta){ meta.textContent = 'Metode: ' + PDF_TITLES[key] + ' · Dicetak: ' + dateStr; }
     window.print();
   }
-  ['dcf','ddm','eb','ff','average','riskprofile'].forEach(function(key){
+  ['dcf','ddm','eb','ff','average','target','riskprofile'].forEach(function(key){
     var btn = document.getElementById(key + '-pdf-btn');
     if(btn) btn.addEventListener('click', function(){ printCalculator(key); });
     var sbtn = document.getElementById(key + '-share-btn');
