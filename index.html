@@ -10,75 +10,21 @@
 })();
 </script>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kalkulator Menghitung Nilai Wajar Valuasi Saham - Lengkap & Mudah | Bonus Cara Hitung Dana Financial Freedom</title>
-<meta name="description" content="Kalkulator saham gratis paling lengkap: hitung nilai wajar &amp; intrinsik saham (DCF), average harga saham, dan target harga saham ala Warren Buffett." />
-<meta name="keywords" content="kalkulator nilai intrinsik saham, kalkulator saham paling lengkap gratis, kalkulator nilai wajar saham gratis dan lengkap, kalkulator menghitung harga wajar saham, kalkulator menghitung valuasi saham, cara menghitung valuasi saham, kalkulator dcf saham, kalkulator discounted cash flow, kalkulator warren buffett, menghitung average saham, kalkulator menghitung rata-rata harga saham, kalkulator value investing, kalkulator saham murah, valuasi target harga saham, kalkulator target harga saham, kalkulator saham lengkap murah gratis" />
-<meta name="google-site-verification" content="yEDYCzDjYLghaDx6KYNGsLaw-_3tkxSzCfxQuCrKeUQ" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Sofyan Financial & KSEI Ownership Analysis</title>
+<meta name="description" content="Kalkulator Valuasi Saham, Financial Freedom, dan Analisis Perubahan Kepemilikan KSEI Gratis dan Lengkap." />
 
-<link rel="canonical" href="https://sofyanfinancial.vercel.app/" />
-<link rel="alternate" hreflang="id" href="https://sofyanfinancial.vercel.app/" />
-<link rel="alternate" hreflang="en" href="https://sofyanfinancial.vercel.app/en/" />
-<link rel="alternate" hreflang="x-default" href="https://sofyanfinancial.vercel.app/" />
-
-<meta property="og:type" content="website" />
-<meta property="og:locale" content="id_ID" />
-<meta property="og:title" content="Kalkulator Menghitung Nilai Wajar Valuasi Saham - Lengkap & Mudah | Bonus Cara Hitung Dana Financial Freedom" />
-<meta property="og:description" content="Kalkulator saham gratis paling lengkap: hitung nilai wajar &amp; intrinsik saham (DCF), average harga saham, dan target harga saham ala Warren Buffett." />
-<meta property="og:url" content="https://sofyanfinancial.vercel.app/" />
-<meta property="og:image" content="https://sofyanfinancial.vercel.app/og-image.png" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Kalkulator Menghitung Nilai Wajar Valuasi Saham - Lengkap & Mudah | Bonus Cara Hitung Dana Financial Freedom" />
-<meta name="twitter:description" content="Kalkulator saham gratis paling lengkap: hitung nilai wajar &amp; intrinsik saham (DCF), average harga saham, dan target harga saham ala Warren Buffett." />
-<meta name="twitter:image" content="https://sofyanfinancial.vercel.app/og-image.png" />
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Kalkulator Menghitung Nilai Wajar Valuasi Saham - Lengkap & Mudah | Bonus Cara Hitung Dana Financial Freedom",
-  "url": "https://sofyanfinancial.vercel.app/",
-  "inLanguage": "id",
-  "description": "Kalkulator saham gratis paling lengkap: hitung nilai wajar dan nilai intrinsik saham dengan metode Discounted Cash Flow (DCF), Dividend Discount Model (DDM), Equity Bond Valuation ala Warren Buffett, average harga saham, target harga saham, Financial Freedom, dan profil portofolio investor.",
-  "applicationCategory": "FinanceApplication",
-  "operatingSystem": "Web Browser",
-  "featureList": [
-    "Kalkulator Discounted Cash Flow (DCF) untuk menghitung nilai wajar saham",
-    "Kalkulator Dividend Discount Model (DDM)",
-    "Kalkulator Equity Bond Valuation ala Warren Buffett",
-    "Kalkulator Average (rata-rata) Harga Saham",
-    "Kalkulator Target Harga Saham",
-    "Kalkulator Financial Freedom",
-    "Kuesioner Profil Portofolio Investor",
-    "Kamus Investasi"
-  ],
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "IDR" },
-  "author": { "@type": "Organization", "name": "Sofyan Financial" }
-}
-</script>
-
-<!-- PWA: installable, add-to-home-screen -->
-<link rel="manifest" href="/manifest.json" />
-<meta name="theme-color" content="#0a1220" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
-
-<!-- iOS Add to Home Screen support -->
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Valuasi Saham" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
-<!-- Android/Chrome standalone -->
-<meta name="mobile-web-app-capable" content="yes" />
-
-<!-- Font -->
+<!-- Fonts & External Libraries -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <style>
 :root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
   --bg:#0a1220;
   --bg-glow:#12203a;
   --panel:#111d31;
@@ -98,7 +44,37 @@
   --serif: 'Poppins', Georgia, serif;
   --sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --mono: 'SF Mono', 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+
+  /* KSEI Theme Variables */
+  --ksei-bg:#EDF0F4;
+  --ksei-panel:#fff;
+  --ksei-ink:#16202C;
+  --ksei-mute:#5F6C7B;
+  --ksei-line:#D5DBE3;
+  --ksei-accent:#1F4FD8;
+  --ksei-up:#13795B;
+  --ksei-down:#C2410C;
+  --ksei-new:#0E7490;
+  --ksei-exit:#B42318;
+  --ksei-flat:#8A94A1;
+  --ksei-bar:#C9D3E3;
 }
+
+html[data-theme="dark"], :root:not([data-theme="light"]) {
+  --ksei-bg:#0F151C;
+  --ksei-panel:#18202A;
+  --ksei-ink:#E7ECF2;
+  --ksei-mute:#97A3B2;
+  --ksei-line:#2A3541;
+  --ksei-accent:#6E93FF;
+  --ksei-up:#3DC79A;
+  --ksei-down:#FB923C;
+  --ksei-new:#38BDF8;
+  --ksei-exit:#F87171;
+  --ksei-flat:#7C8896;
+  --ksei-bar:#2D3B52;
+}
+
 html[data-theme="light"]{
   --bg:#f6f4ee;
   --bg-glow:#ece4cf;
@@ -116,23 +92,41 @@ html[data-theme="light"]{
   --text-dim:#8590a1;
   --positive:#1f8a5c;
   --negative:#c94a3d;
+
+  --ksei-bg:#EDF0F4;
+  --ksei-panel:#fff;
+  --ksei-ink:#16202C;
+  --ksei-mute:#5F6C7B;
+  --ksei-line:#D5DBE3;
+  --ksei-accent:#1F4FD8;
+  --ksei-up:#13795B;
+  --ksei-down:#C2410C;
+  --ksei-new:#0E7490;
+  --ksei-exit:#B42318;
+  --ksei-flat:#8A94A1;
+  --ksei-bar:#C9D3E3;
 }
-*{box-sizing:border-box;}
-html,body{ margin:0; padding:0; }
+
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{
+  margin:0;
   background: radial-gradient(1200px 600px at 10% -10%, var(--bg-glow) 0%, var(--bg) 55%);
   color: var(--text);
   font-family: var(--sans);
   min-height: 100vh;
   padding-bottom: 40px;
   transition: background .2s ease, color .2s ease;
+  font-variant-numeric: tabular-nums;
 }
+
+/* App Header */
 .vf-header{
   padding: 28px 20px 18px;
   border-bottom: 1px solid var(--border-soft);
   background: linear-gradient(180deg, rgba(201,162,75,0.06), transparent);
 }
-.vf-header-inner{ max-width: 1020px; margin: 0 auto; }
+.vf-header-inner{ max-width: 1280px; margin: 0 auto; }
 .vf-kicker{
   font-family: var(--mono);
   font-size: 11px;
@@ -143,7 +137,7 @@ body{
 .vf-header h1{
   font-family: var(--serif);
   font-weight: 700;
-  font-size: 30px;
+  font-size: 28px;
   margin: 8px 0 6px;
   color: var(--text);
   letter-spacing: 0.2px;
@@ -152,50 +146,53 @@ body{
   color: var(--text-muted);
   font-size: 14px;
   line-height: 1.5;
-  max-width: 640px;
+  max-width: 760px;
   margin: 0;
 }
 
-/* ============ Top tabs (always on top, icons) ============ */
+/* Primary Main Nav Tabs */
 .vf-tabs{
-  max-width: 1020px;
+  max-width: 1280px;
   margin: 18px auto 0;
   padding: 0 20px;
   display: flex;
-  gap: 6px;
+  gap: 8px;
   overflow-x: auto;
   position: sticky;
   top: 0;
   z-index: 40;
   background: var(--bg);
   padding-top: 10px;
+  border-bottom: 2px solid var(--border);
 }
 .vf-tab{
   display:flex; align-items:center; gap:8px;
-  padding: 10px 15px;
+  padding: 12px 18px;
   border-radius: 10px 10px 0 0;
   border: 1px solid var(--border-soft);
   border-bottom: none;
   background: var(--panel);
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
   transition: all .15s ease;
   font-family: var(--sans);
 }
-.vf-tab svg{ width:17px; height:17px; flex-shrink:0; }
-.vf-tab:hover{ color: var(--text); }
+.vf-tab svg{ width:18px; height:18px; flex-shrink:0; }
+.vf-tab:hover{ color: var(--text); background: var(--card-2); }
 .vf-tab.active{
   background: var(--card);
   color: var(--gold-soft);
-  border-color: var(--border);
-  box-shadow: inset 0 2px 0 var(--gold);
+  border-color: var(--gold);
+  border-bottom: 2px solid var(--card);
+  margin-bottom: -2px;
+  box-shadow: inset 0 3px 0 var(--gold);
 }
 
 .vf-main{
-  max-width: 1020px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -203,11 +200,11 @@ body{
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 0 12px 12px 12px;
-  padding: 22px 22px 26px;
+  padding: 24px;
   display:none;
 }
 .vf-panel.active{ display:block; }
-.vf-section-title{ margin-bottom: 16px; }
+.vf-section-title{ margin-bottom: 18px; }
 .vf-eyebrow{
   font-family: var(--mono);
   font-size: 10.5px;
@@ -217,7 +214,7 @@ body{
 }
 .vf-section-title h2{
   font-family: var(--serif);
-  font-size: 21px;
+  font-size: 22px;
   margin: 4px 0 6px;
   color: var(--text);
 }
@@ -229,724 +226,125 @@ body{
   max-width: 760px;
 }
 
-/* ============ Example case card ============ */
-.vf-case{
-  background: linear-gradient(135deg, rgba(201,162,75,0.09), rgba(201,162,75,0.02));
-  border: 1px solid rgba(201,162,75,0.35);
-  border-radius: 10px;
-  padding: 14px 16px;
-  margin-bottom: 16px;
-}
-.vf-case-head{
-  display:flex; align-items:center; gap:8px;
-  margin-bottom: 6px;
-}
-.vf-case-tag{
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
-  background: rgba(201,162,75,0.15);
-  padding: 2px 8px;
-  border-radius: 999px;
-}
-.vf-case p{
-  font-size: 12.5px;
-  line-height: 1.6;
-  color: var(--text-muted);
-  margin: 0 0 10px;
-}
-.vf-case-btn{
-  display:inline-flex; align-items:center; gap:6px;
-  background: var(--gold);
-  color: #10192b;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 7px 13px;
-  border-radius: 7px;
-  border: none;
-  cursor: pointer;
-  font-family: var(--sans);
-}
-.vf-case-btn:hover{ background: var(--gold-soft); }
-
-/* ============ Info / warning callouts ============ */
-.vf-note-box{
-  border-radius: 9px;
-  padding: 11px 14px;
-  font-size: 12px;
-  line-height: 1.55;
-  margin-top: 14px;
-  display:flex; gap: 9px;
-  align-items:flex-start;
-}
-.vf-note-box .ic{ flex-shrink:0; margin-top:1px; }
-.vf-note-info{
-  background: rgba(94,140,201,0.10);
-  border: 1px solid rgba(94,140,201,0.30);
-  color: #a9c2e6;
-}
-.vf-note-warn{
-  background: rgba(226,104,90,0.10);
-  border: 1px solid rgba(226,104,90,0.35);
-  color: #f0a89f;
-}
-.vf-note-warn.hidden, .vf-note-info.hidden{ display:none; }
-
-.vf-toolbar{ display:flex; gap:8px; margin-bottom: 16px; flex-wrap: wrap; }
 .vf-mini-btn{
   display:flex; align-items:center; gap:6px;
-  background: var(--card-2);
-  border: 1px solid var(--border);
-  color: var(--gold-soft);
-  font-size: 12px;
-  font-weight: 600;
-  padding: 7px 11px;
-  border-radius: 7px;
-  cursor: pointer;
-  font-family: var(--sans);
+  background: var(--card-2); border: 1px solid var(--border);
+  color: var(--gold-soft); font-size: 12px; font-weight: 600;
+  padding: 7px 11px; border-radius: 7px; cursor: pointer; font-family: var(--sans);
 }
 .vf-mini-btn:hover{ border-color: var(--gold); }
 
-.vf-grid-2{
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 18px;
-}
-@media (max-width: 760px){
-  .vf-grid-2{ grid-template-columns: 1fr; }
-  .vf-header h1{ font-size: 24px; }
-}
+.vf-grid-2{ display: grid; grid-template-columns: 1.15fr 1fr; gap: 18px; }
+@media (max-width: 760px){ .vf-grid-2{ grid-template-columns: 1fr; } }
 
-.vf-card{
-  background: var(--card-2);
-  border: 1px solid var(--border-soft);
-  border-radius: 10px;
-  padding: 18px;
-}
-.vf-card h3{
-  font-family: var(--serif);
-  font-size: 15px;
-  color: var(--gold-soft);
-  margin: 0 0 12px;
-  font-weight: 700;
-}
+.vf-card{ background: var(--card-2); border: 1px solid var(--border-soft); border-radius: 10px; padding: 18px; }
+.vf-card h3{ font-family: var(--serif); font-size: 15px; color: var(--gold-soft); margin: 0 0 12px; font-weight: 700; }
 .vf-card h3.spaced{ margin-top: 20px; }
 
-.vf-field-row{
-  display:flex; flex-wrap: wrap; gap: 12px;
-  margin-bottom: 12px;
-}
+.vf-field-row{ display:flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
 .vf-field{ flex: 1 1 140px; min-width: 120px; }
-.vf-field-wide{ flex-basis: 100%; }
-.vf-label{
-  display:block;
-  font-size: 11.5px;
-  color: var(--text-muted);
-  margin-bottom: 5px;
-}
-.vf-label-sub{
-  display:block;
-  font-size: 10.5px;
-  color: var(--text-dim);
-  font-style: italic;
-}
-.vf-input-wrap{
-  position: relative;
-  border-left: 2px solid var(--gold);
-  background: rgba(201,162,75,0.06);
-  border-radius: 0 6px 6px 0;
-  display:flex; align-items:center;
-}
-.vf-input{
-  width: 100%;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: var(--text);
-  font-family: var(--mono);
-  font-size: 13.5px;
-  padding: 9px 34px 9px 10px;
-}
-.vf-suffix{
-  position:absolute; right: 9px;
-  font-size: 11px;
-  color: var(--text-dim);
-  pointer-events:none;
-}
-.vf-select-wrap{
-  border-left: 2px solid var(--gold);
-  background: rgba(201,162,75,0.06);
-  border-radius: 0 6px 6px 0;
-}
-.vf-select{
-  width:100%;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: var(--text);
-  font-family: var(--sans);
-  font-size: 13.5px;
-  padding: 9px 10px;
-}
-.vf-select option{ background: var(--card); color: var(--text); }
+.vf-label{ display:block; font-size: 11.5px; color: var(--text-muted); margin-bottom: 5px; }
+.vf-input-wrap{ position: relative; border-left: 2px solid var(--gold); background: rgba(201,162,75,0.06); border-radius: 0 6px 6px 0; display:flex; align-items:center; }
+.vf-input{ width: 100%; background: transparent; border: none; outline: none; color: var(--text); font-family: var(--mono); font-size: 13.5px; padding: 9px 34px 9px 10px; }
+.vf-suffix{ position:absolute; right: 9px; font-size: 11px; color: var(--text-dim); pointer-events:none; }
 
 .vf-growth-block{ margin-top: 4px; }
-.vf-growth-head{
-  display:flex; align-items:center; justify-content: space-between;
-  margin-bottom: 8px;
-}
-.vf-growth-grid{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-}
-@media (max-width: 480px){
-  .vf-growth-grid{ grid-template-columns: repeat(3, 1fr); }
-}
+.vf-growth-head{ display:flex; align-items:center; justify-content: space-between; margin-bottom: 8px; }
+.vf-growth-grid{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+@media (max-width: 480px){ .vf-growth-grid{ grid-template-columns: repeat(3, 1fr); } }
 .vf-growth-cell{ display:flex; flex-direction:column; gap:4px; }
-.vf-growth-yr{
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--text-dim);
-}
-.vf-input-sm{ padding: 6px 26px 6px 8px; font-size: 12px; }
+.vf-growth-yr{ font-family: var(--mono); font-size: 10px; color: var(--text-dim); }
 
-.vf-result-card .vf-hero-value{
-  display:flex; flex-direction:column; gap:6px;
-  padding: 16px 0 18px;
-  border-bottom: 1px dashed var(--border);
-  margin-bottom: 12px;
-}
+.vf-result-card .vf-hero-value{ display:flex; flex-direction:column; gap:6px; padding: 16px 0 18px; border-bottom: 1px dashed var(--border); margin-bottom: 12px; }
 .vf-hero-label{ font-size: 12px; color: var(--text-muted); }
-.vf-hero-number{
-  font-family: var(--serif);
-  font-size: 34px;
-  color: var(--gold-soft);
-  font-weight: 700;
-  letter-spacing: 0.3px;
-}
-.vf-hero-number.sm{ font-size: 26px; }
-.vf-hero-sub{
-  font-size: 11.5px;
-  color: var(--text-dim);
-}
-.vf-badge{
-  display:inline-flex; width:fit-content;
-  font-size: 11.5px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 999px;
-  margin-top: 2px;
-}
-.vf-badge.hidden{ display:none; }
-.vf-badge-good{ background: rgba(79,178,134,0.15); color: var(--positive); }
-.vf-badge-bad{ background: rgba(226,104,90,0.15); color: var(--negative); }
+.vf-hero-number{ font-family: var(--serif); font-size: 32px; color: var(--gold-soft); font-weight: 700; letter-spacing: 0.3px; }
 
 .vf-result-list{ display:flex; flex-direction:column; gap: 2px; }
-.vf-result-row{
-  display:flex; justify-content: space-between; align-items:baseline;
-  padding: 7px 0;
-  border-bottom: 1px solid var(--border-soft);
-  gap: 10px;
-}
+.vf-result-row{ display:flex; justify-content: space-between; align-items:baseline; padding: 7px 0; border-bottom: 1px solid var(--border-soft); gap: 10px; }
 .vf-result-row.em .vf-result-value{ color: var(--gold-soft); font-weight: 700; }
 .vf-result-label{ font-size: 12.5px; color: var(--text-muted); }
-.vf-result-value{
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--text);
-  white-space: nowrap;
-}
+.vf-result-value{ font-family: var(--mono); font-size: 13px; color: var(--text); white-space: nowrap; }
 
-.vf-details{ margin-top: 14px; }
-.vf-details summary{
-  cursor:pointer;
-  font-size: 12px;
-  color: var(--gold-soft);
-  font-weight: 600;
-}
-.vf-table-wrap{ margin-top: 10px; overflow-x:auto; }
-.vf-table{ width:100%; border-collapse: collapse; font-family: var(--mono); font-size: 12px; }
-.vf-table th{
-  text-align: right;
-  color: var(--text-dim);
-  font-weight: 600;
-  padding: 6px 8px;
-  border-bottom: 1px solid var(--border);
-}
-.vf-table th:first-child, .vf-table td:first-child{ text-align:left; }
-.vf-table td{
-  text-align: right;
-  padding: 5px 8px;
-  color: var(--text);
-  border-bottom: 1px solid var(--border-soft);
-}
-
-.vf-note{
-  font-size: 11.5px;
-  color: var(--text-dim);
-  line-height: 1.5;
-  margin-top: 10px;
-}
-
-/* ============ Risk profile sliders ============ */
-.vf-slider-item{ margin-bottom: 24px; }
-.vf-slider-item:last-child{ margin-bottom: 0; }
-.vf-slider-question{
-  font-size: 13px;
-  color: var(--text);
-  margin-bottom: 10px;
-  font-weight: 600;
-  line-height: 1.5;
-}
-input[type="range"].vf-slider{
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 6px;
-  border-radius: 999px;
-  background: linear-gradient(to right, var(--gold) 0%, var(--gold) var(--val, 50%), var(--border) var(--val, 50%), var(--border) 100%);
-  outline: none;
-  cursor: pointer;
-  margin: 6px 0;
-}
-input[type="range"].vf-slider::-webkit-slider-thumb{
-  -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--gold-soft);
-  border: 2px solid var(--card);
-  box-shadow: 0 0 0 1.5px var(--gold);
-  cursor: pointer;
-}
-input[type="range"].vf-slider::-moz-range-thumb{
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--gold-soft);
-  border: 2px solid var(--card);
-  box-shadow: 0 0 0 1.5px var(--gold);
-  cursor: pointer;
-  border: none;
-}
-.vf-slider-labels{
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 10.5px;
-  color: var(--text-dim);
-  line-height: 1.4;
-}
-.vf-slider-labels span{ max-width: 46%; }
-.vf-slider-labels span:last-child{ text-align: right; }
-.vf-risk-gauge{
-  height: 10px;
-  border-radius: 999px;
-  background: var(--border-soft);
-  overflow: hidden;
-  margin: 14px 0;
-}
-.vf-risk-gauge-fill{
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #4fb286, #c9a24b, #e2685a);
-  transition: width .2s ease;
-}
-.vf-risk-behavior-notes p{
-  font-size: 12.5px;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin: 0 0 8px;
-}
-.vf-risk-behavior-notes p:last-child{ margin-bottom: 0; }
-
-/* ============ Average saham lot rows ============ */
-.vf-avg-lots{
-  display:flex;
-  flex-direction:column;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-.vf-avg-lot{
-  display:flex;
-  gap: 10px;
-  align-items:flex-end;
-  flex-wrap: wrap;
-}
-.vf-avg-lot .vf-field{ flex:1; min-width:110px; }
-.vf-lot-remove{
-  background: rgba(226,104,90,0.12);
-  border: 1px solid rgba(226,104,90,0.3);
-  color: var(--negative);
-  border-radius: 7px;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  font-size: 14px;
-  flex-shrink: 0;
-}
-.vf-lot-remove:hover{ background: rgba(226,104,90,0.22); }
-
-/* ============ Sub-tabs (inside Valuasi Saham panel) ============ */
-.vf-subtabs{
-  display:flex;
-  gap:8px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-.vf-subtab{
-  padding: 9px 15px;
-  border-radius: 9px;
-  border: 1px solid var(--border);
-  background: var(--card-2);
-  color: var(--text-muted);
-  font-size: 12.5px;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: var(--sans);
-  transition: all .15s ease;
-}
+.vf-subtabs{ display:flex; gap:8px; margin-bottom: 20px; flex-wrap: wrap; }
+.vf-subtab{ padding: 9px 15px; border-radius: 9px; border: 1px solid var(--border); background: var(--card-2); color: var(--text-muted); font-size: 12.5px; font-weight: 600; cursor: pointer; font-family: var(--sans); transition: all .15s ease; }
 .vf-subtab:hover{ color: var(--text); }
-.vf-subtab.active{
-  background: rgba(201,162,75,0.12);
-  border-color: var(--gold);
-  color: var(--gold-soft);
-}
+.vf-subtab.active{ background: rgba(201,162,75,0.12); border-color: var(--gold); color: var(--gold-soft); }
 .vf-subpanel{ display:none; }
 .vf-subpanel.active{ display:block; }
 
-/* ============ Intro article (SEO content block) ============ */
-.vf-intro{
-  max-width: 1020px;
-  margin: 18px auto 0;
-  padding: 0 20px;
-}
-.vf-intro-card{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 18px 20px;
-}
-.vf-intro-card h2{
-  font-family: var(--serif);
-  font-size: 17px;
-  color: var(--gold-soft);
-  margin: 0 0 8px;
-  font-weight: 700;
-}
-.vf-intro-card > p{
-  font-size: 13.5px;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin: 0;
-}
-.vf-intro-more summary{
-  cursor: pointer;
-  font-size: 12.5px;
-  color: var(--gold);
-  font-weight: 600;
-  margin-top: 10px;
-  list-style: none;
-}
-.vf-intro-more summary::-webkit-details-marker{ display:none; }
-.vf-intro-more-body{
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px dashed var(--border);
-}
-.vf-intro-more-body ul{
-  margin: 0 0 10px;
-  padding-left: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.vf-intro-more-body li{
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-.vf-intro-more-body p{
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin: 0;
-}
+/* ================= KSEI ANALYSIS STYLES ================= */
+.ksei-container { font-family: "IBM Plex Sans", system-ui, sans-serif; color: var(--ksei-ink); }
+.ksei-box{ background:var(--ksei-panel); border:1px solid var(--ksei-line); border-radius:6px; padding:14px }
+.ksei-up-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px }
+.ksei-drop{ border:1.5px dashed var(--ksei-line); border-radius:6px; padding:14px; display:block; cursor:pointer }
+.ksei-drop:hover,.ksei-drop:focus-within{ border-color:var(--ksei-accent) }
+.ksei-drop b{ display:block }.ksei-drop span{ color:var(--ksei-mute); font-size:13px }.ksei-drop.ok{ border-style:solid; border-color:var(--ksei-up) }
+.ksei-drop input{ position:absolute; opacity:0; width:1px; height:1px }
+.ksei-note{ margin:12px 0; padding:10px 12px; border-left:3px solid var(--ksei-accent); background:var(--ksei-panel); color:var(--ksei-mute); font-size:13px }
+.ksei-filters{ display:flex; flex-wrap:wrap; gap:10px 16px; align-items:end; margin:14px 0 }
+label.ksei-f{ display:flex; flex-direction:column; gap:3px; font-size:12px; color:var(--ksei-mute) }
+.ksei-f select,.ksei-f input[type=text],.ksei-f input[type=number]{ font:inherit; color:var(--ksei-ink); background:var(--ksei-panel); border:1px solid var(--ksei-line); border-radius:5px; padding:6px 8px; min-width:120px }
+.ksei-kpis{ display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:10px; margin-bottom:16px }
+.ksei-kpi{ background:var(--ksei-panel); border:1px solid var(--ksei-line); border-radius:6px; padding:10px 12px; border-top:3px solid var(--c,var(--ksei-line)) }
+.ksei-kpi small{ color:var(--ksei-mute); display:block }.ksei-kpi strong{ font:600 24px/1.2 "IBM Plex Sans Condensed",sans-serif }
+.ksei-tabs{ display:flex; gap:2px; border-bottom:1px solid var(--ksei-line); margin-bottom:14px; overflow-x:auto }
+.ksei-tabs button{ font:inherit; background:none; border:0; border-bottom:2px solid transparent; padding:8px 14px; color:var(--ksei-mute); cursor:pointer; white-space:nowrap }
+.ksei-tabs button[aria-selected=true]{ color:var(--ksei-ink); border-color:var(--ksei-accent); font-weight:600 }
+.ksei-bar{ display:flex; flex-wrap:wrap; gap:10px; align-items:end; margin-bottom:10px }
+.ksei-tw{ overflow-x:auto; border:1px solid var(--ksei-line); border-radius:6px; background:var(--ksei-panel); max-height:560px; overflow-y:auto }
+.ksei-tw table{ border-collapse:collapse; width:100%; font-size:13px }
+.ksei-tw th{ position:sticky; top:0; background:var(--ksei-panel); text-align:left; padding:8px 10px; border-bottom:1px solid var(--ksei-line); cursor:pointer; white-space:nowrap; color:var(--ksei-mute); font-weight:500 }
+.ksei-tw td{ padding:6px 10px; border-bottom:1px solid var(--ksei-line); white-space:nowrap }
+.ksei-tw td.n,.ksei-tw th.n{ text-align:right }
+.ksei-tw tr:hover td{ background:color-mix(in srgb,var(--ksei-accent) 6%,transparent) }
+.ksei-pos{ color:var(--ksei-up) }.ksei-neg{ color:var(--ksei-down) }
+.ksei-tag{ display:inline-block; padding:1px 7px; border-radius:10px; font-size:12px; color:#fff }
+.ksei-muted{ color:var(--ksei-mute) }.ksei-hide{ display:none }
 
-/* ============ Glossary accordion ============ */
-.vf-glossary-item{
-  border-bottom: 1px solid var(--border-soft);
-  padding: 14px 0;
-}
-.vf-glossary-item:last-child{ border-bottom:none; }
-.vf-glossary-item summary{
-  cursor:pointer;
-  font-family: var(--serif);
-  font-weight:600;
-  font-size:14.5px;
-  color: var(--text);
-  list-style:none;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-}
-.vf-glossary-item summary::-webkit-details-marker{ display:none; }
-.vf-glossary-item summary::after{
-  content:'+';
-  font-size:19px;
-  color: var(--gold);
-  flex-shrink:0;
-  width:20px;
-  text-align:center;
-}
-.vf-glossary-item[open] summary::after{ content:'\2212'; }
-.vf-glossary-item[open] summary{ color: var(--gold-soft); }
-.vf-glossary-body{
-  margin-top:10px;
-  font-size:13px;
-  color: var(--text-muted);
-  line-height:1.7;
-}
-.vf-glossary-formula{
-  font-family: var(--mono);
-  font-size:12.5px;
-  color: var(--gold-soft);
-  background: rgba(201,162,75,0.08);
-  border-left:2px solid var(--gold);
-  padding:8px 12px;
-  border-radius:0 6px 6px 0;
-  margin-top:8px;
-  display:inline-block;
-}
-
-/* ============ Promo / mentoring card ============ */
-.vf-promo{
-  max-width: 1020px;
-  margin: 26px auto 0;
-  padding: 0 20px;
-}
-.vf-promo-inner{
-  background: linear-gradient(135deg, #16233a 0%, #101a2c 100%);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 24px 24px 22px;
-  position: relative;
-  overflow: hidden;
-}
-.vf-promo-inner::before{
-  content:"";
-  position:absolute; top:-40%; right:-10%;
-  width: 260px; height: 260px;
-  background: radial-gradient(circle, rgba(201,162,75,0.16), transparent 70%);
-  pointer-events:none;
-}
-.vf-promo-eyebrow{
-  font-family: var(--mono);
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.vf-promo h3{
-  font-family: var(--serif);
-  font-size: 19px;
-  color: var(--text);
-  margin: 8px 0 14px;
-  font-weight: 700;
-  max-width: 560px;
-  position: relative;
-}
-.vf-promo-list{
-  list-style:none;
-  margin: 0 0 18px;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px 18px;
-  position: relative;
-}
-@media (max-width: 620px){
-  .vf-promo-list{ grid-template-columns: 1fr; }
-}
-.vf-promo-list li{
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.5;
-  display:flex; gap:8px;
-  align-items:flex-start;
-}
-.vf-promo-list li .check{ color: var(--positive); flex-shrink:0; }
-.vf-promo-cta{
-  display:flex; align-items:center; gap: 14px; flex-wrap: wrap;
-  position: relative;
-}
-.vf-promo-btn{
-  display:inline-flex; align-items:center; gap:8px;
-  background: var(--gold);
-  color: #10192b;
-  font-weight: 700;
-  font-size: 13.5px;
-  padding: 11px 18px;
-  border-radius: 9px;
-  text-decoration:none;
-}
-.vf-promo-btn:hover{ background: var(--gold-soft); }
-.vf-promo-phone{
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.vf-footer{
-  max-width: 1020px;
-  margin: 24px auto 0;
-  padding: 0 20px;
-}
-.vf-disclaimer{
-  border-top: 1px solid var(--border-soft);
-  padding-top: 14px;
-}
-.vf-disclaimer-toggle{
-  display:flex; align-items:center; gap:6px;
-  background:none; border:none;
-  color: var(--text-dim);
-  font-size: 11.5px;
-  cursor:pointer;
-  padding: 0;
-  font-family: var(--sans);
-}
-.vf-disclaimer-arrow{ transition: transform .2s; display:inline-block; }
-.vf-disclaimer-arrow.open{ transform: rotate(180deg); }
-.vf-disclaimer-text{
-  margin-top: 10px;
-  font-size: 11px;
-  line-height: 1.6;
-  color: var(--text-dim);
-  max-width: 780px;
-  display:none;
-}
-.vf-disclaimer-text.open{ display:block; }
-.vf-madeby{
-  text-align:center;
-  font-size: 11px;
-  color: var(--text-dim);
-  margin-top: 18px;
-}
-
-/* ============ Print / PDF export ============ */
-.print-only{ display:none; }
-@media print{
-  body{ background:#fff !important; color:#111 !important; padding:0 !important; }
-  #vf-error-banner, .vf-tabs, .vf-toolbar, .vf-case, .vf-promo, .vf-footer,
-  .no-print, .vf-note-box, .vf-badge, #panel-about, #panel-glossary, .vf-subtabs{ display:none !important; }
-  .vf-subpanel{ display:none !important; }
-  .vf-subpanel.active{ display:block !important; }
-  #panel-riskprofile .vf-note-box{ display:flex !important; background:#fdf3f1 !important; border-color:#e2685a !important; color:#7a2e26 !important; }
-  #risk-category-badge{ display:inline-flex !important; background:#f7f2e7 !important; color:#a07d2e !important; }
-  .vf-header{ border:none; background:none; padding:0 0 10px; }
-  .vf-header-inner > div:first-child{ display:none !important; }
-  .vf-header p{ display:none; }
-  .vf-header h1{ color:#111; font-size:20px; margin:0; }
-  .print-only{ display:block !important; font-family:'Poppins',sans-serif; }
-  #print-meta{ font-size:11px; color:#555; margin:4px 0 14px; padding-bottom:10px; border-bottom:1px solid #ccc; }
-  .vf-panel{ display:none !important; border:none; padding:0; background:#fff; }
-  .vf-panel.active{ display:block !important; }
-  .vf-section-title p{ color:#444; }
-  .vf-section-title h2{ color:#111; }
-  .vf-eyebrow{ color:#a07d2e; }
-  .vf-grid-2{ grid-template-columns:1fr 1fr; gap:14px; }
-  .vf-card{ background:#fff; border:1px solid #ccc; break-inside:avoid; }
-  .vf-card h3{ color:#a07d2e; }
-  .vf-label{ color:#555; }
-  .vf-label-sub{ color:#888; }
-  .vf-input-wrap{ background:#f7f2e7; border-left:2px solid #a07d2e; }
-  .vf-input{ color:#111; }
-  .vf-suffix{ color:#888; }
-  .vf-hero-number{ color:#a07d2e; }
-  .vf-hero-label{ color:#555; }
-  .vf-result-label{ color:#555; }
-  .vf-result-value{ color:#111; }
-  .vf-result-row{ border-bottom:1px solid #ddd; }
-  .vf-result-row.em .vf-result-value{ color:#a07d2e; }
-  .vf-table th{ color:#666; border-bottom:1px solid #ccc; }
-  .vf-table td{ color:#111; border-bottom:1px solid #eee; }
-  .vf-details summary{ display:none !important; }
-  .vf-details{ margin-top:10px; }
-  #print-footer{ margin-top:16px; padding-top:10px; border-top:1px solid #ccc; font-size:10px; color:#888; }
-}
+.vf-footer{ max-width: 1280px; margin: 24px auto 0; padding: 0 20px; }
+.vf-madeby{ text-align:center; font-size: 11px; color: var(--text-dim); margin-top: 18px; }
 </style>
 </head>
 <body>
-<div id="vf-error-banner" style="display:none; position:fixed; top:0; left:0; right:0; z-index:999; background:var(--negative); color:#fff; font-family:var(--sans); font-size:12px; padding:10px 14px; line-height:1.4;"></div>
-
-<div class="print-only">
-  <h2 style="font-family:'Poppins',sans-serif; margin:0;">Kalkulator Valuasi Saham — Sofyan Financial</h2>
-  <div id="print-meta"></div>
-</div>
 
 <header class="vf-header">
   <div class="vf-header-inner">
     <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
-      <span class="vf-kicker">Sofyan Financial · Value Investing Toolkit</span>
-      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
-        <div style="display:flex; gap:4px; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600;">
-          <span style="padding:5px 10px; border-radius:7px; background:var(--card); color:var(--gold-soft); border:1px solid var(--border);">🇮🇩 ID</span>
-          <a href="/en/" style="padding:5px 10px; border-radius:7px; color:var(--text-muted); text-decoration:none; border:1px solid transparent;">🇬🇧 EN</a>
-        </div>
-        <div style="display:flex; gap:4px; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600;">
-          <button type="button" id="theme-dark-btn" style="padding:5px 10px; border-radius:7px; cursor:pointer; font-family:inherit; font-size:inherit; font-weight:inherit; border:1px solid var(--border); background:var(--card); color:var(--text-muted);">🌙 Gelap</button>
-          <button type="button" id="theme-light-btn" style="padding:5px 10px; border-radius:7px; cursor:pointer; font-family:inherit; font-size:inherit; font-weight:inherit; border:1px solid transparent; background:transparent; color:var(--text-muted);">☀️ Terang</button>
-        </div>
+      <span class="vf-kicker">Sofyan Financial · Value Investing & Ownership Analysis</span>
+      <div style="display:flex; gap:4px; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600;">
+        <button type="button" id="theme-dark-btn" style="padding:5px 10px; border-radius:7px; cursor:pointer; border:1px solid var(--border); background:var(--card); color:var(--text-muted);">🌙 Gelap</button>
+        <button type="button" id="theme-light-btn" style="padding:5px 10px; border-radius:7px; cursor:pointer; border:1px solid transparent; background:transparent; color:var(--text-muted);">☀️ Terang</button>
       </div>
     </div>
-    <h1>Kalkulator Menghitung Valuasi Saham dan Financial Freedom Paling Lengkap</h1>
-    <p>Cara menghitung nilai wajar (intrinsic value) saham lewat 4 metode ala Warren Buffett — DCF, DDM, Equity Bond Valuation, dan Financial Freedom. Isi asumsi di kolom berlatar keemasan, atau klik "Muat Contoh" untuk langsung mencoba.</p>
+    <h1>Platform Valuasi Saham & Analisis Kepemilikan KSEI</h1>
+    <p>Hitung nilai wajar (intrinsic value) saham, kalkulasi target financial freedom, serta analisis perubahan kepemilikan investor >1% KSEI antar periode.</p>
   </div>
 </header>
 
+<!-- TAB UTAMA TERPISAH -->
 <nav class="vf-tabs">
   <button class="vf-tab active" data-tab="valuation">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="8" y1="10.5" x2="8.01" y2="10.5"></line><line x1="12" y1="10.5" x2="12.01" y2="10.5"></line><line x1="16" y1="10.5" x2="16.01" y2="10.5"></line><line x1="8" y1="14.5" x2="8.01" y2="14.5"></line><line x1="12" y1="14.5" x2="12.01" y2="14.5"></line><line x1="16" y1="14.5" x2="16.01" y2="14.5"></line><line x1="8" y1="18.5" x2="16" y2="18.5"></line></svg>
-    Kalkulator Valuasi Saham
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line></svg>
+    TAB 1: Kalkulator Valuasi Saham
   </button>
   <button class="vf-tab" data-tab="ff">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5.5"></circle><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"></circle></svg>
-    Kalkulator Financial Freedom
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5.5"></circle></svg>
+    TAB 2: Financial Freedom
   </button>
-  <button class="vf-tab" data-tab="average">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-    Kalkulator Average Saham
-  </button>
-  <button class="vf-tab" data-tab="target">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle><line x1="19" y1="5" x2="15.5" y2="8.5"></line><line x1="19" y1="5" x2="19" y2="9"></line><line x1="19" y1="5" x2="15" y2="5"></line></svg>
-    Kalkulator Target Harga Saham
-  </button>
-  <button class="vf-tab" data-tab="riskprofile">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5A8 8 0 1 1 19.5 16.5"></path><line x1="12" y1="13" x2="15.2" y2="8.8"></line><circle cx="12" cy="13" r="1.3" fill="currentColor" stroke="none"></circle></svg>
-    Fitting-Your-Portfolio
-  </button>
-  <button class="vf-tab" data-tab="about">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"></path></svg>
-    Tentang Saya
-  </button>
-  <button class="vf-tab" data-tab="glossary">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-    Kamus Investasi
+  <button class="vf-tab" data-tab="ksei">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+    TAB 3: Analisis Kepemilikan KSEI
   </button>
 </nav>
 
 <main class="vf-main">
 
-  <!-- ===================== DCF ===================== -->
+  <!-- ===================== TAB 1: VALUASI PANEL ===================== -->
   <section class="vf-panel active" id="panel-valuation">
     <div class="vf-section-title">
       <span class="vf-eyebrow">Metode Valuasi</span>
       <h2>Kalkulator Valuasi Nilai Wajar Saham</h2>
-      <p>Tiga pendekatan untuk menghitung nilai wajar (intrinsic value) saham — pilih metode yang paling sesuai dengan karakteristik emiten yang Anda analisis.</p>
+      <p>Pilih metode pendekatan yang paling sesuai untuk menentukan harga wajar saham yang ditargetkan.</p>
     </div>
 
     <div class="vf-subtabs">
@@ -955,2039 +353,367 @@ input[type="range"].vf-slider::-moz-range-thumb{
       <button class="vf-subtab" data-subtab="eb">Equity Bond Valuation</button>
     </div>
 
+    <!-- DCF -->
     <div class="vf-subpanel active" id="subpanel-dcf">
-    <div class="vf-section-title">
-      <span class="vf-eyebrow">Metode 1</span>
-      <h2>Discounted Cash Flow (Modified DCF)</h2>
-      <p>Memproyeksikan laba bersih emiten 10 tahun ke depan, lalu mendiskontokannya ke nilai hari ini memakai Cost of Equity — cocok untuk emiten dengan laba yang relatif konsisten dan mudah diprediksi.</p>
-    </div>
-
-    <div class="vf-case">
-      <div class="vf-case-head"><span class="vf-case-tag">Contoh kasus</span></div>
-      <p><strong>PT Cuan Abadi Tbk</strong> (emiten fiktif) mencatat laba bersih <strong>Rp10.000 miliar (Rp10 triliun)</strong> tahun ini. Manajemen memproyeksikan laba tumbuh <strong>11% per tahun</strong> secara konsisten selama 10 tahun ke depan. Total saham beredar <strong>100 miliar lembar</strong>. Karena sahamnya cukup fluktuatif (beta 1,5x), investor memakai risk free <strong>7%</strong> (yield SBN 10 tahun), expected market return <strong>15%</strong>, dan pertumbuhan jangka panjang <strong>2%</strong>. Berapa nilai wajar per lembar sahamnya?</p>
-      <button class="vf-case-btn" id="dcf-example-btn">Muat contoh ini →</button>
-    </div>
-
-    <div class="vf-toolbar">
-      <button class="vf-mini-btn" id="dcf-reset-btn">↺ Kosongkan / reset</button>
-      <button class="vf-mini-btn" id="dcf-pdf-btn">📄 Unduh sebagai PDF</button>
-      <button class="vf-mini-btn" id="dcf-share-btn">🔗 Bagikan Hasil</button>
-    </div>
-
-    <div class="vf-grid-2">
-      <div class="vf-card">
-        <h3>Step 1 — Estimasi laba 10 tahun</h3>
-        <div class="vf-field-row">
-          <div class="vf-field">
-            <label class="vf-label">Laba bersih tahun ke-0<span class="vf-label-sub">miliar Rupiah</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="dcf-earning0" value="1377"><span class="vf-suffix">M</span></div>
+      <div class="vf-grid-2">
+        <div class="vf-card">
+          <h3>Step 1 — Estimasi Laba & Saham</h3>
+          <div class="vf-field-row">
+            <div class="vf-field">
+              <label class="vf-label">Laba Bersih Th-0 (Miliar Rp)</label>
+              <div class="vf-input-wrap"><input type="number" class="vf-input" id="dcf-earning0" value="1377"><span class="vf-suffix">M</span></div>
+            </div>
+            <div class="vf-field">
+              <label class="vf-label">Total Saham Beredar (Miliar)</label>
+              <div class="vf-input-wrap"><input type="number" class="vf-input" id="dcf-shares" value="10.4"><span class="vf-suffix">M</span></div>
+            </div>
           </div>
-          <div class="vf-field">
-            <label class="vf-label">Total saham beredar<span class="vf-label-sub">miliar lembar</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="dcf-shares" value="10.4"><span class="vf-suffix">M</span></div>
+          <div class="vf-growth-block">
+            <div class="vf-growth-head">
+              <span class="vf-label" style="margin:0;">Growth Rate per Tahun (%)</span>
+              <button class="vf-mini-btn" id="dcf-fillall-btn">Samakan ke Th 1</button>
+            </div>
+            <div class="vf-growth-grid" id="dcf-growth-grid"></div>
           </div>
-        </div>
-
-        <div class="vf-growth-block">
-          <div class="vf-growth-head">
-            <span class="vf-label" style="margin:0;">Growth rate per tahun (1–10)</span>
-            <button class="vf-mini-btn" id="dcf-fillall-btn">Samakan semua ke Th1</button>
-          </div>
-          <div class="vf-growth-grid" id="dcf-growth-grid"></div>
-        </div>
-
-        <h3 class="spaced">Step 2 — Cost of Equity (CAPM)</h3>
-        <div class="vf-field-row">
-          <div class="vf-field">
-            <label class="vf-label">Risk free<span class="vf-label-sub">yield SBN 10th</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="dcf-riskfree" value="6.7"><span class="vf-suffix">%</span></div>
-          </div>
-          <div class="vf-field">
-            <label class="vf-label">Beta</label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="dcf-beta" value="1"></div>
-          </div>
-          <div class="vf-field">
-            <label class="vf-label">Expected market return</label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="dcf-marketreturn" value="14"><span class="vf-suffix">%</span></div>
+          <h3 class="spaced">Step 2 — Cost of Equity (CAPM)</h3>
+          <div class="vf-field-row">
+            <div class="vf-field">
+              <label class="vf-label">Risk Free Rate (%)</label>
+              <div class="vf-input-wrap"><input type="number" class="vf-input" id="dcf-riskfree" value="6.7"><span class="vf-suffix">%</span></div>
+            </div>
+            <div class="vf-field">
+              <label class="vf-label">Beta Saham</label>
+              <div class="vf-input-wrap"><input type="number" class="vf-input" id="dcf-beta" value="1"></div>
+            </div>
+            <div class="vf-field">
+              <label class="vf-label">Market Return (%)</label>
+              <div class="vf-input-wrap"><input type="number" class="vf-input" id="dcf-marketreturn" value="14"><span class="vf-suffix">%</span></div>
+            </div>
           </div>
         </div>
-
-        <h3 class="spaced">Step 4 — Perpetual growth</h3>
-        <div class="vf-field-row">
-          <div class="vf-field">
-            <label class="vf-label">Perpetual growth rate<span class="vf-label-sub">0.25%–3% wajar</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="dcf-perpetual" value="3"><span class="vf-suffix">%</span></div>
+        <div class="vf-card vf-result-card">
+          <h3>Hasil Valuasi DCF</h3>
+          <div class="vf-hero-value">
+            <span class="vf-hero-label">Intrinsic Value / Lembar</span>
+            <span class="vf-hero-number" id="dcf-intrinsic">Rp 0</span>
           </div>
-          <div class="vf-field">
-            <label class="vf-label">Harga pasar saat ini<span class="vf-label-sub">opsional, per lembar</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="dcf-currentprice" value=""><span class="vf-suffix">Rp</span></div>
+          <div class="vf-result-list">
+            <div class="vf-result-row"><span class="vf-result-label">Cost of Equity (Discount Rate)</span><span class="vf-result-value" id="dcf-coe">14.00%</span></div>
+            <div class="vf-result-row em"><span class="vf-result-label">Total Valuasi Perusahaan</span><span class="vf-result-value" id="dcf-companyvaluation">Rp 0 M</span></div>
           </div>
-        </div>
-
-        <div class="vf-note-box vf-note-info">
-          <span class="ic">ℹ️</span>
-          <span>Model ini mendiskon <strong>laba bersih</strong>, bukan Free Cash Flow to Equity (FCFE) murni. Ini simplifikasi yang umum dipakai investor ritel, tapi bisa <strong>overvalue emiten padat modal</strong> (capex besar) karena kebutuhan reinvestasi tidak dikurangkan. Gunakan sebagai salah satu acuan, bukan satu-satunya patokan.</span>
         </div>
       </div>
-
-      <div class="vf-card vf-result-card">
-        <h3>Hasil Valuasi</h3>
-        <div class="vf-hero-value">
-          <span class="vf-hero-label">Intrinsic value / lembar</span>
-          <span class="vf-hero-number" id="dcf-intrinsic">—</span>
-          <span class="vf-badge hidden" id="dcf-badge"></span>
-        </div>
-        <div class="vf-note-box vf-note-warn hidden" id="dcf-warn">
-          <span class="ic">⚠️</span>
-          <span>Perpetual growth rate harus lebih kecil dari Cost of Equity. Dengan asumsi saat ini, hasil valuasi tidak valid (bisa negatif/tak terhingga). Coba turunkan perpetual growth atau naikkan cost of equity.</span>
-        </div>
-        <div class="vf-result-list">
-          <div class="vf-result-row"><span class="vf-result-label">Cost of Equity</span><span class="vf-result-value" id="dcf-coe">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label">Total laba terdiskonto (10th)</span><span class="vf-result-value" id="dcf-totaldiscounted">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label">Terminal value</span><span class="vf-result-value" id="dcf-terminalvalue">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label">Terminal value terdiskonto</span><span class="vf-result-value" id="dcf-terminalvaluediscounted">—</span></div>
-          <div class="vf-result-row em"><span class="vf-result-label">Company valuation</span><span class="vf-result-value" id="dcf-companyvaluation">—</span></div>
-        </div>
-
-        <details class="vf-details">
-          <summary>Lihat proyeksi laba per tahun</summary>
-          <div class="vf-table-wrap">
-            <table class="vf-table">
-              <thead><tr><th>Th</th><th>Laba bersih (M)</th><th>Nilai kini (M)</th></tr></thead>
-              <tbody id="dcf-table-body"></tbody>
-            </table>
-          </div>
-        </details>
-      </div>
-    </div>
     </div>
 
-    <!-- ===================== DDM ===================== -->
+    <!-- DDM -->
     <div class="vf-subpanel" id="subpanel-ddm">
-    <div class="vf-section-title">
-      <span class="vf-eyebrow">Metode 2</span>
-      <h2>Dividend Discount Model (Modified DDM)</h2>
-      <p>Memproyeksikan dividen per lembar 10 tahun ke depan — model ini paling solid secara teori karena dividen adalah kas yang benar-benar diterima investor. Cocok untuk emiten dengan riwayat dividen yang konsisten.</p>
-    </div>
-
-    <div class="vf-case">
-      <div class="vf-case-head"><span class="vf-case-tag">Contoh kasus</span></div>
-      <p><strong>PT Dividen Sejahtera Tbk</strong> membagikan dividen <strong>Rp70 per lembar</strong> tahun ini, dan diproyeksikan tumbuh <strong>12% per tahun</strong> selama 10 tahun ke depan berkat laba yang stabil. Investor memakai risk free <strong>6,7%</strong>, beta <strong>1x</strong> (bergerak sejalan pasar), expected market return <strong>14%</strong>, dan pertumbuhan jangka panjang <strong>3%</strong>. Berapa nilai wajar sahamnya?</p>
-      <button class="vf-case-btn" id="ddm-example-btn">Muat contoh ini →</button>
-    </div>
-
-    <div class="vf-toolbar">
-      <button class="vf-mini-btn" id="ddm-reset-btn">↺ Kosongkan / reset</button>
-      <button class="vf-mini-btn" id="ddm-pdf-btn">📄 Unduh sebagai PDF</button>
-      <button class="vf-mini-btn" id="ddm-share-btn">🔗 Bagikan Hasil</button>
-    </div>
-
-    <div class="vf-grid-2">
-      <div class="vf-card">
-        <h3>Step 1 — Estimasi dividen 10 tahun</h3>
-        <div class="vf-field-row">
-          <div class="vf-field">
-            <label class="vf-label">Dividend per share tahun ke-0<span class="vf-label-sub">Rupiah</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ddm-dps0" value="70"><span class="vf-suffix">Rp</span></div>
+      <div class="vf-grid-2">
+        <div class="vf-card">
+          <h3>Estimasi Dividen & Pertumbuhan</h3>
+          <div class="vf-field-row">
+            <div class="vf-field">
+              <label class="vf-label">DPS Terakhir (Rp)</label>
+              <div class="vf-input-wrap"><input type="number" class="vf-input" id="ddm-dps" value="250"><span class="vf-suffix">Rp</span></div>
+            </div>
+            <div class="vf-field">
+              <label class="vf-label">Pertumbuhan Dividen (%)</label>
+              <div class="vf-input-wrap"><input type="number" class="vf-input" id="ddm-growth" value="5"><span class="vf-suffix">%</span></div>
+            </div>
+            <div class="vf-field">
+              <label class="vf-label">Ekspektasi Return (%)</label>
+              <div class="vf-input-wrap"><input type="number" class="vf-input" id="ddm-req" value="10"><span class="vf-suffix">%</span></div>
+            </div>
           </div>
         </div>
-
-        <div class="vf-growth-block">
-          <div class="vf-growth-head">
-            <span class="vf-label" style="margin:0;">Growth rate per tahun (1–10)</span>
-            <button class="vf-mini-btn" id="ddm-fillall-btn">Samakan semua ke Th1</button>
-          </div>
-          <div class="vf-growth-grid" id="ddm-growth-grid"></div>
-        </div>
-
-        <h3 class="spaced">Step 2 — Cost of Equity (CAPM)</h3>
-        <div class="vf-field-row">
-          <div class="vf-field">
-            <label class="vf-label">Risk free<span class="vf-label-sub">yield SBN 10th</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ddm-riskfree" value="6.7"><span class="vf-suffix">%</span></div>
-          </div>
-          <div class="vf-field">
-            <label class="vf-label">Beta</label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ddm-beta" value="1"></div>
-          </div>
-          <div class="vf-field">
-            <label class="vf-label">Expected market return</label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ddm-marketreturn" value="14"><span class="vf-suffix">%</span></div>
-          </div>
-        </div>
-
-        <h3 class="spaced">Step 4 — Perpetual growth</h3>
-        <div class="vf-field-row">
-          <div class="vf-field">
-            <label class="vf-label">Perpetual growth rate<span class="vf-label-sub">0.25%–3% wajar</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ddm-perpetual" value="3"><span class="vf-suffix">%</span></div>
-          </div>
-          <div class="vf-field">
-            <label class="vf-label">Harga pasar saat ini<span class="vf-label-sub">opsional, per lembar</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ddm-currentprice" value=""><span class="vf-suffix">Rp</span></div>
+        <div class="vf-card vf-result-card">
+          <h3>Hasil Valuasi DDM</h3>
+          <div class="vf-hero-value">
+            <span class="vf-hero-label">Nilai Wajar per Lembar</span>
+            <span class="vf-hero-number" id="ddm-intrinsic">Rp 5.250</span>
           </div>
         </div>
       </div>
-
-      <div class="vf-card vf-result-card">
-        <h3>Hasil Valuasi</h3>
-        <div class="vf-hero-value">
-          <span class="vf-hero-label">Company valuation / lembar</span>
-          <span class="vf-hero-number" id="ddm-companyvaluation-hero">—</span>
-          <span class="vf-badge hidden" id="ddm-badge"></span>
-        </div>
-        <div class="vf-note-box vf-note-warn hidden" id="ddm-warn">
-          <span class="ic">⚠️</span>
-          <span>Perpetual growth rate harus lebih kecil dari Cost of Equity. Dengan asumsi saat ini, hasil valuasi tidak valid. Coba turunkan perpetual growth atau naikkan cost of equity.</span>
-        </div>
-        <div class="vf-result-list">
-          <div class="vf-result-row"><span class="vf-result-label">Cost of Equity</span><span class="vf-result-value" id="ddm-coe">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label">Total dividen terdiskonto (10th)</span><span class="vf-result-value" id="ddm-totaldiscounted">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label">Terminal value</span><span class="vf-result-value" id="ddm-terminalvalue">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label">Terminal value terdiskonto</span><span class="vf-result-value" id="ddm-terminalvaluediscounted">—</span></div>
-          <div class="vf-result-row em"><span class="vf-result-label">Company valuation</span><span class="vf-result-value" id="ddm-companyvaluation">—</span></div>
-        </div>
-
-        <details class="vf-details">
-          <summary>Lihat proyeksi dividen per tahun</summary>
-          <div class="vf-table-wrap">
-            <table class="vf-table">
-              <thead><tr><th>Th</th><th>DPS (Rp)</th><th>Nilai kini (Rp)</th></tr></thead>
-              <tbody id="ddm-table-body"></tbody>
-            </table>
-          </div>
-        </details>
-      </div>
-    </div>
     </div>
 
-    <!-- ===================== EQUITY BOND ===================== -->
+    <!-- Equity Bond -->
     <div class="vf-subpanel" id="subpanel-eb">
-    <div class="vf-section-title">
-      <span class="vf-eyebrow">Metode 3 · Warren Buffett</span>
-      <h2>Equity Bond Valuation</h2>
-      <p>Dari buku "The Warren Buffett Stock Portfolio" — melihat apakah harga saham saat ini mampu memberi imbal hasil di atas aset bebas risiko seperti SBN 10 tahun. Metrik utama memakai <strong>IRR</strong> agar waktu penerimaan dividen diperhitungkan dengan benar.</p>
-    </div>
-
-    <div class="vf-case">
-      <div class="vf-case-head"><span class="vf-case-tag">Contoh kasus</span></div>
-      <p><strong>PT Konsisten Makmur Tbk</strong> mencetak EPS <strong>Rp130</strong> tahun ini, diproyeksikan tumbuh <strong>10% per tahun</strong> selama 10 tahun. Emiten ini rutin membagikan dividen <strong>Rp45/lembar</strong> setiap tahun. Harga saham di pasar saat ini <strong>Rp1.350</strong>. Dengan PER konservatif <strong>10x</strong> untuk estimasi harga 10 tahun mendatang, dan yield SBN 10 tahun <strong>6,7%</strong> sebagai pembanding — apakah membeli di harga sekarang bisa mengalahkan imbal hasil obligasi pemerintah?</p>
-      <button class="vf-case-btn" id="eb-example-btn">Muat contoh ini →</button>
-    </div>
-
-    <div class="vf-toolbar">
-      <button class="vf-mini-btn" id="eb-reset-btn">↺ Kosongkan / reset</button>
-      <button class="vf-mini-btn" id="eb-pdf-btn">📄 Unduh sebagai PDF</button>
-      <button class="vf-mini-btn" id="eb-share-btn">🔗 Bagikan Hasil</button>
-    </div>
-
-    <div class="vf-grid-2">
-      <div class="vf-card">
-        <h3 id="eb-proj-title">Proyeksi EPS (10 tahun)</h3>
-        <div class="vf-field-row">
-          <div class="vf-field">
-            <label class="vf-label">EPS tahun ke-0<span class="vf-label-sub">Rupiah</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="eb-eps0" value="130"><span class="vf-suffix">Rp</span></div>
-          </div>
-          <div class="vf-field">
-            <label class="vf-label">Periode<span class="vf-label-sub">tahun</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="eb-periode" value="10"><span class="vf-suffix">th</span></div>
+      <div class="vf-grid-2">
+        <div class="vf-card">
+          <h3>Proyeksi EPS & Harga</h3>
+          <div class="vf-field-row">
+            <div class="vf-field">
+              <label class="vf-label">EPS Terakhir (Rp)</label>
+              <div class="vf-input-wrap"><input type="number" class="vf-input" id="eb-eps" value="300"><span class="vf-suffix">Rp</span></div>
+            </div>
+            <div class="vf-field">
+              <label class="vf-label">Harga Saham Saat Ini (Rp)</label>
+              <div class="vf-input-wrap"><input type="number" class="vf-input" id="eb-price" value="3000"><span class="vf-suffix">Rp</span></div>
+            </div>
           </div>
         </div>
-
-        <div class="vf-growth-block">
-          <div class="vf-growth-head">
-            <span class="vf-label" style="margin:0;">Growth rate EPS per tahun (1–10)</span>
-            <button class="vf-mini-btn" id="eb-fillall-btn">Samakan semua ke Th1</button>
+        <div class="vf-card vf-result-card">
+          <h3>Hasil Equity Bond</h3>
+          <div class="vf-hero-value">
+            <span class="vf-hero-label">Earnings Yield</span>
+            <span class="vf-hero-number" id="eb-yield">10.00%</span>
           </div>
-          <div class="vf-growth-grid" id="eb-growth-grid"></div>
-        </div>
-
-        <h3 class="spaced">Asumsi valuasi</h3>
-        <div class="vf-field-row">
-          <div class="vf-field">
-            <label class="vf-label">PER multiplier terendah</label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="eb-permultiplier" value="10"><span class="vf-suffix">x</span></div>
-          </div>
-          <div class="vf-field">
-            <label class="vf-label">Dividen saat ini<span class="vf-label-sub">per lembar / tahun</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="eb-dividendnow" value="45"><span class="vf-suffix">Rp</span></div>
-          </div>
-          <div class="vf-field">
-            <label class="vf-label">Growth dividen<span class="vf-label-sub">opsional, 0% = flat</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="eb-divgrowth" value="0"><span class="vf-suffix">%</span></div>
-          </div>
-        </div>
-        <div class="vf-field-row">
-          <div class="vf-field">
-            <label class="vf-label">Harga saham sekarang</label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="eb-currentprice" value="1350"><span class="vf-suffix">Rp</span></div>
-          </div>
-          <div class="vf-field">
-            <label class="vf-label">Yield SBN 10 tahun<span class="vf-label-sub">pembanding</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="eb-sun10y" value="6.7"><span class="vf-suffix">%</span></div>
-          </div>
-        </div>
-
-        <div class="vf-note-box vf-note-info">
-          <span class="ic">ℹ️</span>
-          <span><strong>IRR</strong> memperhitungkan kapan dividen diterima (dividen tahun ke-1 lebih berharga dari dividen tahun ke-10). Ini lebih akurat dibanding CAGR sederhana yang hanya menjumlah total tanpa memperhatikan waktu.</span>
         </div>
       </div>
-
-      <div class="vf-card vf-result-card">
-        <h3>Hasil</h3>
-        <div class="vf-hero-value">
-          <span class="vf-hero-label">Estimasi Total Return (IRR)</span>
-          <span class="vf-hero-number" id="eb-irr">—</span>
-          <span class="vf-badge hidden" id="eb-badge"></span>
-        </div>
-        <div class="vf-note-box vf-note-warn hidden" id="eb-warn">
-          <span class="ic">⚠️</span>
-          <span>IRR tidak dapat dihitung dari kombinasi angka ini (kemungkinan arus kas tidak masuk akal). Periksa kembali harga sekarang, dividen, dan estimasi harga masa depan.</span>
-        </div>
-        <div class="vf-result-list">
-          <div class="vf-result-row"><span class="vf-result-label">CAGR sederhana (metode buku asli)</span><span class="vf-result-value" id="eb-cagr">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label" id="eb-estprice-label">Estimasi harga saham th-10</span><span class="vf-result-value" id="eb-estprice">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label" id="eb-accdiv-label">Akumulasi dividen 10 tahun</span><span class="vf-result-value" id="eb-accdividend">—</span></div>
-          <div class="vf-result-row em"><span class="vf-result-label">Total harga + dividen</span><span class="vf-result-value" id="eb-totalpriceplusdiv">—</span></div>
-        </div>
-
-        <details class="vf-details">
-          <summary>Lihat proyeksi EPS per tahun</summary>
-          <div class="vf-table-wrap">
-            <table class="vf-table">
-              <thead><tr><th>Th</th><th>EPS (Rp)</th></tr></thead>
-              <tbody id="eb-table-body"></tbody>
-            </table>
-          </div>
-        </details>
-      </div>
-    </div>
     </div>
   </section>
 
-  <!-- ===================== FINANCIAL FREEDOM ===================== -->
+  <!-- ===================== TAB 2: FINANCIAL FREEDOM PANEL ===================== -->
   <section class="vf-panel" id="panel-ff">
     <div class="vf-section-title">
-      <span class="vf-eyebrow">Bonus · sudah disesuaikan dengan inflasi pasca-pensiun</span>
-      <h2>Menghitung Target Dana Pensiun (Financial Freedom)</h2>
-      <p>Berapa dana yang harus disiapkan, dan berapa besar investasi rutin yang dibutuhkan, agar kebutuhan hidup bulanan Anda tercukupi <strong>selamanya</strong> — termasuk mengimbangi inflasi setelah pensiun.</p>
+      <span class="vf-eyebrow">Perencanaan Keuangan</span>
+      <h2>Kalkulator Financial Freedom (4% Rule / FIRE)</h2>
+      <p>Hitung berapa dana pensiun ideal yang perlu dikumpulkan untuk bisa hidup bebas dari deviden/passive income.</p>
     </div>
-
-    <div class="vf-case">
-      <div class="vf-case-head"><span class="vf-case-tag">Contoh kasus</span></div>
-      <p><strong>Andi</strong> berusia <strong>32 tahun</strong>, ingin mencapai financial freedom <strong>15 tahun lagi</strong>. Biaya hidup bulanannya saat ini <strong>Rp12.000.000</strong>, dengan asumsi inflasi <strong>4% per tahun</strong>. Andi memilih instrumen <strong>saham</strong> (ekspektasi imbal hasil 13% per tahun) untuk mengejar target dana pensiunnya. Berapa dana yang harus disiapkan, dan berapa besar ia harus investasi rutin per bulan?</p>
-      <button class="vf-case-btn" id="ff-example-btn">Muat contoh ini →</button>
-    </div>
-
-    <div class="vf-toolbar">
-      <button class="vf-mini-btn" id="ff-reset-btn">↺ Kosongkan / reset</button>
-      <button class="vf-mini-btn" id="ff-pdf-btn">📄 Unduh sebagai PDF</button>
-      <button class="vf-mini-btn" id="ff-share-btn">🔗 Bagikan Hasil</button>
-    </div>
-
     <div class="vf-grid-2">
       <div class="vf-card">
-        <h3>Profil &amp; target</h3>
+        <h3>Parameter Keuangan</h3>
         <div class="vf-field-row">
           <div class="vf-field">
-            <label class="vf-label">Usia Anda sekarang<span class="vf-label-sub">tahun</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ff-age" value="32"><span class="vf-suffix">th</span></div>
+            <label class="vf-label">Pengeluaran Bulanan Saat Ini (Rp)</label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ff-exp-month" value="15000000"><span class="vf-suffix">Rp</span></div>
           </div>
           <div class="vf-field">
-            <label class="vf-label">Target financial freedom<span class="vf-label-sub">tahun lagi</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ff-years" value="15"><span class="vf-suffix">th</span></div>
-          </div>
-        </div>
-        <div class="vf-field-row">
-          <div class="vf-field">
-            <label class="vf-label">Biaya hidup per bulan saat ini</label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ff-monthlycost" value="12000000"><span class="vf-suffix">Rp</span></div>
-          </div>
-          <div class="vf-field">
-            <label class="vf-label">Inflation rate</label>
+            <label class="vf-label">Asumsi Inflasi Tahunan (%)</label>
             <div class="vf-input-wrap"><input type="number" class="vf-input" id="ff-inflation" value="4"><span class="vf-suffix">%</span></div>
           </div>
         </div>
-
-        <h3 class="spaced">Instrumen investasi</h3>
-        <div class="vf-field vf-field-wide">
-          <label class="vf-label">Pilih produk investasi</label>
-          <div class="vf-select-wrap">
-            <select class="vf-select" id="ff-product">
-              <option value="Saham" data-return="13">Saham — 13,00% p.a.</option>
-              <option value="Obligasi Pemerintah (SBN)" data-return="6.7">Obligasi Pemerintah (SBN) — 6,70% p.a.</option>
-              <option value="Reksa Dana Saham" data-return="8">Reksa Dana Saham — 8,00% p.a.</option>
-              <option value="Reksa Dana Pendapatan Tetap" data-return="6">Reksa Dana Pendapatan Tetap — 6,00% p.a.</option>
-              <option value="Reksa Dana Pasar Uang" data-return="3.5">Reksa Dana Pasar Uang — 3,50% p.a.</option>
-              <option value="Deposito" data-return="2.75">Deposito — 2,75% p.a.</option>
-            </select>
-          </div>
-        </div>
-        <h3 class="spaced">Mode Perhitungan Dana Pensiun</h3>
         <div class="vf-field-row">
-          <div class="vf-field vf-field-wide">
-            <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:12.5px; color:var(--text-muted);">
-              <input type="checkbox" id="ff-perpetuity-enabled" checked style="width:16px; height:16px; accent-color:var(--gold); cursor:pointer;">
-              Gunakan mode Growing Perpetuity (dana bertahan selamanya)
-            </label>
-          </div>
-        </div>
-        <div class="vf-field-row" id="ff-duration-field" style="display:none;">
           <div class="vf-field">
-            <label class="vf-label">Durasi dana bertahan<span class="vf-label-sub">tahun, setelah pensiun</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ff-duration-years" value="20"><span class="vf-suffix">th</span></div>
+            <label class="vf-label">Tahun Menuju Pensiun/Freedom</label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ff-years" value="10"><span class="vf-suffix">Th</span></div>
           </div>
-        </div>
-        <div class="vf-note-box vf-note-info" style="font-weight:600;">
-          <span class="ic">ℹ️</span>
-          <span><strong>Growing Perpetuity</strong> = dana dihitung agar <strong>tidak pernah habis seumur hidup</strong>, terus tumbuh mengimbangi inflasi. Hasilnya jumlah dana jauh <strong>lebih besar</strong>, tapi paling aman karena tidak akan pernah kehabisan.<br><br><strong>Tanpa Perpetuity</strong> = dana dihitung untuk bertahan hanya sampai durasi tertentu (misal 20 tahun), setelah itu dana akan <strong>habis</strong>. Hasilnya jumlah dana dibutuhkan jauh <strong>lebih kecil</strong>, tapi Anda perlu rencana lain setelah durasi itu berakhir (penghasilan lain, warisan, atau asuransi/BPJS).</span>
-        </div>
-        <div class="vf-note-box vf-note-warn hidden" id="ff-warn">
-          <span class="ic">⚠️</span>
-          <span>Asumsi inflasi lebih besar atau sama dengan yield SBN — dana tidak akan pernah cukup bertahan selamanya secara matematis. Coba turunkan asumsi inflasi.</span>
+          <div class="vf-field">
+            <label class="vf-label">Safe Withdrawal Rate / Dividend Yield (%)</label>
+            <div class="vf-input-wrap"><input type="number" class="vf-input" id="ff-swr" value="4"><span class="vf-suffix">%</span></div>
+          </div>
         </div>
       </div>
-
       <div class="vf-card vf-result-card">
-        <h3>Target Dana Financial Freedom</h3>
+        <h3>Estimasi Target Portofolio</h3>
         <div class="vf-hero-value">
-          <span class="vf-hero-label" id="ff-target-label">Dana dibutuhkan saat usia — tahun</span>
-          <span class="vf-hero-number sm" id="ff-fundfuture">—</span>
+          <span class="vf-hero-label">Target Total Portofolio Dikehendaki</span>
+          <span class="vf-hero-number" id="ff-target">Rp 6.66 M</span>
         </div>
         <div class="vf-result-list">
-          <div class="vf-result-row"><span class="vf-result-label">Biaya hidup bulanan di masa depan</span><span class="vf-result-value" id="ff-monthlyfuture">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label">Kebutuhan tahunan di masa depan</span><span class="vf-result-value" id="ff-annualfuture">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label">Dana FF jika mulai hari ini</span><span class="vf-result-value" id="ff-fundtoday">—</span></div>
-          <div class="vf-result-row em"><span class="vf-result-label">Dana FF di masa depan</span><span class="vf-result-value" id="ff-fundfuture2">—</span></div>
-        </div>
-
-        <h3 class="spaced">Rencana investasi rutin</h3>
-        <div class="vf-result-list">
-          <div class="vf-result-row"><span class="vf-result-label">Investasi per bulan</span><span class="vf-result-value" id="ff-monthlyinvest">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label">Investasi per kuartal</span><span class="vf-result-value" id="ff-quarterlyinvest">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label">Investasi per semester</span><span class="vf-result-value" id="ff-semesterinvest">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label">Investasi per tahun</span><span class="vf-result-value" id="ff-yearlyinvest">—</span></div>
-          <div class="vf-result-row em"><span class="vf-result-label">Lump sum (sekali bayar hari ini)</span><span class="vf-result-value" id="ff-lumpsum">—</span></div>
+          <div class="vf-result-row"><span class="vf-result-label">Pengeluaran Tahunan Saat Ini</span><span class="vf-result-value" id="ff-curr-annual">Rp 180.000.000</span></div>
+          <div class="vf-result-row"><span class="vf-result-label">Pengeluaran Tahunan Masing-masing di Masa Depan</span><span class="vf-result-value" id="ff-future-annual">Rp 266.442.208</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== AVERAGE SAHAM ===================== -->
-  <section class="vf-panel" id="panel-average">
-    <div class="vf-section-title">
-      <span class="vf-eyebrow">Bonus</span>
-      <h2>Kalkulator Average Saham</h2>
-      <p>Hitung harga rata-rata (average) saham Anda setelah membeli di harga yang berbeda-beda — baik average down maupun average up. Cocok dipakai sebelum menambah posisi di saham yang sudah Anda pegang.</p>
-    </div>
-
-    <div class="vf-case">
-      <div class="vf-case-head"><span class="vf-case-tag">Contoh kasus</span></div>
-      <p><strong>Andi</strong> membeli saham PT Maju Jaya Tbk sebanyak <strong>10 lot (1.000 lembar) di harga Rp1.200</strong>. Sebulan kemudian harga turun ke <strong>Rp900</strong>, dan Andi memutuskan average down dengan membeli <strong>10 lot (1.000 lembar) lagi</strong>. Berapa harga rata-rata sahamnya sekarang?</p>
-      <button class="vf-case-btn" id="avg-example-btn">Muat contoh ini →</button>
-    </div>
-
-    <div class="vf-toolbar">
-      <button class="vf-mini-btn" id="avg-reset-btn">↺ Kosongkan / reset</button>
-      <button class="vf-mini-btn" id="avg-pdf-btn">📄 Unduh sebagai PDF</button>
-      <button class="vf-mini-btn" id="avg-share-btn">🔗 Bagikan Hasil</button>
-    </div>
-
-    <div class="vf-grid-2">
-      <div class="vf-card">
-        <h3>Riwayat Pembelian</h3>
-        <div class="vf-avg-lots" id="avg-lots-container"></div>
-        <button class="vf-mini-btn no-print" id="avg-add-lot-btn" type="button">+ Tambah Pembelian</button>
-
-        <h3 class="spaced">Biaya Transaksi (Opsional)</h3>
-        <div class="vf-field-row">
-          <div class="vf-field vf-field-wide">
-            <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:12.5px; color:var(--text-muted);">
-              <input type="checkbox" id="avg-fee-enabled" style="width:16px; height:16px; accent-color:var(--gold); cursor:pointer;">
-              Sertakan fee beli sekuritas dalam perhitungan
-            </label>
-          </div>
-        </div>
-        <div class="vf-field-row" id="avg-fee-field" style="display:none;">
-          <div class="vf-field">
-            <label class="vf-label">Fee beli<span class="vf-label-sub">% dari nilai transaksi, per sekuritas</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="avg-fee-pct" value="0.15" step="0.01"><span class="vf-suffix">%</span></div>
-          </div>
-        </div>
-
-        <h3 class="spaced">Harga Pasar Saat Ini</h3>
-        <div class="vf-field-row">
-          <div class="vf-field">
-            <label class="vf-label">Harga saham sekarang<span class="vf-label-sub">opsional, untuk lihat untung/rugi</span></label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="avg-currentprice" value=""><span class="vf-suffix">Rp</span></div>
-          </div>
-        </div>
+  <!-- ===================== TAB 3: KSEI PANEL ===================== -->
+  <section class="vf-panel" id="panel-ksei">
+    <div class="ksei-container">
+      <div class="vf-section-title">
+        <span class="vf-eyebrow">Analisis Kepemilikan KSEI</span>
+        <h2>Perubahan Kepemilikan Investor &gt;1%</h2>
+        <p class="ksei-muted">Bandingkan kepemilikan pemegang saham &gt;1% antar dua periode KSEI. Seluruh data diproses 100% lokal di browser Anda secara aman.</p>
       </div>
 
-      <div class="vf-card vf-result-card">
-        <h3>Hasil</h3>
-        <div class="vf-hero-value">
-          <span class="vf-hero-label">Harga rata-rata baru</span>
-          <span class="vf-hero-number" id="avg-price">—</span>
-          <span class="vf-badge hidden" id="avg-badge"></span>
+      <section class="ksei-box">
+        <div class="ksei-up-grid">
+          <label class="ksei-drop" id="d1"><input type="file" id="f1" accept=".xlsx,.xls,.csv"><b>Periode 1 (Lebih Lama)</b><span id="s1">Pilih file Excel / CSV KSEI</span></label>
+          <label class="ksei-drop" id="d2"><input type="file" id="f2" accept=".xlsx,.xls,.csv"><b>Periode 2 (Lebih Baru)</b><span id="s2">Pilih file Excel / CSV KSEI</span></label>
         </div>
-        <div class="vf-result-list">
-          <div class="vf-result-row"><span class="vf-result-label">Total modal</span><span class="vf-result-value" id="avg-totalcost">—</span></div>
-          <div class="vf-result-row" id="avg-fee-row" style="display:none;"><span class="vf-result-label">Total fee dibayar</span><span class="vf-result-value" id="avg-feeamount">—</span></div>
-          <div class="vf-result-row"><span class="vf-result-label">Total lot</span><span class="vf-result-value" id="avg-totalqty">—</span></div>
-          <div class="vf-result-row em"><span class="vf-result-label">Harga rata-rata / lembar</span><span class="vf-result-value" id="avg-price2">—</span></div>
+      </section>
+
+      <div id="app" class="ksei-hide" style="margin-top:16px;">
+        <div class="ksei-note"><b>Catatan:</b> Laporan KSEI hanya mencakup porsi &gt;1%. <i>Baru</i> = pemegang baru melintasi 1%; <i>Exit</i> = pemegang keluar/turun di bawah 1%.</div>
+        <div class="ksei-filters">
+          <label class="ksei-f">Lokal / Asing<select id="fLF"><option value="">Semua</option><option value="L">Lokal</option><option value="F">Asing</option></select></label>
+          <label class="ksei-f">Kelompok<select id="fGrp"><option value="">Semua</option><option>Individu</option><option>Institusi</option></select></label>
+          <label class="ksei-f">Kategori Investor<select id="fType"></select></label>
+          <label class="ksei-f">Min. |Δ %| Porsi<input type="number" id="fThr" value="0" min="0" step="0.25" style="width:110px"></label>
         </div>
+        <div class="ksei-kpis" id="kpis"></div>
+        <div class="ksei-tabs" role="tablist" id="ksei-tabs"></div>
+        <div id="ksei-view"></div>
       </div>
-    </div>
-  </section>
-
-  <!-- ===================== TARGET HARGA SAHAM ===================== -->
-  <section class="vf-panel" id="panel-target">
-    <div class="vf-section-title">
-      <span class="vf-eyebrow">Perencanaan Beli</span>
-      <h2>Kalkulator Target Harga Saham</h2>
-      <p>Ingin average price saham Anda tepat di angka tertentu? Kalkulator target harga saham ini menghitung berapa lot dan modal tambahan yang dibutuhkan untuk mencapai target average price yang Anda inginkan.</p>
-    </div>
-
-    <div class="vf-case">
-      <div class="vf-case-head"><span class="vf-case-tag">Contoh kasus</span></div>
-      <p><strong>Budi</strong> punya <strong>10 lot saham</strong> dengan average price <strong>Rp1.200</strong>. Harga sekarang turun ke <strong>Rp900</strong>, dan Budi ingin average price-nya turun jadi tepat <strong>Rp1.000</strong>. Berapa lot tambahan yang harus dibeli, dan berapa modal yang dibutuhkan?</p>
-      <button class="vf-case-btn" id="target-example-btn">Muat contoh ini →</button>
-    </div>
-
-    <div class="vf-toolbar">
-      <button class="vf-mini-btn" id="target-reset-btn">↺ Kosongkan / reset</button>
-      <button class="vf-mini-btn" id="target-pdf-btn">📄 Unduh sebagai PDF</button>
-      <button class="vf-mini-btn" id="target-share-btn">🔗 Bagikan Hasil</button>
-    </div>
-
-    <div class="vf-grid-2">
-      <div class="vf-card">
-        <h3>Posisi Anda Saat Ini</h3>
-        <div class="vf-field-row">
-          <div class="vf-field">
-            <label class="vf-label">Average price Anda saat ini</label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-current-avg" value="1200"><span class="vf-suffix">Rp</span></div>
-          </div>
-          <div class="vf-field">
-            <label class="vf-label">Jumlah lot saat ini</label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-current-lots" value="10"><span class="vf-suffix">lot</span></div>
-          </div>
-        </div>
-
-        <h3 class="spaced">Target yang Diinginkan</h3>
-        <div class="vf-field-row">
-          <div class="vf-field">
-            <label class="vf-label">Target average price yang diinginkan</label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-avg-price" value="1000"><span class="vf-suffix">Rp</span></div>
-          </div>
-          <div class="vf-field">
-            <label class="vf-label">Rencana harga beli tambahan</label>
-            <div class="vf-input-wrap"><input type="number" class="vf-input" id="target-buy-price" value="900"><span class="vf-suffix">Rp</span></div>
-          </div>
-        </div>
-
-        <div class="vf-note-box vf-note-warn hidden" id="target-warn">
-          <span class="ic">⚠️</span>
-          <span>Target average price ini tidak bisa dicapai dengan harga beli tambahan yang Anda masukkan. Target harus berada di antara average price saat ini dan harga beli rencana Anda (misalnya, tidak bisa menargetkan average di bawah harga beli tambahan itu sendiri).</span>
-        </div>
-      </div>
-
-      <div class="vf-card vf-result-card">
-        <h3>Hasil</h3>
-        <div class="vf-result-list" id="target-result-list">
-          <div class="vf-result-row em"><span class="vf-result-label">Jumlah lot tambahan yang perlu dibeli</span><span class="vf-result-value" id="target-lots-needed">—</span></div>
-          <div class="vf-result-row em"><span class="vf-result-label">Modal tambahan dibutuhkan</span><span class="vf-result-value" id="target-capital-needed">—</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== RISK PROFILE ===================== -->
-  <section class="vf-panel" id="panel-riskprofile">
-    <div class="vf-section-title">
-      <span class="vf-eyebrow">Kenali Diri Anda</span>
-      <h2>Fitting-Your-Portfolio</h2>
-      <p>23 pertanyaan mendalam untuk memahami kapasitas finansial, toleransi risiko, pengalaman, watak perilaku, preferensi dividen vs capital gain, hingga gaya pengelolaan investasi Anda — geser slider sesuai kondisi Anda yang sebenarnya, hasil terhitung otomatis di bagian bawah.</p>
-    </div>
-
-    <div class="vf-note-box vf-note-warn">
-      <span class="ic">⚠️</span>
-      <span>Ini adalah kuesioner edukasi untuk refleksi diri, <strong>bukan profil risiko resmi (KYC)</strong> yang dipakai untuk pembukaan rekening efek atau rekomendasi produk dari lembaga keuangan manapun. Untuk keperluan investasi resmi, profil risiko Anda akan dinilai ulang oleh sekuritas/manajer investasi tempat Anda terdaftar sesuai prosedur yang berlaku.</span>
-    </div>
-
-    <div class="vf-toolbar">
-      <button class="vf-mini-btn" id="risk-reset-btn">↺ Kosongkan / reset</button>
-      <button class="vf-mini-btn" id="risk-pdf-btn">📄 Unduh sebagai PDF</button>
-      <button class="vf-mini-btn" id="risk-share-btn">🔗 Bagikan Hasil</button>
-    </div>
-
-    <div class="vf-card" style="margin-bottom:16px;">
-      <h3>Bagian 1 — Kapasitas Finansial & Toleransi Risiko</h3>
-
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">1. Kapan dana investasi ini akan Anda gunakan?</div>
-        <input type="range" class="vf-slider" id="risk-q1" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Kurang dari 1 tahun</span><span>Lebih dari 10 tahun</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">2. Seberapa stabil pendapatan Anda saat ini?</div>
-        <input type="range" class="vf-slider" id="risk-q2" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Sangat tidak stabil</span><span>Sangat stabil (gaji tetap)</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">3. Berapa besar porsi dana ini dari total kekayaan Anda?</div>
-        <input type="range" class="vf-slider" id="risk-q3" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Hampir seluruh tabungan saya</span><span>Hanya sebagian kecil</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">4. Seberapa siap dana darurat Anda di luar dana investasi ini?</div>
-        <input type="range" class="vf-slider" id="risk-q4" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Belum punya sama sekali</span><span>Sudah &gt;6 bulan pengeluaran</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">5. Jika portofolio Anda turun 20% dalam sebulan, apa reaksi Anda?</div>
-        <input type="range" class="vf-slider" id="risk-q5" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Panik & jual semua</span><span>Tenang, bahkan nambah beli</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">6. Mana yang lebih Anda sukai?</div>
-        <input type="range" class="vf-slider" id="risk-q6" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Untung kecil tapi pasti</span><span>Untung besar walau bisa rugi besar</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">7. Bagaimana pengalaman Anda menghadapi kerugian investasi sebelumnya?</div>
-        <input type="range" class="vf-slider" id="risk-q7" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Belum pernah & takut membayangkannya</span><span>Sudah terbiasa, itu bagian dari proses</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">8. Bagaimana perasaan Anda melihat harga naik-turun tiap hari?</div>
-        <input type="range" class="vf-slider" id="risk-q8" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Sangat mengganggu pikiran</span><span>Santai, itu hal biasa</span></div>
-      </div>
-    </div>
-
-    <div class="vf-card" style="margin-bottom:16px;">
-      <h3>Bagian 2 — Pengalaman & Pengetahuan Investasi</h3>
-
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">9. Sudah berapa lama Anda berinvestasi di pasar modal?</div>
-        <input type="range" class="vf-slider" id="risk-q9" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Baru mulai</span><span>Lebih dari 5 tahun</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">10. Seberapa paham Anda soal produk investasi (saham, obligasi, reksadana)?</div>
-        <input type="range" class="vf-slider" id="risk-q10" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Masih awam</span><span>Sangat paham</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">11. Seberapa sering Anda memantau portofolio investasi Anda?</div>
-        <input type="range" class="vf-slider" id="risk-q11" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Jarang, sebulan sekali</span><span>Hampir tiap hari</span></div>
-      </div>
-    </div>
-
-    <div class="vf-card" style="margin-bottom:16px;">
-      <h3>Bagian 3 — Tujuan & Watak Perilaku Investasi</h3>
-
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">12. Apa tujuan utama investasi Anda?</div>
-        <input type="range" class="vf-slider" id="risk-q12" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Menjaga nilai uang tetap aman</span><span>Mengembangkan uang secepat mungkin</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">13. Bagaimana cara Anda biasanya mengambil keputusan investasi?</div>
-        <input type="range" class="vf-slider" id="risk-q13" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Riset mendalam dulu, baru putuskan</span><span>Ikut insting atau tren yang sedang ramai</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">14. Seberapa sering Anda "ikut-ikutan" beli saham yang sedang ramai dibicarakan?</div>
-        <input type="range" class="vf-slider" id="risk-q14" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Tidak pernah terpengaruh</span><span>Sering ikut-ikutan</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">15. Seberapa sabar Anda menunggu hasil investasi jangka panjang?</div>
-        <input type="range" class="vf-slider" id="risk-q15" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Ingin cepat lihat hasil</span><span>Sabar menunggu bertahun-tahun</span></div>
-      </div>
-    </div>
-
-    <div class="vf-card" style="margin-bottom:16px;">
-      <h3>Bagian 4 — Preferensi Dividen vs Capital Gain</h3>
-
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">16. Mana yang lebih menarik buat Anda dari sebuah saham?</div>
-        <input type="range" class="vf-slider" id="risk-q16" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Dividen rutin tiap tahun, walau harga stagnan</span><span>Potensi kenaikan harga, walau tanpa dividen</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">17. Apakah Anda membutuhkan penghasilan rutin (cash flow) dari investasi Anda saat ini?</div>
-        <input type="range" class="vf-slider" id="risk-q17" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Tidak, saya reinvestasikan semua keuntungan</span><span>Ya, saya andalkan sebagai penghasilan rutin</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">18. Bagaimana pandangan Anda soal saham yang tidak pernah bagi dividen tapi tumbuh pesat (contoh: banyak saham teknologi)?</div>
-        <input type="range" class="vf-slider" id="risk-q18" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Kurang menarik, saya tetap mau dividen</span><span>Sangat menarik, yang penting harga naik</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">19. Seberapa penting Dividend Payout Ratio perusahaan bagi Anda saat memilih saham?</div>
-        <input type="range" class="vf-slider" id="risk-q19" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Tidak penting sama sekali</span><span>Sangat penting, jadi pertimbangan utama</span></div>
-      </div>
-    </div>
-
-    <div class="vf-card" style="margin-bottom:16px;">
-      <h3>Bagian 5 — Gaya Pengelolaan Investasi</h3>
-
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">20. Bagaimana Anda ingin mengelola investasi Anda?</div>
-        <input type="range" class="vf-slider" id="risk-q20" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Ingin memilih & mengelola saham sendiri</span><span>Ingin diserahkan ke manajer investasi profesional</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">21. Berapa banyak waktu yang bisa Anda luangkan untuk riset & memantau investasi tiap minggu?</div>
-        <input type="range" class="vf-slider" id="risk-q21" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Sangat sedikit / hampir tidak ada waktu</span><span>Cukup banyak, saya senang riset sendiri</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">22. Seberapa percaya diri Anda menganalisis laporan keuangan atau kondisi ekonomi makro sendiri?</div>
-        <input type="range" class="vf-slider" id="risk-q22" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Tidak percaya diri sama sekali</span><span>Sangat percaya diri</span></div>
-      </div>
-      <div class="vf-slider-item">
-        <div class="vf-slider-question">23. Jika harus memilih, Anda lebih percaya pada siapa untuk keputusan investasi?</div>
-        <input type="range" class="vf-slider" id="risk-q23" min="0" max="100" value="50" step="1">
-        <div class="vf-slider-labels"><span>Sepenuhnya percaya fund manager profesional</span><span>Lebih percaya analisis saya sendiri</span></div>
-      </div>
-    </div>
-
-    <div class="vf-card vf-result-card">
-      <h3>Hasil Profil Risiko Anda</h3>
-      <div class="vf-hero-value">
-        <span class="vf-hero-label">Skor Profil Risiko (dari Bagian 1 &amp; 2)</span>
-        <span class="vf-hero-number" id="risk-score">50 / 100</span>
-        <span class="vf-badge vf-badge-good" id="risk-category-badge">Moderat</span>
-      </div>
-      <div class="vf-risk-gauge"><div class="vf-risk-gauge-fill" id="risk-gauge-fill" style="width:50%;"></div></div>
-      <p id="risk-desc" style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;"></p>
-
-      <h3 class="spaced">Saran Alokasi Produk</h3>
-      <p id="risk-allocation" style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;"></p>
-
-      <h3 class="spaced">Orientasi Dividen vs Capital Gain</h3>
-      <div class="vf-hero-value" style="padding:6px 0 10px;">
-        <span class="vf-badge vf-badge-good" id="risk-dividend-badge">Seimbang</span>
-      </div>
-      <p id="risk-dividend-desc" style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;"></p>
-
-      <h3 class="spaced">Gaya Pengelolaan: Reksa Dana atau Saham Langsung?</h3>
-      <div class="vf-hero-value" style="padding:6px 0 10px;">
-        <span class="vf-badge vf-badge-good" id="risk-management-badge">Kombinasi</span>
-      </div>
-      <p id="risk-management-desc" style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;"></p>
-
-      <div class="vf-risk-behavior-notes" id="risk-behavior-notes" style="display:none; margin-top:16px; padding-top:14px; border-top:1px dashed var(--border);"></div>
-    </div>
-  </section>
-
-  <!-- ===================== ABOUT ME ===================== -->
-  <section class="vf-panel" id="panel-about">
-    <div class="vf-section-title">
-      <span class="vf-eyebrow">Profil</span>
-      <h2>Tentang Sofyan Financial</h2>
-      <p>Kenalan lebih dekat dengan orang di balik kalkulator ini.</p>
-    </div>
-
-    <div class="vf-card" style="margin-bottom:18px;">
-      <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:stretch; margin-bottom:20px;">
-        <img src="/sofyan-photo.jpg" alt="Foto Sofyan" style="width:120px; height:120px; border-radius:16px; object-fit:cover; border:1px solid rgba(201,162,75,0.4); flex-shrink:0;" />
-        <div style="flex:1; min-width:200px;">
-          <h3 style="margin-top:0;">Sofyan</h3>
-          <p style="color:var(--text-muted); font-size:13px; line-height:1.7; margin:0;">
-            Value Investing educator dan mentor dengan pengalaman panjang di pasar modal Indonesia.
-          </p>
-        </div>
-        <a href="https://www.youtube.com/@SofyanFinancial" target="_blank" rel="noopener" style="flex:0 0 200px; min-width:180px; display:flex; flex-direction:column; justify-content:center; gap:8px; text-decoration:none; padding:14px; border-radius:12px; background:rgba(226,52,47,0.08); border:1px solid rgba(226,52,47,0.25);">
-          <svg viewBox="0 0 24 24" width="26" height="26" fill="#e2342f"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5C1.6 4.3.8 5.1.5 6.2 0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
-          <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:var(--text);">Sofyan Financial</div>
-          <div style="font-size:11.5px; color:var(--text-muted); line-height:1.4;">Subscribe channel YouTube saya</div>
-        </a>
-      </div>
-
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-        <div style="background:rgba(201,162,75,0.06); border:1px solid rgba(201,162,75,0.25); border-radius:10px; padding:14px;">
-          <div style="font-family:'Poppins',sans-serif; font-size:22px; font-weight:700; color:var(--gold-soft);">12 Tahun</div>
-          <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Pengalaman di pasar modal Indonesia</div>
-        </div>
-        <div style="background:rgba(201,162,75,0.06); border:1px solid rgba(201,162,75,0.25); border-radius:10px; padding:14px;">
-          <div style="font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; color:var(--gold-soft);">Bersertifikasi &amp; Berlisensi</div>
-          <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Profesional pasar modal</div>
-        </div>
-        <div style="background:rgba(201,162,75,0.06); border:1px solid rgba(201,162,75,0.25); border-radius:10px; padding:14px;">
-          <div style="font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; color:var(--gold-soft);">Praktisi Aktif</div>
-          <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Bekerja di salah satu perusahaan sekuritas</div>
-        </div>
-        <div style="background:rgba(201,162,75,0.06); border:1px solid rgba(201,162,75,0.25); border-radius:10px; padding:14px;">
-          <div style="font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; color:var(--gold-soft);">Best Advisor</div>
-          <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Di salah satu perusahaan asset management (Reksa Dana)</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="vf-grid-2">
-      <div class="vf-card">
-        <h3>Filosofi Investasi</h3>
-        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;">
-          <li style="display:flex; gap:8px; font-size:13px; color:var(--text-muted); line-height:1.6;"><span style="color:var(--positive); flex-shrink:0;">✅</span> Fokus fundamental, bukan ikut-ikutan sentimen pasar</li>
-          <li style="display:flex; gap:8px; font-size:13px; color:var(--text-muted); line-height:1.6;"><span style="color:var(--positive); flex-shrink:0;">✅</span> Berpikir jangka panjang, ala Warren Buffett</li>
-          <li style="display:flex; gap:8px; font-size:13px; color:var(--text-muted); line-height:1.6;"><span style="color:var(--positive); flex-shrink:0;">✅</span> Selalu cari margin of safety sebelum membeli</li>
-          <li style="display:flex; gap:8px; font-size:13px; color:var(--text-muted); line-height:1.6;"><span style="color:var(--positive); flex-shrink:0;">✅</span> Riset mendalam, bukan sekadar ikut rekomendasi orang lain</li>
-        </ul>
-      </div>
-      <div class="vf-card">
-        <h3>Kenapa Toolkit Ini Dibuat</h3>
-        <p style="color:var(--text-muted); font-size:13px; line-height:1.7; margin:0;">
-          Agar investor pasar modal bisa mengerti cara menghitung nilai intrinsik saham dan menyusun target perencanaan keuangan — tanpa harus jago Excel atau kuliah keuangan dulu.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== GLOSSARY ===================== -->
-  <section class="vf-panel" id="panel-glossary">
-    <div class="vf-section-title">
-      <span class="vf-eyebrow">Referensi</span>
-      <h2>Kamus Investasi</h2>
-      <p>Kumpulan istilah dan rumus dasar investasi saham, dijelaskan sederhana untuk investor pemula. Klik tiap istilah untuk membuka penjelasannya.</p>
-    </div>
-
-    <div class="vf-card">
-      <details class="vf-glossary-item">
-        <summary>Beta (β)</summary>
-        <div class="vf-glossary-body">
-          <p>Mengukur volatilitas atau sensitivitas harga saham dibanding pergerakan pasar (IHSG). Beta 1 berarti pergerakan saham sejalan dengan pasar; beta di atas 1 berarti lebih fluktuatif dari pasar, di bawah 1 berarti lebih stabil. Dipakai sebagai salah satu input di kalkulator DCF &amp; DDM pada halaman ini.</p>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Cost of Equity</summary>
-        <div class="vf-glossary-body">
-          <p>Tingkat imbal hasil yang diharapkan investor untuk menanggung risiko memiliki saham tersebut. Biasanya dihitung dengan model CAPM (Capital Asset Pricing Model), menggabungkan risk free rate, beta, dan expected market return.</p>
-          <div class="vf-glossary-formula">Cost of Equity = Risk Free + Beta × (Return Pasar − Risk Free)</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Current Ratio</summary>
-        <div class="vf-glossary-body">
-          <p>Rasio aset lancar dibanding kewajiban lancar, indikator likuiditas jangka pendek perusahaan — seberapa mampu perusahaan membayar utang yang jatuh tempo dalam waktu dekat.</p>
-          <div class="vf-glossary-formula">Current Ratio = Aset Lancar ÷ Kewajiban Lancar</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Debt to Equity Ratio (DER)</summary>
-        <div class="vf-glossary-body">
-          <p>Rasio total utang dibanding modal sendiri (ekuitas). Menunjukkan seberapa agresif operasional perusahaan didanai oleh utang dibanding modal pemegang saham. DER yang terlalu tinggi menandakan risiko keuangan yang lebih besar.</p>
-          <div class="vf-glossary-formula">DER = Total Utang ÷ Total Ekuitas</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Dividend Payout Ratio</summary>
-        <div class="vf-glossary-body">
-          <p>Persentase laba bersih yang dibagikan sebagai dividen ke pemegang saham. Sisanya ditahan perusahaan sebagai laba ditahan untuk ekspansi atau operasional.</p>
-          <div class="vf-glossary-formula">Payout Ratio = Total Dividen ÷ Laba Bersih</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Dividend Per Share (DPS)</summary>
-        <div class="vf-glossary-body">
-          <p>Jumlah dividen tunai yang dibagikan perusahaan untuk setiap satu lembar saham. Menjadi input utama di kalkulator Dividend Discount Model (DDM) pada halaman ini.</p>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Dividend Yield</summary>
-        <div class="vf-glossary-body">
-          <p>Persentase dividen per lembar dibanding harga saham saat ini — menunjukkan "imbal hasil" tunai yang diterima investor dari dividen saja, di luar potensi kenaikan harga saham.</p>
-          <div class="vf-glossary-formula">Dividend Yield = DPS ÷ Harga Saham</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Earning Per Share (EPS)</summary>
-        <div class="vf-glossary-body">
-          <p>Laba bersih perusahaan yang menjadi hak untuk setiap satu lembar saham beredar. Salah satu angka fundamental paling dasar, dipakai di kalkulator Equity Bond Valuation pada halaman ini.</p>
-          <div class="vf-glossary-formula">EPS = Laba Bersih ÷ Jumlah Saham Beredar</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Enterprise Value (EV)</summary>
-        <div class="vf-glossary-body">
-          <p>Nilai total perusahaan dari sudut pandang pengambilalihan penuh — mencakup nilai ekuitas (market cap) ditambah total utang, dikurangi kas dan setara kas yang dimiliki perusahaan.</p>
-          <div class="vf-glossary-formula">EV = Market Cap + Total Utang − Kas &amp; Setara Kas</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>EV/EBITDA</summary>
-        <div class="vf-glossary-body">
-          <p>Rasio yang membandingkan Enterprise Value dengan EBITDA (laba operasional sebelum bunga, pajak, depresiasi, dan amortisasi). Berguna untuk membandingkan perusahaan lintas sektor atau struktur modal berbeda, karena tidak terpengaruh cara perusahaan didanai (utang vs modal sendiri).</p>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Intrinsic Value</summary>
-        <div class="vf-glossary-body">
-          <p>Estimasi nilai wajar sebuah saham berdasarkan fundamental perusahaan (proyeksi laba, dividen, atau arus kas) — bukan harga yang terbentuk dari sentimen pasar sesaat. Inilah yang dihitung oleh semua kalkulator di halaman ini.</p>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Margin of Safety</summary>
-        <div class="vf-glossary-body">
-          <p>Selisih antara intrinsic value dan harga pasar saat ini — semacam "bantalan" keamanan yang dicari investor value investing sebelum membeli saham, untuk mengantisipasi kesalahan estimasi atau kondisi pasar yang tidak terduga.</p>
-          <div class="vf-glossary-formula">Margin of Safety = (Intrinsic Value − Harga Pasar) ÷ Intrinsic Value</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Market Capitalization (Market Cap)</summary>
-        <div class="vf-glossary-body">
-          <p>Total nilai pasar seluruh saham beredar suatu perusahaan — cara paling umum untuk mengukur "ukuran" sebuah perusahaan di bursa.</p>
-          <div class="vf-glossary-formula">Market Cap = Harga Saham × Jumlah Saham Beredar</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Net Profit Margin (NPM)</summary>
-        <div class="vf-glossary-body">
-          <p>Persentase laba bersih dibanding total pendapatan (omzet) perusahaan. Menunjukkan seberapa efisien perusahaan mengubah penjualan menjadi keuntungan bersih.</p>
-          <div class="vf-glossary-formula">NPM = Laba Bersih ÷ Pendapatan</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Price to Book Value (PBV / P/B)</summary>
-        <div class="vf-glossary-body">
-          <p>Rasio harga saham dibanding nilai buku (aset bersih) per lembar saham. Sering dipakai untuk menilai saham sektor perbankan dan keuangan, di mana nilai aset lebih relevan dibanding proyeksi laba.</p>
-          <div class="vf-glossary-formula">PBV = Harga Saham ÷ Book Value per Share</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Price to Earning Ratio (PER / P/E)</summary>
-        <div class="vf-glossary-body">
-          <p>Rasio harga saham dibanding laba bersih per lembar (EPS). Menunjukkan berapa kali investor bersedia membayar dibanding laba tahunan perusahaan. PER rendah bisa berarti murah (atau ada masalah fundamental), PER tinggi bisa berarti mahal (atau pasar berekspektasi tinggi terhadap pertumbuhannya).</p>
-          <div class="vf-glossary-formula">PER = Harga Saham ÷ EPS</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Return on Assets (ROA)</summary>
-        <div class="vf-glossary-body">
-          <p>Mengukur seberapa efisien perusahaan menghasilkan laba dari seluruh aset yang dimilikinya, tanpa memandang aset itu didanai dari utang atau modal sendiri.</p>
-          <div class="vf-glossary-formula">ROA = Laba Bersih ÷ Total Aset</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Return on Equity (ROE)</summary>
-        <div class="vf-glossary-body">
-          <p>Mengukur seberapa efisien perusahaan menghasilkan laba dari modal yang ditanamkan pemegang saham. Salah satu indikator profitabilitas paling penting dalam value investing.</p>
-          <div class="vf-glossary-formula">ROE = Laba Bersih ÷ Total Ekuitas</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Return on Investment (ROI)</summary>
-        <div class="vf-glossary-body">
-          <p>Mengukur seberapa besar keuntungan yang diperoleh investor dibanding modal yang diinvestasikan — bisa dipakai untuk mengukur hasil investasi saham secara personal, bukan hanya kinerja perusahaan.</p>
-          <div class="vf-glossary-formula">ROI = (Nilai Akhir − Modal Awal) ÷ Modal Awal</div>
-        </div>
-      </details>
-
-      <details class="vf-glossary-item">
-        <summary>Terminal Value</summary>
-        <div class="vf-glossary-body">
-          <p>Nilai proyeksi laba/arus kas perusahaan setelah periode proyeksi eksplisit berakhir (misal setelah tahun ke-10), dihitung dengan asumsi pertumbuhan konstan selamanya (perpetuity). Komponen penting dalam kalkulator DCF dan DDM pada halaman ini.</p>
-        </div>
-      </details>
     </div>
   </section>
 
 </main>
 
-<div id="print-footer" class="print-only">
-  Dihasilkan dari sofyanfinancial.vercel.app — hasil ini adalah estimasi berdasarkan asumsi yang Anda masukkan, bukan rekomendasi investasi.
-</div>
-
-<!-- ===================== PROMO / MENTORING ===================== -->
-<section class="vf-promo">
-  <div class="vf-promo-inner">
-    <span class="vf-promo-eyebrow">Belajar Bareng</span>
-    <h3>Ingin belajar dan mentoring investasi saham bareng saya?</h3>
-    <ul class="vf-promo-list">
-      <li><span class="check">✅</span> Private dan bimbingan secara personal sesuai profil risiko dan tujuan investasi</li>
-      <li><span class="check">✅</span> Pendampingan intensif</li>
-      <li><span class="check">✅</span> Dukungan riset yang mendalam dan komprehensif</li>
-      <li><span class="check">✅</span> Fokus fundamental dan jangka panjang</li>
-    </ul>
-    <div class="vf-promo-cta">
-      <a href="https://wa.me/62811207205" class="vf-promo-btn" target="_blank" rel="noopener">Hubungi via WhatsApp</a>
-      <span class="vf-promo-phone">📞 0811207205</span>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== SPEAKING INVITATION ===================== -->
-<section class="vf-promo">
-  <div class="vf-card" style="max-width:1020px; margin:0 auto; padding:20px;">
-    <div style="display:flex; align-items:flex-start; gap:14px;">
-      <div style="font-size:26px; line-height:1;">🎤</div>
-      <div style="flex:1; min-width:200px;">
-        <h3 style="margin:0 0 6px;">Undang Saya Jadi Pembicara</h3>
-        <p style="color:var(--text-muted); font-size:13px; line-height:1.7; margin:0;">
-          Sedang mencari pembicara untuk seminar, workshop, atau kelas perencanaan keuangan dan investasi? Silakan hubungi saya melalui <a href="https://wa.me/62811207205" target="_blank" rel="noopener" style="color:var(--gold-soft);">WhatsApp</a> untuk diskusi lebih lanjut.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== TIP JAR ===================== -->
-<section class="vf-promo">
-  <div class="vf-card" style="max-width:1020px; margin:0 auto; padding:20px;">
-    <div style="display:flex; align-items:flex-start; gap:14px;">
-      <div style="font-size:26px; line-height:1;">☕</div>
-      <div style="flex:1; min-width:200px;">
-        <h3 style="margin:0 0 6px;">Traktir Kopi</h3>
-        <p style="color:var(--text-muted); font-size:13px; line-height:1.7; margin:0 0 14px;">
-          Jika toolkit ini bermanfaat bagi perjalanan investasi Anda, dan Anda berkenan memberi sedikit apresiasi, saya akan sangat senang menerima secangkir kopi. Dukungan ini sepenuhnya sukarela — menggunakan dan membagikan toolkit ini ke sesama investor saja sudah berarti banyak bagi saya.
-        </p>
-        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-          <div style="font-family:'Poppins',sans-serif; font-size:13.5px; font-weight:600; color:var(--gold-soft); background:rgba(201,162,75,0.08); border:1px solid rgba(201,162,75,0.3); padding:8px 14px; border-radius:8px;">
-            GoPay: 0811207205
-          </div>
-          <button class="vf-mini-btn" id="copy-gopay-btn" type="button">Salin nomor</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== FAQ ===================== -->
-<section class="no-print" style="max-width:1020px; margin:26px auto 0; padding:0 20px;">
-  <div style="background:linear-gradient(135deg,#16233a,#101a2c); border:1px solid #213249; border-radius:14px; padding:24px;">
-    <span style="font-family:'Poppins',sans-serif; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold);">FAQ</span>
-    <h3 style="font-family:'Poppins',sans-serif; font-size:19px; color:var(--text); margin:8px 0 16px;">Pertanyaan Seputar Valuasi Saham</h3>
-
-    <div style="margin-bottom:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Apa itu intrinsic value saham?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Intrinsic value adalah estimasi nilai wajar sebuah saham berdasarkan proyeksi laba, dividen, atau arus kas di masa depan — bukan harga yang terbentuk dari sentimen pasar. Kalkulator ini menghitungnya lewat 4 metode: DCF, DDM, Equity Bond Valuation, dan simulasi Financial Freedom.</p>
-    </div>
-
-    <div style="margin-bottom:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Apa bedanya DCF dan DDM dalam valuasi saham?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">DCF mendiskon proyeksi laba bersih emiten, sedangkan DDM mendiskon proyeksi dividen per lembar. DDM lebih akurat untuk emiten rutin bagi dividen, sementara DCF lebih fleksibel dipakai walau emiten belum bagi dividen.</p>
-    </div>
-
-    <div style="margin-bottom:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Apa itu Equity Bond Valuation ala Warren Buffett?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Metode dari buku "The Warren Buffett Stock Portfolio" yang memperlakukan saham seperti obligasi — menghitung estimasi total imbal hasil (IRR) dari harga saat ini dibandingkan dengan yield SBN 10 tahun sebagai patokan bebas risiko.</p>
-    </div>
-
-    <div style="margin-bottom:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Apa bedanya DCF di kalkulator ini dengan DCF yang dipakai analis profesional?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Esensi dan rumusnya sama persis dengan yang dipakai analis profesional (proyeksi arus kas, discount rate, dan terminal value). Bedanya, kalkulator ini disederhanakan dan dipercepat agar bisa langsung dipakai investor ritel tanpa perlu membangun model Excel dari nol — tanpa mengubah esensi perhitungannya.</p>
-    </div>
-
-    <div>
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Apakah kalkulator ini gratis?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Ya, 100% gratis dan bisa langsung dipakai di browser tanpa perlu login atau install aplikasi.</p>
-    </div>
-
-    <div style="margin-top:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Bagaimana cara menghitung valuasi saham?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Ada beberapa cara menghitung valuasi saham: Discounted Cash Flow (DCF) dari proyeksi laba, Dividend Discount Model (DDM) dari proyeksi dividen, atau Equity Bond Valuation ala Warren Buffett yang membandingkan saham dengan obligasi. Ketiganya tersedia gratis di tab "Kalkulator Valuasi Saham" pada situs ini.</p>
-    </div>
-
-    <div style="margin-top:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Apa itu kalkulator DCF (Discounted Cash Flow) saham?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Kalkulator DCF saham adalah alat bantu menghitung nilai wajar saham dengan mendiskon proyeksi laba bersih 10 tahun ke depan memakai Cost of Equity, ditambah terminal value. Ini metode valuasi paling umum dipakai analis profesional maupun investor value investing seperti Warren Buffett.</p>
-    </div>
-
-    <div style="margin-top:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Bagaimana cara menghitung average (rata-rata) harga saham?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Average harga saham dihitung dari total modal seluruh pembelian dibagi total lot/lembar yang dimiliki. Kalkulator Average Saham di situs ini menghitungnya otomatis, termasuk opsi fee beli sekuritas, dan bisa menambah beberapa harga pembelian sekaligus (average up maupun average down).</p>
-    </div>
-
-    <div style="margin-top:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Apa itu kalkulator target harga saham?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Kalkulator target harga saham menghitung kebalikan dari kalkulator average biasa — Anda tentukan dulu target average price yang diinginkan, lalu kalkulator ini menghitung berapa lot dan modal tambahan yang perlu dibeli untuk mencapai target tersebut.</p>
-    </div>
-
-    <div style="margin-top:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Apa itu value investing?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Value investing adalah strategi investasi yang dipopulerkan Warren Buffett — membeli saham di harga di bawah nilai wajarnya (intrinsic value), lalu menahannya dalam jangka panjang. Semua kalkulator di situs ini (DCF, DDM, Equity Bond Valuation) dibangun berdasarkan prinsip value investing tersebut.</p>
-    </div>
-  </div>
-</section>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type":"Question","name":"Apa itu intrinsic value saham?","acceptedAnswer":{"@type":"Answer","text":"Intrinsic value adalah estimasi nilai wajar sebuah saham berdasarkan proyeksi laba, dividen, atau arus kas di masa depan, dihitung lewat metode DCF, DDM, Equity Bond Valuation, dan Financial Freedom."}},
-    {"@type":"Question","name":"Apa bedanya DCF dan DDM dalam valuasi saham?","acceptedAnswer":{"@type":"Answer","text":"DCF mendiskon proyeksi laba bersih, sedangkan DDM mendiskon proyeksi dividen per lembar saham."}},
-    {"@type":"Question","name":"Apa itu Equity Bond Valuation ala Warren Buffett?","acceptedAnswer":{"@type":"Answer","text":"Metode yang memperlakukan saham seperti obligasi, membandingkan estimasi IRR saham dengan yield SBN 10 tahun."}},
-    {"@type":"Question","name":"Apakah kalkulator valuasi saham ini gratis?","acceptedAnswer":{"@type":"Answer","text":"Ya, kalkulator ini 100% gratis digunakan langsung di browser."}},
-    {"@type":"Question","name":"Apa bedanya DCF di kalkulator ini dengan DCF yang dipakai analis profesional?","acceptedAnswer":{"@type":"Answer","text":"Esensi dan rumusnya sama persis dengan yang dipakai analis profesional. Kalkulator ini disederhanakan dan dipercepat agar bisa langsung dipakai investor ritel tanpa perlu membangun model Excel dari nol."}},
-    {"@type":"Question","name":"Bagaimana cara menghitung valuasi saham?","acceptedAnswer":{"@type":"Answer","text":"Cara menghitung valuasi saham antara lain dengan Discounted Cash Flow (DCF), Dividend Discount Model (DDM), atau Equity Bond Valuation ala Warren Buffett, tersedia gratis di kalkulator ini."}},
-    {"@type":"Question","name":"Apa itu kalkulator DCF saham?","acceptedAnswer":{"@type":"Answer","text":"Kalkulator DCF saham menghitung nilai wajar saham dengan mendiskon proyeksi laba bersih 10 tahun ke depan memakai Cost of Equity, ditambah terminal value."}},
-    {"@type":"Question","name":"Bagaimana cara menghitung average harga saham?","acceptedAnswer":{"@type":"Answer","text":"Average harga saham dihitung dari total modal seluruh pembelian dibagi total lot yang dimiliki, termasuk opsi fee beli sekuritas."}},
-    {"@type":"Question","name":"Apa itu kalkulator target harga saham?","acceptedAnswer":{"@type":"Answer","text":"Kalkulator target harga saham menghitung berapa lot dan modal tambahan yang perlu dibeli untuk mencapai target average price yang diinginkan."}},
-    {"@type":"Question","name":"Apa itu value investing?","acceptedAnswer":{"@type":"Answer","text":"Value investing adalah strategi investasi ala Warren Buffett yaitu membeli saham di bawah nilai wajarnya lalu menahannya dalam jangka panjang."}}
-  ]
-}
-</script>
-
 <footer class="vf-footer">
-  <div class="vf-disclaimer">
-    <button class="vf-disclaimer-toggle" id="disclaimer-toggle">
-      ⓘ Disclaimer <span class="vf-disclaimer-arrow" id="disclaimer-arrow">▾</span>
-    </button>
-    <p class="vf-disclaimer-text" id="disclaimer-text">
-      File dan alat bantu ini merupakan karya orisinal Sofyan Financial, disediakan semata-mata sebagai alat bantu perhitungan valuasi berdasarkan rumus dan asumsi tertentu, serta tidak berafiliasi dengan institusi atau pihak mana pun. Seluruh perhitungan bersifat informatif dan edukatif, bukan saran investasi atau ajakan membeli maupun menjual instrumen investasi apa pun. Hasil valuasi sangat bergantung pada asumsi yang Anda masukkan sendiri dan mengandung risiko serta ketidakpastian. Tidak ada jaminan hasil perhitungan ini akan tercermin di kinerja pasar sesungguhnya. Gunakan dengan penuh tanggung jawab.
-    </p>
-  </div>
-  <p class="vf-madeby">Dibuat oleh Sofyan Financial — dapat dibagikan dan dipakai bebas untuk edukasi.</p>
+  <div class="vf-madeby">Sofyan Financial Toolkit &copy; 2026. Combined Version.</div>
 </footer>
 
 <script>
-window.onerror = function(msg, src, line, col, err){
-  var banner = document.getElementById('vf-error-banner');
-  if(banner){
-    banner.style.display = 'block';
-    banner.textContent = 'Terjadi error di halaman ini: ' + msg + ' (baris ' + line + '). Coba muat ulang, atau buka lewat link hosting alih-alih file lokal.';
-  }
-  return false;
+/* Theme Toggle */
+const setTheme = theme => {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('vf-theme', theme);
 };
+document.getElementById('theme-dark-btn').onclick = () => setTheme('dark');
+document.getElementById('theme-light-btn').onclick = () => setTheme('light');
 
-/* ============ Formatting helpers ============ */
-function idr(n, decimals){
-  if(decimals === undefined) decimals = 0;
-  if(n === null || n === undefined || isNaN(n)) return "—";
-  return "Rp" + new Intl.NumberFormat("id-ID", {minimumFractionDigits:decimals, maximumFractionDigits:decimals}).format(n);
-}
-function fnum(n, decimals){
-  if(decimals === undefined) decimals = 2;
-  if(n === null || n === undefined || isNaN(n)) return "—";
-  return new Intl.NumberFormat("id-ID", {minimumFractionDigits:decimals, maximumFractionDigits:decimals}).format(n);
-}
-function fpct(n, decimals){
-  if(decimals === undefined) decimals = 2;
-  if(n === null || n === undefined || isNaN(n)) return "—";
-  return fnum(n*100, decimals) + "%";
-}
-function getVal(id){
-  var el = document.getElementById(id);
-  if(!el) return 0;
-  var v = parseFloat(el.value);
-  return isNaN(v) ? 0 : v;
-}
-function getRaw(id){
-  var el = document.getElementById(id);
-  return el ? el.value : "";
-}
-function setVal(id, v){
-  var el = document.getElementById(id);
-  if(el) el.value = v;
-}
-var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Saham', target:'Kalkulator Target Harga Saham', riskprofile:'Profil Risiko Investor'};
-function buildShareText(key){
-  var lines = ['\ud83d\udcca Hasil ' + SHARE_TITLES[key] + ' \u2014 Kalkulator Valuasi Saham Sofyan Financial'];
-  if(key === 'dcf'){
-    var v1 = document.getElementById('dcf-intrinsic'); var v2 = document.getElementById('dcf-coe');
-    if(v1) lines.push('Intrinsic Value: ' + v1.textContent + ' / lembar');
-    if(v2) lines.push('Cost of Equity: ' + v2.textContent);
-  } else if(key === 'ddm'){
-    var v3 = document.getElementById('ddm-companyvaluation-hero');
-    if(v3) lines.push('Company Valuation: ' + v3.textContent + ' / lembar');
-  } else if(key === 'eb'){
-    var v4 = document.getElementById('eb-irr');
-    if(v4) lines.push('Estimasi Total Return (IRR): ' + v4.textContent);
-  } else if(key === 'ff'){
-    var v5 = document.getElementById('ff-fundfuture');
-    if(v5) lines.push('Dana Financial Freedom: ' + v5.textContent);
-  } else if(key === 'average'){
-    var v6 = document.getElementById('avg-price');
-    if(v6) lines.push('Harga Rata-Rata Baru: ' + v6.textContent + ' / lembar');
-  } else if(key === 'target'){
-    var v9 = document.getElementById('target-lots-needed');
-    var v10 = document.getElementById('target-capital-needed');
-    if(v9) lines.push('Lot Tambahan Dibutuhkan: ' + v9.textContent);
-    if(v10) lines.push('Modal Tambahan: ' + v10.textContent);
-  } else if(key === 'riskprofile'){
-    var v7 = document.getElementById('risk-score');
-    var v8 = document.getElementById('risk-category-badge');
-    if(v7) lines.push('Skor Profil Risiko: ' + v7.textContent);
-    if(v8) lines.push('Kategori: ' + v8.textContent);
-  }
-  lines.push('Hitung sendiri gratis di ' + location.origin + location.pathname);
-  return lines.join('\n');
-}
-function shareResult(key){
-  var text = buildShareText(key);
-  if(navigator.share){
-    navigator.share({title:'Kalkulator Valuasi Saham - Sofyan Financial', text:text}).catch(function(){});
-  } else if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(function(){
-      var btn = document.getElementById(key + '-share-btn');
-      if(btn){
-        var orig = btn.textContent;
-        btn.textContent = 'Disalin \u2713';
-        setTimeout(function(){ btn.textContent = orig; }, 2200);
-      }
-    }).catch(function(){});
-  }
-}
-function copyGopay(){
-  var number = '0811207205';
-  var btn = document.getElementById('copy-gopay-btn');
-  function showCopied(){
-    if(btn){
-      var orig = btn.textContent;
-      btn.textContent = 'Tersalin \u2713';
-      setTimeout(function(){ btn.textContent = orig; }, 2000);
-    }
-  }
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(number).then(showCopied).catch(function(){});
-  }
-}
-function pmt(rate, nper, pv, fv, type){
-  if(fv === undefined) fv = 0;
-  if(type === undefined) type = 0;
-  if(nper === 0) return 0;
-  if(rate === 0) return -(pv+fv)/nper;
-  var pow = Math.pow(1+rate, nper);
-  return -(fv + pv*pow) / ((1+rate*type) * ((pow-1)/rate));
-}
-function npvCashflows(rate, cashflows){
-  var total = 0;
-  for(var t=0;t<cashflows.length;t++){ total += cashflows[t]/Math.pow(1+rate, t); }
-  return total;
-}
-function irr(cashflows){
-  var lo = -0.9, hi = 5;
-  var flo = npvCashflows(lo, cashflows), fhi = npvCashflows(hi, cashflows);
-  if(isNaN(flo) || isNaN(fhi) || flo*fhi > 0) return NaN;
-  for(var i=0;i<200;i++){
-    var mid = (lo+hi)/2;
-    var fm = npvCashflows(mid, cashflows);
-    if(Math.abs(fm) < 1e-7) return mid;
-    if(flo*fm < 0){ hi = mid; fhi = fm; } else { lo = mid; flo = fm; }
-  }
-  return (lo+hi)/2;
-}
+/* Tab Utama Navigasi Switching */
+const tabs = document.querySelectorAll('.vf-tab');
+const panels = document.querySelectorAll('.vf-panel');
 
-/* ============ Growth grid builder ============ */
-function buildGrowthGrid(containerId, prefix, defaultValue){
-  var container = document.getElementById(containerId);
-  container.innerHTML = '';
-  for(var i=1;i<=10;i++){
-    var cell = document.createElement('div');
-    cell.className = 'vf-growth-cell';
-    cell.innerHTML =
-      '<span class="vf-growth-yr">Th' + i + '</span>' +
-      '<div class="vf-input-wrap"><input type="number" class="vf-input vf-input-sm" id="' + prefix + '-growth-' + i + '" value="' + defaultValue + '" step="0.1"><span class="vf-suffix">%</span></div>';
-    container.appendChild(cell);
-  }
-}
-function getGrowths(prefix, count){
-  if(count === undefined) count = 10;
-  var arr = [0];
-  for(var i=1;i<=count;i++){
-    arr.push(getVal(prefix + '-growth-' + i));
-  }
-  return arr;
-}
-function fillAllGrowth(prefix){
-  var first = getVal(prefix + '-growth-1');
-  for(var i=1;i<=10;i++){
-    setVal(prefix + '-growth-' + i, first);
-  }
-}
-
-/* ============ DCF ============ */
-function calcDCF(input){
-  var rf = input.riskFree/100, mr = input.marketReturn/100, pg = input.perpetualGrowth/100;
-  var coe = rf + input.beta*(mr-rf);
-  var valid = coe > pg;
-  var earnings = [input.earning0];
-  for(var i=1;i<=10;i++){ earnings.push(earnings[i-1]*(1+input.growths[i]/100)); }
-  var discounted = [0], total = 0;
-  for(i=1;i<=10;i++){ var d = earnings[i]/Math.pow(1+coe,i); discounted.push(d); total += d; }
-  var terminalValue = valid ? (earnings[10]*(1+pg))/(coe-pg) : NaN;
-  var terminalValueDiscounted = valid ? terminalValue/Math.pow(1+coe,10) : NaN;
-  var companyValuation = valid ? total + terminalValueDiscounted : NaN;
-  var intrinsicValue = (valid && input.shares > 0) ? companyValuation/input.shares : NaN;
-  return {coe:coe, valid:valid, earnings:earnings, discounted:discounted, total:total, terminalValue:terminalValue, terminalValueDiscounted:terminalValueDiscounted, companyValuation:companyValuation, intrinsicValue:intrinsicValue};
-}
-function renderDCF(){
-  var r = calcDCF({
-    earning0: getVal('dcf-earning0'),
-    shares: getVal('dcf-shares'),
-    growths: getGrowths('dcf'),
-    riskFree: getVal('dcf-riskfree'),
-    beta: getVal('dcf-beta'),
-    marketReturn: getVal('dcf-marketreturn'),
-    perpetualGrowth: getVal('dcf-perpetual')
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(`panel-${tab.dataset.tab}`).classList.add('active');
   });
-  document.getElementById('dcf-warn').classList.toggle('hidden', r.valid);
-  document.getElementById('dcf-intrinsic').textContent = idr(r.intrinsicValue,0);
-  document.getElementById('dcf-coe').textContent = fpct(r.coe);
-  document.getElementById('dcf-totaldiscounted').textContent = idr(r.total,1) + ' M';
-  document.getElementById('dcf-terminalvalue').textContent = idr(r.terminalValue,1) + ' M';
-  document.getElementById('dcf-terminalvaluediscounted').textContent = idr(r.terminalValueDiscounted,1) + ' M';
-  document.getElementById('dcf-companyvaluation').textContent = idr(r.companyValuation,1) + ' M';
-
-  var badge = document.getElementById('dcf-badge');
-  var cpRaw = getRaw('dcf-currentprice');
-  if(r.valid && cpRaw !== '' && parseFloat(cpRaw) > 0 && !isNaN(r.intrinsicValue)){
-    var cp = parseFloat(cpRaw);
-    var mos = (r.intrinsicValue - cp)/r.intrinsicValue;
-    badge.classList.remove('hidden');
-    badge.classList.toggle('vf-badge-good', mos > 0);
-    badge.classList.toggle('vf-badge-bad', mos <= 0);
-    badge.textContent = (mos > 0 ? 'Undervalued' : 'Overvalued') + ' · ' + fpct(Math.abs(mos),1) + ' margin of safety';
-  } else {
-    badge.classList.add('hidden');
-  }
-
-  var tbody = document.getElementById('dcf-table-body');
-  tbody.innerHTML = '';
-  for(var y=1;y<=10;y++){
-    var tr = document.createElement('tr');
-    tr.innerHTML = '<td>'+y+'</td><td>'+fnum(r.earnings[y],1)+'</td><td>'+fnum(r.discounted[y],1)+'</td>';
-    tbody.appendChild(tr);
-  }
-}
-var DCF_EXAMPLE = {earning0:10000, shares:100, growth:11, riskfree:7, beta:1.5, marketreturn:15, perpetual:2, currentprice:''};
-function applyDCFPreset(p){
-  setVal('dcf-earning0', p.earning0);
-  setVal('dcf-shares', p.shares);
-  for(var i=1;i<=10;i++) setVal('dcf-growth-'+i, p.growth);
-  setVal('dcf-riskfree', p.riskfree);
-  setVal('dcf-beta', p.beta);
-  setVal('dcf-marketreturn', p.marketreturn);
-  setVal('dcf-perpetual', p.perpetual);
-  setVal('dcf-currentprice', p.currentprice);
-  renderDCF();
-}
-
-/* ============ DDM ============ */
-function calcDDM(input){
-  var rf = input.riskFree/100, mr = input.marketReturn/100, pg = input.perpetualGrowth/100;
-  var coe = rf + input.beta*(mr-rf);
-  var valid = coe > pg;
-  var divs = [input.dps0];
-  for(var i=1;i<=10;i++){ divs.push(divs[i-1]*(1+input.growths[i]/100)); }
-  var discounted = [0], total = 0;
-  for(i=1;i<=10;i++){ var d = divs[i]/Math.pow(1+coe,i); discounted.push(d); total += d; }
-  var terminalValue = valid ? (divs[10]*(1+pg))/(coe-pg) : NaN;
-  var terminalValueDiscounted = valid ? terminalValue/Math.pow(1+coe,10) : NaN;
-  var companyValuation = valid ? total + terminalValueDiscounted : NaN;
-  return {coe:coe, valid:valid, divs:divs, discounted:discounted, total:total, terminalValue:terminalValue, terminalValueDiscounted:terminalValueDiscounted, companyValuation:companyValuation};
-}
-function renderDDM(){
-  var r = calcDDM({
-    dps0: getVal('ddm-dps0'),
-    growths: getGrowths('ddm'),
-    riskFree: getVal('ddm-riskfree'),
-    beta: getVal('ddm-beta'),
-    marketReturn: getVal('ddm-marketreturn'),
-    perpetualGrowth: getVal('ddm-perpetual')
-  });
-  document.getElementById('ddm-warn').classList.toggle('hidden', r.valid);
-  document.getElementById('ddm-companyvaluation-hero').textContent = idr(r.companyValuation,0);
-  document.getElementById('ddm-coe').textContent = fpct(r.coe);
-  document.getElementById('ddm-totaldiscounted').textContent = idr(r.total,2);
-  document.getElementById('ddm-terminalvalue').textContent = idr(r.terminalValue,2);
-  document.getElementById('ddm-terminalvaluediscounted').textContent = idr(r.terminalValueDiscounted,2);
-  document.getElementById('ddm-companyvaluation').textContent = idr(r.companyValuation,2);
-
-  var badge = document.getElementById('ddm-badge');
-  var cpRaw = getRaw('ddm-currentprice');
-  if(r.valid && cpRaw !== '' && parseFloat(cpRaw) > 0){
-    var cp = parseFloat(cpRaw);
-    var mos = (r.companyValuation - cp)/r.companyValuation;
-    badge.classList.remove('hidden');
-    badge.classList.toggle('vf-badge-good', mos > 0);
-    badge.classList.toggle('vf-badge-bad', mos <= 0);
-    badge.textContent = (mos > 0 ? 'Undervalued' : 'Overvalued') + ' · ' + fpct(Math.abs(mos),1) + ' margin of safety';
-  } else {
-    badge.classList.add('hidden');
-  }
-
-  var tbody = document.getElementById('ddm-table-body');
-  tbody.innerHTML = '';
-  for(var y=1;y<=10;y++){
-    var tr = document.createElement('tr');
-    tr.innerHTML = '<td>'+y+'</td><td>'+fnum(r.divs[y],2)+'</td><td>'+fnum(r.discounted[y],2)+'</td>';
-    tbody.appendChild(tr);
-  }
-}
-var DDM_EXAMPLE = {dps0:70, growth:12, riskfree:6.7, beta:1, marketreturn:14, perpetual:3, currentprice:''};
-function applyDDMPreset(p){
-  setVal('ddm-dps0', p.dps0);
-  for(var i=1;i<=10;i++) setVal('ddm-growth-'+i, p.growth);
-  setVal('ddm-riskfree', p.riskfree);
-  setVal('ddm-beta', p.beta);
-  setVal('ddm-marketreturn', p.marketreturn);
-  setVal('ddm-perpetual', p.perpetual);
-  setVal('ddm-currentprice', p.currentprice);
-  renderDDM();
-}
-
-/* ============ Equity Bond ============ */
-function calcEB(input){
-  var periode = input.periode;
-  var eps = [input.eps0];
-  for(var i=1;i<=periode;i++){ eps.push(eps[i-1]*(1+input.growths[i]/100)); }
-  var estPrice = eps[periode]*input.perMultiplier;
-
-  var divs = [0];
-  var d = input.dividendNow;
-  for(var t=1;t<=periode;t++){
-    divs.push(d);
-    d = d*(1+input.divGrowth/100);
-  }
-  var accDividend = 0;
-  for(t=1;t<=periode;t++) accDividend += divs[t];
-  var totalPricePlusDiv = estPrice + accDividend;
-
-  var cagrSimple = input.currentPrice > 0 ? Math.pow(totalPricePlusDiv/input.currentPrice, 1/periode)-1 : NaN;
-
-  var irrValue = NaN;
-  if(input.currentPrice > 0){
-    var cashflows = [-input.currentPrice];
-    for(t=1;t<periode;t++) cashflows.push(divs[t]);
-    cashflows.push(divs[periode] + estPrice);
-    irrValue = irr(cashflows);
-  }
-
-  var beatsRiskFreeIRR = irrValue - input.sun10y/100;
-
-  return {eps:eps, estPrice:estPrice, divs:divs, accDividend:accDividend, totalPricePlusDiv:totalPricePlusDiv, cagrSimple:cagrSimple, irr:irrValue, beatsRiskFreeIRR:beatsRiskFreeIRR};
-}
-function renderEB(){
-  var periode = getVal('eb-periode') || 10;
-  var r = calcEB({
-    eps0: getVal('eb-eps0'),
-    growths: getGrowths('eb'),
-    perMultiplier: getVal('eb-permultiplier'),
-    dividendNow: getVal('eb-dividendnow'),
-    divGrowth: getVal('eb-divgrowth'),
-    currentPrice: getVal('eb-currentprice'),
-    periode: periode,
-    sun10y: getVal('eb-sun10y')
-  });
-  document.getElementById('eb-proj-title').textContent = 'Proyeksi EPS (' + periode + ' tahun)';
-  document.getElementById('eb-estprice-label').textContent = 'Estimasi harga saham th-' + periode;
-  document.getElementById('eb-accdiv-label').textContent = 'Akumulasi dividen ' + periode + ' tahun';
-  document.getElementById('eb-irr').textContent = fpct(r.irr,2);
-  document.getElementById('eb-cagr').textContent = fpct(r.cagrSimple,2);
-  document.getElementById('eb-estprice').textContent = idr(r.estPrice,0);
-  document.getElementById('eb-accdividend').textContent = idr(r.accDividend,0);
-  document.getElementById('eb-totalpriceplusdiv').textContent = idr(r.totalPricePlusDiv,0);
-
-  document.getElementById('eb-warn').classList.toggle('hidden', !isNaN(r.irr) || getVal('eb-currentprice') <= 0);
-
-  var badge = document.getElementById('eb-badge');
-  if(!isNaN(r.beatsRiskFreeIRR)){
-    badge.classList.remove('hidden');
-    badge.classList.toggle('vf-badge-good', r.beatsRiskFreeIRR > 0);
-    badge.classList.toggle('vf-badge-bad', r.beatsRiskFreeIRR <= 0);
-    badge.textContent = (r.beatsRiskFreeIRR > 0 ? 'Mengalahkan' : 'Kalah dari') + ' SBN 10th · selisih ' + fpct(Math.abs(r.beatsRiskFreeIRR),2);
-  } else {
-    badge.classList.add('hidden');
-  }
-
-  var tbody = document.getElementById('eb-table-body');
-  tbody.innerHTML = '';
-  var maxY = Math.min(10, periode);
-  for(var y=1;y<=maxY;y++){
-    var tr = document.createElement('tr');
-    tr.innerHTML = '<td>'+y+'</td><td>'+fnum(r.eps[y],2)+'</td>';
-    tbody.appendChild(tr);
-  }
-}
-var EB_EXAMPLE = {eps0:130, growth:10, permultiplier:10, dividendnow:45, divgrowth:0, currentprice:1350, sun10y:6.7, periode:10};
-function applyEBPreset(p){
-  setVal('eb-eps0', p.eps0);
-  setVal('eb-periode', p.periode);
-  for(var i=1;i<=10;i++) setVal('eb-growth-'+i, p.growth);
-  setVal('eb-permultiplier', p.permultiplier);
-  setVal('eb-dividendnow', p.dividendnow);
-  setVal('eb-divgrowth', p.divgrowth);
-  setVal('eb-currentprice', p.currentprice);
-  setVal('eb-sun10y', p.sun10y);
-  renderEB();
-}
-
-/* ============ Financial Freedom ============ */
-var SBN_YIELD = 0.067;
-function pvGrowingAnnuity(C, r, g, n){
-  if(n <= 0) return 0;
-  if(Math.abs(r - g) < 1e-9){
-    return (C * n) / (1 + r);
-  }
-  var ratio = (1 + g) / (1 + r);
-  return (C / (r - g)) * (1 - Math.pow(ratio, n));
-}
-function calcFF(input){
-  var infl = input.inflation/100;
-  var productReturn = input.productReturnPct/100;
-  var annualNow = input.monthlyCostNow*12;
-  var annualFuture = annualNow*Math.pow(1+infl, input.years);
-  var monthlyFuture = annualFuture/12;
-
-  var realSafeRate = SBN_YIELD - infl;
-  var fundToday, fundFuture, valid;
-  if(input.usePerpetuity){
-    valid = realSafeRate > 0;
-    fundToday = valid ? annualNow/realSafeRate : NaN;
-    fundFuture = valid ? annualFuture/realSafeRate : NaN;
-  } else {
-    valid = true;
-    var n = input.durationYears > 0 ? input.durationYears : 20;
-    fundToday = pvGrowingAnnuity(annualNow, SBN_YIELD, infl, n);
-    fundFuture = pvGrowingAnnuity(annualFuture, SBN_YIELD, infl, n);
-  }
-
-  var monthlyInvest = valid ? pmt(productReturn/12, input.years*12, 0, -fundFuture, 1) : NaN;
-  var quarterlyInvest = valid ? pmt(productReturn/4, input.years*4, 0, -fundFuture, 1) : NaN;
-  var semesterInvest = valid ? pmt(productReturn/2, input.years*2, 0, -fundFuture, 1) : NaN;
-  var yearlyInvest = valid ? pmt(productReturn, input.years, 0, -fundFuture, 1) : NaN;
-  var lumpSum = valid ? fundFuture/Math.pow(1+productReturn, input.years) : NaN;
-
-  return {valid:valid, annualNow:annualNow, annualFuture:annualFuture, monthlyFuture:monthlyFuture, fundToday:fundToday, fundFuture:fundFuture, monthlyInvest:monthlyInvest, quarterlyInvest:quarterlyInvest, semesterInvest:semesterInvest, yearlyInvest:yearlyInvest, lumpSum:lumpSum};
-}
-function renderFF(){
-  var years = getVal('ff-years') || 1;
-  var age = getVal('ff-age');
-  var select = document.getElementById('ff-product');
-  var productReturnPct = parseFloat(select.options[select.selectedIndex].getAttribute('data-return'));
-  var usePerpetuity = document.getElementById('ff-perpetuity-enabled').checked;
-  document.getElementById('ff-duration-field').style.display = usePerpetuity ? 'none' : '';
-  var r = calcFF({
-    years: years,
-    monthlyCostNow: getVal('ff-monthlycost'),
-    inflation: getVal('ff-inflation'),
-    productReturnPct: productReturnPct,
-    usePerpetuity: usePerpetuity,
-    durationYears: getVal('ff-duration-years')
-  });
-  document.getElementById('ff-warn').classList.toggle('hidden', r.valid);
-  var modeLabel = usePerpetuity ? '(mode Growing Perpetuity)' : '(mode tanpa perpetuity, ' + (getVal('ff-duration-years') || 20) + ' tahun)';
-  document.getElementById('ff-target-label').textContent = 'Dana dibutuhkan saat usia ' + (age+years) + ' tahun ' + modeLabel;
-  document.getElementById('ff-fundfuture').textContent = idr(r.fundFuture,0);
-  document.getElementById('ff-monthlyfuture').textContent = idr(r.monthlyFuture,0);
-  document.getElementById('ff-annualfuture').textContent = idr(r.annualFuture,0);
-  document.getElementById('ff-fundtoday').textContent = idr(r.fundToday,0);
-  document.getElementById('ff-fundfuture2').textContent = idr(r.fundFuture,0);
-  document.getElementById('ff-monthlyinvest').textContent = idr(r.monthlyInvest,0);
-  document.getElementById('ff-quarterlyinvest').textContent = idr(r.quarterlyInvest,0);
-  document.getElementById('ff-semesterinvest').textContent = idr(r.semesterInvest,0);
-  document.getElementById('ff-yearlyinvest').textContent = idr(r.yearlyInvest,0);
-  document.getElementById('ff-lumpsum').textContent = idr(r.lumpSum,0);
-}
-var FF_EXAMPLE = {age:32, years:15, monthlycost:12000000, inflation:4, product:'Saham'};
-function applyFFPreset(p){
-  setVal('ff-age', p.age);
-  setVal('ff-years', p.years);
-  setVal('ff-monthlycost', p.monthlycost);
-  setVal('ff-inflation', p.inflation);
-  document.getElementById('ff-product').value = p.product;
-  document.getElementById('ff-perpetuity-enabled').checked = true;
-  setVal('ff-duration-years', 20);
-  renderFF();
-}
-
-/* ============ Average Saham ============ */
-var avgLotCounter = 0;
-var LOT_SIZE = 100;
-function createLotRow(price, qty){
-  avgLotCounter++;
-  var id = avgLotCounter;
-  var row = document.createElement('div');
-  row.className = 'vf-avg-lot';
-  row.setAttribute('data-lot-id', id);
-  row.innerHTML =
-    '<div class="vf-field"><label class="vf-label">Harga beli</label>' +
-    '<div class="vf-input-wrap"><input type="number" class="vf-input avg-lot-price" data-lot="' + id + '" value="' + price + '"><span class="vf-suffix">Rp</span></div></div>' +
-    '<div class="vf-field"><label class="vf-label">Jumlah lot</label>' +
-    '<div class="vf-input-wrap"><input type="number" class="vf-input avg-lot-qty" data-lot="' + id + '" value="' + qty + '"><span class="vf-suffix">lot</span></div></div>' +
-    '<button type="button" class="vf-lot-remove no-print" data-lot="' + id + '">\u2715</button>';
-  return row;
-}
-function setAvgLots(lots){
-  var container = document.getElementById('avg-lots-container');
-  container.innerHTML = '';
-  avgLotCounter = 0;
-  lots.forEach(function(l){ container.appendChild(createLotRow(l.price, l.qty)); });
-  renderAverage();
-}
-function getAvgLots(){
-  var priceInputs = document.querySelectorAll('.avg-lot-price');
-  var lots = [];
-  priceInputs.forEach(function(pi){
-    var lotId = pi.getAttribute('data-lot');
-    var qi = document.querySelector('.avg-lot-qty[data-lot="' + lotId + '"]');
-    var price = parseFloat(pi.value); if(isNaN(price)) price = 0;
-    var qty = qi ? parseFloat(qi.value) : 0; if(isNaN(qty)) qty = 0;
-    lots.push({price:price, qty:qty});
-  });
-  return lots;
-}
-function calcAverage(lots, currentPrice, feePct){
-  var totalCostRaw = 0, totalQty = 0;
-  lots.forEach(function(l){ totalCostRaw += l.price * l.qty * LOT_SIZE; totalQty += l.qty; });
-  var feeAmount = totalCostRaw * (feePct / 100);
-  var totalCost = totalCostRaw + feeAmount;
-  var avgPrice = totalQty > 0 ? totalCost / (totalQty * LOT_SIZE) : NaN;
-  var gainLossPct = (currentPrice > 0 && avgPrice > 0) ? (currentPrice - avgPrice) / avgPrice : NaN;
-  return {totalCostRaw:totalCostRaw, feeAmount:feeAmount, totalCost:totalCost, totalQty:totalQty, avgPrice:avgPrice, gainLossPct:gainLossPct};
-}
-function renderAverage(){
-  var lots = getAvgLots();
-  var currentPrice = getVal('avg-currentprice');
-  var feeEnabled = document.getElementById('avg-fee-enabled').checked;
-  document.getElementById('avg-fee-field').style.display = feeEnabled ? '' : 'none';
-  var feePct = feeEnabled ? getVal('avg-fee-pct') : 0;
-  var r = calcAverage(lots, currentPrice, feePct);
-  document.getElementById('avg-price').textContent = idr(r.avgPrice, 2);
-  document.getElementById('avg-totalcost').textContent = idr(r.totalCost, 0);
-  document.getElementById('avg-totalqty').textContent = fnum(r.totalQty, 0) + ' lot';
-  document.getElementById('avg-price2').textContent = idr(r.avgPrice, 2);
-
-  var feeRow = document.getElementById('avg-fee-row');
-  if(feeEnabled && feePct > 0){
-    feeRow.style.display = '';
-    document.getElementById('avg-feeamount').textContent = idr(r.feeAmount, 0);
-  } else {
-    feeRow.style.display = 'none';
-  }
-
-  var badge = document.getElementById('avg-badge');
-  var cpRaw = getRaw('avg-currentprice');
-  if(cpRaw !== '' && parseFloat(cpRaw) > 0 && !isNaN(r.gainLossPct)){
-    badge.classList.remove('hidden');
-    badge.classList.toggle('vf-badge-good', r.gainLossPct > 0);
-    badge.classList.toggle('vf-badge-bad', r.gainLossPct <= 0);
-    badge.textContent = (r.gainLossPct > 0 ? 'Untung' : 'Rugi') + ' ' + fpct(Math.abs(r.gainLossPct), 2) + ' dari harga rata-rata';
-  } else {
-    badge.classList.add('hidden');
-  }
-}
-var AVG_EXAMPLE = [{price:1200, qty:10}, {price:900, qty:10}];
-function applyAvgPreset(){
-  setAvgLots(AVG_EXAMPLE);
-  setVal('avg-currentprice', '');
-  document.getElementById('avg-fee-enabled').checked = false;
-  setVal('avg-fee-pct', 0.15);
-  renderAverage();
-}
-
-/* ============ Target Average Price ============ */
-function calcTargetAverage(currentAvg, currentQtyLots, targetPrice, newPrice){
-  var Q = currentQtyLots * LOT_SIZE;
-  var C = currentAvg * Q;
-  if(Math.abs(newPrice - targetPrice) < 1e-9){
-    return {feasible:false};
-  }
-  var qtyNewShares = (targetPrice * Q - C) / (newPrice - targetPrice);
-  var feasible = qtyNewShares > 0 && isFinite(qtyNewShares);
-  var qtyNewLots = qtyNewShares / LOT_SIZE;
-  var capitalNeeded = qtyNewShares * newPrice;
-  return {feasible:feasible, qtyNewLots:qtyNewLots, capitalNeeded:capitalNeeded};
-}
-function renderTargetAverage(){
-  var currentAvg = getVal('target-current-avg');
-  var currentLots = getVal('target-current-lots');
-  var targetPrice = getVal('target-avg-price');
-  var newPrice = getVal('target-buy-price');
-  var r = calcTargetAverage(currentAvg, currentLots, targetPrice, newPrice);
-  var warn = document.getElementById('target-warn');
-  var resultList = document.getElementById('target-result-list');
-  if(r.feasible){
-    warn.classList.add('hidden');
-    resultList.style.display = '';
-    document.getElementById('target-lots-needed').textContent = fnum(Math.ceil(r.qtyNewLots), 0) + ' lot';
-    document.getElementById('target-capital-needed').textContent = idr(r.capitalNeeded, 0);
-  } else {
-    warn.classList.remove('hidden');
-    resultList.style.display = 'none';
-  }
-}
-function applyTargetPreset(){
-  setVal('target-current-avg', 1200);
-  setVal('target-current-lots', 10);
-  setVal('target-avg-price', 1000);
-  setVal('target-buy-price', 900);
-  renderTargetAverage();
-}
-
-/* ============ Risk Profile Questionnaire ============ */
-var RISK_MAIN_IDS = ['risk-q1','risk-q2','risk-q3','risk-q4','risk-q5','risk-q6','risk-q7','risk-q8','risk-q9','risk-q10','risk-q11'];
-var RISK_DIVIDEND_IDS = ['risk-q16','risk-q17','risk-q18','risk-q19'];
-var RISK_MANAGEMENT_IDS = ['risk-q20','risk-q21','risk-q22','risk-q23'];
-var RISK_ALL_IDS = RISK_MAIN_IDS.concat(['risk-q12','risk-q13','risk-q14','risk-q15']).concat(RISK_DIVIDEND_IDS).concat(RISK_MANAGEMENT_IDS);
-
-function getSliderVal(id){
-  var el = document.getElementById(id);
-  return el ? parseFloat(el.value) : 50;
-}
-function updateSliderFill(slider){
-  slider.style.setProperty('--val', slider.value + '%');
-}
-function avgOf(ids){
-  var total = 0;
-  ids.forEach(function(id){ total += getSliderVal(id); });
-  return total / ids.length;
-}
-
-function buildAllocation(mainScore, mgmtScore, dividendScore, experienceScore){
-  var equityPct, bondPct, cashPct;
-  if(mainScore <= 20){ equityPct = 10; bondPct = 75; cashPct = 15; }
-  else if(mainScore <= 40){ equityPct = 25; bondPct = 60; cashPct = 15; }
-  else if(mainScore <= 60){ equityPct = 50; bondPct = 40; cashPct = 10; }
-  else if(mainScore <= 80){ equityPct = 70; bondPct = 20; cashPct = 10; }
-  else { equityPct = 85; bondPct = 5; cashPct = 10; }
-
-  var style = dividendScore <= 35 ? 'saham dividen tinggi &amp; stabil' : (dividendScore <= 65 ? 'kombinasi saham dividen &amp; growth' : 'saham growth/capital gain');
-  var selfDirected = mgmtScore > 60 && experienceScore > 55;
-  var preferManaged = mgmtScore <= 35;
-
-  var parts = [];
-  if(selfDirected){
-    parts.push(equityPct + '% Saham Langsung (' + style + ') — dipilih &amp; dikelola sendiri, tanpa Reksadana Saham karena jam terbang dan kepercayaan diri Anda sudah cukup tinggi.');
-    var reserve = Math.min(bondPct, 15);
-    var remainingBond = bondPct - reserve;
-    if(remainingBond > 0){
-      parts.push(remainingBond + '% Obligasi / Reksadana Pendapatan Tetap sebagai penyeimbang.');
-    }
-    parts.push((reserve + cashPct) + '% Reksadana Pasar Uang / Deposito / Cash — dana cadangan siap pakai untuk menambah posisi saat market terkoreksi atau crash.');
-  } else if(preferManaged){
-    parts.push(equityPct + '% Reksadana Saham (' + style + ').');
-    parts.push(bondPct + '% Obligasi / Reksadana Pendapatan Tetap.');
-    parts.push(cashPct + '% Reksadana Pasar Uang / Deposito untuk likuiditas.');
-  } else {
-    var half = Math.round(equityPct / 2);
-    parts.push(half + '% Reksadana Saham + ' + (equityPct - half) + '% Saham Langsung (' + style + ').');
-    parts.push(bondPct + '% Obligasi / Reksadana Pendapatan Tetap.');
-    parts.push(cashPct + '% Reksadana Pasar Uang / Deposito untuk likuiditas.');
-  }
-  return parts.join(' ');
-}
-function renderRiskProfile(){
-  var score = avgOf(RISK_MAIN_IDS);
-  var experienceScore = avgOf(['risk-q9', 'risk-q10']);
-  var dividendScore = avgOf(RISK_DIVIDEND_IDS);
-  var mgmtScore = avgOf(RISK_MANAGEMENT_IDS);
-
-  var category, desc;
-  if(score <= 20){
-    category = 'Sangat Konservatif';
-    desc = 'Anda sangat mengutamakan keamanan dana dan kestabilan, dengan toleransi rendah terhadap fluktuasi nilai investasi. Prioritas utama Anda adalah menjaga modal, bukan mengejar pertumbuhan agresif.';
-  } else if(score <= 40){
-    category = 'Konservatif';
-    desc = 'Anda mengutamakan keamanan dana, namun cukup terbuka pada sedikit risiko demi hasil yang lebih tinggi dari deposito biasa.';
-  } else if(score <= 60){
-    category = 'Moderat';
-    desc = 'Anda mencari keseimbangan antara pertumbuhan dan keamanan — bisa menerima fluktuasi jangka pendek demi potensi hasil jangka panjang yang lebih baik.';
-  } else if(score <= 80){
-    category = 'Agresif';
-    desc = 'Anda cukup nyaman dengan risiko dan fluktuasi nilai investasi demi mengejar pertumbuhan dana yang lebih tinggi dalam jangka panjang.';
-  } else {
-    category = 'Sangat Agresif';
-    desc = 'Anda memiliki toleransi risiko tinggi dan nyaman menghadapi volatilitas besar demi mengejar potensi pertumbuhan dana yang maksimal.';
-  }
-  var allocation = buildAllocation(score, mgmtScore, dividendScore, experienceScore);
-
-  document.getElementById('risk-score').textContent = Math.round(score) + ' / 100';
-  document.getElementById('risk-category-badge').textContent = category;
-  document.getElementById('risk-desc').textContent = desc;
-  document.getElementById('risk-allocation').innerHTML = allocation;
-  document.getElementById('risk-gauge-fill').style.width = score + '%';
-
-  var badge = document.getElementById('risk-category-badge');
-  badge.classList.remove('vf-badge-good', 'vf-badge-bad');
-  badge.classList.add(score >= 41 ? 'vf-badge-good' : 'vf-badge-bad');
-
-  // Bagian 4 — Orientasi Dividen vs Capital Gain
-  var divCategory, divDesc;
-  if(dividendScore <= 35){
-    divCategory = 'Investor Dividen';
-    divDesc = 'Anda lebih menyukai penghasilan rutin dari dividen dibanding mengejar kenaikan harga saham. Cocok fokus ke saham dengan dividend yield tinggi & konsisten (umumnya sektor perbankan, consumer staples, utilities) atau reksa dana pendapatan tetap/campuran berorientasi dividen.';
-  } else if(dividendScore <= 65){
-    divCategory = 'Seimbang (Dividen & Capital Gain)';
-    divDesc = 'Anda terbuka pada kombinasi dividen dan capital gain. Cocok membangun portofolio campuran — sebagian saham dividen yang stabil, sebagian saham growth untuk potensi kenaikan harga.';
-  } else {
-    divCategory = 'Investor Capital Gain / Growth';
-    divDesc = 'Anda lebih tertarik mengejar kenaikan harga saham dibanding penghasilan dividen rutin. Cocok fokus ke saham growth (sering di sektor teknologi, consumer discretionary) meski minim atau tanpa dividen.';
-  }
-  var divBadge = document.getElementById('risk-dividend-badge');
-  divBadge.textContent = divCategory;
-  divBadge.classList.remove('vf-badge-good', 'vf-badge-bad');
-  divBadge.classList.add('vf-badge-good');
-  document.getElementById('risk-dividend-desc').textContent = divDesc;
-
-  // Bagian 5 — Gaya Pengelolaan: Reksa Dana vs Saham Langsung
-  var mgmtCategory, mgmtDesc;
-  var selfDirectedConfirmed = mgmtScore > 60 && experienceScore > 55;
-  if(mgmtScore <= 35){
-    mgmtCategory = 'Lebih Cocok Dikelola (Reksa Dana)';
-    mgmtDesc = 'Anda lebih nyaman menyerahkan pengelolaan investasi ke profesional. Reksa dana (sesuai kategori risiko Anda di atas) kemungkinan lebih cocok dibanding memilih saham sendiri satu per satu.';
-  } else if(mgmtScore <= 65){
-    mgmtCategory = 'Kombinasi (Reksa Dana + Saham Langsung)';
-    mgmtDesc = 'Anda cukup nyaman dengan kombinasi — sebagian dana dikelola manajer investasi lewat reksa dana, sebagian lagi Anda kelola sendiri di saham-saham yang benar-benar Anda pahami.';
-  } else if(selfDirectedConfirmed){
-    mgmtCategory = 'Lebih Cocok Kelola Sendiri (Saham Langsung)';
-    mgmtDesc = 'Anda punya minat, jam terbang, dan kepercayaan diri untuk memilih saham sendiri. Manfaatkan tab Kalkulator Valuasi Saham di situs ini untuk riset sebelum membeli.';
-  } else {
-    mgmtCategory = 'Ingin Kelola Sendiri, Tapi Bangun Jam Terbang Dulu';
-    mgmtDesc = 'Anda ingin memilih saham sendiri, tapi pengalaman dan pemahaman produk Anda masih tergolong terbatas. Pertimbangkan mulai dari Reksa Dana Saham sambil belajar, baru bertahap pindah ke saham langsung.';
-  }
-  var mgmtBadge = document.getElementById('risk-management-badge');
-  mgmtBadge.textContent = mgmtCategory;
-  mgmtBadge.classList.remove('vf-badge-good', 'vf-badge-bad');
-  mgmtBadge.classList.add(selfDirectedConfirmed || mgmtScore <= 65 ? 'vf-badge-good' : 'vf-badge-bad');
-  document.getElementById('risk-management-desc').textContent = mgmtDesc;
-
-  // Behavioral notes (Bagian 3 — tidak masuk skor utama)
-  var goal = getSliderVal('risk-q12');
-  var decision = getSliderVal('risk-q13');
-  var fomo = getSliderVal('risk-q14');
-  var patience = getSliderVal('risk-q15');
-  var notes = [];
-  if(fomo > 60 && decision > 60){
-    notes.push('\u26A0\uFE0F Anda menunjukkan kecenderungan mengikuti tren atau mengambil keputusan cepat tanpa riset mendalam. Sebelum membeli saham yang sedang ramai dibicarakan, coba biasakan cek dulu nilai wajarnya di tab <strong>Kalkulator Valuasi Saham</strong>.');
-  }
-  if(patience < 40){
-    notes.push('\u26A0\uFE0F Anda cenderung ingin melihat hasil investasi dengan cepat. Banyak strategi value investing (seperti yang dipakai di kalkulator ini) butuh waktu bertahun-tahun untuk terbukti hasilnya — pertimbangkan menyelaraskan ekspektasi jangka waktu Anda.');
-  }
-  if(goal > 70 && score < 40){
-    notes.push('\u26A0\uFE0F Tujuan investasi Anda tergolong agresif, namun kapasitas dan toleransi risiko Anda tergolong konservatif. Pertimbangkan pendekatan bertahap — mulai porsi kecil di produk lebih agresif sambil membangun pengalaman dan dana darurat.');
-  }
-  if(dividendScore > 65 && mgmtScore <= 35){
-    notes.push('\u26A0\uFE0F Anda condong ke saham growth (minim dividen), tapi juga lebih nyaman dikelola profesional. Kombinasi ini cocok dengan Reksa Dana Saham yang fokus growth, dibanding memilih saham growth sendiri secara langsung.');
-  }
-  if(dividendScore <= 35 && mgmtScore > 65){
-    notes.push('\u26A0\uFE0F Anda condong ke saham dividen dan ingin kelola sendiri. Manfaatkan Kamus Investasi di situs ini untuk memahami istilah seperti Dividend Yield & Payout Ratio sebelum memilih saham dividen sendiri.');
-  }
-  if(mgmtScore > 60 && experienceScore <= 55){
-    notes.push('\u26A0\uFE0F Anda ingin mengelola investasi sendiri, tapi pengalaman &amp; pemahaman produk Anda (Bagian 2) masih tergolong terbatas. Ini sebabnya alokasi di atas mengarahkan Anda ke Reksa Dana Saham dulu — bukan langsung saham sendiri — sampai jam terbang Anda bertambah.');
-  }
-  if(selfDirectedConfirmed && score >= 61){
-    notes.push('\u2705 Karena jam terbang dan kepercayaan diri Anda sudah tinggi, alokasi di atas <strong>sengaja tidak menyertakan Reksadana Saham</strong> — porsi ekuitas Anda sepenuhnya saham langsung, dengan cadangan Reksadana Pasar Uang/Deposito/Cash sebagai amunisi tambah posisi saat harga turun.');
-  }
-  var notesBox = document.getElementById('risk-behavior-notes');
-  if(notes.length > 0){
-    notesBox.style.display = 'block';
-    notesBox.innerHTML = notes.map(function(n){ return '<p>' + n + '</p>'; }).join('');
-  } else {
-    notesBox.style.display = 'none';
-  }
-}
-function resetRiskProfile(){
-  RISK_ALL_IDS.forEach(function(id){
-    var el = document.getElementById(id);
-    if(el){ el.value = 50; updateSliderFill(el); }
-  });
-  renderRiskProfile();
-}
-
-/* ============ Wire-up ============ */
-document.addEventListener('DOMContentLoaded', function(){
- try {
-  // Build growth grids
-  buildGrowthGrid('dcf-growth-grid', 'dcf', 15);
-  buildGrowthGrid('ddm-growth-grid', 'ddm', 12);
-  buildGrowthGrid('eb-growth-grid', 'eb', 10);
-
-  // Tabs (always on top)
-  var tabs = document.querySelectorAll('.vf-tab');
-  var panels = document.querySelectorAll('.vf-panel');
-  function activateTab(id){
-    tabs.forEach(function(t){ t.classList.toggle('active', t.getAttribute('data-tab') === id); });
-    panels.forEach(function(p){ p.classList.toggle('active', p.id === 'panel-' + id); });
-  }
-  tabs.forEach(function(tab){
-    tab.addEventListener('click', function(){ activateTab(this.getAttribute('data-tab')); });
-  });
-
-  // Sub-tabs inside "Valuasi Saham" panel
-  var subtabs = document.querySelectorAll('.vf-subtab');
-  var subpanels = document.querySelectorAll('.vf-subpanel');
-  function activateSubtab(id){
-    subtabs.forEach(function(t){ t.classList.toggle('active', t.getAttribute('data-subtab') === id); });
-    subpanels.forEach(function(p){ p.classList.toggle('active', p.id === 'subpanel-' + id); });
-  }
-  subtabs.forEach(function(tab){
-    tab.addEventListener('click', function(){ activateSubtab(this.getAttribute('data-subtab')); });
-  });
-
-  // Live recalculation via delegation
-  document.getElementById('subpanel-dcf').addEventListener('input', renderDCF);
-  document.getElementById('subpanel-ddm').addEventListener('input', renderDDM);
-  document.getElementById('subpanel-eb').addEventListener('input', renderEB);
-  document.getElementById('panel-ff').addEventListener('input', renderFF);
-  document.getElementById('panel-ff').addEventListener('change', renderFF);
-
-  // DCF
-  document.getElementById('dcf-example-btn').addEventListener('click', function(){ applyDCFPreset(DCF_EXAMPLE); });
-  document.getElementById('dcf-reset-btn').addEventListener('click', function(){ applyDCFPreset(DCF_EXAMPLE); });
-  document.getElementById('dcf-fillall-btn').addEventListener('click', function(){ fillAllGrowth('dcf'); renderDCF(); });
-
-  // DDM
-  document.getElementById('ddm-example-btn').addEventListener('click', function(){ applyDDMPreset(DDM_EXAMPLE); });
-  document.getElementById('ddm-reset-btn').addEventListener('click', function(){ applyDDMPreset(DDM_EXAMPLE); });
-  document.getElementById('ddm-fillall-btn').addEventListener('click', function(){ fillAllGrowth('ddm'); renderDDM(); });
-
-  // Equity Bond
-  document.getElementById('eb-example-btn').addEventListener('click', function(){ applyEBPreset(EB_EXAMPLE); });
-  document.getElementById('eb-reset-btn').addEventListener('click', function(){ applyEBPreset(EB_EXAMPLE); });
-  document.getElementById('eb-fillall-btn').addEventListener('click', function(){ fillAllGrowth('eb'); renderEB(); });
-
-  // Financial Freedom
-  document.getElementById('ff-example-btn').addEventListener('click', function(){ applyFFPreset(FF_EXAMPLE); });
-  document.getElementById('ff-reset-btn').addEventListener('click', function(){ applyFFPreset(FF_EXAMPLE); });
-
-  // Average Saham
-  applyAvgPreset();
-  document.getElementById('avg-example-btn').addEventListener('click', applyAvgPreset);
-  document.getElementById('avg-reset-btn').addEventListener('click', applyAvgPreset);
-  document.getElementById('avg-add-lot-btn').addEventListener('click', function(){
-    document.getElementById('avg-lots-container').appendChild(createLotRow('', ''));
-    renderAverage();
-  });
-  document.getElementById('panel-average').addEventListener('input', renderAverage);
-  document.getElementById('panel-average').addEventListener('change', renderAverage);
-  document.getElementById('panel-average').addEventListener('click', function(e){
-    if(e.target.classList.contains('vf-lot-remove')){
-      var lotId = e.target.getAttribute('data-lot');
-      var row = document.querySelector('.vf-avg-lot[data-lot-id="' + lotId + '"]');
-      if(row) row.remove();
-      renderAverage();
-    }
-  });
-
-  // Target Harga Saham
-  document.getElementById('panel-target').addEventListener('input', renderTargetAverage);
-  document.getElementById('target-example-btn').addEventListener('click', applyTargetPreset);
-  document.getElementById('target-reset-btn').addEventListener('click', applyTargetPreset);
-  renderTargetAverage();
-
-  // Risk Profile Questionnaire
-  document.querySelectorAll('#panel-riskprofile .vf-slider').forEach(function(s){
-    updateSliderFill(s);
-    s.addEventListener('input', function(){ updateSliderFill(s); renderRiskProfile(); });
-  });
-  document.getElementById('risk-reset-btn').addEventListener('click', resetRiskProfile);
-  renderRiskProfile();
-
-  document.getElementById('disclaimer-toggle').addEventListener('click', function(){
-    document.getElementById('disclaimer-text').classList.toggle('open');
-    document.getElementById('disclaimer-arrow').classList.toggle('open');
-  });
-
-  var copyGopayBtn = document.getElementById('copy-gopay-btn');
-  if(copyGopayBtn) copyGopayBtn.addEventListener('click', copyGopay);
-
-  // Dark / Light mode toggle
-  function applyThemeButtons(){
-    var theme = document.documentElement.getAttribute('data-theme') || 'dark';
-    var darkBtn = document.getElementById('theme-dark-btn');
-    var lightBtn = document.getElementById('theme-light-btn');
-    if(darkBtn && lightBtn){
-      var activeStyle = {bg:'var(--card)', border:'var(--border)', color:'var(--gold-soft)'};
-      var inactiveStyle = {bg:'transparent', border:'transparent', color:'var(--text-muted)'};
-      var darkStyle = theme === 'light' ? inactiveStyle : activeStyle;
-      var lightStyle = theme === 'light' ? activeStyle : inactiveStyle;
-      darkBtn.style.background = darkStyle.bg; darkBtn.style.borderColor = darkStyle.border; darkBtn.style.color = darkStyle.color;
-      lightBtn.style.background = lightStyle.bg; lightBtn.style.borderColor = lightStyle.border; lightBtn.style.color = lightStyle.color;
-    }
-  }
-  function setTheme(theme){
-    document.documentElement.setAttribute('data-theme', theme);
-    try{ localStorage.setItem('vf-theme', theme); }catch(e){}
-    applyThemeButtons();
-  }
-  var themeDarkBtn = document.getElementById('theme-dark-btn');
-  var themeLightBtn = document.getElementById('theme-light-btn');
-  if(themeDarkBtn) themeDarkBtn.addEventListener('click', function(){ setTheme('dark'); });
-  if(themeLightBtn) themeLightBtn.addEventListener('click', function(){ setTheme('light'); });
-  applyThemeButtons();
-
-  // PDF export (uses browser's native print-to-PDF, no extra library needed)
-  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Saham', target:'Kalkulator Target Harga Saham', riskprofile:'Profil Risiko Investor'};
-  function printCalculator(key){
-    var meta = document.getElementById('print-meta');
-    var now = new Date();
-    var dateStr = now.toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
-    if(meta){ meta.textContent = 'Metode: ' + PDF_TITLES[key] + ' · Dicetak: ' + dateStr; }
-    window.print();
-  }
-  ['dcf','ddm','eb','ff','average','target','riskprofile'].forEach(function(key){
-    var btn = document.getElementById(key + '-pdf-btn');
-    if(btn) btn.addEventListener('click', function(){ printCalculator(key); });
-    var sbtn = document.getElementById(key + '-share-btn');
-    if(sbtn) sbtn.addEventListener('click', function(){ shareResult(key); });
-  });
-  window.addEventListener('beforeprint', function(){
-    document.querySelectorAll('.vf-details').forEach(function(d){ d.setAttribute('data-was-open', d.open ? '1':'0'); d.open = true; });
-  });
-  window.addEventListener('afterprint', function(){
-    document.querySelectorAll('.vf-details').forEach(function(d){ d.open = d.getAttribute('data-was-open') === '1'; });
-  });
-
-  // Initial render
-  renderDCF();
-  renderDDM();
-  renderEB();
-  renderFF();
- } catch(err){
-  var banner = document.getElementById('vf-error-banner');
-  if(banner){
-    banner.style.display = 'block';
-    banner.textContent = 'Gagal memuat kalkulator: ' + err.message;
-  }
- }
 });
 
-// Register service worker for offline use (only works when hosted, not on file://)
-if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  window.addEventListener('load', function(){
-    navigator.serviceWorker.register('/service-worker.js').catch(function(){});
+/* Subtabs System (Valuasi Saham) */
+const subtabs = document.querySelectorAll('.vf-subtab');
+const subpanels = document.querySelectorAll('.vf-subpanel');
+
+subtabs.forEach(st => {
+  st.addEventListener('click', () => {
+    subtabs.forEach(t => t.classList.remove('active'));
+    subpanels.forEach(p => p.classList.remove('active'));
+    st.classList.add('active');
+    document.getElementById(`subpanel-${st.dataset.subtab}`).classList.add('active');
   });
+});
+
+/* Dynamic Growth Input Generator */
+const grid = document.getElementById('dcf-growth-grid');
+if(grid) {
+  for(let i=1; i<=10; i++) {
+    grid.innerHTML += `<div class="vf-growth-cell"><span class="vf-growth-yr">Th ${i}</span><div class="vf-input-wrap"><input type="number" class="vf-input dcf-g" value="10"><span class="vf-suffix">%</span></div></div>`;
+  }
 }
-</script>
 
-<!-- Vercel Web Analytics -->
-<script>
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
+/* Financial Freedom Calculation */
+function calcFF() {
+  const mExp = parseFloat(document.getElementById('ff-exp-month').value) || 0;
+  const inf = (parseFloat(document.getElementById('ff-inflation').value) || 0) / 100;
+  const yrs = parseFloat(document.getElementById('ff-years').value) || 0;
+  const swr = (parseFloat(document.getElementById('ff-swr').value) || 1) / 100;
 
+  const currAnn = mExp * 12;
+  const futAnn = currAnn * Math.pow(1 + inf, yrs);
+  const target = futAnn / swr;
+
+  document.getElementById('ff-curr-annual').textContent = 'Rp ' + Math.round(currAnn).toLocaleString('id-ID');
+  document.getElementById('ff-future-annual').textContent = 'Rp ' + Math.round(futAnn).toLocaleString('id-ID');
+  document.getElementById('ff-target').textContent = 'Rp ' + (target / 1e9).toFixed(2) + ' M';
+}
+['ff-exp-month','ff-inflation','ff-years','ff-swr'].forEach(id => {
+  document.getElementById(id).addEventListener('input', calcFF);
+});
+calcFF();
+
+/* DDM Calculation */
+function calcDDM() {
+  const dps = parseFloat(document.getElementById('ddm-dps').value) || 0;
+  const g = (parseFloat(document.getElementById('ddm-growth').value) || 0) / 100;
+  const r = (parseFloat(document.getElementById('ddm-req').value) || 0) / 100;
+  
+  if(r > g) {
+    const val = (dps * (1 + g)) / (r - g);
+    document.getElementById('ddm-intrinsic').textContent = 'Rp ' + Math.round(val).toLocaleString('id-ID');
+  } else {
+    document.getElementById('ddm-intrinsic').textContent = 'N/A';
+  }
+}
+['ddm-dps','ddm-growth','ddm-req'].forEach(id => document.getElementById(id).addEventListener('input', calcDDM));
+calcDDM();
+
+/* ================= KSEI ANALYSIS LOGIC ================= */
+const $=s=>document.querySelector(s), fmt=n=>Math.round(n).toLocaleString('id-ID'), fp=n=>n.toFixed(2).replace('.',',');
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ALIAS={t:['share_code','ticker','kode saham','kode_saham','kode','code'],iss:['issuer_name','nama emiten','emiten','issuer'],
+ inv:['investor_name','nama pemegang saham','nama investor','investor name','pemegang saham','investor','nama'],
+ type:['investor_classification','investor type','tipe investor','jenis investor','klasifikasi investor','klasifikasi'],
+ lf:['local_foreign','lokal/asing','lokal asing','local/foreign','status','l/f'],
+ sh:['total_holding_shares','share count','jumlah saham','total saham','total_shares','shares'],
+ pct:['percentage','% kepemilikan','persentase','persen','pct','%'],date:['date','tanggal','periode','period']};
+const ST={New:'var(--ksei-new)',Accumulation:'var(--ksei-up)',Distribution:'var(--ksei-down)',Unchanged:'var(--ksei-flat)',Exit:'var(--ksei-exit)'};
+const STL={New:'Baru',Accumulation:'Akumulasi',Distribution:'Distribusi',Unchanged:'Tetap',Exit:'Exit'};
+const S={A:null,B:null,rows:[],f:[],tab:'ov',ui:{}};
+
+function num(v){if(typeof v==='number')return v;if(v==null)return 0;let s=String(v).replace(/[%\s]/g,'');if(!s||s==='-')return 0;
+ if(s.includes('.')&&s.includes(','))s=s.lastIndexOf(',')>s.lastIndexOf('.')?s.replace(/\./g,'').replace(',','.'):s.replace(/,/g,'');
+ else if(/^-?\d{1,3}(\.\d{3})+$/.test(s))s=s.replace(/\./g,'');else if(/^-?\d{1,3}(,\d{3})+$/.test(s))s=s.replace(/,/g,'');else s=s.replace(',','.');
+ const x=parseFloat(s);return isNaN(x)?0:x}
+function mapHeader(r){const m={};r.forEach((c,i)=>{const n=String(c??'').trim().toLowerCase().replace(/\s+/g,' ');for(const k in ALIAS)if(!(k in m)&&ALIAS[k].includes(n)){m[k]=i;break}});return m}
+async function parse(file){
+ const wb=XLSX.read(await file.arrayBuffer(),{type:'array',cellDates:true});
+ const raw=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{header:1,raw:true,defval:null});
+ let h=-1,m;for(let i=0;i<Math.min(raw.length,40);i++){m=mapHeader(raw[i]);if('t' in m&&'inv' in m&&('sh' in m||'pct' in m)){h=i;break}}
+ if(h<0)throw new Error(`"${file.name}": header tidak ditemukan. Butuh kolom Kode Saham, Nama Investor, dan Jumlah Saham atau % Kepemilikan.`);
+ const map=new Map();let date=null;
+ for(const r of raw.slice(h+1)){
+  if(r[m.t]==null||r[m.inv]==null)continue;
+  const t=String(r[m.t]).trim().toUpperCase(),inv=String(r[m.inv]).replace(/\s+/g,' ').trim().toUpperCase();if(!t||!inv)continue;
+  const k=t+'|'+inv,sh=num(r[m.sh]),pc=num(r[m.pct]),e=map.get(k);
+  if(e){e.sh+=sh;e.pc+=pc;continue}
+  const lf=String(r[m.lf]??'').trim().toUpperCase().charAt(0);
+  map.set(k,{t,inv,iss:String(r[m.iss]??'').trim(),type:r[m.type]?String(r[m.type]).trim():'Tidak Terklasifikasi',lf:lf==='L'||lf==='F'?lf:'',sh,pc});
+  if(!date&&m.date!=null&&r[m.date] instanceof Date)date=r[m.date];
+ }
+ return {map,date,name:file.name};
+}
+function compare(A,B){
+ const keys=new Set([...A.map.keys(),...B.map.keys()]),rows=[];
+ for(const k of keys){const a=A.map.get(k),b=B.map.get(k),x=b||a;
+  const sa=a?a.sh:0,sb=b?b.sh:0,pa=a?a.pc:0,pb=b?b.pc:0,ds=sb-sa;
+  const st=!a?'New':!b?'Exit':ds>0?'Accumulation':ds<0?'Distribution':'Unchanged';
+  rows.push({t:x.t,iss:(b&&b.iss)||x.iss,inv:x.inv,type:x.type,lf:x.lf,grp:x.type==='Individual'?'Individu':'Institusi',
+   sa,sb,pa,pb,ds,dp:Math.round((pb-pa)*1e4)/1e4,st})}
+ return {rows};
+}
+function tag(s){return `<span class="ksei-tag" style="background:${ST[s]}">${STL[s]}</span>`}
+function cls(v){return v>0?'ksei-pos':v<0?'ksei-neg':''}
+function sgn(v,d){return (v>0?'+':'')+d(v)}
+
+function table(id,rows,cols,limit=500){
+ const shown=rows.slice(0,limit);
+ const head=cols.map(c=>`<th class="${c.n?'n':''}">${c.h}</th>`).join('');
+ const body=shown.map(r=>'<tr>'+cols.map(c=>`<td class="${c.n?'n':''} ${c.c?c.c(r):''}">${c.f?c.f(r):esc(c.v(r))}</td>`).join('')+'</tr>').join('');
+ return `<div class="ksei-muted" style="margin-bottom:6px">${fmt(rows.length)} baris total</div>
+ <div class="ksei-tw"><table><thead><tr>${head}</tr></thead><tbody>${body||'<tr><td class="ksei-muted">Data kosong.</td></tr>'}</tbody></table></div>`;
+}
+function stdCols(){return [
+ {k:'t',h:'Kode',v:r=>r.t},{k:'inv',h:'Investor',v:r=>r.inv},{k:'type',h:'Tipe',v:r=>r.type},{k:'lf',h:'L/F',v:r=>r.lf},
+ {k:'st',h:'Status',v:r=>r.st,f:r=>tag(r.st)},
+ {k:'sa',h:'Saham P1',n:1,v:r=>r.sa,f:r=>fmt(r.sa)},{k:'sb',h:'Saham P2',n:1,v:r=>r.sb,f:r=>fmt(r.sb)},
+ {k:'ds',h:'Δ Lembar',n:1,v:r=>r.ds,f:r=>sgn(r.ds,fmt),c:r=>cls(r.ds)},
+ {k:'pa',h:'% P1',n:1,v:r=>r.pa,f:r=>fp(r.pa)},{k:'pb',h:'% P2',n:1,v:r=>r.pb,f:r=>fp(r.pb)},
+ {k:'dp',h:'Δ %',n:1,v:r=>r.dp,f:r=>sgn(r.dp,fp),c:r=>cls(r.dp)}]}
+
+function applyFilters(){
+ const lf=$('#fLF').value,gp=$('#fGrp').value,th=parseFloat($('#fThr').value)||0;
+ S.f=S.rows.filter(r=>(!lf||r.lf===lf)&&(!gp||r.grp===gp)&&Math.abs(r.dp)>=th);
+ const f=S.f,c=s=>f.filter(r=>r.st===s).length,sum=s=>f.filter(r=>r.st===s).reduce((a,r)=>a+r.ds,0);
+ const k=(l,v,col)=>`<div class="ksei-kpi" style="--c:${col}"><small>${l}</small><strong>${v}</strong></div>`;
+ $('#kpis').innerHTML=k('Saham terdata',fmt(new Set(f.map(r=>r.t)).size),'var(--ksei-accent)')+k('Investor baru',fmt(c('New')),'var(--ksei-new)')+k('Exit',fmt(c('Exit')),'var(--ksei-exit)')
+  +k('Akumulasi (lembar)',fmt(sum('Accumulation')),'var(--ksei-up)')+k('Distribusi (lembar)',fmt(Math.abs(sum('Distribution'))),'var(--ksei-down)');
+ renderKSEI();
+}
+
+function renderKSEI(){
+ $('#ksei-tabs').innerHTML=`<button role="tab" aria-selected="true">Daftar Kepemilikan KSEI</button>`;
+ $('#ksei-view').innerHTML=table('ov',S.f,stdCols());
+}
+
+async function onFile(n,f){
+ if(!f)return;const d=$('#d'+n);try{
+  const p=await parse(f);S['P'+n]=p;d.classList.add('ok');$('#s'+n).textContent=`${f.name} · ${fmt(p.map.size)} data`;
+  if(S.P1&&S.P2)build()}catch(e){d.classList.remove('ok');S['P'+n]=null;alert(e.message)}}
+function build(){
+ const c=compare(S.P1,S.P2);S.rows=c.rows;
+ $('#app').classList.remove('ksei-hide');applyFilters();
+}
+$('#f1').onchange=e=>onFile(1,e.target.files[0]);
+$('#f2').onchange=e=>onFile(2,e.target.files[0]);
+$('#fLF').onchange=applyFilters;
+$('#fGrp').onchange=applyFilters;
+$('#fThr').oninput=applyFilters;
+</script>
 </body>
 </html>
