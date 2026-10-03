@@ -842,7 +842,7 @@ input[type="range"].vf-slider::-moz-range-thumb{
 @media print{
   body{ background:#fff !important; color:#111 !important; padding:0 !important; }
   #vf-error-banner, .vf-tabs, .vf-toolbar, .vf-case, .vf-promo, .vf-footer,
-  .no-print, .vf-note-box, .vf-badge, #panel-about, #panel-glossary, .vf-subtabs{ display:none !important; }
+  .no-print, .vf-note-box, .vf-badge, #panel-about, #panel-glossary, #panel-ksei, .vf-subtabs{ display:none !important; }
   .vf-subpanel{ display:none !important; }
   .vf-subpanel.active{ display:block !important; }
   #panel-riskprofile .vf-note-box{ display:flex !important; background:#fdf3f1 !important; border-color:#e2685a !important; color:#7a2e26 !important; }
@@ -878,6 +878,42 @@ input[type="range"].vf-slider::-moz-range-thumb{
   .vf-details{ margin-top:10px; }
   #print-footer{ margin-top:16px; padding-top:10px; border-top:1px solid #ccc; font-size:10px; color:#888; }
 }
+
+/* ============ KSEI Ownership Analysis tab ============ */
+#panel-ksei{--ink:var(--text);--mute:var(--text-muted);--line:var(--border);--accent:var(--gold);--panel:var(--card-2);--up:var(--positive);--down:#fb923c;--new:#38bdf8;--exit:var(--negative);--flat:var(--text-dim);--bar:var(--border);--on:#1a1405;font-size:14px;line-height:1.45;font-variant-numeric:tabular-nums}
+html[data-theme="light"] #panel-ksei{--down:#c2410c;--new:#0e7490;--on:#fff}
+#panel-ksei .box{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px}
+#panel-ksei .up{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#panel-ksei .drop{position:relative;border:1.5px dashed var(--line);border-radius:8px;padding:14px;display:block;cursor:pointer}
+#panel-ksei .drop:hover,#panel-ksei .drop:focus-within{border-color:var(--accent)}
+#panel-ksei .drop b{display:block}#panel-ksei .drop span{color:var(--mute);font-size:13px}#panel-ksei .drop.ok{border-style:solid;border-color:var(--up)}
+#panel-ksei .drop input{position:absolute;opacity:0;width:1px;height:1px}
+#panel-ksei .note{margin:12px 0;padding:10px 12px;border-left:3px solid var(--accent);background:var(--panel);color:var(--mute);font-size:13px;border-radius:0 6px 6px 0}
+#panel-ksei .err{border-color:var(--exit);color:var(--exit)}
+#panel-ksei .filters{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:end;margin:14px 0}
+#panel-ksei label.f{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--mute)}
+#panel-ksei select,#panel-ksei input[type=text],#panel-ksei input[type=number]{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 8px;min-width:120px}
+#panel-ksei select:focus,#panel-ksei input:focus,#panel-ksei button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+#panel-ksei .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:16px}
+#panel-ksei .kpi{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px;border-top:3px solid var(--c,var(--line))}
+#panel-ksei .kpi small{color:var(--mute);display:block}#panel-ksei .kpi strong{font:700 22px/1.2 var(--sans)}
+#panel-ksei .tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin-bottom:14px;overflow-x:auto}
+#panel-ksei .tabs button{font:inherit;background:none;border:0;border-bottom:2px solid transparent;padding:9px 14px;color:var(--mute);cursor:pointer;white-space:nowrap}
+#panel-ksei .tabs button[aria-selected=true]{color:var(--ink);border-color:var(--accent);font-weight:600}
+#panel-ksei .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:10px}
+#panel-ksei .btn{font:inherit;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}
+#panel-ksei .btn:hover{border-color:var(--accent)}#panel-ksei .btn.on{background:var(--accent);color:var(--on);border-color:var(--accent)}
+#panel-ksei .tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--panel);max-height:560px;overflow-y:auto}
+#panel-ksei table{border-collapse:collapse;width:100%;font-size:13px}
+#panel-ksei th{position:sticky;top:0;background:var(--panel);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;color:var(--mute);font-weight:500}
+#panel-ksei th:hover{color:var(--ink)}#panel-ksei td{padding:6px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+#panel-ksei td.n,#panel-ksei th.n{text-align:right}#panel-ksei tr:hover td{background:var(--gold-tint)}
+#panel-ksei .pos{color:var(--up)}#panel-ksei .neg{color:var(--down)}
+#panel-ksei .tag{display:inline-block;padding:1px 7px;border-radius:10px;font-size:12px;color:#fff}
+#panel-ksei .chart{margin:0 0 14px}#panel-ksei .row{display:grid;grid-template-columns:minmax(120px,260px) 1fr 70px;gap:8px;align-items:center;padding:3px 0;font-size:13px}
+#panel-ksei .row i{display:block;height:14px;border-radius:2px;background:var(--c,var(--accent))}#panel-ksei .row span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#panel-ksei .muted{color:var(--mute)}#panel-ksei .hide{display:none}
+@media(max-width:640px){#panel-ksei .up{grid-template-columns:1fr}#panel-ksei .row{grid-template-columns:100px 1fr 56px}}
 </style>
 </head>
 <body>
@@ -928,6 +964,10 @@ input[type="range"].vf-slider::-moz-range-thumb{
   <button class="vf-tab" data-tab="riskprofile">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5A8 8 0 1 1 19.5 16.5"></path><line x1="12" y1="13" x2="15.2" y2="8.8"></line><circle cx="12" cy="13" r="1.3" fill="currentColor" stroke="none"></circle></svg>
     Fitting-Your-Portfolio
+  </button>
+    <button class="vf-tab" data-tab="ksei">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+    Analisis Kepemilikan KSEI
   </button>
   <button class="vf-tab" data-tab="about">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"></path></svg>
@@ -1694,6 +1734,37 @@ input[type="range"].vf-slider::-moz-range-thumb{
   </section>
 
   <!-- ===================== ABOUT ME ===================== -->
+  <section class="vf-panel" id="panel-ksei">
+    <div class="vf-section-title">
+      <span class="vf-eyebrow">Fitur Baru</span>
+      <h2>Analisis Kepemilikan KSEI</h2>
+      <p>Bandingkan kepemilikan pemegang saham di atas 1% antar dua periode: temukan investor baru, akumulasi, distribusi, dan exit. File Excel/CSV diproses langsung di browser Anda dan tidak diunggah ke server.</p>
+    </div>
+
+    <section class="box">
+  <div class="up">
+    <label class="drop" id="d1"><input type="file" id="f1" accept=".xlsx,.xls,.csv"><b>Periode 1 (lebih lama)</b><span id="s1">Pilih file Excel atau CSV, mis. data Agustus</span></label>
+    <label class="drop" id="d2"><input type="file" id="f2" accept=".xlsx,.xls,.csv"><b>Periode 2 (lebih baru)</b><span id="s2">Pilih file Excel atau CSV, mis. data September</span></label>
+  </div>
+  <div id="msg" class="hide"></div>
+</section>
+
+<div id="app" class="hide">
+  <div class="note"><b>Catatan data:</b> laporan KSEI hanya memuat pemegang di atas 1%. <i>Baru</i> berarti investor baru masuk atau naik melewati 1%; <i>Exit</i> berarti keluar atau turun di bawah 1%, belum tentu jual habis.</div>
+  <div class="filters">
+    <label class="f">Lokal / Asing<select id="fLF"><option value="">Semua</option><option value="L">Lokal</option><option value="F">Asing</option></select></label>
+    <label class="f">Kelompok<select id="fGrp"><option value="">Semua</option><option>Individu</option><option>Institusi</option></select></label>
+    <label class="f">Kategori investor<select id="fType"></select></label>
+    <label class="f">Min. |Δ %| porsi<input type="number" id="fThr" value="0" min="0" step="0.25" style="width:110px"></label>
+    <span class="muted" id="per"></span>
+  </div>
+  <div class="kpis" id="kpis"></div>
+  <div id="ca" class="muted" style="margin:-6px 0 12px"></div>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div id="view"></div>
+</div>
+  </section>
+
   <section class="vf-panel" id="panel-about">
     <div class="vf-section-title">
       <span class="vf-eyebrow">Profil</span>
@@ -2989,5 +3060,193 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 
+<script>
+(function(){
+const root=document.getElementById('panel-ksei'),LOC='id-ID',$=s=>root.querySelector(s), fmt=n=>Math.round(n).toLocaleString(LOC), fp=n=>n.toFixed(2).replace('.',',');
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ALIAS={t:['share_code','ticker','kode saham','kode_saham','kode','code'],iss:['issuer_name','nama emiten','emiten','issuer'],
+ inv:['investor_name','nama pemegang saham','nama investor','investor name','pemegang saham','investor','nama'],
+ type:['investor_classification','investor type','tipe investor','jenis investor','klasifikasi investor','klasifikasi'],
+ lf:['local_foreign','lokal/asing','lokal asing','local/foreign','status','l/f'],
+ sh:['total_holding_shares','share count','jumlah saham','total saham','total_shares','shares'],
+ pct:['percentage','% kepemilikan','persentase','persen','pct','%'],date:['date','tanggal','periode','period']};
+const ST={New:'var(--new)',Accumulation:'var(--up)',Distribution:'var(--down)',Unchanged:'var(--flat)',Exit:'var(--exit)'};
+const STL={New:'Baru',Accumulation:'Akumulasi',Distribution:'Distribusi',Unchanged:'Tetap',Exit:'Exit'};
+const S={A:null,B:null,rows:[],f:[],tab:'ov',ui:{}};
+function loadXLSX(){if(window.XLSX)return Promise.resolve();
+ return S.xl||(S.xl=new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+  s.onload=res;s.onerror=()=>{S.xl=null;rej(new Error('Gagal memuat pustaka pembaca Excel. Periksa koneksi internet Anda lalu coba lagi.'))};document.head.appendChild(s)}))}
+
+
+function num(v){if(typeof v==='number')return v;if(v==null)return 0;let s=String(v).replace(/[%\s]/g,'');if(!s||s==='-')return 0;
+ if(s.includes('.')&&s.includes(','))s=s.lastIndexOf(',')>s.lastIndexOf('.')?s.replace(/\./g,'').replace(',','.'):s.replace(/,/g,'');
+ else if(/^-?\d{1,3}(\.\d{3})+$/.test(s))s=s.replace(/\./g,'');else if(/^-?\d{1,3}(,\d{3})+$/.test(s))s=s.replace(/,/g,'');else s=s.replace(',','.');
+ const x=parseFloat(s);return isNaN(x)?0:x}
+function mapHeader(r){const m={};r.forEach((c,i)=>{const n=String(c??'').trim().toLowerCase().replace(/\s+/g,' ');for(const k in ALIAS)if(!(k in m)&&ALIAS[k].includes(n)){m[k]=i;break}});return m}
+async function parse(file){
+ await loadXLSX();const wb=XLSX.read(await file.arrayBuffer(),{type:'array',cellDates:true});
+ const raw=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{header:1,raw:true,defval:null});
+ let h=-1,m;for(let i=0;i<Math.min(raw.length,40);i++){m=mapHeader(raw[i]);if('t' in m&&'inv' in m&&('sh' in m||'pct' in m)){h=i;break}}
+ if(h<0)throw new Error(`"${file.name}": header tidak ditemukan. Butuh kolom Kode Saham, Nama Investor, dan Jumlah Saham atau % Kepemilikan.`);
+ const map=new Map();let date=null;
+ for(const r of raw.slice(h+1)){
+  if(r[m.t]==null||r[m.inv]==null)continue;
+  const t=String(r[m.t]).trim().toUpperCase(),inv=String(r[m.inv]).replace(/\s+/g,' ').trim().toUpperCase();if(!t||!inv)continue;
+  const k=t+'|'+inv,sh=num(r[m.sh]),pc=num(r[m.pct]),e=map.get(k);
+  if(e){e.sh+=sh;e.pc+=pc;continue}
+  const lf=String(r[m.lf]??'').trim().toUpperCase().charAt(0);
+  map.set(k,{t,inv,iss:String(r[m.iss]??'').trim(),type:r[m.type]?String(r[m.type]).trim():'Tidak Terklasifikasi',lf:lf==='L'||lf==='F'?lf:'',sh,pc});
+  if(!date&&m.date!=null&&r[m.date] instanceof Date)date=r[m.date];
+ }
+ return {map,date,name:file.name};
+}
+function implied(map){const best=new Map();for(const v of map.values())if(v.pc>0){const b=best.get(v.t);if(!b||v.pc>b.pc)best.set(v.t,v)}
+ const o=new Map();best.forEach((v,t)=>o.set(t,v.sh/(v.pc/100)));return o}
+function compare(A,B){
+ const keys=new Set([...A.map.keys(),...B.map.keys()]),rows=[];
+ for(const k of keys){const a=A.map.get(k),b=B.map.get(k),x=b||a;
+  const sa=a?a.sh:0,sb=b?b.sh:0,pa=a?a.pc:0,pb=b?b.pc:0,ds=sb-sa;
+  const st=!a?'New':!b?'Exit':ds>0?'Accumulation':ds<0?'Distribution':'Unchanged';
+  rows.push({t:x.t,iss:(b&&b.iss)||x.iss,inv:x.inv,type:x.type,lf:x.lf,grp:x.type==='Individual'?'Individu':x.type==='Tidak Terklasifikasi'?'Lainnya':'Institusi',
+   sa,sb,pa,pb,ds,dp:Math.round((pb-pa)*1e4)/1e4,st})}
+ const ia=implied(A.map),ib=implied(B.map),ca=new Set();
+ ib.forEach((v,t)=>{const u=ia.get(t);if(u&&Math.abs(v/u-1)>0.02)ca.add(t)});
+ rows.forEach(r=>r.ca=ca.has(r.t));
+ return {rows,ca};
+}
+function tag(s){return `<span class="tag" style="background:${ST[s]}">${STL[s]}</span>`}
+function cls(v){return v>0?'pos':v<0?'neg':''}
+function sgn(v,d){return (v>0?'+':'')+d(v)}
+
+/* tabel dengan sort klik */
+function table(id,rows,cols,limit=500){
+ const u=S.ui[id]||(S.ui[id]={k:null,d:-1});
+ if(u.k){const c=cols.find(c=>c.k===u.k);rows=[...rows].sort((a,b)=>{const x=c.v(a),y=c.v(b);return (typeof x==='string'?x.localeCompare(y):x-y)*u.d})}
+ const shown=rows.slice(0,limit);
+ const head=cols.map(c=>`<th class="${c.n?'n':''}" data-t="${id}" data-k="${c.k}">${c.h}${u.k===c.k?(u.d<0?' ↓':' ↑'):''}</th>`).join('');
+ const body=shown.map(r=>'<tr>'+cols.map(c=>`<td class="${c.n?'n':''} ${c.c?c.c(r):''}">${c.f?c.f(r):esc(c.v(r))}</td>`).join('')+'</tr>').join('');
+ return `<div class="muted" style="margin-bottom:6px">${fmt(rows.length)} baris${rows.length>limit?` (menampilkan ${limit} teratas; unduh CSV untuk semua)`:''}</div>
+ <div class="tw"><table><thead><tr>${head}</tr></thead><tbody>${body||'<tr><td class="muted">Tidak ada data dengan filter ini.</td></tr>'}</tbody></table></div>`;
+}
+const L=()=>S.la,R=()=>S.lb;
+function stdCols(){return [
+ {k:'t',h:'Kode',v:r=>r.t},{k:'inv',h:'Investor',v:r=>r.inv},{k:'type',h:'Tipe',v:r=>r.type},{k:'lf',h:'L/F',v:r=>r.lf},
+ {k:'st',h:'Status',v:r=>r.st,f:r=>tag(r.st)},
+ {k:'sa',h:'Saham '+L(),n:1,v:r=>r.sa,f:r=>fmt(r.sa)},{k:'sb',h:'Saham '+R(),n:1,v:r=>r.sb,f:r=>fmt(r.sb)},
+ {k:'ds',h:'Δ Lembar',n:1,v:r=>r.ds,f:r=>sgn(r.ds,fmt),c:r=>cls(r.ds)},
+ {k:'pa',h:'% '+L(),n:1,v:r=>r.pa,f:r=>fp(r.pa)},{k:'pb',h:'% '+R(),n:1,v:r=>r.pb,f:r=>fp(r.pb)},
+ {k:'dp',h:'Δ %',n:1,v:r=>r.dp,f:r=>sgn(r.dp,fp),c:r=>cls(r.dp)}]}
+function bars(items,color,unit=''){const mx=Math.max(...items.map(i=>Math.abs(i.v)),1e-9);
+ return `<div class="box chart">${items.map(i=>`<div class="row"><span title="${esc(i.l)}">${esc(i.l)}</span><i style="width:${Math.max(1,Math.abs(i.v)/mx*100)}%;--c:${i.c||color}"></i><span class="n" style="text-align:right">${i.t??fp(i.v)+unit}</span></div>`).join('')}</div>`}
+function csv(rows,cols,name){const q=v=>`"${String(v).replace(/"/g,'""')}"`;
+ const txt='\ufeff'+[cols.map(c=>q(c.h)).join(',')].concat(rows.map(r=>cols.map(c=>q(c.v(r))).join(','))).join('\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/csv'}));a.download=name+'.csv';a.click()}
+
+/* ringkasan per saham */
+function summary(rows){const g=new Map();
+ for(const r of rows){let s=g.get(r.t);if(!s)g.set(r.t,s={t:r.t,iss:r.iss,nw:0,ex:0,ac:0,di:0,nds:0,ndp:0,np:0,ca:r.ca});
+  if(r.st==='New'){s.nw++;s.np+=r.pb}else if(r.st==='Exit')s.ex++;else if(r.st==='Accumulation')s.ac++;else if(r.st==='Distribution')s.di++;
+  s.nds+=r.ds;s.ndp+=r.dp}
+ return [...g.values()]}
+
+/* filter global */
+function applyFilters(){
+ const lf=$('#fLF').value,gp=$('#fGrp').value,ty=$('#fType').value,th=parseFloat($('#fThr').value)||0;
+ S.f=S.rows.filter(r=>(!lf||r.lf===lf)&&(!gp||r.grp===gp)&&(!ty||r.type===ty)&&Math.abs(r.dp)>=th);
+ const f=S.f,c=s=>f.filter(r=>r.st===s).length,sum=s=>f.filter(r=>r.st===s).reduce((a,r)=>a+r.ds,0);
+ const k=(l,v,col)=>`<div class="kpi" style="--c:${col}"><small>${l}</small><strong>${v}</strong></div>`;
+ $('#kpis').innerHTML=k('Saham terdata',fmt(new Set(f.map(r=>r.t)).size),'var(--accent)')+k('Investor baru',fmt(c('New')),'var(--new)')+k('Exit',fmt(c('Exit')),'var(--exit)')
+  +k('Total akumulasi (lembar)',fmt(sum('Accumulation')),'var(--up)')+k('Total distribusi (lembar)',fmt(Math.abs(sum('Distribution'))),'var(--down)');
+ const n=new Set(f.filter(r=>r.ca).map(r=>r.t)).size;
+ $('#ca').innerHTML=n?`⚠ ${n} saham terindikasi berubah jumlah saham beredarnya (split, rights, dsb.). Untuk saham itu, andalkan <b>Δ %</b>, bukan Δ Lembar.`:'';
+ render();
+}
+
+/* tab */
+const TABS=[['ov','Ringkasan & Pencarian'],['new','Investor Baru'],['scr','Stock Screener'],['inv','Kepemilikan Investor']];
+function renderTabs(){$('#tabs').innerHTML=TABS.map(([k,l])=>`<button role="tab" aria-selected="${S.tab===k}" data-ktab="${k}">${l}</button>`).join('')}
+function render(){renderTabs();const v=$('#view'),t=S.tab;
+ if(t==='ov')ov(v);else if(t==='new')nw(v);else if(t==='scr')scr(v);else inv(v)}
+
+function keepFocus(fn){const id=document.activeElement&&document.activeElement.id,p=document.activeElement&&document.activeElement.selectionStart;fn();
+ if(id){const e=root.querySelector('#'+id);if(e){e.focus();try{e.setSelectionRange(p,p)}catch(_){}}}}
+
+function ov(v){const u=S.ui;u.q=u.q||'';u.stt=u.stt||'';
+ const terms=u.q.split(',').map(s=>s.trim().toUpperCase()).filter(Boolean);
+ const rows=S.f.filter(r=>(!u.stt||r.st===u.stt)&&(!terms.length||terms.some(t=>r.t.includes(t)||r.inv.includes(t)||r.iss.toUpperCase().includes(t))));
+ v.innerHTML=`<div class="bar"><label class="f">Cari kode saham atau nama investor<input type="text" id="q" value="${esc(u.q)}" placeholder="mis. BBCA, ANJT, FORT atau BLACKROCK" style="min-width:300px"></label>
+ <label class="f">Status<select id="qs"><option value="">Semua</option>${Object.keys(STL).map(k=>`<option value="${k}" ${u.stt===k?'selected':''}>${STL[k]}</option>`).join('')}</select></label>
+ <button class="btn" id="dl">Unduh CSV</button></div>`
+ +(terms.length&&new Set(rows.map(r=>r.t)).size===1?(()=>{const g=[...rows].sort((a,b)=>b.pb-a.pb||b.pa-a.pa).slice(0,10);
+   return `<div class="muted" style="margin-bottom:4px">${g[0].t} · ${esc(g[0].iss)} — % kepemilikan ${L()} → ${R()}</div>`+bars(g.map(r=>({l:r.inv,v:r.pb,t:`${fp(r.pa)} → ${fp(r.pb)}`,c:ST[r.st]})),'var(--accent)')})():'')
+ +table('ov',rows,stdCols());
+ $('#dl').onclick=()=>csv(rows,stdCols(),'overview');}
+
+function nw(v){const u=S.ui;u.sub=u.sub||'New';const isN=u.sub==='New';
+ const rows=S.f.filter(r=>r.st===u.sub).sort((a,b)=>isN?b.pb-a.pb:b.pa-a.pa);
+ const cols=isN?[{k:'t',h:'Kode',v:r=>r.t},{k:'iss',h:'Emiten',v:r=>r.iss},{k:'inv',h:'Investor',v:r=>r.inv},{k:'type',h:'Tipe',v:r=>r.type},{k:'lf',h:'L/F',v:r=>r.lf},
+   {k:'sb',h:'Saham '+R(),n:1,v:r=>r.sb,f:r=>fmt(r.sb)},{k:'pb',h:'% awal',n:1,v:r=>r.pb,f:r=>fp(r.pb)}]
+  :[{k:'t',h:'Kode',v:r=>r.t},{k:'iss',h:'Emiten',v:r=>r.iss},{k:'inv',h:'Investor',v:r=>r.inv},{k:'type',h:'Tipe',v:r=>r.type},{k:'lf',h:'L/F',v:r=>r.lf},
+   {k:'sa',h:'Saham '+L(),n:1,v:r=>r.sa,f:r=>fmt(r.sa)},{k:'pa',h:'% '+L(),n:1,v:r=>r.pa,f:r=>fp(r.pa)}];
+ const tot=rows.reduce((a,r)=>a+(isN?r.sb:r.sa),0);
+ v.innerHTML=`<div class="bar"><button class="btn ${isN?'on':''}" data-sub="New">Investor baru</button><button class="btn ${!isN?'on':''}" data-sub="Exit">Investor exit</button><button class="btn" id="dl">Unduh CSV</button>
+ <span class="muted">${fmt(rows.length)} investor · ${fmt(tot)} lembar saham${isN&&rows.length?` · rata-rata porsi awal ${fp(rows.reduce((a,r)=>a+r.pb,0)/rows.length)}%`:''}</span></div>`
+ +(rows.length?`<div class="muted" style="margin-bottom:4px">15 teratas berdasarkan % porsi (biru = Lokal, oranye = Asing)</div>`+bars(rows.slice(0,15).map(r=>({l:`${r.inv} (${r.t})`,v:isN?r.pb:r.pa,c:r.lf==='F'?'var(--down)':r.lf==='L'?'var(--accent)':'var(--flat)'})),'var(--accent)','%'):'')
+ +table('nw'+u.sub,rows,cols);
+ $('#dl').onclick=()=>csv(rows,cols,isN?'investor_baru':'exit_investor');}
+
+const SCR={new:'Investor baru terbanyak',acc:'Akumulasi terbesar (Δ % porsi)',grp:'Top akumulasi Asing / Institusi',dis:'Distribusi terbesar'};
+function scr(v){const u=S.ui;u.sc=u.sc||'new';u.grp=u.grp||'F';u.top=u.top||25;
+ let src=S.f;if(u.sc==='grp')src=S.f.filter(r=>u.grp==='F'?r.lf==='F':u.grp==='I'?r.grp==='Institusi':(r.lf==='F'||r.grp==='Institusi'));
+ let s=summary(src),key,lab;
+ if(u.sc==='new'){s=s.filter(x=>x.nw>0).sort((a,b)=>b.nw-a.nw||b.np-a.np);key=x=>x.nw;lab=x=>fmt(x.nw)}
+ else if(u.sc==='dis'){s=s.filter(x=>x.ndp<0).sort((a,b)=>a.ndp-b.ndp);key=x=>x.ndp;lab=x=>sgn(x.ndp,fp)}
+ else{s=s.filter(x=>x.ndp>0).sort((a,b)=>b.ndp-a.ndp);key=x=>x.ndp;lab=x=>sgn(x.ndp,fp)}
+ s=s.slice(0,+u.top);
+ const cols=[{k:'t',h:'Kode',v:x=>x.t},{k:'iss',h:'Emiten',v:x=>x.iss},{k:'nw',h:'Investor baru',n:1,v:x=>x.nw},{k:'ex',h:'Exit',n:1,v:x=>x.ex},{k:'ac',h:'# Akumulasi',n:1,v:x=>x.ac},{k:'di',h:'# Distribusi',n:1,v:x=>x.di},
+  {k:'nds',h:'Net Δ Lembar',n:1,v:x=>x.nds,f:x=>sgn(x.nds,fmt),c:x=>cls(x.nds)},{k:'ndp',h:'Net Δ %',n:1,v:x=>x.ndp,f:x=>sgn(x.ndp,fp),c:x=>cls(x.ndp)},
+  {k:'ca',h:'Aksi korporasi?',v:x=>x.ca?'Ya':'',c:x=>x.ca?'neg':''}];
+ v.innerHTML=`<div class="bar"><label class="f">Screener<select id="sc">${Object.entries(SCR).map(([k,l])=>`<option value="${k}" ${u.sc===k?'selected':''}>${l}</option>`).join('')}</select></label>
+ ${u.sc==='grp'?`<label class="f">Kelompok<select id="sg"><option value="F" ${u.grp==='F'?'selected':''}>Asing</option><option value="I" ${u.grp==='I'?'selected':''}>Institusi</option><option value="FI" ${u.grp==='FI'?'selected':''}>Asing + Institusi</option></select></label>`:''}
+ <label class="f">Top N<input type="number" id="stn" value="${u.top}" min="5" max="200" step="5" style="width:90px"></label><button class="btn" id="dl">Unduh CSV</button></div>`
+ +(s.length?bars(s.slice(0,15).map(x=>({l:`${x.t} · ${x.iss}`,v:key(x),t:lab(x),c:u.sc==='dis'?'var(--down)':'var(--up)'})),'var(--up)'):'')
+ +table('scr'+u.sc,s,cols)+`<div class="muted" style="margin-top:8px">Filter Min. |Δ %| diterapkan pada tiap investor sebelum dijumlahkan per saham. Saham bertanda "Ya" mengalami perubahan jumlah saham beredar; hasilnya bisa bias.</div>`;
+ $('#dl').onclick=()=>csv(s,cols,'screener');}
+
+function inv(v){const u=S.ui;u.iv=u.iv||'';
+ const names=[...new Set(S.rows.map(r=>r.inv))].sort(),rows=S.rows.filter(r=>r.inv===u.iv).sort((a,b)=>b.pb-a.pb||b.pa-a.pa);
+ v.innerHTML=`<div class="bar"><label class="f">Pilih atau ketik nama investor<input type="text" id="iv" list="ivl" value="${esc(u.iv)}" placeholder="mis. BPJS KETENAGAKERJAAN" style="min-width:340px"></label><datalist id="ivl">${names.map(n=>`<option value="${esc(n)}">`).join('')}</datalist></div>`
+ +(rows.length?`<div class="kpis"><div class="kpi"><small>Saham dipegang (${R()})</small><strong>${rows.filter(r=>r.sb>0).length}</strong></div><div class="kpi" style="--c:var(--new)"><small>Posisi baru</small><strong>${rows.filter(r=>r.st==='New').length}</strong></div><div class="kpi" style="--c:var(--exit)"><small>Posisi keluar</small><strong>${rows.filter(r=>r.st==='Exit').length}</strong></div><div class="kpi"><small>Tipe</small><strong style="font-size:17px">${esc(rows[0].type)}${rows[0].lf?' · '+(rows[0].lf==='F'?'Asing':'Lokal'):''}</strong></div></div>`
+   +bars(rows.slice(0,15).map(r=>({l:r.t+' · '+r.iss,v:r.pb,t:`${fp(r.pa)} → ${fp(r.pb)}`,c:ST[r.st]})),'var(--accent)')+table('inv',rows,stdCols())
+  :'<div class="note">Ketik nama investor dengan tepat (pilih dari daftar saran) untuk melihat portofolionya di semua saham.</div>');}
+
+/* event */
+root.addEventListener('click',e=>{const t=e.target;
+ if(t.dataset.ktab){S.tab=t.dataset.ktab;render()}
+ else if(t.dataset.sub){S.ui.sub=t.dataset.sub;render()}
+ else if(t.tagName==='TH'&&t.dataset.t){const id=t.dataset.t,u=S.ui[id]||(S.ui[id]={k:null,d:-1});u.d=u.k===t.dataset.k?-u.d:-1;u.k=t.dataset.k;render()}});
+root.addEventListener('input',e=>{const t=e.target,u=S.ui;
+ if(t.id==='q'){u.q=t.value;keepFocus(render)}else if(t.id==='iv'){u.iv=t.value;keepFocus(render)}
+ else if(t.id==='stn'&&t.value){u.top=t.value;keepFocus(render)}});
+root.addEventListener('change',e=>{const t=e.target,u=S.ui;
+ if(t.id==='qs'){u.stt=t.value;render()}else if(t.id==='sc'){u.sc=t.value;render()}else if(t.id==='sg'){u.grp=t.value;render()}
+ else if(['fLF','fGrp','fType','fThr'].includes(t.id))applyFilters()});
+
+function msg(t,err){const m=$('#msg');m.className='note'+(err?' err':'');m.textContent=t;m.style.display=t?'block':'none'}
+async function onFile(n,f){
+ if(!f)return;const d=$('#d'+n);try{
+  const p=await parse(f);S['P'+n]=p;d.classList.add('ok');$('#s'+n).textContent=`${f.name} · ${fmt(p.map.size)} baris`;msg('');
+  if(S.P1&&S.P2)build()}catch(e){d.classList.remove('ok');S['P'+n]=null;msg(e.message,true)}}
+function build(){
+ let A=S.P1,B=S.P2,sw=false;if(A.date&&B.date&&A.date>B.date){[A,B]=[B,A];sw=true}
+ const lbl=(p,d)=>p.date?p.date.toLocaleDateString(LOC,{day:'numeric',month:'short',year:'numeric'}):d;
+ S.la=lbl(A,'Periode 1');S.lb=lbl(B,'Periode 2');
+ const c=compare(A,B);S.rows=c.rows;
+ const types=[...new Set(S.rows.map(r=>r.type))].sort();$('#fType').innerHTML='<option value="">Semua</option>'+types.map(t=>`<option>${esc(t)}</option>`).join('');
+ $('#per').textContent=`${S.la} → ${S.lb}`;if(sw)msg('Urutan file terdeteksi terbalik, jadi ditukar otomatis berdasarkan kolom tanggal.');
+ $('#app').classList.remove('hide');S.ui={};applyFilters();}
+$('#f1').onchange=e=>onFile(1,e.target.files[0]);$('#f2').onchange=e=>onFile(2,e.target.files[0]);
+})();
+</script>
 </body>
 </html>
