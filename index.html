@@ -1026,6 +1026,17 @@ html[data-theme="light"] #panel-ksei{--down:#c2410c;--new:#0e7490;--on:#fff}
   #panel-ksei .ks-nav{grid-template-columns:repeat(2,minmax(0,1fr))}
   #panel-ksei .cards{grid-template-columns:1fr}
 }
+/* information-type labels and small buttons */
+#panel-ksei .kind{display:inline-block;margin-left:6px;padding:0 8px;border-radius:10px;font:600 10.5px/1.7 var(--sans);vertical-align:middle;border:1px solid currentColor;background:none;opacity:.9}
+#panel-ksei .kind.data{color:var(--new)}
+#panel-ksei .kind.calc{color:var(--up)}
+#panel-ksei .kind.est{color:var(--down)}
+#panel-ksei .kind.view{color:var(--rot)}
+#panel-ksei .btn.small{padding:3px 9px;font-size:12px}
+#panel-ksei .note.warn .chip,#panel-ksei .ins .chip{vertical-align:baseline}
+
+#panel-ksei td{overflow-wrap:break-word}
+#panel-ksei .chip.tk{white-space:nowrap}
 
 @media print{ .vf-shell{ display:block; padding:0; } .vf-nav-toggle{ display:none; } }
 </style>
@@ -3203,177 +3214,232 @@ const LANG='id', ID=LANG==='id', LOC=ID?'id-ID':'en-US';
 const root=document.getElementById('panel-ksei');
 if(!root)return;
 
-/* ============================== i18n ============================== */
+/* ============================== teks (bahasa) ============================== */
 const D={
 id:{
+ unit:'poin',
  p1:'Periode 1 (lebih lama)',p2:'Periode 2 (lebih baru)',pick1:'Pilih file Excel atau CSV, mis. data Agustus',pick2:'Pilih file Excel atau CSV, mis. data September',
  demo:'Coba dengan data contoh',privacy:'File diproses di browser Anda dan tidak diunggah ke server.',
- demoNote:'Anda sedang melihat DATA CONTOH fiktif (kode DEMA–DEMJ). Unggah file KSEI Anda untuk analisis sebenarnya.',
+ demoNote:'Anda sedang melihat DATA CONTOH fiktif (kode DEMA–DEML). Unggah file KSEI Anda untuk analisis sebenarnya.',
  errHeader:n=>`"${n}": header tidak ditemukan. Butuh kolom Kode Saham, Nama Investor, Jumlah Saham, dan % Kepemilikan.`,
  errLib:'Gagal memuat pustaka pembaca Excel. Periksa koneksi internet Anda lalu coba lagi.',
  swapped:'Urutan file terdeteksi terbalik, jadi ditukar otomatis berdasarkan kolom tanggal.',
  sameDate:'Kedua file bertanggal sama. Pastikan Anda memilih dua periode yang berbeda.',
  rows:n=>`${fmt(n)} baris`,
- fil:'Filter',filNone:'tanpa filter',filAct:x=>x,reset:'Reset filter',
+ fil:'Filter',filNone:'tanpa filter',reset:'Reset filter',
  fLF:'Lokal / Asing',all:'Semua',local:'Lokal',foreign:'Asing',fGrp:'Kelompok',ind:'Individu',inst:'Institusi',fType:'Kategori investor',
- fThr:'Abaikan perubahan di bawah (pp)',fCA:'Sertakan saham dengan aksi korporasi',unk:'Tak diketahui',unclass:'Tidak Terklasifikasi',
- n_sum:'Kesimpulan',n_sig:'Sinyal Saham',n_stk:'Detail Saham',n_inv:'Investor',n_nw:'Masuk & Keluar',
- kStocks:'Saham dianalisis',kAcc:'Sinyal akumulasi',kDis:'Sinyal distribusi',kNew:'Investor masuk (>1%)',kExit:'Investor keluar (<1%)',
- hKey:'Kesimpulan utama',hTop:'Pergerakan terbesar',hSeg:'Arah arus per segmen',
- i_scale:(n,m)=>`${fmt(n)} saham dibandingkan; ${fmt(m)} di antaranya menunjukkan pergerakan pemegang >1%.`,
- i_sa:(n,c)=>`Akumulasi kuat pada ${fmt(n)} saham. Terbesar: ${c}.`,
- i_sa0:'Tidak ada saham dengan sinyal akumulasi kuat pada periode ini.',
- i_sd:(n,c)=>`Distribusi kuat pada ${fmt(n)} saham. Terbesar: ${c}.`,
- i_sd0:'Tidak ada saham dengan sinyal distribusi kuat pada periode ini.',
- i_fa:c=>`Akumulasi asing institusi terbesar: ${c}.`,
- i_fd:c=>`Distribusi asing institusi terbesar: ${c}.`,
- i_cons:c=>`Akumulasi paling kompak (minimal 3 investor menambah, tidak ada yang mengurangi): ${c}.`,
- i_rot:c=>`Rotasi kepemilikan (perpindahan besar, net kecil; belum tentu bullish/bearish): ${c}.`,
- i_ca:(n,inc,c)=>`${fmt(n)} saham terindikasi aksi korporasi (jumlah saham beredar berubah >2%) dan ${inc?'tetap dihitung, hati-hati menafsirkannya':'dikeluarkan dari sinyal'}: ${c}.`,
- cAcc:'Akumulasi terbesar (net pp)',cDis:'Distribusi terbesar (net pp)',cNew:'Investor masuk terbesar',cExit:'Investor keluar terbesar',none:'Tidak ada data.',
- segT:'Segmen',segUp:'Saham net naik',segDn:'Saham net turun',segNew:'Investor masuk',segEx:'Investor keluar',
- segNote:'Dihitung dari investor yang lolos filter. Satuan: jumlah saham/investor, bukan rupiah.',
- sa:'Akumulasi kuat',a:'Akumulasi',n:'Netral',d:'Distribusi',sd:'Distribusi kuat',rot:'Rotasi',
- sNew:'Baru',sAcc:'Naik',sDis:'Turun',sUn:'Tetap',sExit:'Keluar',
- cCode:'Kode',cIss:'Emiten',cSig:'Sinyal',cNet:'Net Δ (pp)',cUD:'Naik / Turun',cNE:'Baru / Keluar',cFrg:'Asing Δ (pp)',cIns:'Institusi Δ (pp)',cConv:'Searah',
- cInv:'Investor',cType:'Tipe',cLF:'L/A',cSt:'Status',cDp:'Δ (pp)',cDs:'Δ lembar',cSz:'Porsi (%)',cSh:'Lembar',cMin:'Perubahan pasti (pp)',
- cAccN:'Posisi naik',cDisN:'Posisi turun',cGross:'Total gerak (pp)',cBias:'Kecenderungan',
- sigF:'Tampilkan sinyal',sigAll:'Semua',sigAcc:'Akumulasi (kuat + biasa)',sigSA:'Akumulasi kuat',sigDis:'Distribusi (kuat + biasa)',sigSD:'Distribusi kuat',sigRot:'Rotasi',
- wl:'Watchlist kode (pisahkan koma)',wlPh:'mis. BBCA, ANJT, FORT',mn:'Min. investor bergerak',
- sigLegend:'Akumulasi kuat: net ≥ +1,00 pp dan ≥ 50% searah · Akumulasi: net ≥ +0,25 pp dan ≥ 25% searah · Rotasi: gerak ≥ 1,00 pp tetapi searah −25%…+25% · Distribusi = kebalikan akumulasi.',
- filterNote:'Filter aktif: sinyal dihitung hanya dari investor yang lolos filter.',
- more:n=>`Tampilkan ${n} lagi`,shown:(a,b,l)=>`${fmt(b)} baris${b>a?` (menampilkan ${fmt(a)})`:''}${l?`. Unduh CSV untuk semua.`:''}`,csv:'Unduh CSV',sortBy:'Urutkan',
- stkLbl:'Kode saham',stkPh:'mis. BBCA',stkHint:'Ketik kode saham atau ketuk kode di tab lain untuk melihat rincian pemegangnya.',stkNo:'Kode tidak ditemukan di kedua file.',
- stkTopA:'Akumulasi terbesar',stkTopD:'Distribusi terbesar',sugg:'Mungkin maksud Anda:',
- kNetD:'Net Δ pemegang >1%',kHold:'Jumlah pemegang >1%',kTot:'Total dipegang >1%',kTop:'Pemegang terbesar',
- hVerdict:'Kesimpulan data',hSegS:'Net Δ per segmen (pp)',hHold:'Rincian pemegang',hPair:'Kepemilikan: periode 1 → periode 2',
- v_acc:s=>`Pemegang >1% menambah posisi: net ${pp(s.net)} dengan ${s.nUp} investor naik/masuk vs ${s.nDn} turun/keluar (${pc(s.conv)} searah).`,
- v_dis:s=>`Pemegang >1% mengurangi posisi: net ${pp(s.net)} dengan ${s.nDn} investor turun/keluar vs ${s.nUp} naik/masuk (${pc(s.conv)} searah).`,
- v_rot:s=>`Perpindahan besar (${fp(s.gross)} pp bergerak) tetapi saling meniadakan (net ${pp(s.net)}): kepemilikan berpindah tangan, bukan arah beli/jual yang jelas.`,
- v_neu:s=>`Tidak ada pergerakan berarti dari pemegang >1% (net ${pp(s.net)}).`,
- v_lead:r=>`Penggerak terbesar: ${r.inv} (${pp(r.dpc)}${r.st==='New'?', baru melewati 1%':r.st==='Exit'?', turun di bawah 1%':''}).`,
- v_seg:(l,v)=>`Segmen dominan: ${l} (${pp(v)}).`,
- v_ca:r=>`⚠ Jumlah saham beredar berubah sekitar ${r>1?'+':''}${fmt((r-1)*100)}% (split, rights issue, atau penerbitan lain). Persentase pemegang bisa bergeser tanpa jual-beli, jadi verifikasi dulu sebelum menyimpulkan.`,
- v_none:'Tidak ada pergerakan pemegang >1% pada saham ini.',
- lt1:'<1',
- iLbl:'Nama investor',iPh:'mis. BPJS KETENAGAKERJAAN',iHint:'Ketik nama investor atau ketuk namanya di tabel untuk melihat portofolionya.',iNo:'Investor tidak ditemukan di kedua file.',
- hLead:'Investor paling aktif',hPort:'Portofolio >1%',
- kHeld:'Saham dipegang (periode 2)',kUp:'Posisi naik/masuk',kDn:'Posisi turun/keluar',kNetI:'Net Δ lintas saham (pp)',
- b_acc:'Akumulator',b_dist:'Distributor',b_mix:'Campuran',b_flat:'Minim aktivitas',
- iv_sum:(s,b,top,bot)=>`${s.inv} cenderung ${b.toLowerCase()}: ${s.nUp} posisi naik/masuk vs ${s.nDn} turun/keluar.${top?` Penambahan terbesar di ${top}.`:''}${bot?` Pengurangan terbesar di ${bot}.`:''}`,
- invNote:'Total pp dijumlahkan lintas saham tanpa bobot nilai (tidak ada data harga), jadi gunakan sebagai petunjuk arah, bukan nominal.',
+ fThr:'Abaikan perubahan di bawah (poin)',fCA:'Sertakan saham yang jumlah sahamnya berubah',unk:'Tak diketahui',unclass:'Tidak Terklasifikasi',
+ n_sum:'Kesimpulan',n_sig:'Daftar Saham',n_stk:'Detail Saham',n_inv:'Investor',n_nw:'Masuk & Keluar',n_chk:'Cek Data',
+ kStocks:'Saham dibandingkan',kAcc:'Saham akumulasi',kDis:'Saham distribusi',kNew:'Investor masuk daftar',kExit:'Investor keluar daftar',
+ hKey:'Kesimpulan utama',hTop:'Perubahan terbesar',hSeg:'Siapa yang menambah dan mengurangi',
+ i_scale:(n,m)=>`${fmt(n)} saham dibandingkan. Pada ${fmt(m)} saham ada investor besar yang mengubah kepemilikannya.`,
+ i_sa:(n,c)=>`${fmt(n)} saham berstatus akumulasi kuat (investor besar kompak menambah). Terbesar: ${c}.`,
+ i_sa0:'Tidak ada saham berstatus akumulasi kuat pada periode ini.',
+ i_sd:(n,c)=>`${fmt(n)} saham berstatus distribusi kuat (investor besar kompak mengurangi). Terbesar: ${c}.`,
+ i_sd0:'Tidak ada saham berstatus distribusi kuat pada periode ini.',
+ i_fa:c=>`Institusi asing paling banyak menambah di: ${c}.`,
+ i_fd:c=>`Institusi asing paling banyak mengurangi di: ${c}.`,
+ i_cons:c=>`Minimal 3 investor menambah dan tidak ada yang mengurangi: ${c}.`,
+ i_rot:c=>`Kepemilikan lebih banyak berpindah tangan (ada yang menambah, ada yang mengurangi dengan jumlah mirip), belum tentu positif atau negatif: ${c}.`,
+ i_ca:(n,inc,c)=>`${fmt(n)} saham jumlah sahamnya berubah lebih dari 2% (mis. split atau rights issue) dan ${inc?'tetap dihitung, jadi tafsirkan dengan hati-hati':'tidak dimasukkan ke sinyal'}: ${c}.`,
+ i_merge:n=>`${fmt(n)} pasangan nama investor dianggap sama karena hanya beda penulisan, sehingga tidak dihitung sebagai keluar lalu masuk. Silakan periksa di tab Cek Data.`,
+ i_cand:n=>`${fmt(n)} pasangan nama mirip menunggu konfirmasi Anda di tab Cek Data (belum digabung).`,
+ cAcc:'Paling banyak ditambah (poin)',cDis:'Paling banyak dikurangi (poin)',cNew:'Investor masuk terbesar',cExit:'Investor keluar terbesar',none:'Tidak ada data.',
+ segT:'Kelompok investor',segUp:'Saham ditambah',segDn:'Saham dikurangi',segNew:'Investor masuk',segEx:'Investor keluar',
+ segNote:'Angka berupa jumlah saham atau investor, bukan rupiah. Dihitung dari investor yang lolos filter.',
+ sa:'Akumulasi kuat',a:'Akumulasi',n:'Netral',d:'Distribusi',sd:'Distribusi kuat',rot:'Berpindah tangan',
+ sNew:'Masuk',sAcc:'Menambah',sDis:'Mengurangi',sUn:'Tetap',sExit:'Keluar',
+ cCode:'Kode',cIss:'Emiten',cSig:'Sinyal',cNet:'Selisih (poin)',cUp:'Investor menambah',cDn:'Investor mengurangi',cFrg:'Asing (poin)',cIns:'Institusi (poin)',
+ cInv:'Investor',cType:'Tipe',cLF:'L/A',cSt:'Status',cDp:'Selisih (poin)',cDs:'Selisih lembar',cSz:'Porsi (%)',cSh:'Lembar',cCalc:'Dihitung (poin)',cHow:'Cara hitung',
+ cAct:'Saham berubah',cAddN:'Saham ditambah',cCutN:'Saham dikurangi',cEnt:'Masuk',cExt:'Keluar',cBias:'Kecenderungan',
+ sigF:'Tampilkan',sigAll:'Semua',sigAcc:'Akumulasi (kuat dan biasa)',sigSA:'Akumulasi kuat',sigDis:'Distribusi (kuat dan biasa)',sigSD:'Distribusi kuat',sigRot:'Berpindah tangan',
+ wl:'Kode saham pilihan (pisahkan koma)',wlPh:'mis. BBCA, ANJT, FORT',mn:'Minimal investor yang berubah',
+ sigLegend:'<b>Akumulasi</b> = investor besar menambah kepemilikan. <b>Distribusi</b> = investor besar mengurangi. <b>Berpindah tangan</b> = ada yang menambah dan ada yang mengurangi dengan jumlah mirip. Aturan lengkap ada di bagian Kesimpulan, “Cara membaca”.',
+ filterNote:'Filter sedang aktif: hitungan hanya memakai investor yang lolos filter.',
+ more:n=>`Tampilkan ${n} lagi`,shown:(a,b,l)=>`${fmt(b)} baris${b>a?` (menampilkan ${fmt(a)})`:''}${l?'. Unduh CSV untuk semuanya.':''}`,csv:'Unduh CSV',sortBy:'Urutkan',
+ stkLbl:'Kode saham',stkPh:'mis. BBCA',stkHint:'Ketik kode saham, atau ketuk kode saham di tab lain, untuk melihat rincian pemegangnya.',stkNo:'Kode tidak ditemukan di kedua file.',
+ stkTopA:'Paling banyak ditambah',stkTopD:'Paling banyak dikurangi',sugg:'Mungkin maksud Anda:',
+ kNetD:'Selisih investor besar',kHold:'Jumlah pemegang di atas 1%',kTot:'Total milik pemegang di atas 1%',kTop:'Pemegang terbesar',
+ hVerdict:'Kesimpulan',hSegS:'Selisih per kelompok (poin)',hHold:'Rincian pemegang',hPair:'Kepemilikan: periode 1 → periode 2',hCalc:'Cara hitung',
+ k_data:'Data file',k_calc:'Hitungan',k_est:'Perkiraan',k_view:'Tafsiran',
+ v_acc:s=>`Investor besar (di atas 1%) menambah kepemilikan: total naik ${pp(s.net)}. ${s.nUp} investor menambah atau masuk, ${s.nDn} mengurangi atau keluar.`,
+ v_dis:s=>`Investor besar (di atas 1%) mengurangi kepemilikan: total turun ${pp(Math.abs(s.net))}. ${s.nDn} investor mengurangi atau keluar, ${s.nUp} menambah atau masuk.`,
+ v_rot:s=>`Pergerakannya besar (${fp(s.gross)} poin) tetapi saling mengimbangi (selisih ${pp(s.net)}). Kepemilikan lebih banyak berpindah tangan, arah beli atau jualnya belum jelas.`,
+ v_neu:s=>`Tidak ada perubahan berarti dari investor besar (selisih ${pp(s.net)}).`,
+ v_lead:r=>`Perubahan terbesar: ${r.inv} (${pp(r.dpc)}${r.st==='New'?', baru masuk daftar di atas 1%':r.st==='Exit'?', keluar dari daftar di atas 1%':''}).`,
+ v_seg:(l,v)=>`Paling banyak berasal dari: ${l} (${pp(v)}).`,
+ v_ca:r=>`Jumlah saham beredar diperkirakan berubah sekitar ${r>1?'+':''}${fmt((r-1)*100)}% (split, rights issue, atau penerbitan lain). Persentase pemegang bisa bergeser tanpa ada jual-beli, jadi cek dulu sebelum menyimpulkan.`,
+ v_none:'Tidak ada perubahan dari investor besar pada saham ini.',
+ calcSum:(net,up,dn,p)=>`Selisih = jumlah kolom “Dihitung” = ${pp(net)}. Total penambahan = ${fp(up)}, total pengurangan = ${fp(dn)}. Porsi penambahan = penambahan ÷ (penambahan + pengurangan) = ${p===null?'tidak dihitung (tidak ada perubahan)':fmt(p*100)+'%'}.`,
+ how_up:(b,a)=>`${fp(b)} − ${fp(a)}`,how_in:b=>`${fp(b)} − 1,00 (hanya porsi di atas 1% yang pasti)`,how_out:a=>`−(${fp(a)} − 1,00) (hanya porsi di atas 1% yang pasti)`,
+ aka:x=>`sebelumnya: ${x}`,lt1:'<1',
+ iLbl:'Nama investor',iPh:'mis. BPJS KETENAGAKERJAAN',iHint:'Ketik nama investor, atau ketuk namanya di tabel, untuk melihat portofolionya.',iNo:'Investor tidak ditemukan di kedua file.',
+ hLead:'Investor paling aktif',hPort:'Saham yang dipegang (di atas 1%)',
+ kHeld:'Saham dipegang (periode 2)',kUp:'Saham ditambah',kDn:'Saham dikurangi',kEnt:'Masuk',kExt:'Keluar',
+ b_acc:'Lebih banyak menambah',b_dist:'Lebih banyak mengurangi',b_mix:'Campuran',b_flat:'Tidak ada perubahan',
+ iv_sum:(s,b,top,bot)=>`${s.inv}: ${b.toLowerCase()}. ${s.nUp} saham ditambah atau baru dimasuki, ${s.nDn} saham dikurangi atau ditinggalkan.${top?` Penambahan terbesar di ${top}.`:''}${bot?` Pengurangan terbesar di ${bot}.`:''}`,
+ invNote:'Dihitung dari jumlah saham yang berubah, bukan dari nilai rupiah (file tidak memuat harga).',
+ akaNote:x=>`Termasuk nama lain yang digabung: ${x}.`,
  nwIn:'Investor masuk',nwOut:'Investor keluar',
- nwNoteIn:'Masuk = naik melewati 1%; mereka bisa sudah memegang <1% sebelumnya, jadi “perubahan pasti” hanya porsi di atas 1%.',
- nwNoteOut:'Keluar = turun di bawah 1%; belum tentu menjual habis. “Perubahan pasti” hanya porsi di atas 1% yang sebelumnya dipegang.',
- nwSum:(n,f,i)=>`${fmt(n)} investor · ${fmt(f)} asing · ${fmt(i)} institusi`,nwTop:'15 teratas berdasarkan porsi (warna: biru = lokal, oranye = asing, abu = tak diketahui)',
- meth:'Cara membaca & metodologi',
+ nwNoteIn:'Masuk = baru tercatat di atas 1%. Sebelumnya bisa saja sudah memegang sedikit di bawah 1%, jadi hanya porsi di atas 1% yang dihitung.',
+ nwNoteOut:'Keluar dari daftar belum tentu menjual semuanya: bisa turun di bawah 1%, datanya tidak tercatat, atau nama berubah. Hanya porsi di atas 1% yang dihitung.',
+ nwMerged:n=>`${fmt(n)} pasangan nama yang hanya beda penulisan sudah digabung dan tidak muncul di sini. Lihat Cek Data.`,
+ nwSum:(n,f,i)=>`${fmt(n)} investor · ${fmt(f)} asing · ${fmt(i)} institusi`,nwTop:'15 terbesar menurut porsi (biru = lokal, oranye = asing, abu-abu = tak diketahui)',
+ meth:'Cara membaca dan rumusnya',
  m:[
-  '<b>Cakupan.</b> Laporan KSEI hanya memuat pemegang ≥1%. Ini jejak investor besar, bukan seluruh pasar. Tanpa data harga, perubahan diukur dalam poin persentase kepemilikan (pp), bukan rupiah.',
-  '<b>Δ (pp).</b> Selisih % kepemilikan antara dua periode. Status Naik/Turun/Tetap mengikuti Δ ini.',
-  '<b>Masuk & Keluar.</b> Investor yang hanya ada di satu file. Mereka bisa memegang hingga <1% di periode lain, jadi sinyal hanya memakai bagian yang pasti: (porsi − 1) pp. Contoh: investor baru dengan 1,30% dihitung +0,30 pp.',
-  '<b>Net, searah, sinyal.</b> Net = jumlah Δ semua pemegang yang bergerak. Searah = net ÷ total pergerakan (−100% s.d. +100%). Akumulasi kuat: net ≥ +1,00 pp dan searah ≥ 50%. Akumulasi: net ≥ +0,25 pp dan ≥ 25%. Distribusi adalah kebalikannya. Rotasi: total gerak ≥ 1,00 pp tetapi searah antara −25% dan +25%. Selain itu Netral.',
-  '<b>Aksi korporasi.</b> Jumlah saham beredar diperkirakan dari lembar ÷ persen tiap pemegang (median). Jika berubah >2% (split, rights, penerbitan baru), persentase bergeser tanpa jual-beli, sehingga saham itu dikeluarkan dari sinyal kecuali Anda menyertakannya di filter.',
-  '<b>Keterbatasan.</b> Tidak ada bobot nilai, nama investor yang sama dengan penulisan berbeda tidak digabung, dan data periodik tidak menangkap pergerakan di antara dua tanggal.'],
- disc:'Ringkasan data kepemilikan, bukan rekomendasi investasi. Gunakan bersama analisis fundamental, teknikal, dan profil risiko Anda.'
+  '<b>Isi laporan.</b> Laporan KSEI hanya mencatat pemegang saham di atas 1%. Jadi ini gambaran pergerakan investor besar, bukan seluruh pasar. Karena tidak ada data harga, perubahan dihitung dalam “poin” persentase kepemilikan, bukan rupiah. Contoh: 5% menjadi 7% = naik 2 poin.',
+  '<b>Selisih.</b> Selisih = % periode 2 − % periode 1. Status Menambah, Mengurangi, atau Tetap mengikuti selisih ini.',
+  '<b>Masuk dan keluar.</b> Investor yang hanya muncul di satu file. Keluar dari daftar belum tentu menjual semuanya, bisa saja turun sedikit di bawah 1%. Karena itu hanya porsi di atas 1% yang dihitung: porsi − 1. Contoh: investor masuk dengan 1,30% dihitung +0,30 poin.',
+  '<b>Nama yang mirip.</b> Jika di saham yang sama ada nama yang “keluar” di periode 1 dan nama yang “masuk” di periode 2, lalu keduanya hanya beda penulisan (mis. kata PT, TBK, REGISTRAR), keduanya dianggap investor yang sama. Yang sangat meyakinkan digabung otomatis tetapi bisa dibatalkan. Yang kurang pasti hanya digabung jika Anda setuju. Semuanya tercantum di tab Cek Data.',
+  '<b>Sinyal saham.</b> Selisih saham = total penambahan − total pengurangan semua investor besar. Porsi penambahan = total penambahan ÷ (total penambahan + total pengurangan); jika pembaginya 0, tidak ada sinyal. <br>Akumulasi kuat: selisih ≥ +1 poin dan porsi ≥ 75%. <br>Akumulasi: selisih ≥ +0,25 poin dan porsi ≥ 60%. <br>Distribusi kuat: selisih ≤ −1 poin dan porsi ≤ 25%. <br>Distribusi: selisih ≤ −0,25 poin dan porsi ≤ 40%. <br>Berpindah tangan: total pergerakan ≥ 1 poin dan porsi antara 40% dan 60%. <br>Selain itu: Netral.',
+  '<b>Jumlah saham berubah.</b> Jumlah saham beredar diperkirakan dari jumlah saham ÷ persentase tiap pemegang (nilai tengah). Jika berubah lebih dari 2% (split, rights issue, saham baru), persentase pemegang bergeser walau tidak ada jual-beli, jadi saham itu tidak dimasukkan ke sinyal kecuali Anda menyertakannya di filter.',
+  '<b>Jenis informasi.</b> <i>Data file</i> = persis seperti di file Anda. <i>Hitungan</i> = dihitung dari data file memakai rumus di atas. <i>Perkiraan</i> = dugaan dari hitungan (mis. jumlah saham beredar). <i>Tafsiran</i> = label sinyal dan kalimat kesimpulan, yaitu penilaian berbasis aturan, bukan fakta.',
+  '<b>Keterbatasan.</b> Tidak ada bobot nilai rupiah. Nama yang beda jauh tidak digabung. Data per periode tidak menangkap pergerakan di antara dua tanggal.'],
+ disc:'Ringkasan data kepemilikan, bukan rekomendasi beli atau jual. Gunakan bersama analisis fundamental, teknikal, dan profil risiko Anda.',
+ /* cek data */
+ chkRows:'Ringkasan baris data',chkF:'File',chkRead:'Baris dibaca',chkKept:'Baris dipakai',chkEmpty:'Kosong dilewati',chkBad:'Tidak valid dikecualikan',chkDup:'Baris ganda digabung',chkStocks:'Saham',chkInv:'Investor unik',
+ chkRowsNote:'Baris tidak valid = persentase kosong, nol, negatif, atau lebih dari 100%. Baris ganda = investor dan saham yang sama muncul lebih dari sekali; angkanya dijumlahkan.',
+ chkMerge:'Nama investor yang digabung',
+ chkMergeNote:'Pasangan ini muncul sebagai “keluar” di satu periode dan “masuk” di periode lain pada saham yang sama. Bila benar satu pihak, penggabungan membuat hasilnya tidak palsu. Periksa, lalu ubah jika perlu.',
+ mgT:'Saham',mgA:'Nama di periode 1',mgB:'Nama di periode 2',mgPa:'% P1',mgPb:'% P2',mgLv:'Keyakinan',mgSt:'Status',mgAct:'Aksi',
+ lvH:'hanya beda PT/TBK/REGISTRAR atau spasi',lvM:'mirip, perlu konfirmasi',lvHs:'Tinggi',lvMs:'Sedang',
+ mgOn:'Digabung',mgOff:'Terpisah',mgDo:'Gabungkan',mgUndo:'Pisahkan',mgNone:'Tidak ada pasangan nama yang mirip.',
+ chkAn:'Hal yang perlu dicek',lvlH:'Tinggi',lvlM:'Sedang',lvlL:'Rendah',anL:'Tingkat',anT:'Jenis',anD:'Keterangan',anNone:'Tidak ada temuan.',
+ an_ca:'Jumlah saham berubah',an_spread:'Persen tidak cocok dengan jumlah saham',an_cnt:'Jumlah pemegang berubah drastis',an_bad:'Baris tidak valid',an_size:'Ukuran kedua file berbeda jauh',an_merge:'Nama digabung',an_cand:'Nama mirip belum digabung',
+ an_ca_d:r=>`Jumlah saham beredar diperkirakan berubah ${r>1?'+':''}${fmt((r-1)*100)}%.`,
+ an_spread_d:x=>`Perkiraan jumlah saham beredar antar pemegang di satu periode berbeda hingga ${fmt((x-1)*100)}%. Data persen atau jumlah saham mungkin tidak konsisten.`,
+ an_cnt_d:(a,b)=>`Jumlah pemegang di atas 1% berubah dari ${a} menjadi ${b}.`,
+ an_bad_d:(f,n)=>`${f}: ${fmt(n)} baris dikecualikan karena persentase tidak valid.`,
+ an_size_d:(a,b)=>`File 1 memakai ${fmt(a)} baris, file 2 memakai ${fmt(b)} baris. Pastikan keduanya laporan yang sejenis.`,
+ an_merge_d:(a,b)=>`“${a}” dan “${b}” dianggap sama.`,
+ an_cand_d:(a,b)=>`“${a}” dan “${b}” mirip tetapi belum digabung.`
 },
 en:{
+ unit:'pts',
  p1:'Period 1 (older)',p2:'Period 2 (newer)',pick1:'Choose an Excel or CSV file, e.g. August data',pick2:'Choose an Excel or CSV file, e.g. September data',
  demo:'Try with sample data',privacy:'Files are processed in your browser and never uploaded to a server.',
- demoNote:'You are viewing fictional SAMPLE DATA (tickers DEMA–DEMJ). Upload your KSEI files for a real analysis.',
+ demoNote:'You are viewing fictional SAMPLE DATA (tickers DEMA–DEML). Upload your KSEI files for a real analysis.',
  errHeader:n=>`"${n}": header row not found. Required columns: Share Code, Investor Name, Total Holding Shares, and Percentage.`,
  errLib:'Could not load the Excel reader library. Check your internet connection and try again.',
  swapped:'The file order looked reversed, so the files were swapped automatically based on the date column.',
  sameDate:'Both files have the same date. Make sure you picked two different periods.',
  rows:n=>`${fmt(n)} rows`,
- fil:'Filters',filNone:'no filters',filAct:x=>x,reset:'Reset filters',
+ fil:'Filters',filNone:'no filters',reset:'Reset filters',
  fLF:'Local / Foreign',all:'All',local:'Local',foreign:'Foreign',fGrp:'Group',ind:'Individual',inst:'Institution',fType:'Investor category',
- fThr:'Ignore changes below (pp)',fCA:'Include stocks with corporate actions',unk:'Unknown',unclass:'Unclassified',
- n_sum:'Takeaways',n_sig:'Stock Signals',n_stk:'Stock Detail',n_inv:'Investors',n_nw:'Entries & Exits',
- kStocks:'Stocks analysed',kAcc:'Accumulation signals',kDis:'Distribution signals',kNew:'Investors entering (>1%)',kExit:'Investors exiting (<1%)',
- hKey:'Key takeaways',hTop:'Biggest movers',hSeg:'Flow direction by segment',
- i_scale:(n,m)=>`${fmt(n)} stocks compared; ${fmt(m)} of them show movement among >1% holders.`,
- i_sa:(n,c)=>`Strong accumulation in ${fmt(n)} stock(s). Largest: ${c}.`,
- i_sa0:'No stock shows a strong accumulation signal in this period.',
- i_sd:(n,c)=>`Strong distribution in ${fmt(n)} stock(s). Largest: ${c}.`,
- i_sd0:'No stock shows a strong distribution signal in this period.',
- i_fa:c=>`Largest foreign institutional accumulation: ${c}.`,
- i_fd:c=>`Largest foreign institutional distribution: ${c}.`,
- i_cons:c=>`Most unanimous accumulation (at least 3 holders adding, none reducing): ${c}.`,
- i_rot:c=>`Ownership rotation (large turnover, small net; not necessarily bullish/bearish): ${c}.`,
- i_ca:(n,inc,c)=>`${fmt(n)} stock(s) flagged for corporate actions (shares outstanding changed >2%) and ${inc?'still counted, so interpret with care':'excluded from signals'}: ${c}.`,
- cAcc:'Largest accumulation (net pp)',cDis:'Largest distribution (net pp)',cNew:'Largest investors entering',cExit:'Largest investors exiting',none:'No data.',
- segT:'Segment',segUp:'Stocks net up',segDn:'Stocks net down',segNew:'Investors entering',segEx:'Investors exiting',
- segNote:'Based on investors that pass the filters. Units are counts of stocks/investors, not currency.',
- sa:'Strong accumulation',a:'Accumulation',n:'Neutral',d:'Distribution',sd:'Strong distribution',rot:'Rotation',
- sNew:'New',sAcc:'Increased',sDis:'Decreased',sUn:'Unchanged',sExit:'Exit',
- cCode:'Code',cIss:'Issuer',cSig:'Signal',cNet:'Net Δ (pp)',cUD:'Up / Down',cNE:'New / Exit',cFrg:'Foreign Δ (pp)',cIns:'Institution Δ (pp)',cConv:'Agreement',
- cInv:'Investor',cType:'Type',cLF:'L/F',cSt:'Status',cDp:'Δ (pp)',cDs:'Δ shares',cSz:'Stake (%)',cSh:'Shares',cMin:'Confirmed change (pp)',
- cAccN:'Positions up',cDisN:'Positions down',cGross:'Total movement (pp)',cBias:'Tendency',
- sigF:'Show signals',sigAll:'All',sigAcc:'Accumulation (strong + regular)',sigSA:'Strong accumulation',sigDis:'Distribution (strong + regular)',sigSD:'Strong distribution',sigRot:'Rotation',
- wl:'Ticker watchlist (comma-separated)',wlPh:'e.g. BBCA, ANJT, FORT',mn:'Min. holders moving',
- sigLegend:'Strong accumulation: net ≥ +1.00 pp and ≥ 50% agreement · Accumulation: net ≥ +0.25 pp and ≥ 25% · Rotation: movement ≥ 1.00 pp but agreement between −25% and +25% · Distribution is the mirror image.',
- filterNote:'Filters active: signals are computed only from investors that pass the filters.',
- more:n=>`Show ${n} more`,shown:(a,b,l)=>`${fmt(b)} rows${b>a?` (showing ${fmt(a)})`:''}${l?`. Download CSV for all.`:''}`,csv:'Download CSV',sortBy:'Sort by',
+ fThr:'Ignore changes below (points)',fCA:'Include stocks whose share count changed',unk:'Unknown',unclass:'Unclassified',
+ n_sum:'Takeaways',n_sig:'Stock List',n_stk:'Stock Detail',n_inv:'Investors',n_nw:'Entries & Exits',n_chk:'Data Check',
+ kStocks:'Stocks compared',kAcc:'Accumulating stocks',kDis:'Distributing stocks',kNew:'Investors entering list',kExit:'Investors leaving list',
+ hKey:'Key takeaways',hTop:'Biggest changes',hSeg:'Who is adding and who is reducing',
+ i_scale:(n,m)=>`${fmt(n)} stocks compared. In ${fmt(m)} of them a large holder changed their stake.`,
+ i_sa:(n,c)=>`${fmt(n)} stock(s) show strong accumulation (large holders adding together). Biggest: ${c}.`,
+ i_sa0:'No stock shows strong accumulation in this period.',
+ i_sd:(n,c)=>`${fmt(n)} stock(s) show strong distribution (large holders reducing together). Biggest: ${c}.`,
+ i_sd0:'No stock shows strong distribution in this period.',
+ i_fa:c=>`Foreign institutions added the most in: ${c}.`,
+ i_fd:c=>`Foreign institutions reduced the most in: ${c}.`,
+ i_cons:c=>`At least 3 holders added and none reduced: ${c}.`,
+ i_rot:c=>`Ownership mostly changed hands (some added, some reduced by similar amounts), not clearly positive or negative: ${c}.`,
+ i_ca:(n,inc,c)=>`${fmt(n)} stock(s) had their share count change by more than 2% (e.g. split or rights issue) and ${inc?'are still counted, so read them with care':'are left out of the signals'}: ${c}.`,
+ i_merge:n=>`${fmt(n)} pair(s) of investor names were treated as the same holder because they only differ in spelling, so they are not counted as exit then entry. Please review them in the Data Check tab.`,
+ i_cand:n=>`${fmt(n)} pair(s) of similar names are waiting for your confirmation in the Data Check tab (not merged yet).`,
+ cAcc:'Most added (points)',cDis:'Most reduced (points)',cNew:'Largest investors entering',cExit:'Largest investors leaving',none:'No data.',
+ segT:'Investor group',segUp:'Stocks added',segDn:'Stocks reduced',segNew:'Investors entering',segEx:'Investors leaving',
+ segNote:'Numbers are counts of stocks or investors, not currency. Based on investors that pass the filters.',
+ sa:'Strong accumulation',a:'Accumulation',n:'Neutral',d:'Distribution',sd:'Strong distribution',rot:'Changing hands',
+ sNew:'Entered',sAcc:'Adding',sDis:'Reducing',sUn:'Unchanged',sExit:'Left',
+ cCode:'Code',cIss:'Issuer',cSig:'Signal',cNet:'Difference (pts)',cUp:'Holders adding',cDn:'Holders reducing',cFrg:'Foreign (pts)',cIns:'Institution (pts)',
+ cInv:'Investor',cType:'Type',cLF:'L/F',cSt:'Status',cDp:'Difference (pts)',cDs:'Share difference',cSz:'Stake (%)',cSh:'Shares',cCalc:'Counted (pts)',cHow:'How it is calculated',
+ cAct:'Stocks changed',cAddN:'Stocks added',cCutN:'Stocks reduced',cEnt:'Entered',cExt:'Left',cBias:'Tendency',
+ sigF:'Show',sigAll:'All',sigAcc:'Accumulation (strong and regular)',sigSA:'Strong accumulation',sigDis:'Distribution (strong and regular)',sigSD:'Strong distribution',sigRot:'Changing hands',
+ wl:'Tickers of interest (comma-separated)',wlPh:'e.g. BBCA, ANJT, FORT',mn:'Minimum holders that changed',
+ sigLegend:'<b>Accumulation</b> = large holders are adding. <b>Distribution</b> = large holders are reducing. <b>Changing hands</b> = some add and some reduce by similar amounts. Full rules are in Takeaways, “How to read this”.',
+ filterNote:'Filters are active: calculations only use investors that pass the filters.',
+ more:n=>`Show ${n} more`,shown:(a,b,l)=>`${fmt(b)} rows${b>a?` (showing ${fmt(a)})`:''}${l?'. Download CSV for all.':''}`,csv:'Download CSV',sortBy:'Sort by',
  stkLbl:'Ticker',stkPh:'e.g. BBCA',stkHint:'Type a ticker, or tap a ticker in another tab, to see its holder details.',stkNo:'Ticker not found in either file.',
- stkTopA:'Largest accumulation',stkTopD:'Largest distribution',sugg:'Did you mean:',
- kNetD:'Net Δ of >1% holders',kHold:'Number of >1% holders',kTot:'Total held by >1% holders',kTop:'Largest holder',
- hVerdict:'What the data says',hSegS:'Net Δ by segment (pp)',hHold:'Holder breakdown',hPair:'Ownership: period 1 → period 2',
- v_acc:s=>`>1% holders added: net ${pp(s.net)} with ${s.nUp} holders up/entering vs ${s.nDn} down/exiting (${pc(s.conv)} agreement).`,
- v_dis:s=>`>1% holders reduced: net ${pp(s.net)} with ${s.nDn} holders down/exiting vs ${s.nUp} up/entering (${pc(s.conv)} agreement).`,
- v_rot:s=>`Large turnover (${fp(s.gross)} pp moved) but offsetting (net ${pp(s.net)}): ownership changed hands without a clear buy/sell direction.`,
- v_neu:s=>`No meaningful movement among >1% holders (net ${pp(s.net)}).`,
- v_lead:r=>`Biggest mover: ${r.inv} (${pp(r.dpc)}${r.st==='New'?', newly above 1%':r.st==='Exit'?', fell below 1%':''}).`,
- v_seg:(l,v)=>`Dominant segment: ${l} (${pp(v)}).`,
- v_ca:r=>`⚠ Shares outstanding changed by about ${r>1?'+':''}${fmt((r-1)*100)}% (split, rights issue or other issuance). Holder percentages can shift without any trading, so verify before concluding.`,
- v_none:'No movement among >1% holders in this stock.',
- lt1:'<1',
+ stkTopA:'Most added',stkTopD:'Most reduced',sugg:'Did you mean:',
+ kNetD:'Difference among large holders',kHold:'Holders above 1%',kTot:'Total held by holders above 1%',kTop:'Largest holder',
+ hVerdict:'Conclusion',hSegS:'Difference by group (points)',hHold:'Holder breakdown',hPair:'Ownership: period 1 → period 2',hCalc:'How it is calculated',
+ k_data:'File data',k_calc:'Calculation',k_est:'Estimate',k_view:'Interpretation',
+ v_acc:s=>`Large holders (above 1%) added to their stakes: total up ${pp(s.net)}. ${s.nUp} holder(s) added or entered, ${s.nDn} reduced or left.`,
+ v_dis:s=>`Large holders (above 1%) reduced their stakes: total down ${pp(Math.abs(s.net))}. ${s.nDn} holder(s) reduced or left, ${s.nUp} added or entered.`,
+ v_rot:s=>`Movement is large (${fp(s.gross)} pts) but offsetting (difference ${pp(s.net)}). Ownership mostly changed hands, so the buy or sell direction is unclear.`,
+ v_neu:s=>`No meaningful change among large holders (difference ${pp(s.net)}).`,
+ v_lead:r=>`Biggest change: ${r.inv} (${pp(r.dpc)}${r.st==='New'?', newly listed above 1%':r.st==='Exit'?', dropped off the list above 1%':''}).`,
+ v_seg:(l,v)=>`Mostly from: ${l} (${pp(v)}).`,
+ v_ca:r=>`Shares outstanding are estimated to have changed by about ${r>1?'+':''}${fmt((r-1)*100)}% (split, rights issue or other issuance). Holder percentages can shift without any trading, so check before concluding.`,
+ v_none:'No change among large holders in this stock.',
+ calcSum:(net,up,dn,p)=>`Difference = sum of the “Counted” column = ${pp(net)}. Total added = ${fp(up)}, total reduced = ${fp(dn)}. Share of adding = added ÷ (added + reduced) = ${p===null?'not calculated (no change)':fmt(p*100)+'%'}.`,
+ how_up:(b,a)=>`${fp(b)} − ${fp(a)}`,how_in:b=>`${fp(b)} − 1.00 (only the part above 1% is certain)`,how_out:a=>`−(${fp(a)} − 1.00) (only the part above 1% is certain)`,
+ aka:x=>`previously: ${x}`,lt1:'<1',
  iLbl:'Investor name',iPh:'e.g. BPJS KETENAGAKERJAAN',iHint:'Type an investor name, or tap a name in a table, to see their portfolio.',iNo:'Investor not found in either file.',
- hLead:'Most active investors',hPort:'Portfolio (>1% positions)',
- kHeld:'Stocks held (period 2)',kUp:'Positions up/entering',kDn:'Positions down/exiting',kNetI:'Net Δ across stocks (pp)',
- b_acc:'Accumulator',b_dist:'Distributor',b_mix:'Mixed',b_flat:'Low activity',
- iv_sum:(s,b,top,bot)=>`${s.inv} leans ${b.toLowerCase()}: ${s.nUp} positions up/entering vs ${s.nDn} down/exiting.${top?` Largest addition: ${top}.`:''}${bot?` Largest reduction: ${bot}.`:''}`,
- invNote:'pp are summed across stocks without value weighting (no price data), so treat this as direction, not size in currency.',
- nwIn:'Investors entering',nwOut:'Investors exiting',
- nwNoteIn:'Entering = crossed above 1%; they may already have held <1%, so “confirmed change” counts only the part above 1%.',
- nwNoteOut:'Exiting = fell below 1%; not necessarily a full sale. “Confirmed change” counts only the part above 1% they held before.',
- nwSum:(n,f,i)=>`${fmt(n)} investors · ${fmt(f)} foreign · ${fmt(i)} institutions`,nwTop:'Top 15 by stake (colour: blue = local, orange = foreign, grey = unknown)',
- meth:'How to read this & methodology',
+ hLead:'Most active investors',hPort:'Stocks held (above 1%)',
+ kHeld:'Stocks held (period 2)',kUp:'Stocks added',kDn:'Stocks reduced',kEnt:'Entered',kExt:'Left',
+ b_acc:'Mostly adding',b_dist:'Mostly reducing',b_mix:'Mixed',b_flat:'No change',
+ iv_sum:(s,b,top,bot)=>`${s.inv}: ${b.toLowerCase()}. ${s.nUp} stock(s) added or newly entered, ${s.nDn} reduced or left.${top?` Largest addition: ${top}.`:''}${bot?` Largest reduction: ${bot}.`:''}`,
+ invNote:'Based on how many stocks changed, not on currency value (the files contain no prices).',
+ akaNote:x=>`Includes other names that were merged: ${x}.`,
+ nwIn:'Investors entering',nwOut:'Investors leaving',
+ nwNoteIn:'Entered = newly listed above 1%. They may already have held a little under 1% before, so only the part above 1% is counted.',
+ nwNoteOut:'Leaving the list does not necessarily mean a full sale: they may have dropped below 1%, the data may be missing, or the name may have changed. Only the part above 1% is counted.',
+ nwMerged:n=>`${fmt(n)} pair(s) of names that only differ in spelling were merged and do not appear here. See Data Check.`,
+ nwSum:(n,f,i)=>`${fmt(n)} investors · ${fmt(f)} foreign · ${fmt(i)} institutions`,nwTop:'Top 15 by stake (blue = local, orange = foreign, grey = unknown)',
+ meth:'How to read this and the formulas',
  m:[
-  '<b>Coverage.</b> KSEI reports only list holders ≥1%. This tracks large investors, not the whole market. Without price data, changes are measured in percentage points of ownership (pp), not currency.',
-  '<b>Δ (pp).</b> Difference in % ownership between the two periods. Increased/Decreased/Unchanged follows this Δ.',
-  '<b>Entries & exits.</b> Holders present in only one file. They may have held up to <1% in the other period, so signals use only the confirmed part: (stake − 1) pp. Example: a new holder at 1.30% counts as +0.30 pp.',
-  '<b>Net, agreement, signal.</b> Net = sum of Δ across all moving holders. Agreement = net ÷ total movement (−100% to +100%). Strong accumulation: net ≥ +1.00 pp and agreement ≥ 50%. Accumulation: net ≥ +0.25 pp and ≥ 25%. Distribution is the mirror image. Rotation: total movement ≥ 1.00 pp but agreement between −25% and +25%. Otherwise Neutral.',
-  '<b>Corporate actions.</b> Shares outstanding are estimated from shares ÷ percent for each holder (median). If they changed by >2% (split, rights issue, new issuance), percentages shift without trading, so the stock is excluded from signals unless you include it in the filters.',
-  '<b>Limitations.</b> No value weighting, the same investor under different spellings is not merged, and periodic data cannot capture movement between the two dates.'],
- disc:'A summary of ownership data, not investment advice. Combine it with fundamental and technical analysis and your own risk profile.'
+  '<b>What is in the report.</b> KSEI reports only list holders above 1%. So this shows movement of large investors, not the whole market. With no price data, changes are measured in “points” of ownership percentage, not currency. Example: 5% to 7% = up 2 points.',
+  '<b>Difference.</b> Difference = period 2 % − period 1 %. Adding, Reducing or Unchanged follows this difference.',
+  '<b>Entering and leaving.</b> Holders that appear in only one file. Leaving the list does not necessarily mean a full sale; they may simply have dropped a little below 1%. So only the part above 1% is counted: stake − 1. Example: a holder entering at 1.30% counts as +0.30 points.',
+  '<b>Similar names.</b> If, for the same stock, a name “leaves” in period 1 and a name “enters” in period 2 and the two only differ in spelling (e.g. the words PT, TBK, REGISTRAR), they are treated as the same holder. Very clear matches are merged automatically but can be undone. Less certain ones are merged only if you agree. All of them are listed in the Data Check tab.',
+  '<b>Stock signal.</b> Stock difference = total added − total reduced across all large holders. Share of adding = total added ÷ (total added + total reduced); if the divisor is 0 there is no signal. <br>Strong accumulation: difference ≥ +1 point and share ≥ 75%. <br>Accumulation: difference ≥ +0.25 points and share ≥ 60%. <br>Strong distribution: difference ≤ −1 point and share ≤ 25%. <br>Distribution: difference ≤ −0.25 points and share ≤ 40%. <br>Changing hands: total movement ≥ 1 point and share between 40% and 60%. <br>Otherwise: Neutral.',
+  '<b>Share count changes.</b> Shares outstanding are estimated as shares ÷ percentage for each holder (median). If they changed by more than 2% (split, rights issue, new shares), holder percentages shift without trading, so the stock is left out of the signals unless you include it in the filters.',
+  '<b>Types of information.</b> <i>File data</i> = exactly as in your file. <i>Calculation</i> = computed from file data with the formulas above. <i>Estimate</i> = a guess derived from calculations (e.g. shares outstanding). <i>Interpretation</i> = signal labels and conclusion sentences, a rule-based judgement, not a fact.',
+  '<b>Limitations.</b> No currency weighting. Names that differ a lot are not merged. Periodic data cannot capture movement between the two dates.'],
+ disc:'A summary of ownership data, not a buy or sell recommendation. Use it together with fundamental and technical analysis and your own risk profile.',
+ chkRows:'Data row summary',chkF:'File',chkRead:'Rows read',chkKept:'Rows used',chkEmpty:'Empty, skipped',chkBad:'Invalid, excluded',chkDup:'Duplicate rows merged',chkStocks:'Stocks',chkInv:'Unique investors',
+ chkRowsNote:'Invalid rows = percentage empty, zero, negative, or above 100%. Duplicate rows = the same investor and stock appear more than once; their numbers are added up.',
+ chkMerge:'Investor names that were merged',
+ chkMergeNote:'These pairs showed up as “left” in one period and “entered” in the other for the same stock. If they really are one holder, merging avoids a false result. Review them and change if needed.',
+ mgT:'Stock',mgA:'Name in period 1',mgB:'Name in period 2',mgPa:'% P1',mgPb:'% P2',mgLv:'Confidence',mgSt:'Status',mgAct:'Action',
+ lvH:'only PT/TBK/REGISTRAR or spacing differs',lvM:'similar, needs confirmation',lvHs:'High',lvMs:'Medium',
+ mgOn:'Merged',mgOff:'Separate',mgDo:'Merge',mgUndo:'Separate them',mgNone:'No similar name pairs found.',
+ chkAn:'Things to check',lvlH:'High',lvlM:'Medium',lvlL:'Low',anL:'Level',anT:'Type',anD:'Details',anNone:'Nothing found.',
+ an_ca:'Share count changed',an_spread:'Percentage does not match share count',an_cnt:'Holder count changed sharply',an_bad:'Invalid rows',an_size:'File sizes differ a lot',an_merge:'Names merged',an_cand:'Similar names not merged',
+ an_ca_d:r=>`Shares outstanding are estimated to have changed ${r>1?'+':''}${fmt((r-1)*100)}%.`,
+ an_spread_d:x=>`Estimated shares outstanding differ by up to ${fmt((x-1)*100)}% between holders within one period. Percentage or share data may be inconsistent.`,
+ an_cnt_d:(a,b)=>`Number of holders above 1% changed from ${a} to ${b}.`,
+ an_bad_d:(f,n)=>`${f}: ${fmt(n)} row(s) excluded because the percentage is invalid.`,
+ an_size_d:(a,b)=>`File 1 uses ${fmt(a)} rows, file 2 uses ${fmt(b)} rows. Make sure both are the same kind of report.`,
+ an_merge_d:(a,b)=>`“${a}” and “${b}” are treated as the same.`,
+ an_cand_d:(a,b)=>`“${a}” and “${b}” look similar but are not merged.`
 }};
 const T=D[LANG];
-const t=(k,...a)=>{const v=T[k];return typeof v==='function'?v(...a):v};
+const t=(k,...a)=>{const v=T[k];if(v===undefined)return '['+k+']';return typeof v==='function'?v(...a):v};
 
-/* ============================== helpers ============================== */
+/* ============================== alat bantu ============================== */
 const $=s=>root.querySelector(s);
 const fmt=n=>Math.round(n).toLocaleString(LOC);
 const fp=n=>{const s=Number(n).toFixed(2);return ID?s.replace('.',','):s};
 function sgn(v,f){const r=Math.round(v*100)/100;return r===0?f(0):(r>0?'+':'')+f(v)}
-function pp(v){return sgn(v,fp)+' pp'}
-function pc(v){const r=Math.round(v*100);return (r>0?'+':'')+fmt(r)+'%'}
+function pp(v){return sgn(v,fp)+' '+T.unit}
 function ds(v){return v===0?'0':(v>0?'+':'')+fmt(v)}
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const cls=v=>Math.round(v*100)>0?'pos':Math.round(v*100)<0?'neg':'';
 const THR=1, CA_TOL=0.02;
-const S={P1:null,P2:null,rows:[],f:[],agg:[],aggMap:new Map(),info:new Map(),ca:new Map(),sec:'sum',ui:{},dl:{},demo:false,la:'',lb:''};
-const SECS=['sum','sig','stk','inv','nw'];
+const S={A:null,B:null,P1:null,P2:null,rows:[],f:[],agg:[],info:new Map(),ca:new Map(),spread:new Map(),merges:[],stats:{},sec:'sum',ui:{},dl:{},demo:false,la:'',lb:''};
+const SECS=['sum','sig','stk','inv','nw','chk'];
 const SIGCOL={sa:'var(--up)',a:'var(--up)',n:'var(--flat)',d:'var(--down)',sd:'var(--exit)',rot:'var(--rot)'};
 const STCOL={New:'var(--new)',Accumulation:'var(--up)',Distribution:'var(--down)',Unchanged:'var(--flat)',Exit:'var(--exit)'};
 const STL=()=>({New:t('sNew'),Accumulation:t('sAcc'),Distribution:t('sDis'),Unchanged:t('sUn'),Exit:t('sExit')});
 const sigTag=k=>`<span class="tag ${k==='sa'||k==='sd'?'strong':''}" style="--c:${SIGCOL[k]}">${esc(t(k))}</span>`;
 const stTag=k=>`<span class="tag" style="--c:${STCOL[k]}">${esc(STL()[k])}</span>`;
-const chip=(kind,val,label)=>`<button type="button" class="chip" data-go="${kind}:${esc(val)}">${esc(label||val)}</button>`;
-const chips=(arr,kind)=>arr.map(x=>chip(kind||'stk',x)).join(' ');
+const kind=k=>`<span class="kind ${k}">${esc(t('k_'+k))}</span>`;
+const chip=(kd,val,label)=>`<button type="button" class="chip ${kd==='stk'?'tk':''}" data-go="${kd}:${esc(val)}">${esc(label||val)}</button>`;
+const chips=(arr,kd)=>arr.map(x=>chip(kd||'stk',x)).join(' ');
 const segL=k=>{const a=k[0]==='F'?t('foreign'):k[0]==='L'?t('local'):'';const b=k[1]==='N'?t('inst'):k[1]==='I'?t('ind'):'';return [a,b].filter(Boolean).join(' · ')||t('unk')};
 const lfL=v=>v==='F'?(ID?'A':'F'):v==='L'?'L':'';
+const topN=(arr,key,n,desc=true)=>[...arr].sort((a,b)=>desc?key(b)-key(a):key(a)-key(b)).slice(0,n);
+const pctCell=v=>v>0?fp(v):t('lt1');
 
-/* ============================== parsing ============================== */
+/* ============================== membaca file ============================== */
 const ALIAS={t:['share_code','ticker','kode saham','kode_saham','kode','code'],iss:['issuer_name','nama emiten','emiten','issuer'],
  inv:['investor_name','nama pemegang saham','nama investor','investor name','pemegang saham','investor','nama'],
  type:['investor_type','investor_classification','tipe investor','jenis investor','klasifikasi investor','klasifikasi'],
@@ -3381,10 +3447,10 @@ const ALIAS={t:['share_code','ticker','kode saham','kode_saham','kode','code'],i
  sh:['total_holding_shares','share count','jumlah saham','total saham','total_shares','shares'],
  pct:['percentage','% kepemilikan','persentase','persen','pct','%'],date:['date','tanggal','periode','period']};
 const TYPEMAP={ID:'Individual',CP:'Corporate',MF:'Mutual Fund',IB:'Financial Institution',IS:'Insurance',SC:'Securities Company',PF:'Pension Fund',FD:'Foundation',OT:'Others'};
-function num(v){if(typeof v==='number')return v;if(v==null)return 0;let s=String(v).replace(/[%\s]/g,'');if(!s||s==='-')return 0;
+function num(v){if(typeof v==='number')return v;if(v==null)return NaN;let s=String(v).replace(/[%\s]/g,'');if(!s||s==='-')return NaN;
  if(s.includes('.')&&s.includes(','))s=s.lastIndexOf(',')>s.lastIndexOf('.')?s.replace(/\./g,'').replace(',','.'):s.replace(/,/g,'');
  else if(/^-?\d{1,3}(\.\d{3})+$/.test(s))s=s.replace(/\./g,'');else if(/^-?\d{1,3}(,\d{3})+$/.test(s))s=s.replace(/,/g,'');else s=s.replace(',','.');
- const x=parseFloat(s);return isNaN(x)?0:x}
+ const x=parseFloat(s);return isNaN(x)?NaN:x}
 function mapHeader(r){const m={};r.forEach((c,i)=>{const n=String(c??'').trim().toLowerCase().replace(/\s+/g,' ');for(const k in ALIAS)if(!(k in m)&&ALIAS[k].includes(n)){m[k]=i;break}});return m}
 function lfOf(v){const x=String(v??'').trim().toUpperCase();if(/^(F|FOREIGN|ASING)/.test(x))return 'F';if(/^(L|LOCAL|LOKAL|D|DOMESTIC)/.test(x))return 'L';return ''}
 function typeOf(v){let x=v==null?'':String(v).trim();if(!x)return t('unclass');if(/^[A-Za-z]{2}$/.test(x)&&TYPEMAP[x.toUpperCase()])return TYPEMAP[x.toUpperCase()];return x}
@@ -3398,22 +3464,60 @@ async function parse(file){
  const raw=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{header:1,raw:true,defval:null});
  let h=-1,m;for(let i=0;i<Math.min(raw.length,40);i++){m=mapHeader(raw[i]);if('t' in m&&'inv' in m&&'sh' in m&&'pct' in m){h=i;break}}
  if(h<0)throw new Error(t('errHeader',file.name));
- const map=new Map();let date=null;
+ const map=new Map(),st={read:0,empty:0,bad:0,dup:0};let date=null;
  for(const r of raw.slice(h+1)){
-  if(r[m.t]==null||r[m.inv]==null)continue;
-  const tk=String(r[m.t]).trim().toUpperCase(),inv=String(r[m.inv]).replace(/\s+/g,' ').trim().toUpperCase();if(!tk||!inv)continue;
-  const k=tk+'|'+inv,sh=num(r[m.sh]),pcv=num(r[m.pct]),e=map.get(k);
-  if(e){e.sh+=sh;e.pc+=pcv;continue}
-  map.set(k,{t:tk,inv,iss:String(r[m.iss]??'').trim(),type:typeOf(r[m.type]),lf:lfOf(r[m.lf]),sh,pc:pcv});
+  if(!r||r.every(c=>c==null||c===''))continue;
+  st.read++;
+  const tk=String(r[m.t]??'').trim().toUpperCase(),inv=String(r[m.inv]??'').replace(/\s+/g,' ').trim().toUpperCase();
+  if(!tk||!inv){st.empty++;continue}
+  const sh=num(r[m.sh]),pcv=num(r[m.pct]);
+  if(!isFinite(pcv)||pcv<=0||pcv>100||(isFinite(sh)&&sh<0)){st.bad++;continue}
+  const k=tk+'|'+inv,e=map.get(k),shv=isFinite(sh)?sh:0;
+  if(e){e.sh+=shv;e.pc+=pcv;st.dup++;continue}
+  map.set(k,{t:tk,inv,iss:String(r[m.iss]??'').trim(),type:typeOf(r[m.type]),lf:lfOf(r[m.lf]),sh:shv,pc:pcv});
   if(!date&&m.date!=null){const d=r[m.date];if(d instanceof Date)date=d;else if(typeof d==='string'&&/^\d{4}-\d{2}-\d{2}/.test(d))date=new Date(d)}
  }
- return {map,date,name:file.name};
+ return {map,date,name:file.name,st};
 }
 
-/* ============================== analysis core ============================== */
+/* ============================== nama investor yang mirip ============================== */
+const NOISE=new Set(['PT','TBK','PERSERO','PERSEROAN','LTD','LIMITED','INC','INCORPORATED','CORP','CORPORATION','CO','COMPANY','PTE','BHD','LLC','PLC','NV','SA','AG','GMBH','REGISTRAR','REG','THE','DAN','AND','OF']);
+function nameKeys(name){const tk=name.toUpperCase().replace(/[^A-Z0-9 ]+/g,' ').split(/\s+/).filter(w=>w&&!NOISE.has(w));
+ return {tk,sorted:[...tk].sort().join(' '),compact:tk.join('')}}
+function lev(a,b){const m=a.length,n=b.length;if(!m)return n;if(!n)return m;let p=Array.from({length:n+1},(_,i)=>i);
+ for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}return p[n]}
+function pairScore(a,b){
+ if(!a.tk.length||!b.tk.length)return null;
+ if(a.sorted===b.sorted||a.compact===b.compact)return {level:'high',score:1};
+ const sa=new Set(a.tk),sb=new Set(b.tk);let inter=0;sa.forEach(x=>{if(sb.has(x))inter++});
+ const uni=sa.size+sb.size-inter,jac=uni?inter/uni:0,subset=inter===Math.min(sa.size,sb.size)&&Math.min(sa.size,sb.size)>=2;
+ const L=Math.max(a.compact.length,b.compact.length),sim=L>=8?1-lev(a.compact,b.compact)/L:0;
+ if(jac>=.6||subset||sim>=.9)return {level:'mid',score:Math.max(jac,sim,subset?.8:0)};
+ return null}
+function detectMerges(A,B){
+ const aOnly=new Map(),bOnly=new Map();
+ for(const [k,v] of A.map)if(!B.map.has(k)){if(!aOnly.has(v.t))aOnly.set(v.t,[]);aOnly.get(v.t).push(v)}
+ for(const [k,v] of B.map)if(!A.map.has(k)){if(!bOnly.has(v.t))bOnly.set(v.t,[]);bOnly.get(v.t).push(v)}
+ const out=[];
+ for(const [tk,as] of aOnly){const bs=bOnly.get(tk);if(!bs)continue;
+  const cand=[];const bk=bs.map(b=>nameKeys(b.inv));
+  as.forEach((a,i)=>{const ak=nameKeys(a.inv);bs.forEach((b,j)=>{const sc=pairScore(ak,bk[j]);if(sc)cand.push({a,b,...sc})})});
+  cand.sort((x,y)=>(x.level==='high'?0:1)-(y.level==='high'?0:1)||y.score-x.score);
+  const ua=new Set(),ub=new Set();
+  for(const c of cand){if(ua.has(c.a.inv)||ub.has(c.b.inv))continue;ua.add(c.a.inv);ub.add(c.b.inv);
+   out.push({id:out.length,t:tk,iss:c.b.iss||c.a.iss,a:c.a.inv,b:c.b.inv,level:c.level,score:c.score,on:c.level==='high',pa:c.a.pc,pb:c.b.pc})}}
+ return out}
+function applyMerges(A,merges){
+ const on=merges.filter(m=>m.on);if(!on.length)return A;
+ const map=new Map(A.map);
+ for(const m of on){const k=m.t+'|'+m.a,e=map.get(k);if(!e)continue;map.delete(k);
+  map.set(m.t+'|'+m.b,{...e,inv:m.b,aka:[...(e.aka||[]),m.a]})}
+ return {...A,map}}
+
+/* ============================== inti analisis ============================== */
 function median(a){a.sort((x,y)=>x-y);const n=a.length;return n%2?a[(n-1)/2]:(a[n/2-1]+a[n/2])/2}
 function implied(map){const g=new Map();for(const v of map.values())if(v.pc>0&&v.sh>0){if(!g.has(v.t))g.set(v.t,[]);g.get(v.t).push(v.sh/(v.pc/100))}
- const o=new Map();g.forEach((a,k)=>o.set(k,median(a)));return o}
+ const med=new Map(),spread=new Map();g.forEach((a,k)=>{med.set(k,median([...a]));if(a.length>1)spread.set(k,Math.max(...a)/Math.min(...a))});return {med,spread}}
 function compare(A,B){
  const keys=new Set([...A.map.keys(),...B.map.keys()]),rows=[];
  for(const k of keys){const a=A.map.get(k),b=B.map.get(k),x=b||a;
@@ -3421,52 +3525,52 @@ function compare(A,B){
   const st=!a?'New':!b?'Exit':dp>0?'Accumulation':dp<0?'Distribution':'Unchanged';
   const dpc=st==='New'?Math.max(0,pb-THR):st==='Exit'?-Math.max(0,pa-THR):dp;
   const grp=grpOf(x.type);
-  rows.push({t:x.t,iss:(b&&b.iss)||x.iss,inv:x.inv,type:x.type,lf:x.lf,grp,seg:(x.lf||'?')+(grp||'?'),sa,sb,pa,pb,ds:sb-sa,dp,dpc,st})}
- const ia=implied(A.map),ib=implied(B.map),ca=new Map();
- ib.forEach((v,k)=>{const u=ia.get(k);if(u&&Math.abs(v/u-1)>CA_TOL)ca.set(k,v/u)});
+  rows.push({t:x.t,iss:(b&&b.iss)||x.iss,inv:x.inv,aka:a&&a.aka?a.aka:null,type:x.type,lf:x.lf,grp,seg:(x.lf||'?')+(grp||'?'),sa,sb,pa,pb,ds:sb-sa,dp,dpc,st})}
+ const ia=implied(A.map),ib=implied(B.map),ca=new Map(),spread=new Map();
+ ib.med.forEach((v,k)=>{const u=ia.med.get(k);if(u&&Math.abs(v/u-1)>CA_TOL)ca.set(k,v/u)});
+ [ia.spread,ib.spread].forEach(m=>m.forEach((v,k)=>spread.set(k,Math.max(spread.get(k)||1,v))));
  rows.forEach(r=>r.ca=ca.has(r.t));
  const info=new Map();
  for(const r of rows){let i=info.get(r.t);if(!i)info.set(r.t,i={t:r.t,iss:r.iss,nA:0,nB:0,totA:0,totB:0,top:null});
   if(r.pa>0){i.nA++;i.totA+=r.pa}if(r.pb>0){i.nB++;i.totB+=r.pb}
   const p=Math.max(r.pa,r.pb);if(!i.top||p>i.top.p)i.top={inv:r.inv,p,pb:r.pb};if(r.iss&&!i.iss)i.iss=r.iss}
- return {rows,ca,info};
+ return {rows,ca,info,spread};
 }
-function signal(s){const n=s.net,c=s.conv,g=s.gross;
- if(n>=1&&c>=.5)return 'sa';if(n>=.25&&c>=.25)return 'a';if(n<=-1&&c<=-.5)return 'sd';if(n<=-.25&&c<=-.25)return 'd';
- if(g>=1&&Math.abs(c)<.25)return 'rot';return 'n'}
+function signal(s){const g=s.gross,n=s.net,p=g?s.up/g:.5;
+ if(n>=1&&p>=.75)return 'sa';if(n>=.25&&p>=.6)return 'a';if(n<=-1&&p<=.25)return 'sd';if(n<=-.25&&p<=.4)return 'd';
+ if(g>=1&&p>.4&&p<.6)return 'rot';return 'n'}
 function agg(rows){const m=new Map();
  for(const r of rows){if(r.st==='Unchanged')continue;
-  let s=m.get(r.t);if(!s)m.set(r.t,s={t:r.t,iss:r.iss,up:0,dn:0,nAcc:0,nDis:0,nNew:0,nEx:0,net:0,netF:0,netN:0,seg:{},lead:null,ca:r.ca});
-  const d=r.dpc;if(d>0)s.up+=d;else s.dn-=d;s.net+=d;
+  let s=m.get(r.t);if(!s)m.set(r.t,s={t:r.t,iss:r.iss,up:0,dn:0,nAcc:0,nDis:0,nNew:0,nEx:0,net:0,netF:0,netN:0,seg:{},lead:null,ca:r.ca,movers:[]});
+  const d=r.dpc;if(d>0)s.up+=d;else s.dn-=d;s.net+=d;s.movers.push(r);
   if(r.st==='New')s.nNew++;else if(r.st==='Exit')s.nEx++;else if(r.st==='Accumulation')s.nAcc++;else s.nDis++;
   if(r.lf==='F')s.netF+=d;if(r.grp==='N')s.netN+=d;s.seg[r.seg]=(s.seg[r.seg]||0)+d;
   if(!s.lead||Math.abs(d)>Math.abs(s.lead.dpc))s.lead=r}
  const out=[...m.values()];
- for(const s of out){s.nUp=s.nAcc+s.nNew;s.nDn=s.nDis+s.nEx;s.gross=s.up+s.dn;s.conv=s.gross?s.net/s.gross:0;s.sig=signal(s)}
+ for(const s of out){s.nUp=s.nAcc+s.nNew;s.nDn=s.nDis+s.nEx;s.gross=s.up+s.dn;s.share=s.gross>0?s.up/s.gross:null;s.sig=signal(s)}
  return out}
 function invAgg(rows){const m=new Map();
  for(const r of rows){if(r.st==='Unchanged')continue;
-  let s=m.get(r.inv);if(!s)m.set(r.inv,s={inv:r.inv,type:r.type,lf:r.lf,nAcc:0,nDis:0,nNew:0,nEx:0,net:0,up:0,dn:0});
-  const d=r.dpc;if(d>0)s.up+=d;else s.dn-=d;s.net+=d;
+  let s=m.get(r.inv);if(!s)m.set(r.inv,s={inv:r.inv,type:r.type,lf:r.lf,nAcc:0,nDis:0,nNew:0,nEx:0});
   if(r.st==='New')s.nNew++;else if(r.st==='Exit')s.nEx++;else if(r.st==='Accumulation')s.nAcc++;else s.nDis++}
  const out=[...m.values()];
- for(const s of out){s.nUp=s.nAcc+s.nNew;s.nDn=s.nDis+s.nEx;s.gross=s.up+s.dn;s.conv=s.gross?s.net/s.gross:0;
-  s.bias=s.net>=.5&&s.conv>=.25?'acc':s.net<=-.5&&s.conv<=-.25?'dist':s.gross>=.5?'mix':'flat'}
+ for(const s of out){s.nUp=s.nAcc+s.nNew;s.nDn=s.nDis+s.nEx;s.act=s.nUp+s.nDn;
+  s.bias=s.nUp>=2*s.nDn&&s.nUp>0?'acc':s.nDn>=2*s.nUp&&s.nDn>0?'dist':s.act===0?'flat':'mix'}
  return out}
 
-/* ============================== filters ============================== */
+/* ============================== filter ============================== */
 function filterState(){return {lf:$('#ks-fLF').value,gp:$('#ks-fGrp').value,ty:$('#ks-fType').value,th:parseFloat($('#ks-fThr').value)||0,ca:$('#ks-fCA').checked}}
 function applyFilters(){
  const F=filterState();
  S.f=S.rows.filter(r=>(F.ca||!r.ca)&&(!F.lf||r.lf===F.lf)&&(!F.gp||r.grp===F.gp)&&(!F.ty||r.type===F.ty)&&Math.abs(r.dpc)>=F.th);
- S.agg=agg(S.f);S.aggMap=new Map(S.agg.map(s=>[s.t,s]));
- const act=[];if(F.lf)act.push(F.lf==='L'?t('local'):t('foreign'));if(F.gp)act.push(F.gp==='I'?t('ind'):t('inst'));if(F.ty)act.push(F.ty);if(F.th>0)act.push('≥ '+fp(F.th)+' pp');if(F.ca)act.push(t('fCA'));
+ S.agg=agg(S.f);
+ const act=[];if(F.lf)act.push(F.lf==='L'?t('local'):t('foreign'));if(F.gp)act.push(F.gp==='I'?t('ind'):t('inst'));if(F.ty)act.push(F.ty);if(F.th>0)act.push('≥ '+fp(F.th)+' '+T.unit);if(F.ca)act.push(t('fCA'));
  S.filtered=!!(F.lf||F.gp||F.ty||F.th>0);
- $('#ks-fsum').textContent=act.length?t('filAct',act.join(' · ')):t('filNone');
+ $('#ks-fsum').textContent=act.length?act.join(' · '):t('filNone');
  render();
 }
 
-/* ============================== UI primitives ============================== */
+/* ============================== komponen tampilan ============================== */
 function csv(rows,cols,name){const q=v=>`"${String(v).replace(/"/g,'""')}"`;
  const txt='\ufeff'+[cols.map(c=>q(c.h)).join(',')].concat(rows.map(r=>cols.map(c=>q(c.v(r))).join(','))).join('\n');
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/csv'}));a.download=name+'.csv';document.body.appendChild(a);a.click();a.remove()}
@@ -3476,7 +3580,7 @@ function table(id,rows,cols,o={}){
  const shown=rows.slice(0,u.lim);
  S.dl[id]=()=>csv(rows,cols,o.name||id);
  const head=cols.map(c=>`<th class="${c.n?'n':''}" data-th="${id}" data-k="${c.k}">${esc(c.h)}${u.k===c.k?(u.d<0?' ↓':' ↑'):''}</th>`).join('');
- const body=shown.map(r=>'<tr>'+cols.map((c,i)=>`<td class="${c.n?'n':''} ${i===0?'k1':''} ${c.hid?'hid':''} ${c.c?c.c(r):''}" data-l="${esc(c.h)}">${c.f?c.f(r):esc(c.v(r))}</td>`).join('')+'</tr>').join('');
+ const body=shown.map(r=>'<tr>'+cols.map((c,i)=>`<td class="${c.n?'n':''} ${i===0?'k1':''} ${c.c?c.c(r):''}" data-l="${esc(c.h)}">${c.f?c.f(r):esc(c.v(r))}</td>`).join('')+'</tr>').join('');
  const sortm=`<div class="bar sortm"><label class="f">${t('sortBy')}<select data-sel="${id}">${cols.map(c=>`<option value="${c.k}" ${u.k===c.k?'selected':''}>${esc(c.h)}</option>`).join('')}</select></label><button type="button" class="btn" data-dir="${id}" aria-label="↕">${u.d<0?'↓':'↑'}</button></div>`;
  return `<div class="tcount">${t('shown',shown.length,rows.length,rows.length>0)} <button type="button" class="btn small" data-dl="${id}">${t('csv')}</button></div>${sortm}
  <div class="tw"><table><thead><tr>${head}</tr></thead><tbody>${body||`<tr><td class="muted">${t('none')}</td></tr>`}</tbody></table></div>
@@ -3485,13 +3589,13 @@ function bars(items,color){const mx=Math.max(...items.map(i=>Math.abs(i.v)),1e-9
  return `<div class="box chart">${items.map(i=>`<div class="row"><span class="lb" title="${esc(i.l)}">${esc(i.l)}</span><i style="width:${Math.max(1,Math.abs(i.v)/mx*100)}%;--c:${i.c||color}"></i><span class="vl">${i.t??fp(i.v)}</span></div>`).join('')}</div>`}
 function pairBars(items){const mx=Math.max(...items.map(i=>Math.max(i.a,i.b)),1e-9);
  return `<div class="box chart">${items.map(i=>`<div class="row"><span class="lb" title="${esc(i.l)}">${esc(i.l)}</span><div class="tr"><i class="a" style="width:${Math.max(1,i.a/mx*100)}%;${i.a?'':'opacity:.25'}"></i><i style="width:${Math.max(1,i.b/mx*100)}%;--c:${i.c};${i.b?'':'opacity:.25'}"></i></div><span class="vl">${i.t}</span></div>`).join('')}</div>`}
-const pctCell=(v)=>v>0?fp(v):t('lt1');
 function kpi(l,v,c,sm){return `<div class="kpi" style="--c:${c}"><small>${esc(l)}</small><strong class="${sm?'sm':''}">${v}</strong></div>`}
 function keepFocus(fn){const a=document.activeElement,id=a&&root.contains(a)&&a.id,p=a&&a.selectionStart;fn();
  if(id){const e=root.querySelector('#'+id);if(e){e.focus();try{e.setSelectionRange(p,p)}catch(_){}}}}
-const topN=(arr,key,n,desc=true)=>[...arr].sort((a,b)=>desc?key(b)-key(a):key(a)-key(b)).slice(0,n);
+const nameCell=r=>chip('inv',r.inv)+(r.aka?`<div class="muted small">${esc(t('aka',r.aka.join(', ')))}</div>`:'');
+const mergedOn=()=>S.merges.filter(m=>m.on);
 
-/* ============================== section: takeaways ============================== */
+/* ============================== bagian: kesimpulan ============================== */
 function vSum(v){
  const A=S.agg,cnt=k=>A.filter(s=>s.sig===k).length;
  const nStocks=new Set(S.f.map(r=>r.t)).size,nNew=S.f.filter(r=>r.st==='New').length,nEx=S.f.filter(r=>r.st==='Exit').length;
@@ -3510,7 +3614,10 @@ function vSum(v){
  if(rot.length)ins.push(`<li>${t('i_rot',tk(rot))}</li>`);
  const F=filterState(),caL=[...S.ca.keys()];
  if(caL.length)ins.push(`<li class="w">${t('i_ca',caL.length,F.ca,chips(caL.slice(0,8)))}</li>`);
- const li=(c,nm,val,cl)=>`<div class="li">${c}<span class="nm" title="${esc(nm)}">${esc(nm)}</span><span class="${cl||''}">${val}</span></div>`;
+ const nm=mergedOn().length,nc=S.merges.filter(m=>!m.on).length;
+ if(nm)ins.push(`<li class="w">${t('i_merge',nm)} <button type="button" class="chip" data-sec="chk">${t('n_chk')}</button></li>`);
+ if(nc)ins.push(`<li class="w">${t('i_cand',nc)} <button type="button" class="chip" data-sec="chk">${t('n_chk')}</button></li>`);
+ const li=(c,nme,val,cl)=>`<div class="li">${c}<span class="nm" title="${esc(nme)}">${esc(nme)}</span><span class="${cl||''}">${val}</span></div>`;
  const card=(h,list)=>`<div class="box"><h4>${h}</h4>${list.length?list.join(''):`<div class="muted">${t('none')}</div>`}</div>`;
  const tA=topN(A.filter(s=>s.net>0),s=>s.net,5).map(s=>li(chip('stk',s.t),s.iss,pp(s.net),'pos'));
  const tD=topN(A.filter(s=>s.net<0),s=>-s.net,5).map(s=>li(chip('stk',s.t),s.iss,pp(s.net),'neg'));
@@ -3522,13 +3629,13 @@ function vSum(v){
  const order=['FN','FI','LN','LI'],sr=Object.values(segs).sort((a,b)=>(order.indexOf(a.k)+1||9)-(order.indexOf(b.k)+1||9));
  const sc=[{k:'s',h:t('segT'),v:r=>segL(r.k)},{k:'up',h:t('segUp'),n:1,v:r=>r.up,c:r=>r.up>r.dn?'pos':''},{k:'dn',h:t('segDn'),n:1,v:r=>r.dn,c:r=>r.dn>r.up?'neg':''},{k:'nw',h:t('segNew'),n:1,v:r=>r.nw},{k:'ex',h:t('segEx'),n:1,v:r=>r.ex}];
  v.innerHTML=(S.filtered?`<div class="note small">${t('filterNote')}</div>`:'')+kp
- +`<h3 class="ks-h">${t('hKey')}</h3><ul class="ins">${ins.join('')}</ul>`
- +`<h3 class="ks-h">${t('hTop')}</h3><div class="cards">${card(t('cAcc'),tA)}${card(t('cDis'),tD)}${card(t('cNew'),tN)}${card(t('cExit'),tE)}</div>`
- +`<h3 class="ks-h">${t('hSeg')}</h3>`+table('seg',sr,sc,{name:'segments',lim:20,sk:null})+`<div class="muted small" style="margin-top:6px">${t('segNote')}</div>`
+ +`<h3 class="ks-h">${t('hKey')} ${kind('view')}</h3><ul class="ins">${ins.join('')}</ul>`
+ +`<h3 class="ks-h">${t('hTop')} ${kind('calc')}</h3><div class="cards">${card(t('cAcc'),tA)}${card(t('cDis'),tD)}${card(t('cNew'),tN)}${card(t('cExit'),tE)}</div>`
+ +`<h3 class="ks-h">${t('hSeg')} ${kind('calc')}</h3>`+table('seg',sr,sc,{name:'groups',lim:20})+`<div class="muted small" style="margin-top:6px">${t('segNote')}</div>`
  +`<details class="meth"><summary>${t('meth')}</summary><div class="mb"><ul>${T.m.map(x=>`<li>${x}</li>`).join('')}</ul></div></details><div class="disc">${t('disc')}</div>`;
 }
 
-/* ============================== section: signals ============================== */
+/* ============================== bagian: daftar saham ============================== */
 const SF={acc:['sa','a'],sa:['sa'],dis:['d','sd'],sd:['sd'],rot:['rot']};
 function loadWL(){try{return localStorage.getItem('vf-ksei-watch')||''}catch(e){return ''}}
 function saveWL(x){try{localStorage.setItem('vf-ksei-watch',x)}catch(e){}}
@@ -3539,23 +3646,22 @@ function vSig(v){const u=S.ui;u.sf=u.sf||'';u.mn=+u.mn||1;if(u.wl==null)u.wl=loa
   {k:'t',h:t('cCode'),v:s=>s.t,f:s=>chip('stk',s.t)+(s.ca?' ⚠':'')},{k:'iss',h:t('cIss'),v:s=>s.iss||''},
   {k:'sig',h:t('cSig'),v:s=>({sa:5,a:4,rot:3,n:2,d:1,sd:0})[s.sig],f:s=>sigTag(s.sig)},
   {k:'net',h:t('cNet'),n:1,v:s=>s.net,f:s=>sgn(s.net,fp),c:s=>cls(s.net)},
-  {k:'ud',h:t('cUD'),n:1,v:s=>s.nUp-s.nDn,f:s=>`${s.nUp}▲ ${s.nDn}▼`},
-  {k:'ne',h:t('cNE'),n:1,v:s=>s.nNew-s.nEx,f:s=>`${s.nNew} / ${s.nEx}`},
+  {k:'up',h:t('cUp'),n:1,v:s=>s.nUp},{k:'dn',h:t('cDn'),n:1,v:s=>s.nDn},
   {k:'frg',h:t('cFrg'),n:1,v:s=>s.netF,f:s=>sgn(s.netF,fp),c:s=>cls(s.netF)},
-  {k:'ins',h:t('cIns'),n:1,v:s=>s.netN,f:s=>sgn(s.netN,fp),c:s=>cls(s.netN)},
-  {k:'cv',h:t('cConv'),n:1,v:s=>s.conv,f:s=>pc(s.conv),c:s=>cls(s.conv)}];
+  {k:'ins',h:t('cIns'),n:1,v:s=>s.netN,f:s=>sgn(s.netN,fp),c:s=>cls(s.netN)}];
  const so=(k,l)=>`<option value="${k}" ${u.sf===k?'selected':''}>${l}</option>`;
  v.innerHTML=(S.filtered?`<div class="note small">${t('filterNote')}</div>`:'')
  +`<div class="bar"><label class="f">${t('sigF')}<select id="ks-sf">${so('',t('sigAll'))}${so('acc',t('sigAcc'))}${so('sa',t('sigSA'))}${so('dis',t('sigDis'))}${so('sd',t('sigSD'))}${so('rot',t('sigRot'))}</select></label>
  <label class="f">${t('wl')}<input type="text" id="ks-wl" value="${esc(u.wl)}" placeholder="${t('wlPh')}" autocomplete="off" style="min-width:min(260px,100%)"></label>
  <label class="f">${t('mn')}<select id="ks-mn">${[1,2,3].map(n=>`<option ${u.mn===n?'selected':''}>${n}</option>`).join('')}</select></label></div>
- <div class="muted small" style="margin-bottom:10px">${t('sigLegend')}</div>`
- +table('sig',rows,cols,{name:'stock_signals',sk:'net',sd:-1});
+ <div class="muted small" style="margin-bottom:10px">${t('sigLegend')} ${kind('view')}</div>`
+ +table('sig',rows,cols,{name:'daftar_saham',sk:'net',sd:-1});
 }
 
-/* ============================== section: stock detail ============================== */
+/* ============================== bagian: detail saham ============================== */
+function howText(r){return r.st==='New'?t('how_in',r.pb):r.st==='Exit'?t('how_out',r.pa):t('how_up',r.pb,r.pa)}
 function holderCols(){return [
- {k:'inv',h:t('cInv'),v:r=>r.inv,f:r=>chip('inv',r.inv)},{k:'type',h:t('cType'),v:r=>r.type},{k:'lf',h:t('cLF'),v:r=>lfL(r.lf)},
+ {k:'inv',h:t('cInv'),v:r=>r.inv,f:nameCell},{k:'type',h:t('cType'),v:r=>r.type},{k:'lf',h:t('cLF'),v:r=>lfL(r.lf)},
  {k:'st',h:t('cSt'),v:r=>r.st,f:r=>stTag(r.st)},
  {k:'pa',h:'% '+S.la,n:1,v:r=>r.pa,f:r=>pctCell(r.pa)},{k:'pb',h:'% '+S.lb,n:1,v:r=>r.pb,f:r=>pctCell(r.pb)},
  {k:'dp',h:t('cDp'),n:1,v:r=>r.dp,f:r=>sgn(r.dp,fp),c:r=>cls(r.dp)},{k:'ds',h:t('cDs'),n:1,v:r=>r.ds,f:r=>ds(r.ds),c:r=>cls(r.ds)}]}
@@ -3571,7 +3677,7 @@ function vStk(v){const u=S.ui;u.stk=(u.stk||'').toUpperCase();const tk=u.stk.tri
    h+=`<div class="note">${t('stkNo')}</div>`+(m.length?`<div class="muted small">${t('sugg')}</div><div class="chips">${chips(m)}</div>`:'')}
   v.innerHTML=h;return}
  const info=S.info.get(tk),rows=S.rows.filter(r=>r.t===tk);
- const s=agg(rows)[0]||{t:tk,net:0,up:0,dn:0,gross:0,conv:0,nUp:0,nDn:0,nNew:0,nEx:0,seg:{},lead:null,sig:'n'};
+ const s=agg(rows)[0]||{t:tk,net:0,up:0,dn:0,gross:0,share:null,nUp:0,nDn:0,nNew:0,nEx:0,seg:{},lead:null,sig:'n',movers:[]};
  const ca=S.ca.get(tk);
  const msgs=[];
  if(!s.lead)msgs.push(t('v_none'));
@@ -3582,79 +3688,116 @@ function vStk(v){const u=S.ui;u.stk=(u.stk||'').toUpperCase();const tk=u.stk.tri
  const sorted=[...rows].sort((a,b)=>Math.max(b.pa,b.pb)-Math.max(a.pa,a.pb));
  const top=info.top;
  const segKpi=['FN','FI','LN','LI'].filter(k=>k in s.seg).map(k=>`<div class="li" style="grid-template-columns:1fr auto"><span class="nm">${esc(segL(k))}</span><span class="${cls(s.seg[k])}">${pp(s.seg[k])}</span></div>`).join('');
+ const calcCols=[{k:'inv',h:t('cInv'),v:r=>r.inv,f:nameCell},{k:'st',h:t('cSt'),v:r=>r.st,f:r=>stTag(r.st)},{k:'how',h:t('cHow'),v:r=>howText(r)},{k:'dpc',h:t('cCalc'),n:1,v:r=>r.dpc,f:r=>sgn(r.dpc,fp),c:r=>cls(r.dpc)}];
  h+=`<h3 class="ks-h">${esc(tk)} · ${esc(info.iss||'')} &nbsp;${sigTag(s.sig)}</h3>`
- +(ca?`<div class="note warn">${t('v_ca',ca)}</div>`:'')
+ +(ca?`<div class="note warn">${kind('est')} ${t('v_ca',ca)}</div>`:'')
  +`<div class="kpis">${kpi(t('kNetD'),`<span class="${cls(s.net)}">${pp(s.net)}</span>`,SIGCOL[s.sig])}${kpi(t('kHold'),`${info.nA} → ${info.nB}`,'var(--gold)')}${kpi(t('kTot'),`${fp(info.totA)}% → ${fp(info.totB)}%`,'var(--gold)',1)}${kpi(t('kTop'),top?`${esc(top.inv)}<br><span class="muted" style="font-weight:400">${fp(top.p)}%</span>`:'-','var(--gold)',1)}</div>`
- +`<h3 class="ks-h">${t('hVerdict')}</h3><div class="box"><ul class="ins" style="gap:6px">${msgs.map(x=>`<li style="border:0;padding:0;background:none">${esc(x)}</li>`).join('')}</ul></div>`
- +(segKpi?`<h3 class="ks-h">${t('hSegS')}</h3><div class="box">${segKpi}</div>`:'')
- +`<h3 class="ks-h">${t('hPair')}</h3><div class="legend"><span><b style="--c:var(--bar)"></b>${esc(S.la)}</span><span><b style="--c:var(--gold)"></b>${esc(S.lb)}</span></div>`
+ +`<h3 class="ks-h">${t('hVerdict')} ${kind('view')}</h3><div class="box"><ul class="ins" style="gap:6px">${msgs.map(x=>`<li style="border:0;padding:0;background:none">${esc(x)}</li>`).join('')}</ul></div>`
+ +(segKpi?`<h3 class="ks-h">${t('hSegS')} ${kind('calc')}</h3><div class="box">${segKpi}</div>`:'')
+ +`<h3 class="ks-h">${t('hPair')} ${kind('data')}</h3><div class="legend"><span><b style="--c:var(--bar)"></b>${esc(S.la)}</span><span><b style="--c:var(--gold)"></b>${esc(S.lb)}</span></div>`
  +pairBars(sorted.slice(0,10).map(r=>({l:r.inv,a:r.pa,b:r.pb,c:STCOL[r.st],t:`${r.pa>0?fp(r.pa):t('lt1')} → ${r.pb>0?fp(r.pb):t('lt1')}`})))
- +`<h3 class="ks-h">${t('hHold')}</h3>`+table('hold',sorted,holderCols(),{name:'holders_'+tk,sk:'pb',sd:-1});
+ +`<h3 class="ks-h">${t('hHold')} ${kind('data')}</h3>`+table('hold',sorted,holderCols(),{name:'pemegang_'+tk,sk:'pb',sd:-1})
+ +(s.movers.length?`<h3 class="ks-h">${t('hCalc')} ${kind('calc')}</h3>`+table('calc',s.movers,calcCols,{name:'hitungan_'+tk,sk:'dpc',sd:-1})+`<div class="box small" style="margin-top:8px">${esc(t('calcSum',s.net,s.up,s.dn,s.share))}</div>`:'');
  v.innerHTML=h;
 }
 
-/* ============================== section: investors ============================== */
+/* ============================== bagian: investor ============================== */
+const biasCol=b=>b==='acc'?'var(--up)':b==='dist'?'var(--exit)':'var(--flat)';
 function vInv(v){const u=S.ui;u.inv=u.inv||'';const q=u.inv.trim().toUpperCase();
  const names=[...new Set(S.rows.map(r=>r.inv))].sort();
  let h=`<div class="bar"><label class="f">${t('iLbl')}<input type="text" id="ks-inv" list="ks-invl" value="${esc(u.inv)}" placeholder="${t('iPh')}" autocomplete="off" style="min-width:min(300px,100%)"></label></div><datalist id="ks-invl">${names.map(n=>`<option value="${esc(n)}">`).join('')}</datalist>`;
  const exact=names.includes(q)?q:null;
  if(exact){
-  const rows=S.rows.filter(r=>r.inv===exact),s=invAgg(rows)[0]||{inv:exact,type:rows[0].type,lf:rows[0].lf,nUp:0,nDn:0,net:0,bias:'flat',nNew:0,nEx:0};
+  const rows=S.rows.filter(r=>r.inv===exact),s=invAgg(rows)[0]||{inv:exact,type:rows[0].type,lf:rows[0].lf,nUp:0,nDn:0,nNew:0,nEx:0,bias:'flat'};
   const mv=rows.filter(r=>r.st!=='Unchanged'),best=topN(mv.filter(r=>r.dpc>0),r=>r.dpc,1)[0],worst=topN(mv.filter(r=>r.dpc<0),r=>-r.dpc,1)[0];
-  const held=rows.filter(r=>r.pb>0).length;
+  const held=rows.filter(r=>r.pb>0).length,aka=[...new Set(rows.flatMap(r=>r.aka||[]))];
   const cols=[{k:'t',h:t('cCode'),v:r=>r.t,f:r=>chip('stk',r.t)+(r.ca?' ⚠':'')},{k:'iss',h:t('cIss'),v:r=>r.iss||''},{k:'st',h:t('cSt'),v:r=>r.st,f:r=>stTag(r.st)},
    {k:'pa',h:'% '+S.la,n:1,v:r=>r.pa,f:r=>pctCell(r.pa)},{k:'pb',h:'% '+S.lb,n:1,v:r=>r.pb,f:r=>pctCell(r.pb)},
    {k:'dp',h:t('cDp'),n:1,v:r=>r.dp,f:r=>sgn(r.dp,fp),c:r=>cls(r.dp)},{k:'ds',h:t('cDs'),n:1,v:r=>r.ds,f:r=>ds(r.ds),c:r=>cls(r.ds)}];
   const bl=t('b_'+s.bias);
-  h+=`<h3 class="ks-h">${esc(exact)} &nbsp;<span class="tag" style="--c:${s.bias==='acc'?'var(--up)':s.bias==='dist'?'var(--exit)':'var(--flat)'}">${esc(bl)}</span></h3>`
-  +`<div class="kpis">${kpi(t('kHeld'),fmt(held),'var(--gold)')}${kpi(t('kUp'),fmt(s.nUp),'var(--up)')}${kpi(t('kDn'),fmt(s.nDn),'var(--exit)')}${kpi(t('kNetI'),`<span class="${cls(s.net)}">${sgn(s.net,fp)}</span>`,'var(--gold)')}${kpi(t('cType'),esc(s.type)+(s.lf?' · '+(s.lf==='F'?t('foreign'):t('local')):''),'var(--flat)',1)}</div>`
-  +`<div class="box"><div>${esc(t('iv_sum',s,bl,best?best.t+' ('+pp(best.dpc)+')':'',worst?worst.t+' ('+pp(worst.dpc)+')':''))}</div><div class="muted small" style="margin-top:6px">${t('invNote')}</div></div>`
-  +`<h3 class="ks-h">${t('hPort')}</h3>`+table('port',[...rows].sort((a,b)=>Math.max(b.pa,b.pb)-Math.max(a.pa,a.pb)),cols,{name:'portfolio',sk:'pb',sd:-1});
+  h+=`<h3 class="ks-h">${esc(exact)} &nbsp;<span class="tag" style="--c:${biasCol(s.bias)}">${esc(bl)}</span></h3>`
+  +`<div class="kpis">${kpi(t('kHeld'),fmt(held),'var(--gold)')}${kpi(t('kUp'),fmt(s.nUp-s.nNew),'var(--up)')}${kpi(t('kDn'),fmt(s.nDn-s.nEx),'var(--down)')}${kpi(t('kEnt'),fmt(s.nNew),'var(--new)')}${kpi(t('kExt'),fmt(s.nEx),'var(--exit)')}${kpi(t('cType'),esc(s.type)+(s.lf?' · '+(s.lf==='F'?t('foreign'):t('local')):''),'var(--flat)',1)}</div>`
+  +`<h3 class="ks-h">${t('hVerdict')} ${kind('view')}</h3><div class="box"><div>${esc(t('iv_sum',s,bl,best?best.t+' ('+pp(best.dpc)+')':'',worst?worst.t+' ('+pp(worst.dpc)+')':''))}</div>${aka.length?`<div class="muted small" style="margin-top:6px">${esc(t('akaNote',aka.join(', ')))}</div>`:''}<div class="muted small" style="margin-top:6px">${t('invNote')}</div></div>`
+  +`<h3 class="ks-h">${t('hPort')} ${kind('data')}</h3>`+table('port',[...rows].sort((a,b)=>Math.max(b.pa,b.pb)-Math.max(a.pa,a.pb)),cols,{name:'portofolio',sk:'pb',sd:-1});
  }else{
   if(!q)h+=`<div class="note">${t('iHint')}</div>`;
   else{const m=names.filter(n=>n.includes(q)).slice(0,10);h+=`<div class="note">${t('iNo')}</div>`+(m.length?`<div class="muted small">${t('sugg')}</div><div class="chips">${m.map(n=>chip('inv',n)).join(' ')}</div>`:'')}
  }
  const L=invAgg(S.f),cols2=[
   {k:'inv',h:t('cInv'),v:s=>s.inv,f:s=>chip('inv',s.inv)},{k:'type',h:t('cType'),v:s=>s.type+(s.lf?' · '+lfL(s.lf):'')},
-  {k:'bias',h:t('cBias'),v:s=>s.bias,f:s=>`<span class="tag" style="--c:${s.bias==='acc'?'var(--up)':s.bias==='dist'?'var(--exit)':'var(--flat)'}">${esc(t('b_'+s.bias))}</span>`},
-  {k:'nUp',h:t('cAccN'),n:1,v:s=>s.nUp},{k:'nDn',h:t('cDisN'),n:1,v:s=>s.nDn},
-  {k:'net',h:t('cNet'),n:1,v:s=>s.net,f:s=>sgn(s.net,fp),c:s=>cls(s.net)},{k:'g',h:t('cGross'),n:1,v:s=>s.gross,f:s=>fp(s.gross)}];
- h+=`<h3 class="ks-h">${t('hLead')}</h3>`+table('lead',L,cols2,{name:'investors',sk:'g',sd:-1});
+  {k:'bias',h:t('cBias'),v:s=>s.bias,f:s=>`<span class="tag" style="--c:${biasCol(s.bias)}">${esc(t('b_'+s.bias))}</span>`},
+  {k:'act',h:t('cAct'),n:1,v:s=>s.act},{k:'add',h:t('cAddN'),n:1,v:s=>s.nAcc,c:s=>s.nAcc?'pos':''},{k:'cut',h:t('cCutN'),n:1,v:s=>s.nDis,c:s=>s.nDis?'neg':''},
+  {k:'ent',h:t('cEnt'),n:1,v:s=>s.nNew},{k:'ext',h:t('cExt'),n:1,v:s=>s.nEx}];
+ h+=`<h3 class="ks-h">${t('hLead')} ${kind('calc')}</h3>`+table('lead',L,cols2,{name:'investor_aktif',sk:'act',sd:-1});
  v.innerHTML=h;
 }
 
-/* ============================== section: entries & exits ============================== */
+/* ============================== bagian: masuk & keluar ============================== */
 function vNew(v){const u=S.ui;u.sub=u.sub||'New';const isN=u.sub==='New';
  const rows=S.f.filter(r=>r.st===u.sub).sort((a,b)=>isN?b.pb-a.pb:b.pa-a.pa);
  const p=r=>isN?r.pb:r.pa;
  const cols=[{k:'t',h:t('cCode'),v:r=>r.t,f:r=>chip('stk',r.t)+(r.ca?' ⚠':'')},{k:'inv',h:t('cInv'),v:r=>r.inv,f:r=>chip('inv',r.inv)},{k:'type',h:t('cType'),v:r=>r.type},{k:'lf',h:t('cLF'),v:r=>lfL(r.lf)},
   {k:'p',h:t('cSz'),n:1,v:r=>p(r),f:r=>fp(p(r))},{k:'sh',h:t('cSh'),n:1,v:r=>isN?r.sb:r.sa,f:r=>fmt(isN?r.sb:r.sa)},
-  {k:'min',h:t('cMin'),n:1,v:r=>r.dpc,f:r=>sgn(r.dpc,fp),c:r=>cls(r.dpc)}];
- const nF=rows.filter(r=>r.lf==='F').length,nI=rows.filter(r=>r.grp==='N').length;
+  {k:'min',h:t('cCalc'),n:1,v:r=>r.dpc,f:r=>sgn(r.dpc,fp),c:r=>cls(r.dpc)}];
+ const nF=rows.filter(r=>r.lf==='F').length,nI=rows.filter(r=>r.grp==='N').length,nm=mergedOn().length;
  v.innerHTML=(S.filtered?`<div class="note small">${t('filterNote')}</div>`:'')
  +`<div class="bar"><button type="button" class="btn ${isN?'on':''}" data-sub="New">${t('nwIn')}</button><button type="button" class="btn ${!isN?'on':''}" data-sub="Exit">${t('nwOut')}</button></div>`
  +`<div class="muted" style="margin-bottom:8px">${t('nwSum',rows.length,nF,nI)}</div><div class="note small">${t(isN?'nwNoteIn':'nwNoteOut')}</div>`
+ +(nm?`<div class="note small warn">${t('nwMerged',nm)} <button type="button" class="chip" data-sec="chk">${t('n_chk')}</button></div>`:'')
  +(rows.length?`<div class="muted small" style="margin-bottom:4px">${t('nwTop')}</div>`+bars(rows.slice(0,15).map(r=>({l:`${r.inv} (${r.t})`,v:p(r),t:fp(p(r))+'%',c:r.lf==='F'?'var(--down)':r.lf==='L'?'var(--new)':'var(--flat)'})),'var(--gold)'):'')
- +table('nw'+u.sub,rows,cols,{name:isN?'investors_entering':'investors_exiting',sk:'p',sd:-1});
+ +table('nw'+u.sub,rows,cols,{name:isN?'investor_masuk':'investor_keluar',sk:'p',sd:-1});
 }
 
-/* ============================== render & events ============================== */
+/* ============================== bagian: cek data ============================== */
+function anomalies(){
+ const out=[],L={H:3,M:2,L:1};
+ S.ca.forEach((r,tk)=>out.push({lvl:Math.abs(r-1)>.2?'H':'M',type:t('an_ca'),t:tk,d:t('an_ca_d',r)}));
+ S.spread.forEach((x,tk)=>{if(x>1.05&&!S.ca.has(tk))out.push({lvl:'M',type:t('an_spread'),t:tk,d:t('an_spread_d',x)})});
+ S.info.forEach(i=>{const diff=Math.abs(i.nB-i.nA),mx=Math.max(i.nA,i.nB),mn=Math.max(1,Math.min(i.nA,i.nB));
+  if(diff>=5)out.push({lvl:'M',type:t('an_cnt'),t:i.t,d:t('an_cnt_d',i.nA,i.nB)});else if(diff>=3&&mx/mn>=2)out.push({lvl:'L',type:t('an_cnt'),t:i.t,d:t('an_cnt_d',i.nA,i.nB)})});
+ [[S.stats[1],t('p1').replace(/ \(.*/,'')],[S.stats[2],t('p2').replace(/ \(.*/,'')]].forEach(([st,f])=>{if(st&&st.bad>0)out.push({lvl:st.bad/Math.max(1,st.kept)>.01?'M':'L',type:t('an_bad'),t:'-',d:t('an_bad_d',f,st.bad)})});
+ const k1=S.stats[1]&&S.stats[1].kept,k2=S.stats[2]&&S.stats[2].kept;
+ if(k1&&k2){const r=Math.max(k1,k2)/Math.min(k1,k2);if(r>1.25)out.push({lvl:r>1.5?'H':'M',type:t('an_size'),t:'-',d:t('an_size_d',k1,k2)})}
+ S.merges.forEach(m=>out.push({lvl:m.on?'L':'M',type:m.on?t('an_merge'):t('an_cand'),t:m.t,d:(m.on?t('an_merge_d',m.a,m.b):t('an_cand_d',m.a,m.b))}));
+ return out.map(x=>({...x,w:L[x.lvl]}))}
+function vChk(v){
+ const st=S.stats,files=[[1,t('p1').replace(/ \(.*/,'')],[2,t('p2').replace(/ \(.*/,'')]];
+ const frows=files.map(([n,lb])=>{const s=st[n]||{};return {n,lb:(n===1?S.la:S.lb)||lb,read:s.read||0,kept:s.kept||0,empty:s.empty||0,bad:s.bad||0,dup:s.dup||0,stocks:s.stocks||0,inv:s.inv||0}});
+ const fcols=[{k:'lb',h:t('chkF'),v:r=>r.lb},{k:'read',h:t('chkRead'),n:1,v:r=>r.read,f:r=>fmt(r.read)},{k:'kept',h:t('chkKept'),n:1,v:r=>r.kept,f:r=>fmt(r.kept)},{k:'empty',h:t('chkEmpty'),n:1,v:r=>r.empty,f:r=>fmt(r.empty)},
+  {k:'bad',h:t('chkBad'),n:1,v:r=>r.bad,f:r=>fmt(r.bad),c:r=>r.bad?'neg':''},{k:'dup',h:t('chkDup'),n:1,v:r=>r.dup,f:r=>fmt(r.dup)},{k:'stocks',h:t('chkStocks'),n:1,v:r=>r.stocks,f:r=>fmt(r.stocks)},{k:'inv',h:t('chkInv'),n:1,v:r=>r.inv,f:r=>fmt(r.inv)}];
+ const lvTag=l=>`<span class="tag" style="--c:${l==='high'?'var(--up)':'var(--down)'}">${esc(t(l==='high'?'lvHs':'lvMs'))}</span>`;
+ const mcols=[{k:'t',h:t('mgT'),v:m=>m.t,f:m=>chip('stk',m.t)},{k:'a',h:t('mgA'),v:m=>m.a},{k:'b',h:t('mgB'),v:m=>m.b},
+  {k:'pa',h:t('mgPa'),n:1,v:m=>m.pa,f:m=>fp(m.pa)},{k:'pb',h:t('mgPb'),n:1,v:m=>m.pb,f:m=>fp(m.pb)},
+  {k:'lv',h:t('mgLv'),v:m=>m.level,f:m=>lvTag(m.level)},
+  {k:'on',h:t('mgSt'),v:m=>m.on?1:0,f:m=>`<span class="tag" style="--c:${m.on?'var(--up)':'var(--flat)'}">${esc(t(m.on?'mgOn':'mgOff'))}</span>`},
+  {k:'act',h:t('mgAct'),v:m=>m.on?1:0,f:m=>`<button type="button" class="btn small" data-merge="${m.id}">${esc(t(m.on?'mgUndo':'mgDo'))}</button>`}];
+ const an=anomalies().sort((a,b)=>b.w-a.w);
+ const lvl={H:['lvlH','var(--exit)'],M:['lvlM','var(--down)'],L:['lvlL','var(--flat)']};
+ const acols=[{k:'w',h:t('anL'),v:r=>r.w,f:r=>`<span class="tag" style="--c:${lvl[r.lvl][1]}">${esc(t(lvl[r.lvl][0]))}</span>`},{k:'type',h:t('anT'),v:r=>r.type},{k:'t',h:t('cCode'),v:r=>r.t,f:r=>r.t==='-'?'-':chip('stk',r.t)},{k:'d',h:t('anD'),v:r=>r.d}];
+ v.innerHTML=`<h3 class="ks-h">${t('chkRows')} ${kind('data')}</h3>`+table('files',frows,fcols,{name:'ringkasan_baris',lim:5})+`<div class="muted small" style="margin-top:6px">${t('chkRowsNote')}</div>`
+ +`<h3 class="ks-h">${t('chkMerge')} ${kind('view')}</h3><div class="note small">${t('chkMergeNote')}</div><div class="legend"><span>${lvTag('high')} ${esc(t('lvH'))}</span><span>${lvTag('mid')} ${esc(t('lvM'))}</span></div>`
+ +(S.merges.length?table('merges',S.merges,mcols,{name:'nama_digabung',sk:'lv',sd:1,lim:100}):`<div class="note">${t('mgNone')}</div>`)
+ +`<h3 class="ks-h">${t('chkAn')} ${kind('view')}</h3>`+(an.length?table('anom',an,acols,{name:'cek_data',sk:'w',sd:-1,lim:50}):`<div class="note">${t('anNone')}</div>`);
+}
+
+/* ============================== tampil & event ============================== */
 function render(){
  S.dl={};
  $('#ks-nav').innerHTML=SECS.map(k=>`<button type="button" role="tab" aria-selected="${S.sec===k}" data-sec="${k}">${t('n_'+k)}</button>`).join('');
- const v=$('#ks-view');({sum:vSum,sig:vSig,stk:vStk,inv:vInv,nw:vNew})[S.sec](v);
+ const v=$('#ks-view');({sum:vSum,sig:vSig,stk:vStk,inv:vInv,nw:vNew,chk:vChk})[S.sec](v);
 }
 function go(sec){S.sec=sec;render()}
 root.addEventListener('click',e=>{
- const b=e.target.closest('[data-sec],[data-go],[data-th],[data-more],[data-sub],[data-dl],[data-dir],[data-demo],[data-reset]');
+ const b=e.target.closest('[data-sec],[data-go],[data-th],[data-more],[data-sub],[data-dl],[data-dir],[data-demo],[data-reset],[data-merge]');
  if(!b||!root.contains(b))return;const d=b.dataset;
  if(d.sec)go(d.sec);
- else if(d.go){const i=d.go.indexOf(':'),kind=d.go.slice(0,i),val=d.go.slice(i+1);if(kind==='stk')S.ui.stk=val;else S.ui.inv=val;S.sec=kind==='stk'?'stk':'inv';render();$('#ks-nav').scrollIntoView({behavior:'smooth',block:'start'})}
+ else if(d.go){const i=d.go.indexOf(':'),kd=d.go.slice(0,i),val=d.go.slice(i+1);if(kd==='stk')S.ui.stk=val;else S.ui.inv=val;S.sec=kd==='stk'?'stk':'inv';render();$('#ks-nav').scrollIntoView({behavior:'smooth',block:'start'})}
  else if(d.th){const u=S.ui[d.th];if(u){u.d=u.k===d.k?-u.d:-1;u.k=d.k;render()}}
  else if(d.more){S.ui[d.more].lim+=50;render()}
  else if(d.sub){S.ui.sub=d.sub;render()}
  else if(d.dl){S.dl[d.dl]&&S.dl[d.dl]()}
  else if(d.dir){const u=S.ui[d.dir];if(u){u.d=-u.d;render()}}
+ else if(d.merge!==undefined){const m=S.merges.find(x=>x.id===+d.merge);if(m){m.on=!m.on;recompute(false)}}
  else if('demo' in d)loadDemo();
  else if('reset' in d){$('#ks-fLF').value='';$('#ks-fGrp').value='';$('#ks-fType').value='';$('#ks-fThr').value='0';$('#ks-fCA').checked=false;applyFilters()}
 });
@@ -3668,24 +3811,35 @@ root.addEventListener('change',e=>{const x=e.target,u=S.ui;
  else if(x.dataset&&x.dataset.sel){const q=u[x.dataset.sel];if(q){q.k=x.value;render()}}
  else if(['ks-fLF','ks-fGrp','ks-fType','ks-fThr','ks-fCA'].includes(x.id))applyFilters()});
 
-/* ============================== loading ============================== */
+/* ============================== memuat data ============================== */
 function msg(text,kind){const m=$('#ks-msg');m.className='note'+(kind?' '+kind:'');m.textContent=text;m.classList.toggle('hide',!text)}
 async function onFile(n,f){
  if(!f)return;const d=$('#ks-d'+n);
  try{const p=await parse(f);S['P'+n]=p;S.demo=false;d.classList.add('ok');$('#ks-s'+n).textContent=`${f.name} · ${t('rows',p.map.size)}`;msg('');
   if(S.P1&&S.P2)build(S.P1,S.P2)}
  catch(e){d.classList.remove('ok');S['P'+n]=null;msg(e.message,'err')}}
+function recompute(reset){
+ const A2=applyMerges(S.A,S.merges),c=compare(A2,S.B);
+ S.rows=c.rows;S.ca=c.ca;S.info=c.info;S.spread=c.spread;
+ const sel=$('#ks-fType'),keep=sel.value,types=[...new Set(S.rows.map(r=>r.type))].sort();
+ sel.innerHTML=`<option value="">${t('all')}</option>`+types.map(x=>`<option>${esc(x)}</option>`).join('');
+ if(types.includes(keep))sel.value=keep;
+ if(reset){S.ui={};S.sec='sum'}
+ applyFilters();
+}
 function build(A,B){
  let sw=false;if(A.date&&B.date&&A.date>B.date){[A,B]=[B,A];sw=true}
  const lbl=(p,dflt)=>p.date?p.date.toLocaleDateString(LOC,{day:'numeric',month:'short',year:'numeric'}):dflt;
  S.la=lbl(A,t('p1').replace(/ \(.*/,''));S.lb=lbl(B,t('p2').replace(/ \(.*/,''));
- const c=compare(A,B);S.rows=c.rows;S.ca=c.ca;S.info=c.info;
- const types=[...new Set(S.rows.map(r=>r.type))].sort();
- $('#ks-fType').innerHTML=`<option value="">${t('all')}</option>`+types.map(x=>`<option>${esc(x)}</option>`).join('');
+ S.A=A;S.B=B;
+ const stat=(p)=>{const s={...p.st,kept:p.map.size};s.stocks=new Set([...p.map.values()].map(x=>x.t)).size;s.inv=new Set([...p.map.values()].map(x=>x.inv)).size;return s};
+ S.stats={1:stat(A),2:stat(B)};
+ S.merges=detectMerges(A,B);
  const notes=[];if(sw)notes.push(t('swapped'));if(A.date&&B.date&&+A.date===+B.date)notes.push(t('sameDate'));
  if(notes.length)msg(notes.join(' '),'warn');
  $('#ks-demoNote').classList.toggle('hide',!S.demo);
- $('#ks-app').classList.remove('hide');S.ui={};S.sec='sum';applyFilters();
+ $('#ks-app').classList.remove('hide');
+ recompute(true);
 }
 function demoData(){
  const X=[
@@ -3698,22 +3852,24 @@ function demoData(){
   ['DEMG','Demo Stabil Tbk',4e9,4e9,[['PT HOLDING G','Corporate','L',70,70],['FUND G','Mutual Fund','L',1.5,1.5]]],
   ['DEMH','Demo Ritel Tbk',7e9,7e9,[['PT HOLDING H','Corporate','L',51,51],['FUND H1','Mutual Fund','F',1.5,1.9],['FUND H2','Mutual Fund','F',2,2.5],['FUND H3','Insurance','L',1.1,1.4],['FUND H4','Pension Fund','L',3,2]]],
   ['DEMI','Demo Perbankan Tbk',9e9,9e9,[['PT HOLDING I','Corporate','L',52,52],['FOREIGN INDEX FUND','Mutual Fund','F',4.4,null],['LOCAL BANK FUND','Mutual Fund','L',1.5,2.5],['FOREIGN ACTIVE FUND','Mutual Fund','F',2.2,1.1]]],
-  ['DEMJ','Demo Energi Tbk',5e9,5e9,[['PT HOLDING J','Corporate','L',48,48],['FUND J1','Mutual Fund','F',1.2,1.8],['FUND J2','Pension Fund','L',1.4,2],['FUND J3','Insurance','L',2,2.5]]]];
+  ['DEMJ','Demo Energi Tbk',5e9,5e9,[['PT HOLDING J','Corporate','L',48,48],['FUND J1','Mutual Fund','F',1.2,1.8],['FUND J2','Pension Fund','L',1.4,2],['FUND J3','Insurance','L',2,2.5]]],
+  ['DEMK','Demo Bank Unggul Tbk',6e9,6e9,[['PT DEMO HOLDING K','Corporate','L',50,50],['PT DEMO BANK UNGGUL TBK','Corporate','L',8,null],['DEMO BANK UNGGUL REGISTRAR','Corporate','L',null,8]]],
+  ['DEML','Demo Global Tbk',4e9,4e9,[['PT DEMO HOLDING L','Corporate','L',60,60],['ISHARES DEMO CORE EMERGING FUND','Mutual Fund','F',3,null],['ISHARES DEMO EMERGING FUND','Mutual Fund','F',null,3.4]]]];
  const mk=i=>{const map=new Map();for(const [tk,iss,so0,so1,hs] of X)for(const h of hs){const p=h[3+i];if(p==null)continue;const so=i?so1:so0;
    map.set(tk+'|'+h[0],{t:tk,inv:h[0],iss,type:h[1],lf:h[2],sh:Math.round(so*p/100),pc:p})}
-  return {map,date:new Date(i?'2026-09-30T00:00:00':'2026-08-31T00:00:00'),name:'demo'}};
+  return {map,date:new Date(i?'2026-09-30T00:00:00':'2026-08-31T00:00:00'),name:'demo',st:{read:map.size,empty:0,bad:0,dup:0}}};
  return [mk(0),mk(1)]}
 function loadDemo(){const [A,B]=demoData();S.demo=true;S.P1=A;S.P2=B;
  for(const n of [1,2]){$('#ks-d'+n).classList.add('ok');$('#ks-s'+n).textContent=(ID?'Data contoh fiktif · ':'Fictional sample data · ')+t('rows',(n===1?A:B).map.size)}
  msg('');build(A,B)}
 
-/* ============================== init ============================== */
+/* ============================== mulai ============================== */
 root.querySelectorAll('[data-i]').forEach(el=>{el.textContent=t(el.dataset.i)});
 $('#ks-demoNote').textContent=t('demoNote');
 $('#ks-f1').onchange=e=>onFile(1,e.target.files[0]);
 $('#ks-f2').onchange=e=>onFile(2,e.target.files[0]);
 if(window.matchMedia&&window.matchMedia('(min-width:861px)').matches)$('#ks-flt').open=true;
-window.__kseiTest={S,loadDemo,agg,signal,compare};
+window.__kseiTest={S,loadDemo,agg,signal,compare,detectMerges,nameKeys,pairScore};
 })();
 
 </script>
