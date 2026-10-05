@@ -996,19 +996,19 @@ html[data-theme="light"] #panel-ksei{--down:#c2410c;--new:#0e7490;--on:#fff}
 #panel-ksei details.meth .mb li{margin:4px 0}
 #panel-ksei details.meth .mb b{color:var(--text)}
 #panel-ksei .disc{margin-top:14px;font-size:12px;color:var(--mute)}
-/* narrow panel (phones / small windows): tables become cards, no sideways scroll */
+/* narrow panel (phones / small windows): tables become compact two-column cards, no sideways scroll */
 @container ksei (max-width: 820px){
   #panel-ksei .up{grid-template-columns:1fr}
   #panel-ksei .tw{border:0;background:none;overflow:visible}
-  #panel-ksei table,#panel-ksei thead,#panel-ksei tbody,#panel-ksei tr,#panel-ksei td{display:block;width:100%}
+  #panel-ksei table,#panel-ksei thead,#panel-ksei tbody{display:block;width:100%}
   #panel-ksei thead{display:none}
-  #panel-ksei tr{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:8px;padding:6px 12px}
+  #panel-ksei tr{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:8px;padding:10px 12px}
   #panel-ksei tbody tr:hover td{background:none}
-  #panel-ksei td,#panel-ksei td.n{display:flex;justify-content:space-between;align-items:baseline;gap:14px;text-align:right;border:0;padding:3px 0}
-  #panel-ksei td::before{content:attr(data-l);color:var(--mute);text-align:left;flex:0 0 auto;font-size:12px}
-  #panel-ksei td.k1{justify-content:flex-start;font-weight:600;padding-bottom:5px;margin-bottom:3px;border-bottom:1px solid var(--line)}
+  #panel-ksei td,#panel-ksei td.n{display:block;text-align:left;border:0;padding:0;min-width:0}
+  #panel-ksei td::before{content:attr(data-l);display:block;color:var(--mute);font-size:11px;line-height:1.3;margin-bottom:1px}
+  #panel-ksei td.k1{grid-column:1/-1;font-weight:600;padding-bottom:6px;border-bottom:1px solid var(--line)}
   #panel-ksei td.k1::before{display:none}
-  #panel-ksei td.hid{display:none}
+  #panel-ksei td.wide{grid-column:1/-1}
   #panel-ksei .sortm{display:flex}
   #panel-ksei .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   #panel-ksei .ks-nav{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -1041,6 +1041,23 @@ html[data-theme="light"] #panel-ksei{--down:#c2410c;--new:#0e7490;--on:#fff}
 #panel-ksei .ks-backwrap{position:sticky;bottom:14px;z-index:35;margin-top:14px;display:flex;pointer-events:none}
 #panel-ksei .ks-back{pointer-events:auto;font:600 13px var(--sans);background:var(--gold);color:var(--on);border:0;border-radius:24px;padding:10px 16px;box-shadow:0 4px 16px rgba(0,0,0,.45);cursor:pointer;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #panel-ksei .ks-back:hover{filter:brightness(1.08)}
+
+/* collapsible sections */
+#panel-ksei .ks-sec{border-top:1px solid var(--line);margin-top:12px}
+#panel-ksei .ks-sec>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:12px 0;font:700 15px var(--serif);color:var(--gold-soft)}
+#panel-ksei .ks-sec>summary::-webkit-details-marker{display:none}
+#panel-ksei .ks-sec>summary::before{content:"▸";color:var(--mute);transition:transform .15s;font-size:12px}
+#panel-ksei .ks-sec[open]>summary::before{transform:rotate(90deg)}
+#panel-ksei .ks-sec .ct{font:600 11.5px var(--sans);color:var(--mute);border:1px solid var(--line);border-radius:10px;padding:0 8px}
+#panel-ksei .ks-sec>.sb{padding-bottom:6px}
+#panel-ksei .mini{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
+#panel-ksei .mini>summary{cursor:pointer;color:var(--mute);font-size:12.5px}
+#panel-ksei .mini>summary:hover{color:var(--ink)}
+#panel-ksei .cl{display:flex;flex-wrap:wrap;gap:2px 10px;justify-content:space-between;align-items:baseline;padding:5px 0;border-top:1px solid var(--line);font-size:12.5px}
+#panel-ksei .cl:first-of-type{margin-top:6px}
+#panel-ksei .cl span:first-child{flex:1 1 180px;min-width:0;overflow-wrap:anywhere}
+#panel-ksei .chip.all{background:none;border-style:dashed;font-weight:600;margin-left:4px}
+#panel-ksei .cards .box h4{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between}
 
 @media print{ .vf-shell{ display:block; padding:0; } .vf-nav-toggle{ display:none; } }
 </style>
@@ -3220,6 +3237,9 @@ if(!root)return;
 const D={
 id:{
  unit:'poin',
+ seeAll:n=>`Lihat semua ${fmt(n)} saham →`,seeAllShort:'Lihat semua →',listShow:(x,n)=>`Menampilkan: ${x} · ${fmt(n)} saham`,listClear:'Tampilkan semua saham',
+ cFN:'Institusi asing (poin)',calcQ:'Lihat cara hitung',calcMore:n=>`dan ${fmt(n)} investor lain`,nwChart:'Grafik 15 terbesar',
+ i_faT:'Institusi asing menambah',i_fdT:'Institusi asing mengurangi',i_consT:'Minimal 3 investor menambah, tidak ada yang mengurangi',
  back:'Kembali',backTo:x=>`Kembali ke ${x}`,
  badRows:n=>`${fmt(n)} baris dikecualikan karena persentasenya kosong, nol, atau tidak wajar (di atas 100%).`,
  p1:'Periode 1 (lebih lama)',p2:'Periode 2 (lebih baru)',pick1:'Pilih file Excel atau CSV, mis. data Agustus',pick2:'Pilih file Excel atau CSV, mis. data September',
@@ -3262,7 +3282,7 @@ id:{
  stkLbl:'Kode saham',stkPh:'mis. BBCA',stkHint:'Ketik kode saham, atau ketuk kode saham di tab lain, untuk melihat rincian pemegangnya.',stkNo:'Kode tidak ditemukan di kedua file.',
  stkTopA:'Paling banyak ditambah',stkTopD:'Paling banyak dikurangi',sugg:'Mungkin maksud Anda:',
  kNetD:'Selisih investor besar',kHold:'Jumlah pemegang di atas 1%',kTot:'Total milik pemegang di atas 1%',kTop:'Pemegang terbesar',
- hVerdict:'Kesimpulan',hSegS:'Selisih per kelompok (poin)',hHold:'Rincian pemegang',hPair:'Kepemilikan: periode 1 → periode 2',hCalc:'Cara hitung',
+ hVerdict:'Kesimpulan',hSegS:'Selisih per kelompok (poin)',hHold:'Rincian pemegang',hPair:'Kepemilikan: periode 1 → periode 2',
  k_data:'Data file',k_calc:'Hitungan',k_est:'Perkiraan',k_view:'Tafsiran',
  v_acc:s=>`Investor besar (di atas 1%) menambah kepemilikan: total naik ${pp(s.net)}. ${s.nUp} investor menambah atau masuk, ${s.nDn} mengurangi atau keluar.`,
  v_dis:s=>`Investor besar (di atas 1%) mengurangi kepemilikan: total turun ${pp(Math.abs(s.net))}. ${s.nDn} investor mengurangi atau keluar, ${s.nUp} menambah atau masuk.`,
@@ -3299,6 +3319,9 @@ id:{
 },
 en:{
  unit:'pts',
+ seeAll:n=>`See all ${fmt(n)} stocks →`,seeAllShort:'See all →',listShow:(x,n)=>`Showing: ${x} · ${fmt(n)} stocks`,listClear:'Show all stocks',
+ cFN:'Foreign institutions (pts)',calcQ:'See how this is calculated',calcMore:n=>`and ${fmt(n)} more holders`,nwChart:'Chart of the 15 largest',
+ i_faT:'Foreign institutions adding',i_fdT:'Foreign institutions reducing',i_consT:'At least 3 adding, none reducing',
  back:'Back',backTo:x=>`Back to ${x}`,
  badRows:n=>`${fmt(n)} row(s) excluded because the percentage is empty, zero, or not valid (above 100%).`,
  p1:'Period 1 (older)',p2:'Period 2 (newer)',pick1:'Choose an Excel or CSV file, e.g. August data',pick2:'Choose an Excel or CSV file, e.g. September data',
@@ -3341,7 +3364,7 @@ en:{
  stkLbl:'Ticker',stkPh:'e.g. BBCA',stkHint:'Type a ticker, or tap a ticker in another tab, to see its holder details.',stkNo:'Ticker not found in either file.',
  stkTopA:'Most added',stkTopD:'Most reduced',sugg:'Did you mean:',
  kNetD:'Difference among large holders',kHold:'Holders above 1%',kTot:'Total held by holders above 1%',kTop:'Largest holder',
- hVerdict:'Conclusion',hSegS:'Difference by group (points)',hHold:'Holder breakdown',hPair:'Ownership: period 1 → period 2',hCalc:'How it is calculated',
+ hVerdict:'Conclusion',hSegS:'Difference by group (points)',hHold:'Holder breakdown',hPair:'Ownership: period 1 → period 2',
  k_data:'File data',k_calc:'Calculation',k_est:'Estimate',k_view:'Interpretation',
  v_acc:s=>`Large holders (above 1%) added to their stakes: total up ${pp(s.net)}. ${s.nUp} holder(s) added or entered, ${s.nDn} reduced or left.`,
  v_dis:s=>`Large holders (above 1%) reduced their stakes: total down ${pp(Math.abs(s.net))}. ${s.nDn} holder(s) reduced or left, ${s.nUp} added or entered.`,
@@ -3389,7 +3412,7 @@ function ds(v){return v===0?'0':(v>0?'+':'')+fmt(v)}
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const cls=v=>Math.round(v*100)>0?'pos':Math.round(v*100)<0?'neg':'';
 const THR=1, CA_TOL=0.02;
-const S={A:null,B:null,P1:null,P2:null,rows:[],f:[],agg:[],info:new Map(),ca:new Map(),spread:new Map(),stats:{},hist:[],sec:'sum',ui:{},dl:{},demo:false,la:'',lb:''};
+const S={A:null,B:null,P1:null,P2:null,rows:[],f:[],agg:[],info:new Map(),ca:new Map(),spread:new Map(),stats:{},hist:[],open:{},lists:{},sec:'sum',ui:{},dl:{},demo:false,la:'',lb:''};
 const SECS=['sum','sig','stk','inv','nw'];
 const SIGCOL={sa:'var(--up)',a:'var(--up)',n:'var(--flat)',d:'var(--down)',sd:'var(--exit)',rot:'var(--rot)'};
 const STCOL={New:'var(--new)',Accumulation:'var(--up)',Distribution:'var(--down)',Unchanged:'var(--flat)',Exit:'var(--exit)'};
@@ -3447,20 +3470,29 @@ async function parse(file){
 
 /* ============================== nama investor yang sama ============================== */
 const NOISE=new Set(['PT','TBK','PERSERO','PERSEROAN','LTD','LIMITED','INC','INCORPORATED','CORP','CORPORATION','CO','COMPANY','PTE','BHD','LLC','PLC','NV','SA','AG','GMBH','REGISTRAR','REG','THE','DAN','AND','OF']);
-/* Kunci identitas: huruf besar, tanpa tanda baca, tanpa kata badan usaha (PT, TBK, ...), kata diurutkan, spasi dihapus.
-   Jadi "PT. ABC, TBK", "ABC TBK" dan "A B C" (urutan kata/spasi berbeda) mendapat kunci yang sama. */
-function canonKey(name){
- const tk=String(name).toUpperCase().replace(/[^A-Z0-9 ]+/g,' ').split(/\s+/).filter(w=>w&&!NOISE.has(w));
+/* Gelar di depan nama (Ir, Drs, Dr, Prof, H, Hj, ...) dan di belakang nama (SE, MM, MBA, ...) hanya dibuang
+   untuk investor perorangan. Gelar di belakang tidak dibuang jika nama tersisa kurang dari 2 kata. */
+const LEAD=new Set(['IR','DR','DRS','DRA','DRG','DRH','DRPH','PROF','PROFESSOR','H','HJ','HAJI','HAJJAH','KH','BPK','BAPAK','IBU','IBUNDA','MR','MRS','MS','MISS','SIR','DATO','DATUK','ENGR','ALM','ALMARHUM','ALMARHUMAH','ALMH']);
+const TRAIL=new Set(['SH','SE','SKOM','SSOS','SSI','ST','STP','SPD','SPDI','SPT','SKM','SKED','SIP','SSN','SADM','SAG','SHI','SPSI','SPSY','SPAR','SFARM','APT','MM','MBA','MSC','MSI','MA','MH','MT','MPD','MKOM','MKES','MP','MPA','MSM','MHUM','MSN','MIKOM','AKT','CA','CPA','CFA','CMA','PHD','LLM','LLB','BSC','BA','BE','BEC','BBA','MCOM','BCOM','MENG','BENG','MPH','DRS','DR','IR','HJ','PROF','SHUM','SSTP','SPKP']);
+/* Kunci identitas: huruf besar, tanpa tanda baca, "PRIVATE LIMITED / PTE LTD / PTELTD" disamakan, tanpa kata badan usaha
+   (PT, TBK, LTD, ...), gelar dibuang (perorangan), kata diurutkan, spasi dihapus. */
+function canonKey(name,ind){
+ const x=String(name).toUpperCase()
+  .replace(/\bPRIVATE\s+LIMITED\b/g,' LTD ').replace(/\bPVT\.?\s*LTD\b/g,' LTD ')
+  .replace(/\bPTE\.?\s*LTD\b/g,' LTD ').replace(/\bPTELTD\b/g,' LTD ')
+  .replace(/\b([A-Z])\.(?=[A-Z])/g,'$1');
+ let tk=x.replace(/[^A-Z0-9 ]+/g,' ').split(/\s+/).filter(w=>w&&!NOISE.has(w));
+ if(ind){while(tk.length>1&&LEAD.has(tk[0]))tk.shift();while(tk.length>2&&TRAIL.has(tk[tk.length-1]))tk.pop()}
  return tk.length?[...tk].sort().join(''):String(name).toUpperCase().replace(/[^A-Z0-9]+/g,'')}
 /* Menyatukan penulisan nama di kedua file: satu nama tampilan per investor (yang paling sering dipakai),
    baris ganda pada saham dan periode yang sama dijumlahkan. */
 function unify(A,B){
  const count=new Map();
- for(const p of [A,B])for(const e of p.map.values()){const k=canonKey(e.inv);if(!count.has(k))count.set(k,new Map());const m=count.get(k);m.set(e.inv,(m.get(e.inv)||0)+1)}
+ for(const p of [A,B])for(const e of p.map.values()){const k=canonKey(e.inv,grpOf(e.type)==='I');if(!count.has(k))count.set(k,new Map());const m=count.get(k);m.set(e.inv,(m.get(e.inv)||0)+1)}
  const display=new Map();
  count.forEach((m,k)=>display.set(k,[...m.entries()].sort((x,y)=>y[1]-x[1]||y[0].length-x[0].length)[0][0]));
  const fix=p=>{const map=new Map();
-  for(const e of p.map.values()){const name=display.get(canonKey(e.inv)),key=e.t+'|'+name,o=map.get(key);
+  for(const e of p.map.values()){const name=display.get(canonKey(e.inv,grpOf(e.type)==='I')),key=e.t+'|'+name,o=map.get(key);
    if(o){o.sh+=e.sh;o.pc+=e.pc;if(o.type===t('unclass')&&e.type!==t('unclass'))o.type=e.type;if(!o.lf)o.lf=e.lf;if(!o.iss)o.iss=e.iss}
    else map.set(key,{...e,inv:name})}
   return {...p,map}};
@@ -3515,7 +3547,7 @@ function filterState(){return {lf:$('#ks-fLF').value,gp:$('#ks-fGrp').value,ty:$
 function applyFilters(){
  const F=filterState();
  S.f=S.rows.filter(r=>(F.ca||!r.ca)&&(!F.lf||r.lf===F.lf)&&(!F.gp||r.grp===F.gp)&&(!F.ty||r.type===F.ty)&&Math.abs(r.dpc)>=F.th);
- S.agg=agg(S.f);
+ S.agg=agg(S.f);buildLists();
  const act=[];if(F.lf)act.push(F.lf==='L'?t('local'):t('foreign'));if(F.gp)act.push(F.gp==='I'?t('ind'):t('inst'));if(F.ty)act.push(F.ty);if(F.th>0)act.push('≥ '+fp(F.th)+' '+T.unit);if(F.ca)act.push(t('fCA'));
  S.filtered=!!(F.lf||F.gp||F.ty||F.th>0);
  $('#ks-fsum').textContent=act.length?act.join(' · '):t('filNone');
@@ -3532,7 +3564,7 @@ function table(id,rows,cols,o={}){
  const shown=rows.slice(0,u.lim);
  S.dl[id]=()=>csv(rows,cols,o.name||id);
  const head=cols.map(c=>`<th class="${c.n?'n':''}" data-th="${id}" data-k="${c.k}">${esc(c.h)}${u.k===c.k?(u.d<0?' ↓':' ↑'):''}</th>`).join('');
- const body=shown.map(r=>'<tr>'+cols.map((c,i)=>`<td class="${c.n?'n':''} ${i===0?'k1':''} ${c.c?c.c(r):''}" data-l="${esc(c.h)}">${c.f?c.f(r):esc(c.v(r))}</td>`).join('')+'</tr>').join('');
+ const body=shown.map(r=>'<tr>'+cols.map((c,i)=>`<td class="${c.n?'n':''} ${i===0?'k1':''} ${c.w?'wide':''} ${c.c?c.c(r):''}" data-l="${esc(c.h)}">${c.f?c.f(r):esc(c.v(r))}</td>`).join('')+'</tr>').join('');
  const sortm=`<div class="bar sortm"><label class="f">${t('sortBy')}<select data-sel="${id}">${cols.map(c=>`<option value="${c.k}" ${u.k===c.k?'selected':''}>${esc(c.h)}</option>`).join('')}</select></label><button type="button" class="btn" data-dir="${id}" aria-label="↕">${u.d<0?'↓':'↑'}</button></div>`;
  return `<div class="tcount">${t('shown',shown.length,rows.length,rows.length>0)} <button type="button" class="btn small" data-dl="${id}">${t('csv')}</button></div>${sortm}
  <div class="tw"><table><thead><tr>${head}</tr></thead><tbody>${body||`<tr><td class="muted">${t('none')}</td></tr>`}</tbody></table></div>
@@ -3546,29 +3578,45 @@ function keepFocus(fn){const a=document.activeElement,id=a&&root.contains(a)&&a.
  if(id){const e=root.querySelector('#'+id);if(e){e.focus();try{e.setSelectionRange(p,p)}catch(_){}}}}
 const nameCell=r=>chip('inv',r.inv);
 
+/* ============================== bagian yang bisa dibuka-tutup ============================== */
+function sec(key,title,kd,count,body,defOpen){
+ const o=S.open[key]!==undefined?S.open[key]:!!defOpen;
+ return `<details class="ks-sec" data-k="${key}" ${o?'open':''}><summary><span class="st">${title}</span>${kd?' '+kind(kd):''}${count!=null?` <span class="ct">${count}</span>`:''}</summary><div class="sb">${body}</div></details>`}
+function buildLists(){
+ const A=S.agg,L={};
+ const add=(key,title,arr,sk,sd,extra)=>{L[key]={key,title,tickers:arr.map(x=>x.t),sk,sd,extra:!!extra}};
+ add('sa',t('sa'),topN(A.filter(x=>x.sig==='sa'),x=>x.net,1e9),'net',-1);
+ add('sd',t('sd'),topN(A.filter(x=>x.sig==='sd'),x=>-x.net,1e9),'net',1);
+ add('fa',t('i_faT'),topN(A.filter(x=>(x.seg.FN||0)>=.25),x=>x.seg.FN,1e9),'fn',-1,1);
+ add('fd',t('i_fdT'),topN(A.filter(x=>(x.seg.FN||0)<=-.25),x=>-x.seg.FN,1e9),'fn',1,1);
+ add('cons',t('i_consT'),topN(A.filter(x=>x.nUp>=3&&x.nDn===0),x=>x.net,1e9),'net',-1);
+ add('rot',t('rot'),topN(A.filter(x=>x.sig==='rot'),x=>x.gross,1e9),'net',-1);
+ add('acc',t('cAcc'),topN(A.filter(x=>x.net>0),x=>x.net,1e9),'net',-1);
+ add('dis',t('cDis'),topN(A.filter(x=>x.net<0),x=>-x.net,1e9),'net',1);
+ S.lists=L}
+
 /* ============================== bagian: kesimpulan ============================== */
 function vSum(v){
- const A=S.agg,cnt=k=>A.filter(s=>s.sig===k).length;
+ const A=S.agg,L=S.lists,cnt=k=>A.filter(s=>s.sig===k).length;
  const nStocks=new Set(S.f.map(r=>r.t)).size,nNew=S.f.filter(r=>r.st==='New').length,nEx=S.f.filter(r=>r.st==='Exit').length;
  const kp=`<div class="kpis">${kpi(t('kStocks'),fmt(nStocks),'var(--gold)')}${kpi(t('kAcc'),fmt(cnt('sa')+cnt('a')),'var(--up)')}${kpi(t('kDis'),fmt(cnt('sd')+cnt('d')),'var(--exit)')}${kpi(t('kNew'),fmt(nNew),'var(--new)')}${kpi(t('kExit'),fmt(nEx),'var(--down)')}</div>`;
- const ins=[],tk=(arr,n=5)=>chips(arr.slice(0,n).map(s=>s.t));
- ins.push(`<li>${t('i_scale',nStocks,A.length)}</li>`);
- const sa=topN(A.filter(s=>s.sig==='sa'),s=>s.net,99),sd=topN(A.filter(s=>s.sig==='sd'),s=>-s.net,99);
- ins.push(sa.length?`<li class="g">${t('i_sa',sa.length,tk(sa))}</li>`:`<li>${t('i_sa0')}</li>`);
- ins.push(sd.length?`<li class="r">${t('i_sd',sd.length,tk(sd))}</li>`:`<li>${t('i_sd0')}</li>`);
- const fa=topN(A.filter(s=>(s.seg.FN||0)>=.25),s=>s.seg.FN,5),fd=topN(A.filter(s=>(s.seg.FN||0)<=-.25),s=>-s.seg.FN,5);
- if(fa.length)ins.push(`<li class="g">${t('i_fa',tk(fa))}</li>`);
- if(fd.length)ins.push(`<li class="r">${t('i_fd',tk(fd))}</li>`);
- const cons=topN(A.filter(s=>s.nUp>=3&&s.nDn===0),s=>s.net,5);
- if(cons.length)ins.push(`<li class="g">${t('i_cons',tk(cons))}</li>`);
- const rot=topN(A.filter(s=>s.sig==='rot'),s=>s.gross,5);
- if(rot.length)ins.push(`<li>${t('i_rot',tk(rot))}</li>`);
+ const all=key=>L[key].tickers.length?` <button type="button" class="chip all" data-list="${key}">${t('seeAll',L[key].tickers.length)}</button>`:'';
+ const five=key=>chips(L[key].tickers.slice(0,5));
+ const ins=[];
+ ins.push(`<li>${t('i_scale',nStocks,A.length)} <button type="button" class="chip all" data-list="all">${t('seeAll',A.length)}</button></li>`);
+ ins.push(L.sa.tickers.length?`<li class="g">${t('i_sa',L.sa.tickers.length,five('sa'))}${all('sa')}</li>`:`<li>${t('i_sa0')}</li>`);
+ ins.push(L.sd.tickers.length?`<li class="r">${t('i_sd',L.sd.tickers.length,five('sd'))}${all('sd')}</li>`:`<li>${t('i_sd0')}</li>`);
+ if(L.fa.tickers.length)ins.push(`<li class="g">${t('i_fa',five('fa'))}${all('fa')}</li>`);
+ if(L.fd.tickers.length)ins.push(`<li class="r">${t('i_fd',five('fd'))}${all('fd')}</li>`);
+ if(L.cons.tickers.length)ins.push(`<li class="g">${t('i_cons',five('cons'))}${all('cons')}</li>`);
+ if(L.rot.tickers.length)ins.push(`<li>${t('i_rot',five('rot'))}${all('rot')}</li>`);
  const F=filterState(),caL=[...S.ca.keys()];
- if(caL.length)ins.push(`<li class="w">${t('i_ca',caL.length,F.ca,chips(caL.slice(0,8)))}</li>`);
+ if(caL.length)ins.push(`<li class="w">${t('i_ca',caL.length,F.ca,chips(caL.slice(0,40)))}</li>`);
  const li=(c,nmHtml,val,cl)=>`<div class="li">${c}<span class="nm">${nmHtml}</span><span class="${cl||''}">${val}</span></div>`;
- const card=(h,list)=>`<div class="box"><h4>${h}</h4>${list.length?list.join(''):`<div class="muted">${t('none')}</div>`}</div>`;
- const tA=topN(A.filter(s=>s.net>0),s=>s.net,5).map(s=>li(chip('stk',s.t),esc(s.iss),pp(s.net),'pos'));
- const tD=topN(A.filter(s=>s.net<0),s=>-s.net,5).map(s=>li(chip('stk',s.t),esc(s.iss),pp(s.net),'neg'));
+ const card=(h,list,btn)=>`<div class="box"><h4>${h} ${btn}</h4>${list.length?list.join(''):`<div class="muted">${t('none')}</div>`}</div>`;
+ const bL=key=>`<button type="button" class="chip all" data-list="${key}">${t('seeAllShort')}</button>`,bN=k=>`<button type="button" class="chip all" data-nw="${k}">${t('seeAllShort')}</button>`;
+ const tA=L.acc.tickers.slice(0,5).map(x=>S.agg.find(s=>s.t===x)).map(s=>li(chip('stk',s.t),esc(s.iss),pp(s.net),'pos'));
+ const tD=L.dis.tickers.slice(0,5).map(x=>S.agg.find(s=>s.t===x)).map(s=>li(chip('stk',s.t),esc(s.iss),pp(s.net),'neg'));
  const tN=topN(S.f.filter(r=>r.st==='New'),r=>r.pb,5).map(r=>li(chip('stk',r.t),chip('inv',r.inv),fp(r.pb)+'%'));
  const tE=topN(S.f.filter(r=>r.st==='Exit'),r=>r.pa,5).map(r=>li(chip('stk',r.t),chip('inv',r.inv),fp(r.pa)+'%'));
  const segs={};const seg=k=>segs[k]||(segs[k]={k,up:0,dn:0,nw:0,ex:0});
@@ -3577,9 +3625,9 @@ function vSum(v){
  const order=['FN','FI','LN','LI'],sr=Object.values(segs).sort((a,b)=>(order.indexOf(a.k)+1||9)-(order.indexOf(b.k)+1||9));
  const sc=[{k:'s',h:t('segT'),v:r=>segL(r.k)},{k:'up',h:t('segUp'),n:1,v:r=>r.up,c:r=>r.up>r.dn?'pos':''},{k:'dn',h:t('segDn'),n:1,v:r=>r.dn,c:r=>r.dn>r.up?'neg':''},{k:'nw',h:t('segNew'),n:1,v:r=>r.nw},{k:'ex',h:t('segEx'),n:1,v:r=>r.ex}];
  v.innerHTML=(S.filtered?`<div class="note small">${t('filterNote')}</div>`:'')+kp
- +`<h3 class="ks-h">${t('hKey')} ${kind('view')}</h3><ul class="ins">${ins.join('')}</ul>`
- +`<h3 class="ks-h">${t('hTop')} ${kind('calc')}</h3><div class="cards">${card(t('cAcc'),tA)}${card(t('cDis'),tD)}${card(t('cNew'),tN)}${card(t('cExit'),tE)}</div>`
- +`<h3 class="ks-h">${t('hSeg')} ${kind('calc')}</h3>`+table('seg',sr,sc,{name:'groups',lim:20})+`<div class="muted small" style="margin-top:6px">${t('segNote')}</div>`
+ +sec('sum:key',t('hKey'),'view',null,`<ul class="ins">${ins.join('')}</ul>`,true)
+ +sec('sum:top',t('hTop'),'calc',null,`<div class="cards">${card(t('cAcc'),tA,bL('acc'))}${card(t('cDis'),tD,bL('dis'))}${card(t('cNew'),tN,bN('New'))}${card(t('cExit'),tE,bN('Exit'))}</div>`,false)
+ +sec('sum:seg',t('hSeg'),'calc',null,table('seg',sr,sc,{name:'groups',lim:20})+`<div class="muted small" style="margin-top:6px">${t('segNote')}</div>`,false)
  +`<details class="meth"><summary>${t('meth')}</summary><div class="mb"><ul>${T.m.map(x=>`<li>${x}</li>`).join('')}</ul></div></details><div class="disc">${t('disc')}</div>`;
 }
 
@@ -3588,22 +3636,28 @@ const SF={acc:['sa','a'],sa:['sa'],dis:['d','sd'],sd:['sd'],rot:['rot']};
 function loadWL(){try{return localStorage.getItem('vf-ksei-watch')||''}catch(e){return ''}}
 function saveWL(x){try{localStorage.setItem('vf-ksei-watch',x)}catch(e){}}
 function vSig(v){const u=S.ui;u.sf=u.sf||'';u.mn=+u.mn||1;if(u.wl==null)u.wl=loadWL();
- const terms=u.wl.split(/[,\s]+/).map(x=>x.trim().toUpperCase()).filter(Boolean);
- const rows=S.agg.filter(s=>(!u.sf||SF[u.sf].includes(s.sig))&&(s.nUp+s.nDn)>=u.mn&&(!terms.length||terms.some(x=>s.t===x||s.t.startsWith(x))));
+ const lst=u.list&&S.lists[u.list]?S.lists[u.list]:null;
+ let rows,ctl;
+ if(lst){const set=new Set(lst.tickers);rows=S.agg.filter(s=>set.has(s.t));
+  ctl=`<div class="note small">${t('listShow',esc(lst.title),rows.length)} <button type="button" class="btn small" data-clearlist="1">${t('listClear')}</button></div>`}
+ else{
+  const terms=u.wl.split(/[,\s]+/).map(x=>x.trim().toUpperCase()).filter(Boolean);
+  rows=S.agg.filter(s=>(!u.sf||SF[u.sf].includes(s.sig))&&(s.nUp+s.nDn)>=u.mn&&(!terms.length||terms.some(x=>s.t===x||s.t.startsWith(x))));
+  const so=(k,l)=>`<option value="${k}" ${u.sf===k?'selected':''}>${l}</option>`;
+  ctl=`<div class="bar"><label class="f">${t('sigF')}<select id="ks-sf">${so('',t('sigAll'))}${so('acc',t('sigAcc'))}${so('sa',t('sigSA'))}${so('dis',t('sigDis'))}${so('sd',t('sigSD'))}${so('rot',t('sigRot'))}</select></label>
+  <label class="f">${t('wl')}<input type="text" id="ks-wl" value="${esc(u.wl)}" placeholder="${t('wlPh')}" autocomplete="off" style="min-width:min(260px,100%)"></label>
+  <label class="f">${t('mn')}<select id="ks-mn">${[1,2,3].map(n=>`<option ${u.mn===n?'selected':''}>${n}</option>`).join('')}</select></label></div>
+  <div class="muted small" style="margin-bottom:10px">${t('sigLegend')} ${kind('view')}</div>`}
  const cols=[
-  {k:'t',h:t('cCode'),v:s=>s.t,f:s=>chip('stk',s.t)+(s.ca?' ⚠':'')},{k:'iss',h:t('cIss'),v:s=>s.iss||''},
+  {k:'t',h:t('cCode'),v:s=>s.t,f:s=>chip('stk',s.t)+(s.ca?' ⚠':'')},{k:'iss',h:t('cIss'),w:1,v:s=>s.iss||''},
   {k:'sig',h:t('cSig'),v:s=>({sa:5,a:4,rot:3,n:2,d:1,sd:0})[s.sig],f:s=>sigTag(s.sig)},
   {k:'net',h:t('cNet'),n:1,v:s=>s.net,f:s=>sgn(s.net,fp),c:s=>cls(s.net)},
   {k:'up',h:t('cUp'),n:1,v:s=>s.nUp},{k:'dn',h:t('cDn'),n:1,v:s=>s.nDn},
   {k:'frg',h:t('cFrg'),n:1,v:s=>s.netF,f:s=>sgn(s.netF,fp),c:s=>cls(s.netF)},
   {k:'ins',h:t('cIns'),n:1,v:s=>s.netN,f:s=>sgn(s.netN,fp),c:s=>cls(s.netN)}];
- const so=(k,l)=>`<option value="${k}" ${u.sf===k?'selected':''}>${l}</option>`;
- v.innerHTML=(S.filtered?`<div class="note small">${t('filterNote')}</div>`:'')
- +`<div class="bar"><label class="f">${t('sigF')}<select id="ks-sf">${so('',t('sigAll'))}${so('acc',t('sigAcc'))}${so('sa',t('sigSA'))}${so('dis',t('sigDis'))}${so('sd',t('sigSD'))}${so('rot',t('sigRot'))}</select></label>
- <label class="f">${t('wl')}<input type="text" id="ks-wl" value="${esc(u.wl)}" placeholder="${t('wlPh')}" autocomplete="off" style="min-width:min(260px,100%)"></label>
- <label class="f">${t('mn')}<select id="ks-mn">${[1,2,3].map(n=>`<option ${u.mn===n?'selected':''}>${n}</option>`).join('')}</select></label></div>
- <div class="muted small" style="margin-bottom:10px">${t('sigLegend')} ${kind('view')}</div>`
- +table('sig',rows,cols,{name:'daftar_saham',sk:'net',sd:-1});
+ if(lst&&lst.extra)cols.splice(4,0,{k:'fn',h:t('cFN'),n:1,v:s=>s.seg.FN||0,f:s=>sgn(s.seg.FN||0,fp),c:s=>cls(s.seg.FN||0)});
+ v.innerHTML=(S.filtered?`<div class="note small">${t('filterNote')}</div>`:'')+ctl
+ +table('sig',rows,cols,{name:'daftar_saham',sk:lst?lst.sk:'net',sd:lst?lst.sd:-1});
 }
 
 /* ============================== bagian: detail saham ============================== */
@@ -3613,6 +3667,10 @@ function holderCols(){return [
  {k:'st',h:t('cSt'),v:r=>r.st,f:r=>stTag(r.st)},
  {k:'pa',h:'% '+S.la,n:1,v:r=>r.pa,f:r=>pctCell(r.pa)},{k:'pb',h:'% '+S.lb,n:1,v:r=>r.pb,f:r=>pctCell(r.pb)},
  {k:'dp',h:t('cDp'),n:1,v:r=>r.dp,f:r=>sgn(r.dp,fp),c:r=>cls(r.dp)},{k:'ds',h:t('cDs'),n:1,v:r=>r.ds,f:r=>ds(r.ds),c:r=>cls(r.ds)}]}
+/* Cara hitung: ringkas, tertutup, hanya dibuka bila pengguna ingin tahu */
+function calcBox(s){
+ const mv=[...s.movers].sort((a,b)=>Math.abs(b.dpc)-Math.abs(a.dpc)),cap=12;
+ return `<details class="mini"><summary>${t('calcQ')}</summary>${mv.slice(0,cap).map(r=>`<div class="cl"><span>${esc(r.inv)}</span><span class="muted">${esc(howText(r))}</span><b class="${cls(r.dpc)}">${sgn(r.dpc,fp)}</b></div>`).join('')}${mv.length>cap?`<div class="muted small">${t('calcMore',mv.length-cap)}</div>`:''}<div class="small muted" style="margin-top:6px">${esc(t('calcSum',s.net,s.up,s.dn,s.share))}</div></details>`}
 function vStk(v){const u=S.ui;u.stk=(u.stk||'').toUpperCase();const tk=u.stk.trim();
  const all=[...S.info.keys()].sort();
  let h=`<div class="bar"><label class="f">${t('stkLbl')}<input type="text" id="ks-stk" list="ks-stkl" value="${esc(u.stk)}" placeholder="${t('stkPh')}" autocomplete="off" style="min-width:min(240px,100%)"></label></div><datalist id="ks-stkl">${all.map(x=>`<option value="${esc(x)}">`).join('')}</datalist>`;
@@ -3636,16 +3694,13 @@ function vStk(v){const u=S.ui;u.stk=(u.stk||'').toUpperCase();const tk=u.stk.tri
  const sorted=[...rows].sort((a,b)=>Math.max(b.pa,b.pb)-Math.max(a.pa,a.pb));
  const top=info.top;
  const segKpi=['FN','FI','LN','LI'].filter(k=>k in s.seg).map(k=>`<div class="li" style="grid-template-columns:1fr auto"><span class="nm">${esc(segL(k))}</span><span class="${cls(s.seg[k])}">${pp(s.seg[k])}</span></div>`).join('');
- const calcCols=[{k:'inv',h:t('cInv'),v:r=>r.inv,f:nameCell},{k:'st',h:t('cSt'),v:r=>r.st,f:r=>stTag(r.st)},{k:'how',h:t('cHow'),v:r=>howText(r)},{k:'dpc',h:t('cCalc'),n:1,v:r=>r.dpc,f:r=>sgn(r.dpc,fp),c:r=>cls(r.dpc)}];
  h+=`<h3 class="ks-h">${esc(tk)} · ${esc(info.iss||'')} &nbsp;${sigTag(s.sig)}</h3>`
  +(ca?`<div class="note warn">${kind('est')} ${t('v_ca',ca)}</div>`:'')
  +`<div class="kpis">${kpi(t('kNetD'),`<span class="${cls(s.net)}">${pp(s.net)}</span>`,SIGCOL[s.sig])}${kpi(t('kHold'),`${info.nA} → ${info.nB}`,'var(--gold)')}${kpi(t('kTot'),`${fp(info.totA)}% → ${fp(info.totB)}%`,'var(--gold)',1)}${kpi(t('kTop'),top?`${chip('inv',top.inv)}<br><span class="muted" style="font-weight:400">${fp(top.p)}%</span>`:'-','var(--gold)',1)}</div>`
- +`<h3 class="ks-h">${t('hVerdict')} ${kind('view')}</h3><div class="box"><ul class="ins" style="gap:6px">${msgs.map(x=>`<li style="border:0;padding:0;background:none">${esc(x)}</li>`).join('')}</ul></div>`
- +(segKpi?`<h3 class="ks-h">${t('hSegS')} ${kind('calc')}</h3><div class="box">${segKpi}</div>`:'')
- +`<h3 class="ks-h">${t('hPair')} ${kind('data')}</h3><div class="legend"><span><b style="--c:var(--bar)"></b>${esc(S.la)}</span><span><b style="--c:var(--gold)"></b>${esc(S.lb)}</span></div>`
- +pairBars(sorted.slice(0,10).map(r=>({l:chip('inv',r.inv),a:r.pa,b:r.pb,c:STCOL[r.st],t:`${r.pa>0?fp(r.pa):t('lt1')} → ${r.pb>0?fp(r.pb):t('lt1')}`})))
- +`<h3 class="ks-h">${t('hHold')} ${kind('data')}</h3>`+table('hold',sorted,holderCols(),{name:'pemegang_'+tk,sk:'pb',sd:-1})
- +(s.movers.length?`<h3 class="ks-h">${t('hCalc')} ${kind('calc')}</h3>`+table('calc',s.movers,calcCols,{name:'hitungan_'+tk,sk:'dpc',sd:-1})+`<div class="box small" style="margin-top:8px">${esc(t('calcSum',s.net,s.up,s.dn,s.share))}</div>`:'');
+ +`<div class="box"><div class="muted small" style="margin-bottom:6px">${t('hVerdict')} ${kind('view')}</div><ul class="ins" style="gap:6px">${msgs.map(x=>`<li style="border:0;padding:0;background:none">${esc(x)}</li>`).join('')}</ul>${s.movers.length?calcBox(s):''}</div>`
+ +sec('stk:hold',t('hHold'),'data',sorted.length,table('hold',sorted,holderCols(),{name:'pemegang_'+tk,sk:'pb',sd:-1}),true)
+ +sec('stk:pair',t('hPair'),'data',null,`<div class="legend"><span><b style="--c:var(--bar)"></b>${esc(S.la)}</span><span><b style="--c:var(--gold)"></b>${esc(S.lb)}</span></div>`+pairBars(sorted.slice(0,10).map(r=>({l:chip('inv',r.inv),a:r.pa,b:r.pb,c:STCOL[r.st],t:`${r.pa>0?fp(r.pa):t('lt1')} → ${r.pb>0?fp(r.pb):t('lt1')}`}))),false)
+ +(segKpi?sec('stk:seg',t('hSegS'),'calc',null,`<div class="box">${segKpi}</div>`,false):'');
  v.innerHTML=h;
 }
 
@@ -3659,14 +3714,14 @@ function vInv(v){const u=S.ui;u.inv=u.inv||'';const q=u.inv.trim().toUpperCase()
   const rows=S.rows.filter(r=>r.inv===exact),s=invAgg(rows)[0]||{inv:exact,type:rows[0].type,lf:rows[0].lf,nUp:0,nDn:0,nNew:0,nEx:0,bias:'flat'};
   const mv=rows.filter(r=>r.st!=='Unchanged'),best=topN(mv.filter(r=>r.dpc>0),r=>r.dpc,1)[0],worst=topN(mv.filter(r=>r.dpc<0),r=>-r.dpc,1)[0];
   const held=rows.filter(r=>r.pb>0).length;
-  const cols=[{k:'t',h:t('cCode'),v:r=>r.t,f:r=>chip('stk',r.t)+(r.ca?' ⚠':'')},{k:'iss',h:t('cIss'),v:r=>r.iss||''},{k:'st',h:t('cSt'),v:r=>r.st,f:r=>stTag(r.st)},
+  const cols=[{k:'t',h:t('cCode'),v:r=>r.t,f:r=>chip('stk',r.t)+(r.ca?' ⚠':'')},{k:'iss',h:t('cIss'),w:1,v:r=>r.iss||''},{k:'st',h:t('cSt'),v:r=>r.st,f:r=>stTag(r.st)},
    {k:'pa',h:'% '+S.la,n:1,v:r=>r.pa,f:r=>pctCell(r.pa)},{k:'pb',h:'% '+S.lb,n:1,v:r=>r.pb,f:r=>pctCell(r.pb)},
    {k:'dp',h:t('cDp'),n:1,v:r=>r.dp,f:r=>sgn(r.dp,fp),c:r=>cls(r.dp)},{k:'ds',h:t('cDs'),n:1,v:r=>r.ds,f:r=>ds(r.ds),c:r=>cls(r.ds)}];
   const bl=t('b_'+s.bias);
   h+=`<h3 class="ks-h">${esc(exact)} &nbsp;<span class="tag" style="--c:${biasCol(s.bias)}">${esc(bl)}</span></h3>`
   +`<div class="kpis">${kpi(t('kHeld'),fmt(held),'var(--gold)')}${kpi(t('kUp'),fmt(s.nUp-s.nNew),'var(--up)')}${kpi(t('kDn'),fmt(s.nDn-s.nEx),'var(--down)')}${kpi(t('kEnt'),fmt(s.nNew),'var(--new)')}${kpi(t('kExt'),fmt(s.nEx),'var(--exit)')}${kpi(t('cType'),esc(s.type)+(s.lf?' · '+(s.lf==='F'?t('foreign'):t('local')):''),'var(--flat)',1)}</div>`
-  +`<h3 class="ks-h">${t('hVerdict')} ${kind('view')}</h3><div class="box"><div>${esc(t('iv_sum',s,bl,best?best.t+' ('+pp(best.dpc)+')':'',worst?worst.t+' ('+pp(worst.dpc)+')':''))}</div><div class="muted small" style="margin-top:6px">${t('invNote')}</div></div>`
-  +`<h3 class="ks-h">${t('hPort')} ${kind('data')}</h3>`+table('port',[...rows].sort((a,b)=>Math.max(b.pa,b.pb)-Math.max(a.pa,a.pb)),cols,{name:'portofolio',sk:'pb',sd:-1});
+  +`<div class="box"><div class="muted small" style="margin-bottom:6px">${t('hVerdict')} ${kind('view')}</div><div>${esc(t('iv_sum',s,bl,best?best.t+' ('+pp(best.dpc)+')':'',worst?worst.t+' ('+pp(worst.dpc)+')':''))}</div><div class="muted small" style="margin-top:6px">${t('invNote')}</div></div>`
+  +sec('inv:port',t('hPort'),'data',rows.length,table('port',[...rows].sort((a,b)=>Math.max(b.pa,b.pb)-Math.max(a.pa,a.pb)),cols,{name:'portofolio',sk:'pb',sd:-1}),true);
  }else{
   if(!q)h+=`<div class="note">${t('iHint')}</div>`;
   else{const m=names.filter(n=>n.includes(q)).slice(0,10);h+=`<div class="note">${t('iNo')}</div>`+(m.length?`<div class="muted small">${t('sugg')}</div><div class="chips">${m.map(n=>chip('inv',n)).join(' ')}</div>`:'')}
@@ -3676,7 +3731,7 @@ function vInv(v){const u=S.ui;u.inv=u.inv||'';const q=u.inv.trim().toUpperCase()
   {k:'bias',h:t('cBias'),v:s=>s.bias,f:s=>`<span class="tag" style="--c:${biasCol(s.bias)}">${esc(t('b_'+s.bias))}</span>`},
   {k:'act',h:t('cAct'),n:1,v:s=>s.act},{k:'add',h:t('cAddN'),n:1,v:s=>s.nAcc,c:s=>s.nAcc?'pos':''},{k:'cut',h:t('cCutN'),n:1,v:s=>s.nDis,c:s=>s.nDis?'neg':''},
   {k:'ent',h:t('cEnt'),n:1,v:s=>s.nNew},{k:'ext',h:t('cExt'),n:1,v:s=>s.nEx}];
- h+=`<h3 class="ks-h">${t('hLead')} ${kind('calc')}</h3>`+table('lead',L,cols2,{name:'investor_aktif',sk:'act',sd:-1});
+ h+=sec('inv:lead',t('hLead'),'calc',L.length,table('lead',L,cols2,{name:'investor_aktif',sk:'act',sd:-1}),!exact);
  v.innerHTML=h;
 }
 
@@ -3688,11 +3743,12 @@ function vNew(v){const u=S.ui;u.sub=u.sub||'New';const isN=u.sub==='New';
   {k:'p',h:t('cSz'),n:1,v:r=>p(r),f:r=>fp(p(r))},{k:'sh',h:t('cSh'),n:1,v:r=>isN?r.sb:r.sa,f:r=>fmt(isN?r.sb:r.sa)},
   {k:'min',h:t('cCalc'),n:1,v:r=>r.dpc,f:r=>sgn(r.dpc,fp),c:r=>cls(r.dpc)}];
  const nF=rows.filter(r=>r.lf==='F').length,nI=rows.filter(r=>r.grp==='N').length;
+ const chart=rows.length?`<div class="muted small" style="margin-bottom:4px">${t('nwTop')}</div>`+bars(rows.slice(0,15).map(r=>({l:chip('inv',r.inv)+' '+chip('stk',r.t),v:p(r),t:fp(p(r))+'%',c:r.lf==='F'?'var(--down)':r.lf==='L'?'var(--new)':'var(--flat)'}))):'';
  v.innerHTML=(S.filtered?`<div class="note small">${t('filterNote')}</div>`:'')
  +`<div class="bar"><button type="button" class="btn ${isN?'on':''}" data-sub="New">${t('nwIn')}</button><button type="button" class="btn ${!isN?'on':''}" data-sub="Exit">${t('nwOut')}</button></div>`
  +`<div class="muted" style="margin-bottom:8px">${t('nwSum',rows.length,nF,nI)}</div><div class="note small">${t(isN?'nwNoteIn':'nwNoteOut')}</div>`
- +(rows.length?`<div class="muted small" style="margin-bottom:4px">${t('nwTop')}</div>`+bars(rows.slice(0,15).map(r=>({l:chip('inv',r.inv)+' '+chip('stk',r.t),v:p(r),t:fp(p(r))+'%',c:r.lf==='F'?'var(--down)':r.lf==='L'?'var(--new)':'var(--flat)'}))):'')
- +table('nw'+u.sub,rows,cols,{name:isN?'investor_masuk':'investor_keluar',sk:'p',sd:-1});
+ +sec('nw:tbl:'+u.sub,isN?t('nwIn'):t('nwOut'),'data',rows.length,table('nw'+u.sub,rows,cols,{name:isN?'investor_masuk':'investor_keluar',sk:'p',sd:-1}),true)
+ +(chart?sec('nw:chart',t('nwChart'),'calc',null,chart,false):'');
 }
 
 /* ============================== tampil & event ============================== */
@@ -3705,17 +3761,20 @@ function render(){
   v.insertAdjacentHTML('afterbegin',`<div class="bar"><button type="button" class="btn small" data-back="1">← ${esc(lb)}</button></div>`)}
 }
 /* ---- riwayat: tombol Kembali ---- */
-const snapNow=()=>({sec:S.sec,stk:S.ui.stk||'',inv:S.ui.inv||'',sub:S.ui.sub||'New',y:window.scrollY});
-const viewLabel=sn=>sn.sec==='stk'&&sn.stk?sn.stk:sn.sec==='inv'&&sn.inv?sn.inv:t('n_'+sn.sec);
+const snapNow=()=>({sec:S.sec,stk:S.ui.stk||'',inv:S.ui.inv||'',sub:S.ui.sub||'New',list:S.ui.list||null,y:window.scrollY});
+const viewLabel=sn=>sn.sec==='stk'&&sn.stk?sn.stk:sn.sec==='inv'&&sn.inv?sn.inv:sn.sec==='sig'&&sn.list&&S.lists[sn.list]?S.lists[sn.list].title:t('n_'+sn.sec);
 const shorten=(x,n=28)=>x.length>n?x.slice(0,n-1)+'…':x;
 function backLabel(){const p=S.hist[S.hist.length-1];return p?t('backTo',shorten(viewLabel(p))):''}
-function goBack(){const p=S.hist.pop();if(!p)return;S.sec=p.sec;S.ui.stk=p.stk;S.ui.inv=p.inv;S.ui.sub=p.sub;render();window.scrollTo({top:p.y,left:0,behavior:'instant'})}
-function go(sec){S.hist=[];S.sec=sec;render()}
+function goBack(){const p=S.hist.pop();if(!p)return;if((S.ui.list||null)!==(p.list||null))delete S.ui.sig;S.sec=p.sec;S.ui.stk=p.stk;S.ui.inv=p.inv;S.ui.sub=p.sub;S.ui.list=p.list;render();window.scrollTo({top:p.y,left:0,behavior:'instant'})}
+function go(sec){S.hist=[];if(sec==='sig'&&S.ui.list){S.ui.list=null;delete S.ui.sig}S.sec=sec;render()}
 root.addEventListener('click',e=>{
- const b=e.target.closest('[data-sec],[data-go],[data-th],[data-more],[data-sub],[data-dl],[data-dir],[data-demo],[data-reset],[data-back]');
+ const b=e.target.closest('[data-sec],[data-go],[data-th],[data-more],[data-sub],[data-dl],[data-dir],[data-demo],[data-reset],[data-back],[data-list],[data-nw],[data-clearlist]');
  if(!b||!root.contains(b))return;const d=b.dataset;
  if(d.sec)go(d.sec);
  else if(d.back!==undefined)goBack();
+ else if(d.list){S.hist.push(snapNow());S.ui.list=d.list==='all'?null:d.list;delete S.ui.sig;S.sec='sig';render();$('#ks-nav').scrollIntoView({behavior:'smooth',block:'start'})}
+ else if(d.nw){S.hist.push(snapNow());S.ui.sub=d.nw;S.sec='nw';render();$('#ks-nav').scrollIntoView({behavior:'smooth',block:'start'})}
+ else if('clearlist' in d){S.ui.list=null;delete S.ui.sig;render()}
  else if(d.go){const i=d.go.indexOf(':'),kd=d.go.slice(0,i),val=d.go.slice(i+1);
   const cur=kd==='stk'?(S.sec==='stk'&&(S.ui.stk||'').toUpperCase()===val.toUpperCase()):(S.sec==='inv'&&(S.ui.inv||'').toUpperCase()===val.toUpperCase());
   if(!cur){S.hist.push(snapNow());if(S.hist.length>30)S.hist.shift()}
@@ -3728,6 +3787,7 @@ root.addEventListener('click',e=>{
  else if('demo' in d)loadDemo();
  else if('reset' in d){$('#ks-fLF').value='';$('#ks-fGrp').value='';$('#ks-fType').value='';$('#ks-fThr').value='0';$('#ks-fCA').checked=false;applyFilters()}
 });
+root.addEventListener('toggle',e=>{const d=e.target;if(d&&d.matches&&d.matches('details.ks-sec'))S.open[d.dataset.k]=d.open},true);
 root.addEventListener('input',e=>{const x=e.target,u=S.ui;
  if(x.id==='ks-wl'){u.wl=x.value;saveWL(x.value);keepFocus(render)}
  else if(x.id==='ks-stk'){u.stk=x.value;keepFocus(render)}
@@ -3768,7 +3828,7 @@ function demoData(){
   ['DEMC','Demo Rotasi Tbk',3e9,3e9,[['PT PENDIRI','Corporate','L',40,40],['FUND X','Mutual Fund','F',7.5,1.8],['FUND Y','Mutual Fund','F',null,6.9]]],
   ['DEMD','Demo Consumer Tbk',8e9,8e9,[['PT HOLDING D','Corporate','L',50,50],['LOCAL FUND','Mutual Fund','L',1.2,1.9]]],
   ['DEME','Demo Split Tbk',2e9,4e9,[['PT HOLDING E','Corporate','L',65,65],['FOREIGN FUND E','Mutual Fund','F',2,1.6]]],
-  ['DEMF','Demo Teknologi Tbk',6e9,6e9,[['PT HOLDING F','Corporate','L',45,45],['TYCOON','Individual','L',5,7.5],['FOREIGN FUND F','Mutual Fund','F',1.2,1.2]]],
+  ['DEMF','Demo Teknologi Tbk',6e9,6e9,[['PT HOLDING F','Corporate','L',45,45],['IR. H. TYCOON BESAR, M.M.','Individual','L',5,null],['TYCOON BESAR','Individual','L',null,7.5],['FOREIGN FUND F','Mutual Fund','F',1.2,1.2]]],
   ['DEMG','Demo Stabil Tbk',4e9,4e9,[['PT HOLDING G','Corporate','L',70,70],['FUND G','Mutual Fund','L',1.5,1.5]]],
   ['DEMH','Demo Ritel Tbk',7e9,7e9,[['PT HOLDING H','Corporate','L',51,51],['FUND H1','Mutual Fund','F',1.5,1.9],['FUND H2','Mutual Fund','F',2,2.5],['FUND H3','Insurance','L',1.1,1.4],['FUND H4','Pension Fund','L',3,2]]],
   ['DEMI','Demo Perbankan Tbk',9e9,9e9,[['PT HOLDING I','Corporate','L',52,52],['FOREIGN INDEX FUND','Mutual Fund','F',4.4,null],['LOCAL BANK FUND','Mutual Fund','L',1.5,2.5],['FOREIGN ACTIVE FUND','Mutual Fund','F',2.2,1.1]]],
@@ -3789,7 +3849,7 @@ $('#ks-demoNote').textContent=t('demoNote');
 $('#ks-f1').onchange=e=>onFile(1,e.target.files[0]);
 $('#ks-f2').onchange=e=>onFile(2,e.target.files[0]);
 if(window.matchMedia&&window.matchMedia('(min-width:861px)').matches)$('#ks-flt').open=true;
-window.__kseiTest={S,loadDemo,agg,signal,compare,canonKey,unify};
+window.__kseiTest={S,loadDemo,agg,signal,compare,canonKey,unify,buildLists};
 })();
 
 </script>
