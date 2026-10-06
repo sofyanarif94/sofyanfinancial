@@ -1,7 +1,7 @@
 {
-  "name": "Kalkulator Valuasi Saham — Sofyan Financial",
-  "short_name": "Valuasi Saham",
-  "description": "Kalkulator valuasi saham gratis: Discounted Cash Flow, Dividend Discount Model, Equity Bond Valuation, dan Financial Freedom.",
+  "name": "The Investor Toolkit — Sofyan Financial",
+  "short_name": "Investor Toolkit",
+  "description": "Toolkit investor gratis: analisis kepemilikan saham (Bandarmology), nilai wajar saham (DCF, DDM, Equity Bond Valuation), Financial Freedom, dan risk profile.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
