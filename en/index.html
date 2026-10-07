@@ -1262,6 +1262,20 @@ body{
 .vf-promo-inner{ border-radius:var(--r-lg); box-shadow:var(--shadow-lg); }
 .vf-footer{ margin-top:34px; }
 
+
+/* ---- Repository file KSEI ---- */
+#panel-ksei [hidden]{display:none!important}
+#panel-ksei .ks-repo .rt{font-weight:700;font-size:15px;margin-bottom:2px}
+#panel-ksei .rlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:12px 0 4px}
+#panel-ksei .repo-item{font:inherit;text-align:left;position:relative;display:flex;flex-direction:column;gap:3px;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:transparent;color:var(--text);cursor:pointer;transition:border-color .15s ease,background .15s ease,transform .15s ease}
+#panel-ksei .repo-item:hover{border-color:var(--gold);transform:translateY(-1px)}
+#panel-ksei .repo-item.on{border-color:var(--gold);background:var(--gold-tint-strong,var(--gold-tint))}
+#panel-ksei .repo-item b{font-size:15px;padding-right:74px}
+#panel-ksei .repo-item span{font-size:12.5px;color:var(--mute)}
+#panel-ksei .repo-item em{position:absolute;top:11px;right:11px;font-style:normal;font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--gold);color:#10192b}
+#panel-ksei .ks-or{display:flex;align-items:center;gap:12px;margin:16px 0 12px}
+#panel-ksei .ks-or::before,#panel-ksei .ks-or::after{content:"";flex:1;height:1px;background:var(--line)}
+
 /* ---------- Scrollbar ---------- */
 *{ scrollbar-width:thin; scrollbar-color:color-mix(in srgb,var(--gold) 45%,transparent) transparent; }
 
@@ -2111,6 +2125,13 @@ body{
     </div>
 
     <div class="box ks-upload">
+      <div class="ks-repo" id="ks-repo">
+        <div class="rt" data-i="repoT"></div>
+        <div class="small muted" data-i="repoSub"></div>
+        <div class="rlist" id="ks-repo-list"></div>
+        <div class="ks-actions"><button type="button" class="btn" id="ks-repo-cmp" data-repocmp="1" hidden></button></div>
+      </div>
+      <div class="ks-or small muted" id="ks-or" data-i="orUp"></div>
       <div class="up">
         <label class="drop" id="ks-d1"><input type="file" id="ks-f1" accept=".xlsx,.xls,.csv"><b data-i="p1"></b><span id="ks-s1" data-i="pick1"></span></label>
         <label class="drop" id="ks-d2"><input type="file" id="ks-f2" accept=".xlsx,.xls,.csv"><b data-i="p2"></b><span id="ks-s2" data-i="pick2"></span></label>
@@ -3505,8 +3526,8 @@ id:{
  i_scale:(n,m)=>`${fmt(n)} saham dibandingkan. Pada ${fmt(m)} saham ada investor besar yang mengubah kepemilikannya.`,
  i_sa:(n,c)=>`${fmt(n)} saham berstatus akumulasi kuat (investor besar kompak menambah). Terbesar: ${c}.`,
  i_sa0:'Tidak ada saham berstatus akumulasi kuat pada periode ini.',
- i_sd:(n,c)=>`${fmt(n)} saham berstatus distribusi kuat (investor besar kompak mengurangi). Terbesar: ${c}.`,
- i_sd0:'Tidak ada saham berstatus distribusi kuat pada periode ini.',
+ i_sd:(n,c)=>`${fmt(n)} saham berstatus distribusi besar (investor besar kompak mengurangi). Terbesar: ${c}.`,
+ i_sd0:'Tidak ada saham berstatus distribusi besar pada periode ini.',
  i_fa:c=>`Institusi asing paling banyak menambah di: ${c}.`,
  i_fd:c=>`Institusi asing paling banyak mengurangi di: ${c}.`,
  i_cons:c=>`Minimal 3 investor menambah dan tidak ada yang mengurangi: ${c}.`,
@@ -3515,14 +3536,19 @@ id:{
  cAcc:'Paling banyak ditambah (poin)',cDis:'Paling banyak dikurangi (poin)',cNew:'Investor masuk terbesar',cExit:'Investor keluar terbesar',none:'Tidak ada data.',
  segT:'Kelompok investor',segUp:'Saham ditambah',segDn:'Saham dikurangi',segNew:'Investor masuk',segEx:'Investor keluar',
  segNote:'Angka berupa jumlah saham atau investor, bukan rupiah. Dihitung dari investor yang lolos filter.',
- sa:'Akumulasi kuat',a:'Akumulasi',n:'Netral',d:'Distribusi',sd:'Distribusi kuat',rot:'Berpindah tangan',
+ ak:'Akuisisi',sa:'Akumulasi kuat',a:'Akumulasi',n:'Netral',d:'Distribusi',sd:'Distribusi besar',rot:'Berpindah tangan',
+ r_ak:'Pemegang terbesar berganti, dan investor barunya menambah porsi minimal 40 poin (dari porsi sebelumnya atau masuk baru). Artinya kendali saham berpindah ke investor lain, bisa beda PT atau perseorangan. Sinyal ini didahulukan di atas sinyal lain.',
+ i_ak:(n,c)=>`${fmt(n)} saham berstatus akuisisi (pemegang terbesar berganti, perubahan porsi 40 poin atau lebih). Terbesar: ${c}.`,
+ v_ak:a=>`Akuisisi: ${a.buyer.inv} kini menjadi pemegang terbesar dengan ${fp(a.buyer.pb)}% (sebelumnya ${a.buyer.pa>0?fp(a.buyer.pa)+'%':'belum masuk daftar di atas 1%'}), naik ${pp(a.gain)}. Pemegang terbesar sebelumnya adalah ${a.seller.inv} (${fp(a.seller.pa)}%, kini ${a.seller.pb>0?fp(a.seller.pb)+'%':'di bawah 1% atau keluar'}).`,
+ kAk:'Saham akuisisi',
+ repoT:'Repository file KSEI (siap pakai)',repoSub:'Klik dua file untuk dibandingkan, tanpa perlu upload.',repoCmp:(a,b)=>`Bandingkan ${a} → ${b}`,repoLoading:'Memuat file…',repoErr:'Repository tidak dapat dimuat. Anda tetap bisa upload file sendiri.',orUp:'atau upload file Anda sendiri',
  sNew:'Masuk',sAcc:'Menambah',sDis:'Mengurangi',sUn:'Tetap',sExit:'Keluar',
  cCode:'Kode',cIss:'Emiten',cSig:'Sinyal',cNet:'Selisih (poin)',cUp:'Investor menambah',cDn:'Investor mengurangi',cFrg:'Asing (poin)',cIns:'Institusi (poin)',
  cInv:'Investor',cType:'Tipe',cLF:'L/A',cSt:'Status',cDp:'Selisih (poin)',cDs:'Selisih lembar',cSz:'Porsi (%)',cSh:'Lembar',cCalc:'Dihitung (poin)',cHow:'Cara hitung',
  cAct:'Saham berubah',cAddN:'Saham ditambah',cCutN:'Saham dikurangi',cEnt:'Masuk',cExt:'Keluar',cBias:'Kecenderungan',
- sigF:'Tampilkan',sigAll:'Semua',sigAcc:'Akumulasi (kuat dan biasa)',sigSA:'Akumulasi kuat',sigDis:'Distribusi (kuat dan biasa)',sigSD:'Distribusi kuat',sigRot:'Berpindah tangan',
+ sigF:'Tampilkan',sigAll:'Semua',sigAcc:'Akumulasi (termasuk kuat)',sigSA:'Akumulasi kuat',sigDis:'Distribusi (termasuk besar)',sigSD:'Distribusi besar',sigAk:'Akuisisi',sigRot:'Berpindah tangan',
  wl:'Kode saham pilihan (pisahkan koma)',wlPh:'mis. BBCA, ANJT, FORT',mn:'Minimal investor yang berubah',
- sigLegend:'Akumulasi = investor besar menambah kepemilikan. Distribusi = investor besar mengurangi. Berpindah tangan = ada yang menambah dan ada yang mengurangi dengan jumlah yang saling mengimbangi. Stok yang perubahannya kecil (netral) tidak ditampilkan.',
+ sigLegend:'Akuisisi = pemegang terbesar berganti dan investor barunya menambah 40 poin atau lebih. Akumulasi = investor besar menambah kepemilikan. Distribusi = investor besar mengurangi. Berpindah tangan = ada yang menambah dan ada yang mengurangi dengan jumlah yang saling mengimbangi. Stok yang perubahannya kecil (netral) tidak ditampilkan.',
  filterNote:'Filter sedang aktif: hitungan hanya memakai investor yang lolos filter.',
  more:n=>`Tampilkan ${n} lagi`,shown:(a,b,l)=>`${fmt(b)} baris${b>a?` (menampilkan ${fmt(a)})`:''}${l?'. Unduh CSV untuk semuanya.':''}`,csv:'Unduh CSV',sortBy:'Urutkan',
  stkLbl:'Kode saham',stkPh:'mis. BBCA',stkHint:'Ketik kode saham, atau ketuk kode saham di tab lain, untuk melihat rincian pemegangnya.',stkNo:'Kode tidak ditemukan di kedua file.',
@@ -3606,8 +3632,8 @@ en:{
  i_scale:(n,m)=>`${fmt(n)} stocks compared. In ${fmt(m)} of them a large holder changed their stake.`,
  i_sa:(n,c)=>`${fmt(n)} stock(s) show strong accumulation (large holders adding together). Biggest: ${c}.`,
  i_sa0:'No stock shows strong accumulation in this period.',
- i_sd:(n,c)=>`${fmt(n)} stock(s) show strong distribution (large holders reducing together). Biggest: ${c}.`,
- i_sd0:'No stock shows strong distribution in this period.',
+ i_sd:(n,c)=>`${fmt(n)} stock(s) show large distribution (large holders reducing together). Biggest: ${c}.`,
+ i_sd0:'No stock shows large distribution in this period.',
  i_fa:c=>`Foreign institutions added the most in: ${c}.`,
  i_fd:c=>`Foreign institutions reduced the most in: ${c}.`,
  i_cons:c=>`At least 3 holders added and none reduced: ${c}.`,
@@ -3616,14 +3642,19 @@ en:{
  cAcc:'Most added (points)',cDis:'Most reduced (points)',cNew:'Largest investors entering',cExit:'Largest investors leaving',none:'No data.',
  segT:'Investor group',segUp:'Stocks added',segDn:'Stocks reduced',segNew:'Investors entering',segEx:'Investors leaving',
  segNote:'Numbers are counts of stocks or investors, not currency. Based on investors that pass the filters.',
- sa:'Strong accumulation',a:'Accumulation',n:'Neutral',d:'Distribution',sd:'Strong distribution',rot:'Changing hands',
+ ak:'Acquisition',sa:'Strong accumulation',a:'Accumulation',n:'Neutral',d:'Distribution',sd:'Large distribution',rot:'Changing hands',
+ r_ak:'The largest holder changed, and the new holder added at least 40 points (from its previous stake, or as a new entry). Control of the stock moved to another investor, whether a different company or an individual. This signal takes priority over the others.',
+ i_ak:(n,c)=>`${fmt(n)} stock(s) show an acquisition (largest holder changed, stake shift of 40 points or more). Biggest: ${c}.`,
+ v_ak:a=>`Acquisition: ${a.buyer.inv} is now the largest holder with ${fp(a.buyer.pb)}% (before: ${a.buyer.pa>0?fp(a.buyer.pa)+'%':'not in the above-1% list'}), up ${pp(a.gain)}. The previous largest holder was ${a.seller.inv} (${fp(a.seller.pa)}%, now ${a.seller.pb>0?fp(a.seller.pb)+'%':'below 1% or gone'}).`,
+ kAk:'Acquisition stocks',
+ repoT:'KSEI file repository (ready to use)',repoSub:'Click two files to compare them, no upload needed.',repoCmp:(a,b)=>`Compare ${a} → ${b}`,repoLoading:'Loading file…',repoErr:'Repository could not be loaded. You can still upload your own files.',orUp:'or upload your own files',
  sNew:'Entered',sAcc:'Adding',sDis:'Reducing',sUn:'Unchanged',sExit:'Left',
  cCode:'Code',cIss:'Issuer',cSig:'Signal',cNet:'Difference (pts)',cUp:'Holders adding',cDn:'Holders reducing',cFrg:'Foreign (pts)',cIns:'Institution (pts)',
  cInv:'Investor',cType:'Type',cLF:'L/F',cSt:'Status',cDp:'Difference (pts)',cDs:'Share difference',cSz:'Stake (%)',cSh:'Shares',cCalc:'Counted (pts)',cHow:'How it is calculated',
  cAct:'Stocks changed',cAddN:'Stocks added',cCutN:'Stocks reduced',cEnt:'Entered',cExt:'Left',cBias:'Tendency',
- sigF:'Show',sigAll:'All',sigAcc:'Accumulation (strong and regular)',sigSA:'Strong accumulation',sigDis:'Distribution (strong and regular)',sigSD:'Strong distribution',sigRot:'Changing hands',
+ sigF:'Show',sigAll:'All',sigAcc:'Accumulation (including strong)',sigSA:'Strong accumulation',sigDis:'Distribution (including large)',sigSD:'Large distribution',sigAk:'Acquisition',sigRot:'Changing hands',
  wl:'Tickers of interest (comma-separated)',wlPh:'e.g. BBCA, ANJT, FORT',mn:'Minimum holders that changed',
- sigLegend:'Accumulation = large holders are adding. Distribution = large holders are reducing. Changing hands = some add and some reduce by amounts that offset each other. Stocks with only small changes (neutral) are not shown.',
+ sigLegend:'Acquisition = the largest holder changed and the new holder added 40 points or more. Accumulation = large holders are adding. Distribution = large holders are reducing. Changing hands = some add and some reduce by amounts that offset each other. Stocks with only small changes (neutral) are not shown.',
  filterNote:'Filters are active: calculations only use investors that pass the filters.',
  more:n=>`Show ${n} more`,shown:(a,b,l)=>`${fmt(b)} rows${b>a?` (showing ${fmt(a)})`:''}${l?'. Download CSV for all.':''}`,csv:'Download CSV',sortBy:'Sort by',
  stkLbl:'Ticker',stkPh:'e.g. BBCA',stkHint:'Type a ticker, or tap a ticker in another tab, to see its holder details.',stkNo:'Ticker not found in either file.',
@@ -3676,13 +3707,13 @@ function pp(v){return sgn(v,fp)+' '+T.unit}
 function ds(v){return v===0?'0':(v>0?'+':'')+fmt(v)}
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const cls=v=>Math.round(v*100)>0?'pos':Math.round(v*100)<0?'neg':'';
-const THR=1, CA_TOL=0.02;
+const THR=1, CA_TOL=0.02, ACQ=40;  /* Akuisisi: pemegang terbesar berganti dan investor baru naik >= 40 poin */
 const S={A:null,B:null,P1:null,P2:null,rows:[],f:[],agg:[],info:new Map(),ca:new Map(),spread:new Map(),stats:{},hist:[],open:{},lists:{},sec:'sum',ui:{},dl:{},demo:false,la:'',lb:''};
 const SECS=['sum','sig','stk','inv','nw'];
-const SIGCOL={sa:'var(--up)',a:'var(--up)',n:'var(--flat)',d:'var(--down)',sd:'var(--exit)',rot:'var(--rot)'};
+const SIGCOL={ak:'var(--gold)',sa:'var(--up)',a:'var(--up)',n:'var(--flat)',d:'var(--down)',sd:'var(--exit)',rot:'var(--rot)'};
 const STCOL={New:'var(--new)',Accumulation:'var(--up)',Distribution:'var(--down)',Unchanged:'var(--flat)',Exit:'var(--exit)'};
 const STL=()=>({New:t('sNew'),Accumulation:t('sAcc'),Distribution:t('sDis'),Unchanged:t('sUn'),Exit:t('sExit')});
-const sigTag=k=>`<span class="tag ${k==='sa'||k==='sd'?'strong':''}" style="--c:${SIGCOL[k]}">${esc(t(k))}</span>`;
+const sigTag=k=>`<span class="tag ${k==='sa'||k==='sd'||k==='ak'?'strong':''}" style="--c:${SIGCOL[k]}">${esc(t(k))}</span>`;
 const stTag=k=>`<span class="tag" style="--c:${STCOL[k]}">${esc(STL()[k])}</span>`;
 const kind=k=>`<span class="kind ${k}">${esc(t('k_'+k))}</span>`;
 const chip=(kd,val,label)=>`<button type="button" class="chip ${kd==='stk'?'tk':''}" data-go="${kd}:${esc(val)}">${esc(label||val)}</button>`;
@@ -3755,13 +3786,45 @@ const selfKey=name=>canonKey(name,false,SELF_NOISE);
 function isIssuer(iss,inv){if(!iss||!inv)return false;const a=selfKey(iss);return !!a&&a===selfKey(inv)}
 /* Menyatukan penulisan nama di kedua file: satu nama tampilan per investor (yang paling sering dipakai),
    baris ganda pada saham dan periode yang sama dijumlahkan. */
+/* Nama perorangan yang disingkat (mis. "S." untuk "Singgih") dianggap orang yang sama bila kata lainnya sama persis,
+   sama jumlah katanya, dan hanya satu kecocokan yang mungkin. Dua nama yang muncul bersamaan pada saham dan periode
+   yang sama tidak digabung (itu dua pemegang berbeda). */
+function indTokens(name){
+ const x=String(name).toUpperCase().replace(/\b([A-Z])\.(?=[A-Z])/g,'$1');
+ const tk=x.replace(/[^A-Z0-9 ]+/g,' ').split(/\s+/).filter(w=>w&&!NOISE.has(w));
+ while(tk.length>1&&LEAD.has(tk[0]))tk.shift();while(tk.length>2&&TRAIL.has(tk[tk.length-1]))tk.pop();
+ return tk}
+function abbrMatch(ta,tb){
+ if(ta.length!==tb.length||ta.length<3)return false;
+ const rb=[...tb],ra=[];
+ for(const w of ta){const i=rb.indexOf(w);if(i>=0)rb.splice(i,1);else ra.push(w)}
+ if(!ra.length||ta.length-ra.length<2)return false;
+ for(const w of ra){const i=rb.findIndex(x=>(w.length===1&&x[0]===w)||(x.length===1&&w[0]===x));if(i<0)return false;rb.splice(i,1)}
+ return true}
+function abbrMap(tokByKey,occ){
+ const par=new Map(),find=k=>{while(par.has(k))k=par.get(k);return k};
+ const idx=new Map();
+ for(const [k,tk] of tokByKey)for(const w of new Set(tk))if(w.length>3){if(!idx.has(w))idx.set(w,[]);idx.get(w).push(k)}
+ const co=(a,b)=>{const x=occ.get(a),y=occ.get(b);if(!x||!y)return false;const [s,l]=x.size<y.size?[x,y]:[y,x];for(const v of s)if(l.has(v))return true;return false};
+ for(const [k,tk] of tokByKey){
+  if(!tk.some(w=>w.length===1))continue;
+  const cand=new Set();for(const w of tk)if(w.length>3)(idx.get(w)||[]).forEach(c=>{if(c!==k)cand.add(c)});
+  const hit=[...cand].filter(c=>abbrMatch(tk,tokByKey.get(c))&&!co(k,c));
+  if(hit.length===1&&find(hit[0])!==find(k))par.set(k,hit[0])}
+ const out=new Map();for(const k of tokByKey.keys())out.set(k,find(k));return out}
 function unify(A,B){
- const count=new Map();
- for(const p of [A,B])for(const e of p.map.values()){const k=canonKey(e.inv,grpOf(e.type)==='I');if(!count.has(k))count.set(k,new Map());const m=count.get(k);m.set(e.inv,(m.get(e.inv)||0)+1)}
+ const count=new Map(),tokByKey=new Map(),occ=new Map();
+ [A,B].forEach((p,pi)=>{for(const e of p.map.values()){const ind=grpOf(e.type)==='I',k=canonKey(e.inv,ind);
+  if(!count.has(k))count.set(k,new Map());const m=count.get(k);m.set(e.inv,(m.get(e.inv)||0)+1);
+  if(ind){if(!tokByKey.has(k))tokByKey.set(k,indTokens(e.inv));if(!occ.has(k))occ.set(k,new Set());occ.get(k).add(pi+'|'+e.t)}}});
+ const grp=abbrMap(tokByKey,occ),g=k=>grp.get(k)||k;
+ const merged=new Map();
+ count.forEach((m,k)=>{const gk=g(k);if(!merged.has(gk))merged.set(gk,new Map());const mm=merged.get(gk);m.forEach((n,nm)=>mm.set(nm,(mm.get(nm)||0)+n))});
+ const ini=nm=>indTokens(nm).filter(w=>w.length===1).length;
  const display=new Map();
- count.forEach((m,k)=>display.set(k,[...m.entries()].sort((x,y)=>y[1]-x[1]||y[0].length-x[0].length)[0][0]));
+ merged.forEach((m,k)=>display.set(k,[...m.entries()].sort((x,y)=>ini(x[0])-ini(y[0])||y[1]-x[1]||y[0].length-x[0].length)[0][0]));
  const fix=p=>{const map=new Map();
-  for(const e of p.map.values()){const name=display.get(canonKey(e.inv,grpOf(e.type)==='I')),key=e.t+'|'+name,o=map.get(key);
+  for(const e of p.map.values()){const name=display.get(g(canonKey(e.inv,grpOf(e.type)==='I'))),key=e.t+'|'+name,o=map.get(key);
    if(o){o.sh+=e.sh;o.pc+=e.pc;if(o.type===t('unclass')&&e.type!==t('unclass'))o.type=e.type;if(!o.lf)o.lf=e.lf;if(!o.iss)o.iss=e.iss}
    else map.set(key,{...e,inv:name})}
   return {...p,map}};
@@ -3800,8 +3863,25 @@ function signal(s){const T=s.up,K=s.dn,n=T-K,e=1e-9;
  if(-n>=.25-e&&T<=.5*K+e)return 'd';
  if(T>=.5-e&&K>=.5-e)return 'rot';
  return 'n'}
+/* Ganti nama / salah ketik bukan akuisisi: dua nama dianggap entitas yang sama bila hurufnya hampir identik,
+   atau seluruh kata dari nama yang lebih pendek ada di nama yang lebih panjang (kata boleh disingkat, mis. PAN = PANIN). */
+function entTokens(name){return String(name).toUpperCase().replace(/[^A-Z0-9 ]+/g,' ').split(/\s+/).filter(w=>w&&!NOISE.has(w)&&w!=='PERUSAHAAN')}
+function lev(a,b){let p=Array.from({length:b.length+1},(_,i)=>i);
+ for(let i=1;i<=a.length;i++){const c=[i];for(let j=1;j<=b.length;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}
+ return p[b.length]}
+function sameEntity(a,b){
+ const ta=entTokens(a),tb=entTokens(b);if(!ta.length||!tb.length)return false;
+ const ja=ta.join(''),jb=tb.join('');if(ja===jb)return true;
+ const mx=Math.max(ja.length,jb.length);if(mx>=6&&1-lev(ja,jb)/mx>=.82)return true;
+ const [s,l]=ta.length<=tb.length?[ta,tb]:[tb,ta];
+ const m=w=>l.some(x=>x===w||(Math.min(x.length,w.length)>=3&&(x.startsWith(w)||w.startsWith(x))));
+ return s.length>=2&&s.every(m)}
 /* Perubahan emiten sendiri (buyback / jual saham sendiri) dipisahkan dan tidak masuk hitungan sinyal. */
 function agg(rows){const m=new Map();
+ const topA=new Map(),topB=new Map();
+ for(const r of rows){if(r.self)continue;
+  if(r.pa>0&&(!topA.has(r.t)||r.pa>topA.get(r.t).pa))topA.set(r.t,r);
+  if(r.pb>0&&(!topB.has(r.t)||r.pb>topB.get(r.t).pb))topB.set(r.t,r)}
  for(const r of rows){if(r.st==='Unchanged')continue;
   let s=m.get(r.t);if(!s)m.set(r.t,s={t:r.t,iss:r.iss,up:0,dn:0,nAcc:0,nDis:0,nNew:0,nEx:0,net:0,netF:0,netN:0,seg:{},lead:null,ca:r.ca,movers:[],selfNet:0,selfRow:null});
   if(r.self){s.selfNet+=r.dpc;s.selfRow=r;continue}
@@ -3810,7 +3890,8 @@ function agg(rows){const m=new Map();
   if(r.lf==='F')s.netF+=d;if(r.grp==='N')s.netN+=d;s.seg[r.seg]=(s.seg[r.seg]||0)+d;
   if(!s.lead||Math.abs(d)>Math.abs(s.lead.dpc))s.lead=r}
  const out=[...m.values()];
- for(const s of out){s.nUp=s.nAcc+s.nNew;s.nDn=s.nDis+s.nEx;s.gross=s.up+s.dn;s.sig=signal(s);
+ for(const s of out){s.nUp=s.nAcc+s.nNew;s.nDn=s.nDis+s.nEx;s.gross=s.up+s.dn;s.sig=signal(s);s.ak=null;
+  {const a=topA.get(s.t),b=topB.get(s.t);if(a&&b&&a.inv!==b.inv&&!sameEntity(a.inv,b.inv)){const g=b.pb-b.pa;if(g>=ACQ-1e-9){s.sig='ak';s.ak={buyer:b,seller:a,gain:g}}}}
   s.act=s.selfNet>.0049?'bb':s.selfNet<-.0049?'sl':null}
  return out}
 function invAgg(rows){const m=new Map();
@@ -3869,6 +3950,7 @@ function sec(key,title,kd,count,body,defOpen){
 function buildLists(){
  const A=S.agg,L={};
  const add=(key,title,arr,sk,sd,extra)=>{L[key]={key,title,tickers:arr.map(x=>x.t),sk,sd,extra:!!extra}};
+ add('ak',t('ak'),topN(A.filter(x=>x.sig==='ak'),x=>x.ak.gain,1e9),'net',-1);
  add('sa',t('sa'),topN(A.filter(x=>x.sig==='sa'),x=>x.net,1e9),'net',-1);
  add('sd',t('sd'),topN(A.filter(x=>x.sig==='sd'),x=>-x.net,1e9),'net',1);
  add('fa',t('i_faT'),topN(A.filter(x=>(x.seg.FN||0)>=.25),x=>x.seg.FN,1e9),'fn',-1,1);
@@ -3886,7 +3968,7 @@ const selfMark=r=>r.self?` <span class="muted small">${t('selfMark')}</span>`:''
 const rowTag=r=>r.self&&r.st!=='Unchanged'?actTag(r.dp>0||r.st==='New'?'bb':'sl'):stTag(r.st);
 function rulesHtml(){
  const rule=(tag,text)=>`<div class="rl"><div class="rt">${tag}</div><div class="rx">${text}</div></div>`;
- return `<div class="small muted" style="margin-bottom:6px">${t('r_def')}</div>`+rule(sigTag('sa'),t('r_sa'))+rule(sigTag('a'),t('r_a'))+rule(sigTag('sd'),t('r_sd'))+rule(sigTag('d'),t('r_d'))+rule(sigTag('rot'),t('r_rot'))+rule(actTag('bb'),t('r_bb'))+rule(actTag('sl'),t('r_sl'))+`<div class="small muted" style="margin-top:6px">${t('r_n')}</div><div class="small muted" style="margin-top:4px">${t('r_ex')}</div>`}
+ return `<div class="small muted" style="margin-bottom:6px">${t('r_def')}</div>`+rule(sigTag('ak'),t('r_ak'))+rule(sigTag('sa'),t('r_sa'))+rule(sigTag('a'),t('r_a'))+rule(sigTag('sd'),t('r_sd'))+rule(sigTag('d'),t('r_d'))+rule(sigTag('rot'),t('r_rot'))+rule(actTag('bb'),t('r_bb'))+rule(actTag('sl'),t('r_sl'))+`<div class="small muted" style="margin-top:6px">${t('r_n')}</div><div class="small muted" style="margin-top:4px">${t('r_ex')}</div>`}
 /* Rincian di tempat (tanpa pindah halaman) */
 function holdersInline(tk,cap=10){
  const rows=S.rows.filter(r=>r.t===tk).sort((a,b)=>Math.max(b.pa,b.pb)-Math.max(a.pa,a.pb)),info=S.info.get(tk)||{totA:0,totB:0};
@@ -3905,11 +3987,12 @@ function portfolioInline(inv,cap=10){
 function vSum(v){
  const A=S.agg,L=S.lists,cnt=k=>A.filter(s=>s.sig===k).length;
  const nStocks=new Set(S.f.map(r=>r.t)).size,nNew=S.f.filter(r=>r.st==='New').length,nEx=S.f.filter(r=>r.st==='Exit').length;
- const kp=`<div class="kpis">${kpi(t('kStocks'),fmt(nStocks),'var(--gold)')}${kpi(t('kAcc'),fmt(cnt('sa')+cnt('a')),'var(--up)')}${kpi(t('kDis'),fmt(cnt('sd')+cnt('d')),'var(--exit)')}${kpi(t('kNew'),fmt(nNew),'var(--new)')}${kpi(t('kExit'),fmt(nEx),'var(--down)')}</div>`;
+ const kp=`<div class="kpis">${kpi(t('kStocks'),fmt(nStocks),'var(--gold)')}${kpi(t('kAcc'),fmt(cnt('sa')+cnt('a')),'var(--up)')}${kpi(t('kDis'),fmt(cnt('sd')+cnt('d')),'var(--exit)')}${kpi(t('kAk'),fmt(cnt('ak')),'var(--gold)')}${kpi(t('kNew'),fmt(nNew),'var(--new)')}${kpi(t('kExit'),fmt(nEx),'var(--down)')}</div>`;
  const all=key=>L[key].tickers.length?` <button type="button" class="chip all" data-list="${key}">${t('seeAll',L[key].tickers.length)}</button>`:'';
  const five=key=>chips(L[key].tickers.slice(0,5));
  const ins=[];
  ins.push(`<li>${t('i_scale',nStocks,A.length)} <button type="button" class="chip all" data-list="all">${t('seeAll',A.filter(s=>s.sig!=='n'||s.act).length)}</button></li>`);
+ if(L.ak.tickers.length)ins.push(`<li class="g">${t('i_ak',L.ak.tickers.length,five('ak'))}${all('ak')}</li>`);
  ins.push(L.sa.tickers.length?`<li class="g">${t('i_sa',L.sa.tickers.length,five('sa'))}${all('sa')}</li>`:`<li>${t('i_sa0')}</li>`);
  ins.push(L.sd.tickers.length?`<li class="r">${t('i_sd',L.sd.tickers.length,five('sd'))}${all('sd')}</li>`:`<li>${t('i_sd0')}</li>`);
  if(L.fa.tickers.length)ins.push(`<li class="g">${t('i_fa',five('fa'))}${all('fa')}</li>`);
@@ -3941,10 +4024,10 @@ function vSum(v){
 }
 
 /* ============================== bagian: signal saham ============================== */
-const SF={acc:['sa','a'],sa:['sa'],dis:['d','sd'],sd:['sd'],rot:['rot']};
+const SF={ak:['ak'],acc:['sa','a'],sa:['sa'],dis:['d','sd'],sd:['sd'],rot:['rot']};
 function loadWL(){try{return localStorage.getItem('vf-ksei-watch')||''}catch(e){return ''}}
 function saveWL(x){try{localStorage.setItem('vf-ksei-watch',x)}catch(e){}}
-const sigRank=s=>s.sig!=='n'?({sa:5,a:4,rot:3,d:1,sd:0})[s.sig]:(s.act==='bb'?2.6:2.4);
+const sigRank=s=>s.sig!=='n'?({ak:6,sa:5,a:4,rot:3,d:1,sd:0})[s.sig]:(s.act==='bb'?2.6:2.4);
 function vSig(v){const u=S.ui;u.sf=u.sf||'';u.mn=+u.mn||1;if(u.wl==null)u.wl=loadWL();
  const lst=u.list&&S.lists[u.list]?S.lists[u.list]:null;
  const base=S.agg.filter(s=>s.sig!=='n'||s.act);   /* Netral tidak ditampilkan */
@@ -3956,7 +4039,7 @@ function vSig(v){const u=S.ui;u.sf=u.sf||'';u.mn=+u.mn||1;if(u.wl==null)u.wl=loa
   const okSig=s=>u.sf==='bb'?s.act==='bb':u.sf==='sl'?s.act==='sl':(!u.sf||SF[u.sf].includes(s.sig));
   rows=base.filter(s=>okSig(s)&&((s.sig==='n'&&s.act)||(s.nUp+s.nDn)>=u.mn)&&(!terms.length||terms.some(x=>s.t===x||s.t.startsWith(x))));
   const so=(k,l)=>`<option value="${k}" ${u.sf===k?'selected':''}>${l}</option>`;
-  ctl+=`<div class="bar"><label class="f">${t('sigF')}<select id="ks-sf">${so('',t('sigAll'))}${so('acc',t('sigAcc'))}${so('sa',t('sigSA'))}${so('dis',t('sigDis'))}${so('sd',t('sigSD'))}${so('rot',t('sigRot'))}${so('bb',t('bb'))}${so('sl',t('sl'))}</select></label>
+  ctl+=`<div class="bar"><label class="f">${t('sigF')}<select id="ks-sf">${so('',t('sigAll'))}${so('ak',t('sigAk'))}${so('acc',t('sigAcc'))}${so('sa',t('sigSA'))}${so('dis',t('sigDis'))}${so('sd',t('sigSD'))}${so('rot',t('sigRot'))}${so('bb',t('bb'))}${so('sl',t('sl'))}</select></label>
   <label class="f">${t('wl')}<input type="text" id="ks-wl" value="${esc(u.wl)}" placeholder="${t('wlPh')}" autocomplete="off" style="min-width:min(260px,100%)"></label>
   <label class="f">${t('mn')}<select id="ks-mn">${[1,2,3].map(n=>`<option ${u.mn===n?'selected':''}>${n}</option>`).join('')}</select></label></div>
   <div class="muted small" style="margin-bottom:6px">${t('sigLegend')}</div>`+sec('sig:rules',t('rulesT'),'view',null,rulesHtml(),false)}
@@ -3998,7 +4081,7 @@ function vStk(v){const u=S.ui;u.stk=(u.stk||'').toUpperCase();const tk=u.stk.tri
  const s=agg(rows)[0]||{t:tk,net:0,up:0,dn:0,gross:0,nUp:0,nDn:0,nNew:0,nEx:0,seg:{},lead:null,sig:'n',movers:[],selfNet:0,act:null,selfRow:null};
  const ca=S.ca.get(tk);
  const msgs=[];
- if(s.lead){msgs.push(s.sig==='sa'||s.sig==='a'?t('v_acc',s):s.sig==='sd'||s.sig==='d'?t('v_dis',s):s.sig==='rot'?t('v_rot',s):t('v_neu',s));
+ if(s.lead){msgs.push(s.sig==='ak'?t('v_ak',s.ak):s.sig==='sa'||s.sig==='a'?t('v_acc',s):s.sig==='sd'||s.sig==='d'?t('v_dis',s):s.sig==='rot'?t('v_rot',s):t('v_neu',s));
   msgs.push(t('v_lead',s.lead));
   const sk=Object.keys(s.seg).sort((a,b)=>Math.abs(s.seg[b])-Math.abs(s.seg[a]))[0];
   if(sk&&Math.abs(s.seg[sk])>=.25&&Object.keys(s.seg).length>1)msgs.push(t('v_seg',segL(sk),s.seg[sk]))}
@@ -4109,8 +4192,10 @@ function toggleX(key,btn){
  S.exp[key]=open;btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open?'true':'false');queueSave()}
 const navTo=()=>$('#ks-nav').scrollIntoView({behavior:'smooth',block:'start'});
 root.addEventListener('click',e=>{
- const b=e.target.closest('[data-sec],[data-go],[data-th],[data-more],[data-sub],[data-dl],[data-dir],[data-demo],[data-reset],[data-back],[data-list],[data-nw],[data-clearlist],[data-x],[data-forget]');
+ const b=e.target.closest('[data-sec],[data-go],[data-th],[data-more],[data-sub],[data-dl],[data-dir],[data-demo],[data-repo],[data-repocmp],[data-reset],[data-back],[data-list],[data-nw],[data-clearlist],[data-x],[data-forget]');
  if(!b||!root.contains(b))return;const d=b.dataset;
+ if(d.repo!==undefined){onRepo(d.repo);return}
+ if('repocmp' in d){onRepoBoth();return}
  if(d.sec)go(d.sec);
  else if(d.x!==undefined)toggleX(d.x,b);
  else if(d.back!==undefined)goBack();
@@ -4147,7 +4232,7 @@ root.addEventListener('change',e=>{const x=e.target,u=S.ui;
 const IDB_NAME='vf-ksei',IDB_STORE='kv',KEEP_MS=14*864e5,UI_KEY='vf-ksei-ui';
 const idb=()=>new Promise((res,rej)=>{try{const q=indexedDB.open(IDB_NAME,1);q.onupgradeneeded=()=>q.result.createObjectStore(IDB_STORE);q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error)}catch(e){rej(e)}});
 const idbOp=(mode,fn)=>idb().then(db=>new Promise((res,rej)=>{const tx=db.transaction(IDB_STORE,mode),rq=fn(tx.objectStore(IDB_STORE));tx.oncomplete=()=>{db.close();res(rq&&rq.result)};tx.onerror=()=>rej(tx.error)}));
-const saveData=()=>(S.demo||!S.P1||!S.P2)?Promise.resolve():idbOp('readwrite',st=>st.put({ts:Date.now(),P1:S.P1,P2:S.P2},'last')).catch(()=>{});
+const saveData=()=>(S.demo||!S.P1||!S.P2)?Promise.resolve():idbOp('readwrite',st=>st.put({ts:Date.now(),P1:S.P1,P2:S.P2,src:S.src},'last')).catch(()=>{});
 const loadData=()=>idbOp('readonly',st=>st.get('last')).catch(()=>null);
 const dropData=()=>idbOp('readwrite',st=>st.delete('last')).catch(()=>{});
 let saveTimer=null;
@@ -4163,7 +4248,7 @@ function showSaved(){const el=$('#ks-saved');
  $('#ks-savedtxt').textContent=t('savedNote',S.P1.name||'file 1',S.P2.name||'file 2');el.classList.remove('hide')}
 function forgetAll(){
  dropData();try{localStorage.removeItem(UI_KEY)}catch(e){}
- S.P1=S.P2=S.A=S.B=null;S.rows=[];S.f=[];S.agg=[];S.hist=[];S.ui={};S.open={};S.exp={};S.demo=false;
+ S.P1=S.P2=S.A=S.B=null;S.src={1:null,2:null};renderRepo();S.rows=[];S.f=[];S.agg=[];S.hist=[];S.ui={};S.open={};S.exp={};S.demo=false;
  $('#ks-app').classList.add('hide');$('#ks-saved').classList.add('hide');
  for(const n of [1,2]){$('#ks-d'+n).classList.remove('ok');$('#ks-s'+n).textContent=t('pick'+n);$('#ks-f'+n).value=''}
  msg('')}
@@ -4172,18 +4257,18 @@ async function restore(){
  const d=await loadData();if(!d)return;
  if(!d.P1||!d.P2||Date.now()-d.ts>KEEP_MS){dropData();return}
  fixTypes(d.P1);fixTypes(d.P2);
- S.P1=d.P1;S.P2=d.P2;S.demo=false;
+ S.P1=d.P1;S.P2=d.P2;S.src=d.src||{1:null,2:null};S.demo=false;
  for(const n of [1,2]){const p=S['P'+n];$('#ks-d'+n).classList.add('ok');$('#ks-s'+n).textContent=`${p.name||''} · ${t('rows',p.map.size)}`}
  let saved=null;try{saved=JSON.parse(localStorage.getItem(UI_KEY)||'null')}catch(e){}
- build(S.P1,S.P2,saved);
+ renderRepo();build(S.P1,S.P2,saved);
  if(saved&&saved.y){let n=0;const tryScroll=()=>{if(root.getClientRects().length){window.scrollTo({top:saved.y,left:0,behavior:'instant'})}else if(n++<25)setTimeout(tryScroll,160)};requestAnimationFrame(tryScroll)}}
 
 /* ============================== memuat data ============================== */
 function msg(text,kind){const m=$('#ks-msg');m.className='note'+(kind?' '+kind:'');m.textContent=text;m.classList.toggle('hide',!text)}
 async function onFile(n,f){
  if(!f)return;const d=$('#ks-d'+n);
- try{const p=await parse(f);S['P'+n]=p;S.demo=false;d.classList.add('ok');$('#ks-s'+n).textContent=`${f.name} · ${t('rows',p.map.size)}`;msg('');
-  if(S.P1&&S.P2)build(S.P1,S.P2)}
+ try{const p=await parse(f);S['P'+n]=p;S.src[n]=null;S.demo=false;d.classList.add('ok');$('#ks-s'+n).textContent=`${f.name} · ${t('rows',p.map.size)}`;msg('');
+  renderRepo();if(S.P1&&S.P2)build(S.P1,S.P2)}
  catch(e){d.classList.remove('ok');S['P'+n]=null;msg(e.message,'err')}}
 function build(A,B,saved){
  let sw=false;if(A.date&&B.date&&A.date>B.date){[A,B]=[B,A];sw=true}
@@ -4232,6 +4317,43 @@ function demoData(){
 function loadDemo(){const [A,B]=demoData();S.demo=true;S.P1=A;S.P2=B;
  for(const n of [1,2]){$('#ks-d'+n).classList.add('ok');$('#ks-s'+n).textContent=(ID?'Data contoh fiktif · ':'Fictional sample data · ')+t('rows',(n===1?A:B).map.size)}
  msg('');build(A,B)}
+
+/* ============================== repository file KSEI ============================== */
+/* File siap pakai ada di folder /ksei-repo (daftar di index.json). Pengguna cukup mengeklik file yang ingin dibandingkan;
+   file dibaca dengan parser yang sama seperti upload sendiri. */
+const REPO_URL='/ksei-repo/index.json';
+S.repo=[];S.repoCache=new Map();S.src={1:null,2:null};
+const repoLabel=it=>(it.label&&(it.label[LANG]||it.label.id))||it.id;
+function slotReset(n){S['P'+n]=null;S.src[n]=null;$('#ks-d'+n).classList.remove('ok');$('#ks-s'+n).textContent=t('pick'+n);$('#ks-f'+n).value=''}
+function renderRepo(){
+ const box=$('#ks-repo-list'),cmp=$('#ks-repo-cmp');if(!box)return;
+ box.innerHTML=S.repo.map(it=>{const n=S.src[1]===it.id?1:S.src[2]===it.id?2:0,dt=new Date(it.date+'T00:00:00');
+  return `<button type="button" class="repo-item${n?' on':''}" data-repo="${esc(it.id)}" aria-pressed="${n?'true':'false'}"><b>${esc(repoLabel(it))}</b><span>${esc(dt.toLocaleDateString(LOC,{day:'numeric',month:'long',year:'numeric'}))}${it.rows?' · '+esc(t('rows',it.rows)):''}</span>${n?`<em>${esc(t(n===1?'p1':'p2').replace(/ \(.*/,''))}</em>`:''}</button>`}).join('');
+ if(S.repo.length>=2){const a=S.repo[S.repo.length-2],b=S.repo[S.repo.length-1];cmp.hidden=false;cmp.textContent=t('repoCmp',repoLabel(a),repoLabel(b))}else cmp.hidden=true}
+async function loadRepoItem(it){
+ let p=S.repoCache.get(it.id);if(p)return p;
+ const r=await fetch(it.file);if(!r.ok)throw new Error(t('repoErr'));
+ p=await parse(new File([await r.blob()],it.file.split('/').pop()));p.name=repoLabel(it);S.repoCache.set(it.id,p);return p}
+async function putSlot(n,it){
+ const p=await loadRepoItem(it);S['P'+n]=p;S.src[n]=it.id;S.demo=false;
+ $('#ks-d'+n).classList.add('ok');$('#ks-s'+n).textContent=`${p.name} · ${t('rows',p.map.size)}`}
+async function onRepo(id){
+ const it=S.repo.find(x=>x.id===id);if(!it)return;
+ try{
+  for(const n of [1,2])if(S.src[n]===id){slotReset(n);renderRepo();return}
+  if(S.demo){slotReset(1);slotReset(2);S.demo=false}
+  const n=!S.P1?1:!S.P2?2:2;
+  msg(t('repoLoading'));await putSlot(n,it);msg('');renderRepo();
+  if(S.P1&&S.P2)build(S.P1,S.P2)}
+ catch(e){msg(e.message||t('repoErr'),'err')}}
+async function onRepoBoth(){
+ if(S.repo.length<2)return;
+ const a=S.repo[S.repo.length-2],b=S.repo[S.repo.length-1];
+ try{S.demo=false;msg(t('repoLoading'));await putSlot(1,a);await putSlot(2,b);msg('');renderRepo();build(S.P1,S.P2)}
+ catch(e){msg(e.message||t('repoErr'),'err')}}
+fetch(REPO_URL,{cache:'no-cache'}).then(r=>r.ok?r.json():Promise.reject()).then(j=>{
+ S.repo=(j.files||[]).slice().sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+ if(!S.repo.length)throw 0;renderRepo()}).catch(()=>{const r=$('#ks-repo'),o=$('#ks-or');if(r)r.hidden=true;if(o)o.hidden=true});
 
 /* ============================== mulai ============================== */
 root.querySelectorAll('[data-i]').forEach(el=>{el.textContent=t(el.dataset.i)});
