@@ -1,1 +1,6 @@
-
+{
+  "files": [
+    {"id": "2026-08", "date": "2026-08-31", "file": "/ksei-repo/ksei-2026-08-31.xlsx", "label": {"id": "Agustus 2026", "en": "August 2026"}, "rows": 7158},
+    {"id": "2026-09", "date": "2026-09-30", "file": "/ksei-repo/ksei-2026-09-30.xlsx", "label": {"id": "September 2026", "en": "September 2026"}, "rows": 7154}
+  ]
+}
