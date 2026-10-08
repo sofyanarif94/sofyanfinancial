@@ -1,7 +1,7 @@
 {
   "name": "The Investor Toolkit — Sofyan Financial",
   "short_name": "Investor Toolkit",
-  "description": "Toolkit investor gratis: analisis kepemilikan saham (Bandarmology), nilai wajar saham (DCF, DDM, Equity Bond Valuation), Financial Freedom, dan risk profile.",
+  "description": "Toolkit investor gratis: kalkulator valuasi saham, nilai intrinsik & wajar (DCF, DDM, Buffett), average saham, bandarmology, dana pensiun & financial freedom.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
