@@ -3615,7 +3615,7 @@ id:{
  r_a:'Selisih naik minimal 0,25 poin, dan pengurangan paling banyak separuh dari penambahan.',
  r_sd:'Selisih turun minimal 1 poin, dan penambahan paling banyak 20% dari pengurangan (hampir murni pengurangan).',
  r_d:'Selisih turun minimal 0,25 poin, dan penambahan paling banyak separuh dari pengurangan.',
- r_rot:'Penambahan dan pengurangan masing-masing minimal 0,5 poin, tetapi tidak masuk kriteria di atas. Artinya ada yang membeli dan ada yang menjual dengan jumlah yang saling mengimbangi.',
+ r_rot:'Berpindah tangan bila (1) ada pemegang yang menjual dan pemegang lain membeli dengan jumlah lembar yang sama (crossing), terutama bila namanya terkait satu grup, atau (2) penambahan dan pengurangan masing-masing minimal 1,0 poin dan saling mengimbangi, tetapi tidak masuk kriteria di atas.',
  r_bb:'Pemegang yang porsinya naik adalah emiten itu sendiri (namanya sama dengan nama emiten). Tidak dihitung sebagai akumulasi.',
  r_sl:'Emiten mengurangi porsinya sendiri. Tidak dihitung sebagai distribusi.',
  r_n:'Selain itu (perubahan kecil) berstatus Netral dan tidak ditampilkan.',
@@ -3655,7 +3655,7 @@ id:{
  segT:'Kelompok investor',segUp:'Saham ditambah',segDn:'Saham dikurangi',segNew:'Investor masuk',segEx:'Investor keluar',
  segNote:'Angka berupa jumlah saham atau investor, bukan rupiah. Dihitung dari investor yang lolos filter.',
  ak:'Akuisisi',sa:'Akumulasi kuat',a:'Akumulasi',n:'Netral',d:'Distribusi',sd:'Distribusi besar',rot:'Berpindah tangan',
- r_ak:'Pemegang terbesar berganti, dan investor barunya menambah porsi minimal 40 poin (dari porsi sebelumnya atau masuk baru). Artinya kendali saham berpindah ke investor lain, bisa beda PT atau perseorangan. Sinyal ini didahulukan di atas sinyal lain.',
+ r_ak:'Pemegang terbesar berganti, dan investor barunya menambah porsi minimal 40 poin (dari porsi sebelumnya atau masuk baru). Artinya kendali saham berpindah ke investor lain, bisa beda PT atau perseorangan. Sinyal ini didahulukan di atas sinyal lain. Bila penjual dan pembelinya terkait satu grup (nama serupa), dianggap Berpindah tangan, bukan Akuisisi.',
  i_ak:(n,c)=>`${fmt(n)} saham berstatus akuisisi (pemegang terbesar berganti, perubahan porsi 40 poin atau lebih). Terbesar: ${c}.`,
  v_ak:a=>`Akuisisi: ${a.buyer.inv} kini menjadi pemegang terbesar dengan ${fp(a.buyer.pb)}% (sebelumnya ${a.buyer.pa>0?fp(a.buyer.pa)+'%':'belum masuk daftar di atas 1%'}), naik ${pp(a.gain)}. Pemegang terbesar sebelumnya adalah ${a.seller.inv} (${fp(a.seller.pa)}%, kini ${a.seller.pb>0?fp(a.seller.pb)+'%':'di bawah 1% atau keluar'}).`,
  kAk:'Saham akuisisi',
@@ -3676,7 +3676,7 @@ id:{
  k_data:'Data file',k_calc:'Hitungan',k_est:'Perkiraan',k_view:'Tafsiran',
  v_acc:s=>`Investor besar (di atas 1%) menambah kepemilikan: total naik ${pp(s.net)}. ${s.nUp} investor menambah atau masuk, ${s.nDn} mengurangi atau keluar.`,
  v_dis:s=>`Investor besar (di atas 1%) mengurangi kepemilikan: total turun ${pp(Math.abs(s.net))}. ${s.nDn} investor mengurangi atau keluar, ${s.nUp} menambah atau masuk.`,
- v_rot:s=>`Pergerakannya besar (${fp(s.gross)} poin) tetapi saling mengimbangi (selisih ${pp(s.net)}). Kepemilikan lebih banyak berpindah tangan, arah beli atau jualnya belum jelas.`,
+ v_rot:s=>s.xfer&&s.xfer.length?`Terindikasi pemindahan kepemilikan (crossing): ${s.xfer.map(p=>`${p.from.inv} (${fp(p.from.pa)}% → ${fp(p.from.pb)}%) ke ${p.to.inv} (${fp(p.to.pa)}% → ${fp(p.to.pb)}%), sekitar ${fmt(Math.abs(p.from.ds))} lembar${p.rel?', nama pihak terkait (kemungkinan satu grup)':''}`).join('; ')}. Ini bukan akumulasi atau distribusi bersih.`:`Pergerakannya besar (${fp(s.gross)} poin) tetapi saling mengimbangi (selisih ${pp(s.net)}). Kepemilikan lebih banyak berpindah tangan, arah beli atau jualnya belum jelas.`,
  v_neu:s=>`Tidak ada perubahan berarti dari investor besar (selisih ${pp(s.net)}).`,
  v_lead:r=>`Perubahan terbesar: ${r.inv} (${pp(r.dpc)}${r.st==='New'?', baru masuk daftar di atas 1%':r.st==='Exit'?', keluar dari daftar di atas 1%':''}).`,
  v_seg:(l,v)=>`Paling banyak berasal dari: ${l} (${pp(v)}).`,
@@ -3721,7 +3721,7 @@ en:{
  r_a:'Difference up by at least 0.25 points, and reduced is at most half of added.',
  r_sd:'Difference down by at least 1 point, and added is at most 20% of reduced (almost purely reducing).',
  r_d:'Difference down by at least 0.25 points, and added is at most half of reduced.',
- r_rot:'Added and reduced are each at least 0.5 points, but the stock does not meet the criteria above. Some are buying and some are selling in offsetting amounts.',
+ r_rot:'Changing hands when (1) one holder sells and another buys the same number of shares (a crossing), especially when the names are related to one group, or (2) added and reduced are each at least 1.0 point and offset each other, but the stock does not meet the criteria above.',
  r_bb:'The holder whose stake rose is the issuer itself (its name matches the issuer name). Not counted as accumulation.',
  r_sl:'The issuer reduced its own stake. Not counted as distribution.',
  r_n:'Everything else (small changes) is Neutral and is not shown.',
@@ -3761,7 +3761,7 @@ en:{
  segT:'Investor group',segUp:'Stocks added',segDn:'Stocks reduced',segNew:'Investors entering',segEx:'Investors leaving',
  segNote:'Numbers are counts of stocks or investors, not currency. Based on investors that pass the filters.',
  ak:'Acquisition',sa:'Strong accumulation',a:'Accumulation',n:'Neutral',d:'Distribution',sd:'Large distribution',rot:'Changing hands',
- r_ak:'The largest holder changed, and the new holder added at least 40 points (from its previous stake, or as a new entry). Control of the stock moved to another investor, whether a different company or an individual. This signal takes priority over the others.',
+ r_ak:'The largest holder changed, and the new holder added at least 40 points (from its previous stake, or as a new entry). Control of the stock moved to another investor, whether a different company or an individual. This signal takes priority over the others. If the seller and buyer look related to one group (similar names), it counts as Changing hands, not Acquisition.',
  i_ak:(n,c)=>`${fmt(n)} stock(s) show an acquisition (largest holder changed, stake shift of 40 points or more). Biggest: ${c}.`,
  v_ak:a=>`Acquisition: ${a.buyer.inv} is now the largest holder with ${fp(a.buyer.pb)}% (before: ${a.buyer.pa>0?fp(a.buyer.pa)+'%':'not in the above-1% list'}), up ${pp(a.gain)}. The previous largest holder was ${a.seller.inv} (${fp(a.seller.pa)}%, now ${a.seller.pb>0?fp(a.seller.pb)+'%':'below 1% or gone'}).`,
  kAk:'Acquisition stocks',
@@ -3782,7 +3782,7 @@ en:{
  k_data:'File data',k_calc:'Calculation',k_est:'Estimate',k_view:'Interpretation',
  v_acc:s=>`Large holders (above 1%) added to their stakes: total up ${pp(s.net)}. ${s.nUp} holder(s) added or entered, ${s.nDn} reduced or left.`,
  v_dis:s=>`Large holders (above 1%) reduced their stakes: total down ${pp(Math.abs(s.net))}. ${s.nDn} holder(s) reduced or left, ${s.nUp} added or entered.`,
- v_rot:s=>`Movement is large (${fp(s.gross)} pts) but offsetting (difference ${pp(s.net)}). Ownership mostly changed hands, so the buy or sell direction is unclear.`,
+ v_rot:s=>s.xfer&&s.xfer.length?`Likely an ownership transfer (crossing): ${s.xfer.map(p=>`${p.from.inv} (${fp(p.from.pa)}% → ${fp(p.from.pb)}%) to ${p.to.inv} (${fp(p.to.pa)}% → ${fp(p.to.pb)}%), about ${fmt(Math.abs(p.from.ds))} shares${p.rel?', related names (possibly one group)':''}`).join('; ')}. This is not net accumulation or distribution.`:`Movement is large (${fp(s.gross)} pts) but offsetting (difference ${pp(s.net)}). Ownership mostly changed hands, so the buy or sell direction is unclear.`,
  v_neu:s=>`No meaningful change among large holders (difference ${pp(s.net)}).`,
  v_lead:r=>`Biggest change: ${r.inv} (${pp(r.dpc)}${r.st==='New'?', newly listed above 1%':r.st==='Exit'?', dropped off the list above 1%':''}).`,
  v_seg:(l,v)=>`Mostly from: ${l} (${pp(v)}).`,
@@ -3973,13 +3973,13 @@ function compare(A,B){
 /* Aturan sinyal (satuan: poin kepemilikan). T = total penambahan, K = total pengurangan, selisih = T - K.
    Akumulasi kuat : selisih >= +1,00 dan K <= 20% T      Distribusi kuat : selisih <= -1,00 dan T <= 20% K
    Akumulasi      : selisih >= +0,25 dan K <= 50% T      Distribusi      : selisih <= -0,25 dan T <= 50% K
-   Berpindah tangan: T >= 0,5 dan K >= 0,5 (selain kriteria di atas)      Selain itu: Netral */
+   Berpindah tangan: crossing antar pemegang, atau T >= 1,0 dan K >= 1,0 (selain kriteria di atas)      Selain itu: Netral */
 function signal(s){const T=s.up,K=s.dn,n=T-K,e=1e-9;
  if(n>=1-e&&K<=.2*T+e)return 'sa';
  if(n>=.25-e&&K<=.5*T+e)return 'a';
  if(-n>=1-e&&T<=.2*K+e)return 'sd';
  if(-n>=.25-e&&T<=.5*K+e)return 'd';
- if(T>=.5-e&&K>=.5-e)return 'rot';
+ if(T>=1-e&&K>=1-e)return 'rot';
  return 'n'}
 /* Ganti nama / salah ketik bukan akuisisi: dua nama dianggap entitas yang sama bila hurufnya hampir identik,
    atau seluruh kata dari nama yang lebih pendek ada di nama yang lebih panjang (kata boleh disingkat, mis. PAN = PANIN). */
@@ -3994,10 +3994,20 @@ function sameEntity(a,b){
  const [s,l]=ta.length<=tb.length?[ta,tb]:[tb,ta];
  const m=w=>l.some(x=>x===w||(Math.min(x.length,w.length)>=3&&(x.startsWith(w)||w.startsWith(x))));
  return s.length>=2&&s.every(m)}
+/* Berpindah tangan (crossing): pemegang yang turun dan pemegang yang naik dengan selisih lembar yang sama (+-2%) dipasangkan.
+   Nama terkait = punya kata khas yang sama (mis. RAJAWALI), kemungkinan satu grup. Pasangan terkait dihitung mulai 0,5 poin, lainnya mulai 1,0 poin. */
+const GEN=new Set(['PT','TBK','PERSERO','INDONESIA','INTERNATIONAL','CAPITAL','KAPITAL','HOLDING','HOLDINGS','INVESTAMA','INVESTMENT','INVESTMENTS','INVESTASI','SEKURITAS','SECURITIES','GROUP','CORPORA','CORPORATION','CORP','ASSET','ASSETS','MANAGEMENT','BANK','FINANCE','FINANCIAL','LIMITED','LTD','COMPANY','TRUST','FUND','NOMINEES','ASIA','PACIFIC','GLOBAL','UTAMA','MITRA','JAYA','SEJAHTERA','PRIMA','MAKMUR','ABADI','SUKSES','MANDIRI','NUSANTARA','DANA','PENSIUN','EMAS','PRIVATE','PTE','LLC','INC','GMBH','ENERGY','RESOURCES','PROPERTI','PROPERTY','VENTURES','EQUITY','PARTNERS']);
+function related(a,b){const ta=new Set(entTokens(a).filter(w=>w.length>=4&&!GEN.has(w)));return entTokens(b).some(w=>w.length>=4&&ta.has(w))}
+function xpairs(L){const sl=L.filter(r=>r.ds<0).sort((a,b)=>a.ds-b.ds),bl=L.filter(r=>r.ds>0),used=new Set(),out=[];
+ for(const s of sl){let best=null,bd=1e18;for(const b of bl){if(used.has(b))continue;const d=Math.abs(b.ds+s.ds);if(d<bd){bd=d;best=b}}
+  if(best&&bd<=.02*Math.abs(s.ds)){const pts=Math.min(Math.abs(s.dpc),Math.abs(best.dpc)),rel=related(s.inv,best.inv);
+   if(pts>=(rel?.5:1)){used.add(best);out.push({from:s,to:best,pts,rel})}}}
+ return out}
 /* Perubahan emiten sendiri (buyback / jual saham sendiri) dipisahkan dan tidak masuk hitungan sinyal. */
 function agg(rows){const m=new Map();
- const topA=new Map(),topB=new Map();
+ const topA=new Map(),topB=new Map(),byT=new Map();
  for(const r of rows){if(r.self)continue;
+  (byT.get(r.t)||byT.set(r.t,[]).get(r.t)).push(r);
   if(r.pa>0&&(!topA.has(r.t)||r.pa>topA.get(r.t).pa))topA.set(r.t,r);
   if(r.pb>0&&(!topB.has(r.t)||r.pb>topB.get(r.t).pb))topB.set(r.t,r)}
  for(const r of rows){if(r.st==='Unchanged')continue;
@@ -4008,8 +4018,11 @@ function agg(rows){const m=new Map();
   if(r.lf==='F')s.netF+=d;if(r.grp==='N')s.netN+=d;s.seg[r.seg]=(s.seg[r.seg]||0)+d;
   if(!s.lead||Math.abs(d)>Math.abs(s.lead.dpc))s.lead=r}
  const out=[...m.values()];
- for(const s of out){s.nUp=s.nAcc+s.nNew;s.nDn=s.nDis+s.nEx;s.gross=s.up+s.dn;s.sig=signal(s);s.ak=null;
-  {const a=topA.get(s.t),b=topB.get(s.t);if(a&&b&&a.inv!==b.inv&&!sameEntity(a.inv,b.inv)){const g=b.pb-b.pa;if(g>=ACQ-1e-9){s.sig='ak';s.ak={buyer:b,seller:a,gain:g}}}}
+ for(const s of out){s.nUp=s.nAcc+s.nNew;s.nDn=s.nDis+s.nEx;s.gross=s.up+s.dn;s.sig=signal(s);s.ak=null;s.xfer=[];let rel40=false;
+  {const a=topA.get(s.t),b=topB.get(s.t);if(a&&b&&a.inv!==b.inv&&!sameEntity(a.inv,b.inv)){const g=b.pb-b.pa;if(g>=ACQ-1e-9){if(related(a.inv,b.inv))rel40=true;else{s.sig='ak';s.ak={buyer:b,seller:a,gain:g}}}}}
+  if(s.sig!=='ak'){const pr=xpairs(byT.get(s.t)||[]),xp=pr.reduce((z,p)=>z+p.pts,0);s.xfer=pr;
+   if(xp>0){const b2=signal({up:Math.max(0,s.up-xp),dn:Math.max(0,s.dn-xp)});s.sig=(2*xp>=.6*s.gross||b2==='n')?'rot':b2}
+   else if(rel40)s.sig='rot'}
   s.act=s.selfNet>.0049?'bb':s.selfNet<-.0049?'sl':null}
  return out}
 function invAgg(rows){const m=new Map();
