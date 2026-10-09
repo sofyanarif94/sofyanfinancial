@@ -1363,6 +1363,53 @@ body{
 @media (max-width:860px){.vf-header .vf-share{padding:12px 14px}.vf-sb{flex:1 1 auto;justify-content:center}}
 @media print{.vf-header .vf-share{display:none}}
 
+
+/* ---- Kalkulator Valuasi Saham (Automatic) ---- */
+#panel-auto .au-note,#panel-auto .au-msg{padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:var(--gold-tint);font-size:13px;line-height:1.55;margin:10px 0}
+#panel-auto .au-msg.ok{border-color:#3fb97a}#panel-auto .au-msg.err{border-color:#e5584f}
+#panel-auto .au-card{border:1px solid var(--border);border-radius:14px;padding:18px;margin:14px 0;background:var(--card-2,transparent)}
+#panel-auto h3{margin:0 0 10px;font-size:17px}#panel-auto h4{margin:18px 0 8px;font-size:14.5px;color:var(--gold-soft)}
+#panel-auto .au-drop{display:flex;flex-direction:column;align-items:center;gap:4px;padding:26px;border:2px dashed color-mix(in srgb,var(--gold) 55%,transparent);border-radius:14px;cursor:pointer;text-align:center;transition:background .15s}
+#panel-auto .au-drop:hover,#panel-auto .au-drop.on{background:var(--gold-tint-strong)}#panel-auto .au-drop span{font-size:12.5px;opacity:.75}
+#panel-auto .au-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+#panel-auto .au-f{display:flex;flex-direction:column;gap:5px;font-size:12.5px;font-weight:700;color:var(--gold-soft)}
+#panel-auto input,#panel-auto select{font:inherit;font-weight:600;padding:9px 11px;border-radius:10px;border:1.5px solid color-mix(in srgb,var(--gold) 55%,transparent);background:var(--card);color:var(--text);min-width:0}
+#panel-auto .au-btn{font:600 13px 'Poppins',sans-serif;padding:10px 16px;border-radius:10px;border:1px solid color-mix(in srgb,var(--gold) 50%,var(--border));background:var(--card);color:var(--text);cursor:pointer;margin:6px 6px 0 0}
+#panel-auto .au-btn.pri{background:linear-gradient(135deg,#f1d98f,#c9a24b);color:#10192b;border:0}#panel-auto .au-btn:disabled{opacity:.45;cursor:not-allowed}
+#panel-auto .au-link{background:none;border:0;color:var(--gold);text-decoration:underline;cursor:pointer;font:inherit}
+#panel-auto .au-hint{font-size:12.5px;opacity:.8;line-height:1.55}#panel-auto .au-hint i,#panel-auto .au-t i{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 4px 0 8px;vertical-align:middle}
+#panel-auto .au-tw{overflow-x:auto}#panel-auto .au-t{width:100%;border-collapse:collapse;font-size:13px}#panel-auto .au-t th,#panel-auto .au-t td{padding:7px 8px;border-bottom:1px solid var(--border-soft,var(--border));text-align:left;vertical-align:middle}
+#panel-auto .au-t input{width:130px;padding:6px 8px}#panel-auto .au-t td:last-child input{width:70px}#panel-auto .au-src{font-size:11.5px;opacity:.7;max-width:200px}
+#panel-auto .au-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0}
+#panel-auto .au-cards>div{padding:12px;border:1px solid var(--border);border-radius:12px;display:flex;flex-direction:column;gap:3px}#panel-auto .au-cards .hl{border-color:var(--gold);background:var(--gold-tint-strong)}
+#panel-auto .au-cards small{font-size:11.5px;opacity:.75}#panel-auto .au-cards b{font-size:17px}
+#panel-auto .au-bar{position:relative;height:14px;border-radius:99px;background:var(--border);margin:14px 0 4px}#panel-auto .au-bar span{position:absolute;top:0;bottom:0;border-radius:99px;background:linear-gradient(90deg,#c9a24b,#f1d98f)}#panel-auto .au-bar em{position:absolute;top:-5px;bottom:-5px;width:3px;background:var(--text);border-radius:2px}
+#panel-auto .au-ul{padding-left:18px;font-size:13px;line-height:1.6}#panel-auto .au-disc{margin-top:16px;padding:12px;border-left:3px solid var(--gold);font-size:12.5px;line-height:1.6;background:var(--gold-tint)}
+
+
+/* ---- Repository ringkas + baris pemegang saham tanpa geser ---- */
+#panel-ksei details.ks-repo{margin-bottom:8px;border:1px solid var(--line);border-radius:10px;padding:0 12px}
+#panel-ksei .ks-repo>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:9px 0;font-weight:700;font-size:13.5px;margin:0;color:var(--gold-soft)}
+#panel-ksei .ks-repo>summary::-webkit-details-marker{display:none}
+#panel-ksei .ks-repo>summary::before{content:"▸";font-size:11px;transition:transform .15s}
+#panel-ksei .ks-repo[open]>summary::before{transform:rotate(90deg)}
+#panel-ksei .ks-repo .small{font-size:11.5px}
+#panel-ksei .rlist{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 4px}
+#panel-ksei .repo-item{flex-direction:row;align-items:center;gap:6px;padding:5px 11px;border-width:1px;border-radius:999px}
+#panel-ksei .repo-item b{font-size:12.5px;font-weight:600;padding-right:0}
+#panel-ksei .repo-item em{position:static;font-size:9.5px;padding:1px 7px}
+#panel-ksei .repo-item:hover{transform:none}
+#panel-ksei .ks-repo .ks-actions{margin:6px 0 10px}
+#panel-ksei #ks-repo-cmp{padding:5px 12px;font-size:12px}
+#panel-ksei .ks-or{margin:8px 0 6px;font-size:11.5px}
+#panel-ksei .drop{padding:8px 12px}
+#panel-ksei .drop b{font-size:13px}
+#panel-ksei .drop span{font-size:12px}
+@container ksei (min-width:821px){
+  #panel-ksei .tw table th,#panel-ksei .tw table td{padding:7px 8px;font-size:12.5px}
+  #panel-ksei tr.xr>td>*{position:sticky;left:12px;width:calc(var(--tww,100cqw) - 24px);box-sizing:border-box}
+}
+
 /* ---------- Scrollbar ---------- */
 *{ scrollbar-width:thin; scrollbar-color:color-mix(in srgb,var(--gold) 45%,transparent) transparent; }
 
@@ -1419,6 +1466,10 @@ body{
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
     Shareholder Ownership Analysis (Bandarmology)<span class="vf-new">New</span>
   </button>
+  <button class="vf-tab" data-tab="auto">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 15l2 2 4-4"></path></svg>
+    Stock Valuation Calculator (Automatic)<span class="vf-new">New</span>
+  </button>
   <button class="vf-tab active" data-tab="valuation">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="8" y1="10.5" x2="8.01" y2="10.5"></line><line x1="12" y1="10.5" x2="12.01" y2="10.5"></line><line x1="16" y1="10.5" x2="16.01" y2="10.5"></line><line x1="8" y1="14.5" x2="8.01" y2="14.5"></line><line x1="12" y1="14.5" x2="12.01" y2="14.5"></line><line x1="16" y1="14.5" x2="16.01" y2="14.5"></line><line x1="8" y1="18.5" x2="16" y2="18.5"></line></svg>
     Stock Valuation Calculator
@@ -1452,6 +1503,11 @@ body{
 <main class="vf-main">
 
   <!-- ===================== DCF ===================== -->
+  <section class="vf-panel" id="panel-auto">
+    <div class="vf-section-title"><span class="vf-eyebrow">Automatic from financial statements</span><h2>Stock Valuation Calculator (Automatic)</h2><p>Upload financial statements and let the system read the data, choose the right method, and estimate the fair value of the stock.</p></div>
+    <div id="au-root"></div>
+  </section>
+
   <section class="vf-panel active" id="panel-valuation">
     <div class="vf-section-title">
       <span class="vf-eyebrow">Valuation Methods</span>
@@ -2212,12 +2268,12 @@ body{
     </div>
 
     <div class="box ks-upload">
-      <div class="ks-repo" id="ks-repo">
-        <div class="rt" data-i="repoT"></div>
+      <details class="ks-repo" id="ks-repo" open>
+        <summary class="rt" data-i="repoT"></summary>
         <div class="small muted" data-i="repoSub"></div>
         <div class="rlist" id="ks-repo-list"></div>
         <div class="ks-actions"><button type="button" class="btn" id="ks-repo-cmp" data-repocmp="1" hidden></button></div>
-      </div>
+      </details>
       <div class="ks-or small muted" id="ks-or" data-i="orUp"></div>
       <div class="up">
         <label class="drop" id="ks-d1"><input type="file" id="ks-f1" accept=".xlsx,.xls,.csv"><b data-i="p1"></b><span id="ks-s1" data-i="pick1"></span></label>
@@ -4415,7 +4471,7 @@ function slotReset(n){S['P'+n]=null;S.src[n]=null;$('#ks-d'+n).classList.remove(
 function renderRepo(){
  const box=$('#ks-repo-list'),cmp=$('#ks-repo-cmp');if(!box)return;
  box.innerHTML=S.repo.map(it=>{const n=S.src[1]===it.id?1:S.src[2]===it.id?2:0,dt=new Date(it.date+'T00:00:00');
-  return `<button type="button" class="repo-item${n?' on':''}" data-repo="${esc(it.id)}" aria-pressed="${n?'true':'false'}"><b>${esc(repoLabel(it))}</b><span>${esc(dt.toLocaleDateString(LOC,{day:'numeric',month:'long',year:'numeric'}))}${it.rows?' · '+esc(t('rows',it.rows)):''}</span>${n?`<em>${esc(t(n===1?'p1':'p2').replace(/ \(.*/,''))}</em>`:''}</button>`}).join('');
+  return `<button type="button" class="repo-item${n?' on':''}" data-repo="${esc(it.id)}" aria-pressed="${n?'true':'false'}" title="${esc(dt.toLocaleDateString(LOC,{day:'numeric',month:'long',year:'numeric'}))}${it.rows?' · '+esc(t('rows',it.rows)):''}"><b>${esc(repoLabel(it))}</b>${n?`<em>${esc(t(n===1?'p1':'p2').replace(/ \(.*/,''))}</em>`:''}</button>`}).join('');
  if(S.repo.length>=2){const a=S.repo[S.repo.length-2],b=S.repo[S.repo.length-1];cmp.hidden=false;cmp.textContent=t('repoCmp',repoLabel(a),repoLabel(b))}else cmp.hidden=true}
 async function loadRepoItem(it){
  let p=S.repoCache.get(it.id);if(p)return p;
@@ -4467,6 +4523,202 @@ window.__kseiTest={S,loadDemo,agg,signal,compare,canonKey,unify,buildLists,build
   });
   if(nt&&navigator.share){nt.hidden=false;nt.addEventListener('click',function(){navigator.share({title:document.title,text:"The Investor Toolkit: stock valuation calculators, fair value (DCF, DDM), average price, bandarmology & financial freedom. Free, try it here:",url:url}).catch(function(){})})}
 })();
+</script>
+<script>
+(function(){
+var EN=document.documentElement.lang==='en',T=function(a,b){return EN?b:a},root=document.getElementById('au-root');
+if(!root)return;
+var q=function(s){return root.querySelector(s)},qa=function(s){return Array.prototype.slice.call(root.querySelectorAll(s))};
+var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+var nf=function(v,d){return isFinite(v)?v.toLocaleString(EN?'en-US':'id-ID',{maximumFractionDigits:d==null?0:d}):'–'};
+var rp=function(v){return isFinite(v)?'Rp'+nf(v,Math.abs(v)<100?2:0):'–'};
+var pc=function(v){return isFinite(v)?nf(v*100,1)+'%':'–'};
+var SEC=[['bank','Bank','fin'],['asuransi',T('Asuransi','Insurance'),'fin'],['sekuritas',T('Sekuritas','Securities'),'fin'],['multifinance','Multifinance','fin'],['consumer','Consumer goods','nf'],['industrials','Industrials','nf'],['energi',T('Energi & komoditas','Energy & commodities'),'com'],['telko',T('Telekomunikasi','Telecom'),'nf'],['utilitas',T('Utilitas & infrastruktur','Utilities & infrastructure'),'nf'],['properti',T('Properti','Property'),'prop'],['reit','REIT','reit'],['teknologi',T('Teknologi','Technology'),'tech'],['healthcare','Healthcare','nf'],['holding','Holding','hold'],['lainnya',T('Lainnya (non-keuangan)','Other (non-financial)'),'nf']];
+var DEF=[
+['rev','Pendapatan','Revenue',/^(total |jumlah )?(pendapatan|penjualan|revenues?|net sales|sales)\b/i,/beban|cost|lain|other|bunga|interest|cost of/i],
+['ebit','Laba usaha (EBIT)','Operating profit (EBIT)',/(laba usaha|laba operasi|operating (profit|income)|\bebit\b)/i,/ebitda/i],
+['da','Penyusutan & amortisasi','Depreciation & amortization',/(penyusutan|depresiasi|depreciation|amortisasi)/i,/aset hak|right/i],
+['int','Beban bunga / keuangan','Interest / finance cost',/(beban (bunga|keuangan)|biaya keuangan|finance costs?|interest expense)/i,null],
+['ni','Laba bersih','Net income',/(laba (tahun|periode) berjalan|laba bersih|profit for the (year|period)|net (income|profit))/i,/sebelum|before|per saham|per share/i],
+['cfo','Arus kas operasi','Operating cash flow',/(arus kas.*operasi|kas (bersih|neto).*operasi|net cash.*operating)/i,null],
+['capex','Belanja modal (capex)','Capital expenditure',/(perolehan aset tetap|pembelian aset tetap|capital expenditure|purchase of (property|fixed)|acquisition of (property|fixed))/i,null],
+['div','Dividen dibayarkan','Dividends paid',/(dividen (tunai )?(yang )?dibayar|pembayaran dividen|dividends? paid)/i,null],
+['cash','Kas & setara kas','Cash & equivalents',/(kas dan setara kas|cash and cash equivalents)/i,/akhir|end of|bersih|neto|net/i],
+['debt','Utang berbunga','Interest-bearing debt',/(utang bank|pinjaman bank|bank loans|borrowings|utang berbunga|pinjaman jangka)/i,null],
+['ta','Total aset','Total assets',/^(jumlah|total) (aset|assets)/i,null],
+['eq','Total ekuitas','Total equity',/^(jumlah|total) (ekuitas|equity)/i,null]];
+var UN=[[1,'Rupiah'],[1e3,T('Ribuan','Thousands')],[1e6,T('Jutaan','Millions')],[1e9,T('Miliaran','Billions')],[1e12,T('Triliunan','Trillions')]];
+var S={rows:{},meta:{name:'',tkr:'',sector:'lainnya',unit:1,price:NaN,shares:NaN,rf:6.5,erp:5.5,beta:1,tg:3,tax:22,hd:0,pe:NaN,pb:NaN},file:null,w:{},res:null,orig:null};
+var TX={disc:T('Estimasi nilai wajar ini berdasarkan data dan asumsi yang digunakan. Hasilnya bukan harga pasti dan bukan rekomendasi investasi. Verifikasi data dan lakukan riset Anda sendiri.','This fair value estimate is based on the data and assumptions used. It is not a certain price and not investment advice. Verify the data and do your own research.')};
+function pn(t){var neg=/^\(.*\)$/.test(t)||/^-/.test(t),s=t.replace(/[()\-\s]/g,'');if(!/\d/.test(s))return NaN;var c=s.lastIndexOf(','),d=s.lastIndexOf('.');
+if(c>-1&&d>-1)s=c>d?s.replace(/\./g,'').replace(',','.'):s.replace(/,/g,'');
+else if(c>-1)s=(s.split(',').length>2||/^\d{1,3}(,\d{3})+$/.test(s))?s.replace(/,/g,''):s.replace(',','.');
+else if(d>-1)s=(s.split('.').length>2||/^\d{1,3}(\.\d{3})+$/.test(s))?s.replace(/\./g,''):s;
+var v=parseFloat(s);return isNaN(v)?NaN:(neg?-v:v)}
+function lineRec(text){var tk=text.match(/\(?-?\d[\d.,]*\)?/g)||[],nums=[];
+tk.forEach(function(t){var n=pn(t);if(isNaN(n))return;if(/^\d{1,2}$/.test(t))return;nums.push(n)});
+return{label:text.replace(/\s*\(?-?\d[\d.,]*\)?.*$/,'').trim(),nums:nums,text:text}}
+function rowRec(r){var lab='',nums=[];r.forEach(function(c){if(c==null||c==='')return;if(typeof c==='number'){nums.push(c);return}var s=String(c).trim();if(/^\(?-?[\d.,]+\)?$/.test(s)&&/\d/.test(s)){var n=pn(s);if(!isNaN(n))nums.push(n)}else if(!lab&&/[A-Za-z]/.test(s))lab=s});return{label:lab,nums:nums,text:lab}}
+function extract(recs,method){var rows={};
+DEF.forEach(function(d){var hit=null;for(var i=0;i<recs.length;i++){var r=recs[i];if(!r.nums.length||!r.label)continue;if(d[3].test(r.label)&&!(d[4]&&d[4].test(r.label))){hit=r;break}}
+var cur=hit?hit.nums[0]:NaN,prev=hit&&hit.nums.length>1?hit.nums[1]:NaN;
+rows[d[0]]={cur:cur,prev:prev,src:hit?hit.label:'',st:!hit?'red':(isFinite(prev)&&method!=='pdf'?'green':'yellow')}});return rows}
+function guess(txt){var u=1,m=txt.match(/(dalam|in)\s+(jutaan|ribuan|miliaran|triliunan|millions|thousands|billions|trillions)/i);
+if(m){var w=m[2].toLowerCase();u=/juta|million/.test(w)?1e6:/ribu|thousand/.test(w)?1e3:/miliar|billion/.test(w)?1e9:1e12}
+var nm=txt.match(/PT\.?\s+[A-Z][A-Za-z0-9&.\- ]{2,50}?\s+Tbk/),sc={bank:/(kredit yang diberikan|dana pihak ketiga|simpanan nasabah)/i,asuransi:/(pendapatan premi|klaim|cadangan teknis)/i,multifinance:/(piutang pembiayaan|pembiayaan konsumen)/i,sekuritas:/(perantara pedagang efek|komisi perantara)/i,properti:/(properti investasi|real estat|tanah untuk pengembangan)/i,energi:/(batubara|pertambangan|minyak|kelapa sawit|nikel)/i,teknologi:/(pengguna aktif|platform digital|software)/i},best='lainnya',hits=0;
+Object.keys(sc).forEach(function(k){var c=(txt.match(new RegExp(sc[k].source,'gi'))||[]).length;if(c>hits){hits=c;best=k}});
+return{unit:u,name:nm?nm[0]:'',sector:best,conf:hits?Math.min(95,55+hits*8):40,why:hits?T('kata kunci akun sektor ditemukan ('+hits+' kali)','sector keywords found ('+hits+' times)'):T('tidak ada kata kunci khusus sektor; dianggap perusahaan non-keuangan umum','no sector-specific keywords; treated as general non-financial')}}
+function lib(url){return new Promise(function(ok,no){var s=document.createElement('script');s.src=url;s.onload=ok;s.onerror=function(){no(new Error(T('Gagal memuat pustaka pembaca file. Periksa koneksi internet.','Could not load the file reader library. Check your connection.')))};document.head.appendChild(s)})}
+function readPdf(buf){var P='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+return(window.pdfjsLib?Promise.resolve():lib(P+'pdf.min.js')).then(function(){return fetch(P+'pdf.worker.min.js').then(function(r){return r.text()})}).then(function(w){
+pdfjsLib.GlobalWorkerOptions.workerSrc=URL.createObjectURL(new Blob([w],{type:'text/javascript'}));return pdfjsLib.getDocument({data:buf}).promise}).then(function(doc){
+var recs=[],all='',n=doc.numPages,p=Promise.resolve();
+for(var i=1;i<=n;i++)(function(i){p=p.then(function(){return doc.getPage(i)}).then(function(pg){return pg.getTextContent()}).then(function(tc){var ln={};tc.items.forEach(function(it){var y=Math.round(it.transform[5]/3);(ln[y]=ln[y]||[]).push([it.transform[4],it.str])});
+Object.keys(ln).sort(function(a,b){return b-a}).forEach(function(y){var t=ln[y].sort(function(a,b){return a[0]-b[0]}).map(function(x){return x[1]}).join(' ').replace(/\s+/g,' ').trim();if(t){all+=t+'\n';recs.push(lineRec(t))}})})})(i);
+return p.then(function(){return{recs:recs,text:all,pages:n}})})}
+function readSheet(buf,name){var isCsv=/\.csv$/i.test(name);
+if(isCsv){var tx=new TextDecoder('utf-8').decode(buf),ls=tx.split(/\r?\n/).filter(Boolean),d=[';','\t',','].sort(function(a,b){return(ls[0]||'').split(b).length-(ls[0]||'').split(a).length})[0];
+var recs=ls.map(function(l){return rowRec(l.split(d).map(function(c){return c.replace(/^"|"$/g,'')}))});return Promise.resolve({recs:recs,text:tx,pages:1})}
+return(window.XLSX?Promise.resolve():lib('https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js')).then(function(){var wb=XLSX.read(buf,{type:'array'}),recs=[],txt='',ok=0;
+wb.SheetNames.forEach(function(sn){var rr=XLSX.utils.sheet_to_json(wb.Sheets[sn],{header:1,defval:null,raw:true});if(rr.length)ok++;rr.forEach(function(r){var rc=rowRec(r);txt+=r.join(' ')+'\n';recs.push(rc)})});
+if(!ok)throw new Error(T('Excel tidak memiliki sheet yang valid.','The workbook has no valid sheet.'));return{recs:recs,text:txt,pages:wb.SheetNames.length}})}
+function onFile(f){var ext=(f.name.split('.').pop()||'').toLowerCase(),info=q('#au-fileinfo');
+function bad(m){info.innerHTML='<div class="au-msg err">'+esc(m)+'</div>'}
+if(['pdf','xlsx','xls','csv'].indexOf(ext)<0)return bad(T('Format tidak didukung. Gunakan PDF, XLSX, XLS, atau CSV.','Unsupported format. Use PDF, XLSX, XLS or CSV.'));
+if(!f.size)return bad(T('File kosong.','The file is empty.'));if(f.size>15*1048576)return bad(T('File terlalu besar (maksimal 15 MB).','File too large (max 15 MB).'));
+info.innerHTML='<div class="au-msg">'+esc(f.name)+' · '+ext.toUpperCase()+' · '+nf(f.size/1024)+' KB · '+T('memproses…','processing…')+'</div>';
+f.arrayBuffer().then(function(buf){return ext==='pdf'?readPdf(buf):readSheet(buf,f.name)}).then(function(r){
+if(ext==='pdf'&&r.text.replace(/\s/g,'').length<200)throw new Error(T('Dokumen ini tampaknya berupa hasil scan dan teks tidak dapat dibaca langsung. Silakan gunakan Excel/template CSV atau isi manual di bawah.','This document looks scanned and its text cannot be read directly. Please use Excel/the CSV template or enter values manually below.'));
+var g=guess(r.text),rows=extract(r.recs,ext==='pdf'?'pdf':'x');
+if(!DEF.some(function(d){return isFinite(rows[d[0]].cur)}))throw new Error(T('Tidak ada akun keuangan yang dapat dikenali. Gunakan template CSV standar atau isi manual.','No financial accounts could be recognized. Use the standard CSV template or enter manually.'));
+S.rows=rows;S.orig=JSON.parse(JSON.stringify(rows,function(k,v){return typeof v==='number'&&!isFinite(v)?null:v}));S.file={name:f.name,ext:ext,size:f.size,pages:r.pages};S.meta.unit=g.unit;S.meta.sector=g.sector;S.meta.name=S.meta.name||g.name;S.g=g;
+info.innerHTML='<div class="au-msg ok">'+esc(f.name)+' · '+ext.toUpperCase()+' · '+nf(f.size/1024)+' KB · '+r.pages+' '+(ext==='pdf'?T('halaman','pages'):'sheet')+' · '+T('terbaca','read')+' <button type="button" class="au-link" id="au-del">'+T('Hapus','Remove')+'</button></div>';
+q('#au-del').onclick=resetAll;form()}).catch(function(e){bad(e.message||String(e))})}
+var ST={green:'#3fb97a',yellow:'#e0b341',red:'#e5584f',user:'#4c8dff'};
+function form(){var m=S.meta,sel=function(v,opts){return opts.map(function(o){return'<option value="'+o[0]+'"'+(String(o[0])===String(v)?' selected':'')+'>'+esc(o[1])+'</option>'}).join('')};
+var inp=function(k,l,v,tip,st){return'<label class="au-f">'+l+(tip?' <abbr title="'+esc(tip)+'">?</abbr>':'')+'<input type="number" step="any" data-m="'+k+'" value="'+(isFinite(v)?v:'')+'"'+(st?' placeholder="'+st+'"':'')+'></label>'};
+var h='<div class="au-card"><h3>2. '+T('Identitas & sektor','Identity & sector')+'</h3><div class="au-grid">'+
+'<label class="au-f">'+T('Nama perusahaan','Company')+'<input type="text" data-m="name" value="'+esc(m.name)+'"></label>'+
+'<label class="au-f">'+T('Kode saham','Ticker')+'<input type="text" data-m="tkr" value="'+esc(m.tkr)+'"></label>'+
+'<label class="au-f">'+T('Sektor','Sector')+'<select data-m="sector">'+sel(m.sector,SEC)+'</select></label>'+
+'<label class="au-f">'+T('Satuan angka laporan','Statement unit')+'<select data-m="unit">'+sel(m.unit,UN)+'</select></label>'+
+inp('price',T('Harga pasar saat ini (Rp, opsional untuk upside/downside)','Current price (Rp, optional for upside/downside)'),m.price)+
+inp('shares',T('Jumlah saham beredar (lembar) *wajib','Shares outstanding *required'),m.shares)+'</div>'+
+'<p class="au-hint">'+T('Sektor terdeteksi: ','Detected sector: ')+esc((SEC.filter(function(s){return s[0]===S.g.sector})[0]||SEC[14])[1])+' ('+S.g.conf+'%) — '+esc(S.g.why)+'. '+T('Satuan terdeteksi dari teks laporan; ubah bila keliru.','Unit is detected from the statement text; change if wrong.')+'</p></div>'+
+'<div class="au-card"><h3>3. '+T('Data yang berhasil dibaca','Data read')+'</h3><p class="au-hint"><i style="background:'+ST.green+'"></i>'+T('terbaca & konsisten','read & consistent')+' <i style="background:'+ST.yellow+'"></i>'+T('perlu verifikasi','needs checking')+' <i style="background:'+ST.red+'"></i>'+T('tidak ditemukan','not found')+' <i style="background:'+ST.user+'"></i>'+T('diisi pengguna','user input')+'</p><div class="au-tw"><table class="au-t"><tr><th></th><th>'+T('Akun','Account')+'</th><th>'+T('Periode terkini','Latest period')+'</th><th>'+T('Periode sebelumnya','Prior period')+'</th><th>'+T('Sumber','Source')+'</th></tr>'+
+DEF.map(function(d){var r=S.rows[d[0]];return'<tr><td><i data-d="'+d[0]+'" style="background:'+ST[r.st]+'"></i></td><td>'+esc(T(d[1],d[2]))+'</td><td><input type="number" step="any" data-r="'+d[0]+'" data-p="cur" value="'+(isFinite(r.cur)?r.cur:'')+'"></td><td><input type="number" step="any" data-r="'+d[0]+'" data-p="prev" value="'+(isFinite(r.prev)?r.prev:'')+'"></td><td class="au-src">'+esc(r.src||'—')+'</td></tr>'}).join('')+'</table></div>'+
+'<button type="button" class="au-btn" id="au-restore">'+T('Kembalikan ke hasil ekstraksi awal','Restore original extraction')+'</button></div>'+
+'<div class="au-card"><h3>4. '+T('Asumsi & jalankan analisis','Assumptions & run')+'</h3><div class="au-grid">'+
+inp('rf',T('Risk-free rate (%) — asumsi default','Risk-free rate (%) — default'),m.rf)+inp('erp',T('Equity risk premium (%) — asumsi default','Equity risk premium (%) — default'),m.erp)+inp('beta','Beta — '+T('asumsi default','default'),m.beta,T('Sensitivitas saham terhadap pasar. Isi bila Anda punya datanya.','Sensitivity to the market.'))+inp('tg',T('Terminal growth (%)','Terminal growth (%)'),m.tg,T('Pertumbuhan jangka panjang; harus lebih kecil dari discount rate.','Long-run growth; must be below the discount rate.'))+inp('tax',T('Tarif pajak (%)','Tax rate (%)'),m.tax)+inp('hd',T('Holding/NAV discount (%)','Holding/NAV discount (%)'),m.hd)+inp('pe',T('P/E median peer (opsional)','Peer median P/E (optional)'),m.pe)+inp('pb',T('P/B median peer (opsional)','Peer median P/B (optional)'),m.pb)+'</div>'+
+'<p class="au-hint">'+T('Asumsi default bukan fakta; semuanya dapat Anda ubah. Multiple peer tidak diisi otomatis.','Defaults are not facts; all are editable. Peer multiples are never auto-filled.')+'</p><div id="au-val"></div><button type="button" class="au-btn pri" id="au-run">'+T('Jalankan analisis','Run analysis')+'</button> <button type="button" class="au-btn" id="au-save">'+T('Simpan','Save')+'</button> <button type="button" class="au-btn" id="au-reset">'+T('Hapus semua data analisis','Delete all analysis data')+'</button></div>';
+q('#au-s2').innerHTML=h;wire();validate()}
+function wire(){var s2=q('#au-s2');
+s2.oninput=function(e){var t=e.target,k=t.dataset.m;if(k){var v=t.tagName==='SELECT'||t.type==='text'?t.value:parseFloat(t.value);S.meta[k]=(k==='unit'||k==='price'||k==='shares'||t.type==='number')?(v===''?NaN:+v):v;
+if(k==='sector')S.meta.hd=(SEC.filter(function(x){return x[0]===v})[0]||[])[2]==='hold'?20:0}
+else if(t.dataset.r){var r=S.rows[t.dataset.r];r[t.dataset.p]=t.value===''?NaN:parseFloat(t.value);r.st='user';var d=s2.querySelector('[data-d="'+t.dataset.r+'"]');if(d)d.style.background=ST.user}
+validate()};
+s2.onchange=function(e){if(e.target.dataset.m==='sector')form()};
+q('#au-run').onclick=run;q('#au-reset').onclick=resetAll;
+q('#au-restore').onclick=function(){S.rows=JSON.parse(JSON.stringify(S.orig),function(k,v){return v===null?NaN:v});form()};
+q('#au-save').onclick=function(){try{localStorage.setItem('au_v1',JSON.stringify({m:S.meta,r:S.rows},function(k,v){return typeof v==='number'&&!isFinite(v)?null:v}));alert(T('Tersimpan di browser ini.','Saved in this browser.'))}catch(x){}}}
+function validate(){var m=S.meta,c=DEF.filter(function(d){return isFinite(S.rows[d[0]].cur)}).length,miss=[],warn=[];
+if(!(m.shares>0))miss.push(T('Masukkan jumlah saham beredar.','Enter shares outstanding.'));if(c<3)miss.push(T('Data terbaca terlalu sedikit (minimal 3 akun).','Too few accounts read (min. 3).'));
+if(!(m.price>0))warn.push(T('Harga pasar kosong: upside/downside tidak dihitung.','Price empty: upside/downside not computed.'));
+if(!isFinite(S.rows.rev.prev)&&!isFinite(S.rows.ni.prev))warn.push(T('Hanya satu periode: pertumbuhan memakai asumsi default dan keyakinan turun.','Only one period: growth uses a default and confidence drops.'));
+['cfo','capex','eq','ni'].forEach(function(k){if(!isFinite(S.rows[k].cur))warn.push(T('Akun belum ditemukan: ','Account not found: ')+T(DEF.filter(function(d){return d[0]===k})[0][1],DEF.filter(function(d){return d[0]===k})[0][2]))});
+var st=miss.length?T('Memerlukan input manual','Manual input needed'):warn.length?T('Siap dengan peringatan','Ready with warnings'):T('Siap dianalisis','Ready to analyze');
+q('#au-val').innerHTML='<div class="au-msg '+(miss.length?'err':warn.length?'':'ok')+'"><b>'+st+'</b>'+miss.concat(warn).map(function(x){return'<br>• '+esc(x)}).join('')+'</div>';q('#au-run').disabled=!!miss.length}
+function dcf(f0,g,r,tg){if(!isFinite(f0)||!(r>tg))return null;var pv=0,f=f0,t;for(t=1;t<=5;t++){f*=1+g+(tg-g)*(t-1)/4;pv+=f/Math.pow(1+r,t)}var tv=f*(1+tg)/(r-tg)/Math.pow(1+r,5);return{v:pv+tv,tvs:tv/(pv+tv)}}
+function calc(){var m=S.meta,u=m.unit,sec=SEC.filter(function(s){return s[0]===m.sector})[0]||SEC[14],ty=sec[2];
+function v(k,p){var r=S.rows[k],x=p?r.prev:r.cur;return isFinite(x)?x*u:NaN}
+var A=Math.abs,t=m.tax/100,sh=m.shares,px=m.price,rev=v('rev'),revp=v('rev',1),ni=v('ni'),nip=v('ni',1),cfo=v('cfo'),cap=A(v('capex')),it=A(v('int')),dv=A(v('div')),eq=v('eq'),db=v('debt'),cs=v('cash'),eb=v('ebit'),da=A(v('da')),cfop=v('cfo',1);
+var fin=ty==='fin'||ty==='hold';function gr(a,b){return(a>0&&b>0)?Math.max(-.05,Math.min(.12,a/b-1)):NaN}
+var g0=fin?gr(ni,nip):gr(rev,revp),gB=isFinite(g0)?g0:.04;if(ty==='com')gB=Math.min(gB,.02);
+var ke=m.rf/100+m.beta*m.erp/100,D=isFinite(db)?db:0,E=px>0?px*sh:eq,kd=(D>0&&it>0)?Math.min(.2,it/D):m.rf/100+.02,wacc=(E>0&&D>0)?E/(E+D)*ke+D/(E+D)*kd*(1-t):ke,tg=m.tg/100;
+var f0=NaN;if(isFinite(cfo)&&isFinite(cap))f0=cfo+(isFinite(it)?it*(1-t):0)-cap;else if(isFinite(eb))f0=eb*(1-t)+(isFinite(da)?da:0)-(isFinite(cap)?cap:0);
+var fe=(isFinite(cfo)&&isFinite(cap))?cfo-cap:NaN,C=isFinite(cs)?cs:0;
+var F={fcff:function(s){var x=dcf(f0,gB+s.g,Math.max(wacc+s.r,.01),tg+s.tg);return x&&{v:(x.v-D+C)/sh,tvs:x.tvs}},
+fcfe:function(s){var x=dcf(fe,gB+s.g,ke+s.r,tg+s.tg);return x&&{v:x.v/sh,tvs:x.tvs}},
+ddm:function(s){if(!(dv>0))return null;var x=dcf(dv,Math.min(gB,.08)+s.g,ke+s.r,tg+s.tg);return x&&{v:x.v/sh,tvs:x.tvs}},
+ri:function(s){var r=ke+s.r,roe=ni/eq;if(!(eq>0)||!isFinite(roe))return null;var po=ni>0?Math.max(0,Math.min(1,dv/ni)):0,bv=eq,pv=0,i,re,r0=roe*(1+s.s*.1);
+for(i=1;i<=5;i++){re=r0+(r-r0)*(i-1)/5;pv+=(re-r)*bv/Math.pow(1+r,i);bv*=1+re*(1-po)}return{v:(eq+pv)/sh,tvs:0}},
+nav:function(s){return eq>0?{v:eq*(1-(m.hd-s.s*5)/100)/sh,tvs:0}:null},
+pe:function(s){return(m.pe>0&&ni>0)?{v:ni/sh*m.pe*(1+s.s*.15),tvs:0}:null},
+pb:function(s){return(m.pb>0&&eq>0)?{v:eq/sh*m.pb*(1+s.s*.15),tvs:0}:null}};
+var NM={fcff:['FCFF DCF',T('arus kas bebas ke perusahaan didiskontokan dengan WACC','free cash flow to firm discounted at WACC')],fcfe:['FCFE',T('arus kas ke pemegang saham didiskontokan dengan cost of equity','free cash flow to equity at cost of equity')],ddm:['DDM',T('dividen didiskontokan; hanya bila perusahaan membayar dividen','discounted dividends; only if dividends are paid')],ri:['Residual Income',T('nilai buku + nilai kini laba di atas cost of equity (tanpa terminal value)','book value + PV of earnings above cost of equity (no terminal value)')],nav:[ty==='hold'?'NAV (holding discount)':'NAV (ekuitas buku)',T('nilai aset bersih per saham; proksi dari nilai buku, bukan appraisal','net asset value per share; book-value proxy, not an appraisal')],pe:['P/E peer',T('memakai multiple yang Anda isi','uses the multiple you entered')],pb:['P/B peer',T('memakai multiple yang Anda isi','uses the multiple you entered')]};
+var PL={fin:['ri','ddm','pb','pe'],nf:['fcff','fcfe','ddm','pe','pb'],com:['fcff','fcfe','pe'],prop:['nav','fcfe','pb'],reit:['nav','ddm','fcfe','pb'],hold:['nav','fcfe','pb'],tech:['fcff','fcfe','pb','pe']}[ty];
+var SC={c:{g:-.03,r:.015,tg:-.01,s:-1},b:{g:0,r:0,tg:0,s:0},o:{g:.03,r:-.01,tg:.005,s:1}},ms=[],ex=[];
+PL.forEach(function(id,i){var o={id:id,name:NM[id][0],why:NM[id][1],role:i===0?'main':(id==='pe'||id==='pb')?'rel':'sec',vals:{}};
+['c','b','o'].forEach(function(k){var x=F[id](SC[k]);o.vals[k]=x&&isFinite(x.v)?x.v:NaN;if(k==='b'&&x)o.tvs=x.tvs});
+if(isFinite(o.vals.b))ms.push(o);else ex.push(o)});
+var an=[],L={lo:T('Rendah','Low'),md:T('Sedang','Medium'),hi:T('Tinggi','High'),cr:T('Kritis','Critical')};
+function A1(l,x,fix){an.push({l:l,x:x,fix:fix||''})}
+if(!(tg<wacc)||!(tg<ke))A1(L.cr,T('Terminal growth ≥ discount rate; metode DCF tidak valid.','Terminal growth ≥ discount rate; DCF is invalid.'),T('Turunkan terminal growth atau cek beta/risk-free rate.','Lower terminal growth or check beta/risk-free rate.'));
+if(ni>0&&cfop>0&&cfo<cfop*.8&&ni>=(nip||0))A1(L.md,T('Laba tidak turun tetapi arus kas operasi turun lebih dari 20%.','Earnings held but operating cash flow fell over 20%.'),T('Periksa kualitas laba dan piutang/persediaan.','Check earnings quality, receivables and inventory.'));
+if(isFinite(f0)&&f0<0)A1(L.md,T('Arus kas bebas negatif; nilai DCF sangat sensitif dan perlu dibaca hati-hati.','Free cash flow is negative; DCF is very sensitive.'),'');
+if(ni<0)A1(L.hi,T('Perusahaan rugi: P/E tidak relevan dan proyeksi laba positif tidak boleh diasumsikan tanpa dasar.','Loss-making: P/E is not meaningful.'),T('Gunakan skenario dan asumsi tambahan.','Use scenarios and extra assumptions.'));
+if(dv>ni&&ni>0)A1(L.md,T('Dividen dibayar melebihi laba tahun ini.','Dividends exceed this year\'s earnings.'),'');
+if(!(px>0))A1(L.lo,T('Harga pasar kosong.','Price is empty.'),T('Isi harga untuk melihat upside/downside.','Enter the price for upside/downside.'));
+if(px>0&&eq>0){var bp=eq/sh/px;if(bp>50||bp<.02)A1(L.hi,T('Nilai buku per saham sangat berbeda dari harga; periksa satuan angka atau jumlah saham.','Book value per share is far from price; check unit or share count.'),T('Cek satuan laporan dan jumlah saham.','Check the unit and share count.'))}
+var main=ms.filter(function(x){return x.role==='main'})[0],tvs=main&&main.tvs;
+if(tvs>.75)A1(L.hi,T('Terminal value menyumbang '+pc(tvs)+' dari nilai; hasil perlu dibaca lebih hati-hati.','Terminal value is '+pc(tvs)+' of value; read with care.'),T('Periksa WACC dan terminal growth.','Check WACC and terminal growth.'));
+if(ty==='fin'&&!(dv>0))A1(L.md,T('Bank/lembaga keuangan tanpa data dividen: DDM tidak dipakai.','Financial company without dividend data: DDM not used.'),'');
+var tot=0,wt={};ms.forEach(function(x){var d=(x.role==='main'?50:(ms.length>1?50/(ms.length-(main?1:0)):100));if(!main)d=100/ms.length;wt[x.id]=S.w[x.id]!=null?S.w[x.id]:Math.round(d)});
+var ag={};['c','b','o'].forEach(function(k){var a=0,b=0;ms.forEach(function(x){var w=wt[x.id]||0;if(w>0&&x.vals[k]>0){a+=w*x.vals[k];b+=w}});ag[k]=b?a/b:NaN});
+var sc=100,why=[];function dd(n,r){sc-=n;why.push(r)}
+['rev','ni','cfo','capex','eq'].forEach(function(k){if(!isFinite(S.rows[k].cur))dd(8,T('akun '+k+' tidak ditemukan','account '+k+' missing'))});
+if(!isFinite(S.rows.rev.prev)&&!isFinite(S.rows.ni.prev))dd(20,T('hanya satu periode data','only one period'));
+if(!(px>0))dd(5,T('harga pasar kosong','no market price'));if(tvs>.75)dd(15,T('terminal value dominan','dominant terminal value'));
+var bs=ms.map(function(x){return x.vals.b}).filter(function(z){return z>0});if(bs.length>1&&Math.max.apply(0,bs)/Math.min.apply(0,bs)>2){dd(15,T('hasil antar-metode berbeda jauh','methods differ widely'));A1(L.hi,T('Perbedaan antar-metode cukup besar. Hasil sangat bergantung pada asumsi; periksa kembali data dan asumsi.','Methods differ widely; results depend heavily on assumptions.'),'')}
+if(S.file&&S.file.ext==='pdf')dd(5,T('data dari PDF perlu verifikasi','PDF data needs checking'));if(ni<0)dd(15,T('perusahaan rugi','loss-making'));if(ty==='fin'&&!(dv>0))dd(5,T('tidak ada data dividen','no dividend data'));if(!ms.length)sc=0;
+var cf=sc>=75?L.hi:sc>=55?L.md:sc>=35?L.lo:T('Tidak memadai','Insufficient');
+var sf=main&&{fcff:function(r,g){var x=dcf(f0,gB,r,g);return x?(x.v-D+C)/sh:NaN},fcfe:function(r,g){var x=dcf(fe,gB,r,g);return x?x.v/sh:NaN},ddm:function(r,g){var x=dcf(dv,Math.min(gB,.08),r,g);return x?x.v/sh:NaN}}[main.id];
+return{ms:ms,ex:ex,wt:wt,ag:ag,cf:cf,sc:sc,why:why,an:an,main:main,sf:sf,r0:main&&main.id==='fcff'?wacc:ke,ke:ke,wacc:wacc,tg:tg,gB:gB,g0:g0,sec:sec,ty:ty,px:px,tvs:tvs,D:D,eq:eq}}
+function run(){S.w={};S.res=calc();draw()}
+function draw(){var R=S.res=calc(),m=S.meta,px=R.px,rows='',h;
+R.ms.forEach(function(x){rows+='<tr><td><b>'+esc(x.name)+'</b><br><small>'+esc(x.why)+'</small></td><td>'+(x.role==='main'?T('Utama','Main'):x.role==='rel'?T('Pembanding','Cross-check'):T('Pendukung','Supporting'))+'</td><td>'+rp(x.vals.c)+'</td><td>'+rp(x.vals.b)+'</td><td>'+rp(x.vals.o)+'</td><td><input type="number" min="0" max="100" data-w="'+x.id+'" value="'+R.wt[x.id]+'"></td></tr>'});
+var lo=Math.min(R.ag.c,px||1e18),hi=Math.max(R.ag.o,px||0),sp=(hi-lo)||1,pos=function(z){return Math.max(0,Math.min(100,(z-lo)/sp*100))};
+var ud=px>0&&R.ag.b>0?R.ag.b/px-1:NaN,mos=px>0&&R.ag.b>0?(R.ag.b-px)/R.ag.b:NaN;
+h='<div class="au-card"><h3>5. '+T('Hasil estimasi nilai wajar','Fair value estimate')+' — '+esc(m.name||m.tkr||'')+'</h3>';
+if(!R.ms.length)h+='<div class="au-msg err">'+T('Belum dapat dianalisis: data yang tersedia tidak cukup untuk metode yang sesuai sektor ini. Lengkapi akun arus kas, ekuitas, atau dividen, atau isi multiple peer.','Cannot analyze yet: not enough data for the methods suited to this sector.')+'</div>';
+else{h+='<div class="au-cards"><div><small>'+T('Harga pasar','Market price')+'</small><b>'+rp(px)+'</b></div><div><small>'+T('Skenario konservatif','Conservative')+'</small><b>'+rp(R.ag.c)+'</b></div><div class="hl"><small>'+T('Skenario dasar','Base case')+'</small><b>'+rp(R.ag.b)+'</b></div><div><small>'+T('Skenario optimistis','Optimistic')+'</small><b>'+rp(R.ag.o)+'</b></div><div><small>'+T('Potensi upside/downside','Upside/downside')+'</small><b>'+pc(ud)+'</b></div><div><small>Margin of safety</small><b>'+pc(mos)+'</b></div><div><small>'+T('Tingkat keyakinan analisis','Analysis confidence')+'</small><b>'+R.cf+'</b></div></div>'+
+'<div class="au-bar"><span style="left:'+pos(R.ag.c)+'%;width:'+Math.max(1,pos(R.ag.o)-pos(R.ag.c))+'%"></span>'+(px>0?'<em style="left:'+pos(px)+'%" title="'+T('Harga pasar','Price')+'"></em>':'')+'</div><p class="au-hint">'+T('Rentang nilai wajar (batang emas) dan harga pasar (garis putih).','Fair value range (gold bar) and market price (white line).')+'</p>'+
+'<p>'+T('<b>Mengapa metode ini?</b> Untuk sektor '+esc(R.sec[1])+', sistem memakai <b>'+esc(R.main?R.main.name:'-')+'</b> sebagai metode utama dan metode lain sebagai pembanding/pendukung. Bobot dapat Anda ubah; bobot 0 menonaktifkan metode. Nilai tidak diambil sebagai rata-rata sederhana.','<b>Why this method?</b> For the '+esc(R.sec[1])+' sector the system uses <b>'+esc(R.main?R.main.name:'-')+'</b> as the main method and others as cross-checks. Weights are editable; 0 disables a method. No simple average is used.')+'</p>'+
+'<div class="au-tw"><table class="au-t"><tr><th>'+T('Metode','Method')+'</th><th>'+T('Peran','Role')+'</th><th>'+T('Konservatif','Conserv.')+'</th><th>'+T('Dasar','Base')+'</th><th>'+T('Optimistis','Optim.')+'</th><th>'+T('Bobot %','Weight %')+'</th></tr>'+rows+'</table></div>';
+if(R.ex.length)h+='<p class="au-hint">'+T('Tidak dapat dihitung / tidak dipakai: ','Not computed / not used: ')+R.ex.map(function(x){return esc(x.name)}).join(', ')+' ('+T('data atau syarat metode belum terpenuhi','data or method conditions not met')+').</p>';
+if(R.sf){var rs=[-.01,0,.01,.02],gs=[.015,.02,.025,.03,.035];h+='<h4>'+T('Sensitivitas: discount rate vs terminal growth','Sensitivity: discount rate vs terminal growth')+' ('+esc(R.main.name)+')</h4><div class="au-tw"><table class="au-t"><tr><th></th>'+gs.map(function(g){return'<th>'+pc(g)+'</th>'}).join('')+'</tr>'+rs.map(function(d){var r=R.r0+d;return'<tr><th>'+pc(r)+'</th>'+gs.map(function(g){return'<td>'+rp(R.sf(r,g))+'</td>'}).join('')+'</tr>'}).join('')+'</table></div>'}
+h+='<h4>'+T('Tingkat keyakinan: ','Confidence: ')+R.cf+'</h4><p class="au-hint">'+(R.why.length?R.why.map(esc).join('; '):T('Data lengkap dan konsisten.','Data complete and consistent.'))+'.</p>';
+h+='<h4>'+T('Peringatan & anomali','Warnings & anomalies')+'</h4>'+(R.an.length?'<ul class="au-ul">'+R.an.map(function(a){return'<li><b>['+a.l+']</b> '+esc(a.x)+(a.fix?' <i>'+esc(a.fix)+'</i>':'')+'</li>'}).join('')+'</ul>':'<p class="au-hint">'+T('Tidak ada anomali besar terdeteksi.','No major anomalies detected.')+'</p>');
+h+='<h4>'+T('Asumsi yang dipakai','Assumptions used')+'</h4><p class="au-hint">'+T('Pertumbuhan dasar ','Base growth ')+pc(R.gB)+' ('+(isFinite(R.g0)?T('dihitung dari data historis','computed from historical data'):T('asumsi default sistem','system default assumption'))+'); cost of equity '+pc(R.ke)+'; WACC '+pc(R.wacc)+'; terminal growth '+pc(R.tg)+'. '+T('Konservatif: pertumbuhan −3 poin, discount rate +1,5 poin, terminal growth −1 poin. Optimistis: +3 poin, −1 poin, +0,5 poin.','Conservative: growth −3 pts, discount rate +1.5 pts, terminal growth −1 pt. Optimistic: +3, −1, +0.5.')+'</p>'}
+h+='<p class="au-disc">'+TX.disc+'</p><div class="au-actions"><button type="button" class="au-btn" data-x="csv">CSV</button> <button type="button" class="au-btn" data-x="xlsx">XLSX</button> <button type="button" class="au-btn" data-x="print">'+T('Cetak / PDF','Print / PDF')+'</button> <button type="button" class="au-btn" data-x="copy">'+T('Salin ringkasan','Copy summary')+'</button></div></div>';
+q('#au-res').innerHTML=h;
+qa('[data-w]').forEach(function(i){i.oninput=function(){S.w[i.dataset.w]=Math.max(0,parseFloat(i.value)||0);var y=q('#au-res').scrollTop;draw()}});
+qa('[data-x]').forEach(function(b){b.onclick=function(){exp(b.dataset.x)}});
+q('#au-res').scrollIntoView({behavior:'smooth',block:'start'})}
+function summary(){var R=S.res,m=S.meta;return(m.name||m.tkr||'')+' — '+T('Estimasi nilai wajar (bukan rekomendasi investasi)','Fair value estimate (not investment advice)')+'\n'+T('Konservatif','Conservative')+' '+rp(R.ag.c)+' | '+T('Dasar','Base')+' '+rp(R.ag.b)+' | '+T('Optimistis','Optimistic')+' '+rp(R.ag.o)+'\n'+T('Metode utama','Main method')+': '+(R.main?R.main.name:'-')+' | '+T('Keyakinan','Confidence')+': '+R.cf+'\n'+TX.disc}
+function exp(k){var R=S.res,m=S.meta;if(k==='print')return window.print();
+if(k==='copy'){var t=summary();(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).catch(function(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()});return}
+var data=[['Sofyan Financial — The Investor Toolkit'],[summary().split('\n')[0]],[],['Akun','Periode terkini','Periode sebelumnya','Sumber']].concat(DEF.map(function(d){var r=S.rows[d[0]];return[d[1],isFinite(r.cur)?r.cur:'',isFinite(r.prev)?r.prev:'',r.src]})).concat([[],['Metode','Konservatif','Dasar','Optimistis','Bobot %']],R.ms.map(function(x){return[x.name,x.vals.c,x.vals.b,x.vals.o,R.wt[x.id]]}),[['Gabungan',R.ag.c,R.ag.b,R.ag.o],['Keyakinan',R.cf],['Disclaimer',TX.disc]]);
+if(k==='csv'){var c=data.map(function(r){return r.map(function(v){return'"'+String(v==null?'':v).replace(/"/g,'""')+'"'}).join(';')}).join('\r\n'),a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+c],{type:'text/csv'}));a.download='valuasi-'+(m.tkr||'saham')+'.csv';a.click();return}
+(window.XLSX?Promise.resolve():lib('https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js')).then(function(){var wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(data),'Valuasi');XLSX.writeFile(wb,'valuasi-'+(m.tkr||'saham')+'.xlsx')})}
+function resetAll(){S.rows={};S.file=null;S.res=null;S.w={};S.meta=JSON.parse(JSON.stringify({name:'',tkr:'',sector:'lainnya',unit:1,price:null,shares:null,rf:6.5,erp:5.5,beta:1,tg:3,tax:22,hd:0,pe:null,pb:null}),function(k,v){return v===null?NaN:v});try{localStorage.removeItem('au_v1')}catch(x){}shell()}
+function shell(){root.innerHTML='<div class="au-note">'+T('File diproses di browser Anda dan tidak dikirim ke server. Pustaka pembaca (SheetJS / PDF.js) dimuat dari CDN. Laporan tidak disimpan kecuali Anda menekan Simpan.','Files are processed in your browser and never sent to a server. Reader libraries (SheetJS / PDF.js) load from a CDN. Nothing is stored unless you press Save.')+'</div>'+
+'<div class="au-card"><h3>1. '+T('Upload laporan keuangan','Upload financial statements')+'</h3><p class="au-hint">'+T('Tidak perlu memasukkan semua angka secara manual. Sistem akan mencoba membaca data dari dokumen Anda, lalu Anda dapat memeriksa dan mengoreksinya.','No need to type every number. The system reads your document, then you can check and correct it.')+'</p>'+
+'<label class="au-drop" id="au-drop"><input type="file" id="au-file" accept=".pdf,.xlsx,.xls,.csv" hidden><b>'+T('Tarik file ke sini atau klik untuk memilih','Drop a file here or click to choose')+'</b><span>PDF · XLSX · XLS · CSV · '+T('maks.','max')+' 15 MB</span></label><div id="au-fileinfo"></div>'+
+'<div class="au-actions"><button type="button" class="au-btn" id="au-tpl">'+T('Unduh template CSV standar','Download standard CSV template')+'</button></div></div><div id="au-s2"></div><div id="au-res"></div>';
+var dr=q('#au-drop'),fi=q('#au-file');fi.onchange=function(){if(fi.files[0])onFile(fi.files[0])};
+['dragover','dragenter'].forEach(function(ev){dr.addEventListener(ev,function(e){e.preventDefault();dr.classList.add('on')})});['dragleave','drop'].forEach(function(ev){dr.addEventListener(ev,function(){dr.classList.remove('on')})});
+dr.addEventListener('drop',function(e){e.preventDefault();if(e.dataTransfer.files[0])onFile(e.dataTransfer.files[0])});
+q('#au-tpl').onclick=function(){var c='Akun;Periode terkini;Periode sebelumnya\r\n'+DEF.map(function(d){return d[1]+';;'}).join('\r\n')+'\r\nCatatan;Isi angka dalam satu satuan yang sama (mis. jutaan rupiah) dan pilih satuannya di langkah 2.;',a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+c],{type:'text/csv'}));a.download='template-laporan-keuangan.csv';a.click()}}
+shell();
+})();
+</script>
+<script>
+(function(){var p=document.getElementById('panel-ksei');if(!p)return;var h=0;
+function set(){h=0;p.querySelectorAll('.tw').forEach(function(w){if(w.clientWidth)w.style.setProperty('--tww',w.clientWidth+'px')})}
+function sch(){if(!h)h=requestAnimationFrame(set)}
+new MutationObserver(sch).observe(p,{childList:true,subtree:true,attributes:true,attributeFilter:['class','hidden']});
+window.addEventListener('resize',sch);sch()})();
 </script>
 </body>
 </html>

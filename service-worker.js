@@ -1,4 +1,4 @@
-const CACHE_NAME = "valuasi-saham-v5";
+const CACHE_NAME = "valuasi-saham-v6";
 const ASSETS = [
   "./",
   "./index.html",
@@ -28,6 +28,11 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
+  /* Repository KSEI: selalu ambil dari jaringan agar file baru langsung muncul (cache hanya cadangan offline) */
+  if (event.request.url.indexOf("/ksei-repo/") !== -1) {
+    event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
+    return;
+  }
   event.respondWith(
     caches.match(event.request).then((cached) => {
       const network = fetch(event.request)
