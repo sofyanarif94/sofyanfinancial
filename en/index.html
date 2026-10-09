@@ -1387,6 +1387,13 @@ body{
   #panel-ksei tr.xr>td>*{position:sticky;left:12px;width:calc(var(--tww,100cqw) - 24px);box-sizing:border-box}
 }
 
+
+/* ---- Tombol tutup semua pemegang ---- */
+#ks-xclose{position:fixed;right:16px;bottom:18px;z-index:60;font:600 13px 'Poppins',sans-serif;padding:11px 16px;border-radius:999px;border:0;cursor:pointer;color:#10192b;background:linear-gradient(135deg,#f1d98f,#c9a24b);box-shadow:0 8px 22px -6px rgba(0,0,0,.6)}
+#ks-xclose:hover{filter:brightness(1.07)}
+#ks-xclose[hidden]{display:none}
+@media print{#ks-xclose{display:none}}
+
 /* ---------- Scrollbar ---------- */
 *{ scrollbar-width:thin; scrollbar-color:color-mix(in srgb,var(--gold) 45%,transparent) transparent; }
 
@@ -3647,17 +3654,19 @@ id:{
  cAcc:'Paling banyak ditambah (poin)',cDis:'Paling banyak dikurangi (poin)',cNew:'Investor masuk terbesar',cExit:'Investor keluar terbesar',none:'Tidak ada data.',
  segT:'Kelompok investor',segUp:'Saham ditambah',segDn:'Saham dikurangi',segNew:'Investor masuk',segEx:'Investor keluar',
  segNote:'Angka berupa jumlah saham atau investor, bukan rupiah. Dihitung dari investor yang lolos filter.',
- ak:'Akuisisi',sa:'Akumulasi kuat',a:'Akumulasi',n:'Netral',d:'Distribusi',sd:'Distribusi besar',rot:'Berpindah tangan',
+ ak:'Akuisisi',ipo:'IPO baru',sa:'Akumulasi kuat',a:'Akumulasi',n:'Netral',d:'Distribusi',sd:'Distribusi besar',rot:'Berpindah tangan',
  r_ak:'Pemegang terbesar berganti, dan investor barunya menambah porsi minimal 40 poin (dari porsi sebelumnya atau masuk baru). Artinya kendali saham berpindah ke investor lain, bisa beda PT atau perseorangan. Sinyal ini didahulukan di atas sinyal lain. Bila penjual dan pembelinya terkait satu grup (nama serupa), dianggap Berpindah tangan, bukan Akuisisi.',
  i_ak:(n,c)=>`${fmt(n)} saham berstatus akuisisi (pemegang terbesar berganti, perubahan porsi 40 poin atau lebih). Terbesar: ${c}.`,
  v_ak:a=>`Akuisisi: ${a.buyer.inv} kini menjadi pemegang terbesar dengan ${fp(a.buyer.pb)}% (sebelumnya ${a.buyer.pa>0?fp(a.buyer.pa)+'%':'belum masuk daftar di atas 1%'}), naik ${pp(a.gain)}. Pemegang terbesar sebelumnya adalah ${a.seller.inv} (${fp(a.seller.pa)}%, kini ${a.seller.pb>0?fp(a.seller.pb)+'%':'di bawah 1% atau keluar'}).`,
  kAk:'Saham akuisisi',
+ r_ipo:'Semua pemegang di atas 1% berstatus masuk (belum ada pemegang di atas 1% pada periode awal). Ini ciri saham yang baru IPO atau baru tercatat, jadi tidak dihitung sebagai Akumulasi atau Distribusi.',
+ v_ipo:()=>`Semua pemegang di atas 1% baru muncul pada periode terbaru, sehingga saham ini kemungkinan baru IPO atau baru tercatat. Tidak dikategorikan sebagai akumulasi atau distribusi.`,
  repoT:'Repository file KSEI (siap pakai)',repoSub:'Klik dua file untuk dibandingkan, tanpa perlu upload.',repoCmp:(a,b)=>`Bandingkan ${a} → ${b}`,repoLoading:'Memuat file…',repoErr:'Repository tidak dapat dimuat. Anda tetap bisa upload file sendiri.',orUp:'atau upload file Anda sendiri',
  sNew:'Masuk',sAcc:'Menambah',sDis:'Mengurangi',sUn:'Tetap',sExit:'Keluar',
  cCode:'Kode',cIss:'Emiten',cSig:'Sinyal',cNet:'Selisih (poin)',cUp:'Investor menambah',cDn:'Investor mengurangi',cFrg:'Asing (poin)',cIns:'Institusi (poin)',
  cInv:'Investor',cType:'Tipe',cLF:'L/A',cSt:'Status',cDp:'Selisih (poin)',cDs:'Selisih lembar',cSz:'Porsi (%)',cSh:'Lembar',cCalc:'Dihitung (poin)',cHow:'Cara hitung',
  cAct:'Saham berubah',cAddN:'Saham ditambah',cCutN:'Saham dikurangi',cEnt:'Masuk',cExt:'Keluar',cBias:'Kecenderungan',
- sigF:'Tampilkan',sigAll:'Semua',sigAcc:'Akumulasi',sigSA:'Akumulasi kuat',sigDis:'Distribusi',sigSD:'Distribusi besar',sigAk:'Akuisisi',sigRot:'Berpindah tangan',
+ sigF:'Tampilkan',sigAll:'Semua',sigAcc:'Akumulasi',sigSA:'Akumulasi kuat',sigDis:'Distribusi',sigSD:'Distribusi besar',sigAk:'Akuisisi',sigIpo:'IPO baru',sigRot:'Berpindah tangan',
  wl:'Kode saham pilihan (pisahkan koma)',wlPh:'mis. BBCA, ANJT, FORT',mn:'Minimal investor yang berubah',
  sigLegend:'Akuisisi = pemegang terbesar berganti dan investor barunya menambah 40 poin atau lebih. Akumulasi = investor besar menambah kepemilikan. Distribusi = investor besar mengurangi. Berpindah tangan = ada yang menambah dan ada yang mengurangi dengan jumlah yang saling mengimbangi. Stok yang perubahannya kecil (netral) tidak ditampilkan.',
  filterNote:'Filter sedang aktif: hitungan hanya memakai investor yang lolos filter.',
@@ -3753,17 +3762,19 @@ en:{
  cAcc:'Most added (points)',cDis:'Most reduced (points)',cNew:'Largest investors entering',cExit:'Largest investors leaving',none:'No data.',
  segT:'Investor group',segUp:'Stocks added',segDn:'Stocks reduced',segNew:'Investors entering',segEx:'Investors leaving',
  segNote:'Numbers are counts of stocks or investors, not currency. Based on investors that pass the filters.',
- ak:'Acquisition',sa:'Strong accumulation',a:'Accumulation',n:'Neutral',d:'Distribution',sd:'Large distribution',rot:'Changing hands',
+ ak:'Acquisition',ipo:'New listing (IPO)',sa:'Strong accumulation',a:'Accumulation',n:'Neutral',d:'Distribution',sd:'Large distribution',rot:'Changing hands',
  r_ak:'The largest holder changed, and the new holder added at least 40 points (from its previous stake, or as a new entry). Control of the stock moved to another investor, whether a different company or an individual. This signal takes priority over the others. If the seller and buyer look related to one group (similar names), it counts as Changing hands, not Acquisition.',
  i_ak:(n,c)=>`${fmt(n)} stock(s) show an acquisition (largest holder changed, stake shift of 40 points or more). Biggest: ${c}.`,
  v_ak:a=>`Acquisition: ${a.buyer.inv} is now the largest holder with ${fp(a.buyer.pb)}% (before: ${a.buyer.pa>0?fp(a.buyer.pa)+'%':'not in the above-1% list'}), up ${pp(a.gain)}. The previous largest holder was ${a.seller.inv} (${fp(a.seller.pa)}%, now ${a.seller.pb>0?fp(a.seller.pb)+'%':'below 1% or gone'}).`,
  kAk:'Acquisition stocks',
+ r_ipo:'Every holder above 1% is a new entry (no holder above 1% existed in the starting period). This is typical of a recent IPO or new listing, so it is not counted as Accumulation or Distribution.',
+ v_ipo:()=>`Every holder above 1% first appears in the latest period, so this stock is likely a recent IPO or new listing. It is not classified as accumulation or distribution.`,
  repoT:'KSEI file repository (ready to use)',repoSub:'Click two files to compare them, no upload needed.',repoCmp:(a,b)=>`Compare ${a} → ${b}`,repoLoading:'Loading file…',repoErr:'Repository could not be loaded. You can still upload your own files.',orUp:'or upload your own files',
  sNew:'Entered',sAcc:'Adding',sDis:'Reducing',sUn:'Unchanged',sExit:'Left',
  cCode:'Code',cIss:'Issuer',cSig:'Signal',cNet:'Difference (pts)',cUp:'Holders adding',cDn:'Holders reducing',cFrg:'Foreign (pts)',cIns:'Institution (pts)',
  cInv:'Investor',cType:'Type',cLF:'L/F',cSt:'Status',cDp:'Difference (pts)',cDs:'Share difference',cSz:'Stake (%)',cSh:'Shares',cCalc:'Counted (pts)',cHow:'How it is calculated',
  cAct:'Stocks changed',cAddN:'Stocks added',cCutN:'Stocks reduced',cEnt:'Entered',cExt:'Left',cBias:'Tendency',
- sigF:'Show',sigAll:'All',sigAcc:'Accumulation',sigSA:'Strong accumulation',sigDis:'Distribution',sigSD:'Large distribution',sigAk:'Acquisition',sigRot:'Changing hands',
+ sigF:'Show',sigAll:'All',sigAcc:'Accumulation',sigSA:'Strong accumulation',sigDis:'Distribution',sigSD:'Large distribution',sigAk:'Acquisition',sigIpo:'New listing (IPO)',sigRot:'Changing hands',
  wl:'Tickers of interest (comma-separated)',wlPh:'e.g. BBCA, ANJT, FORT',mn:'Minimum holders that changed',
  sigLegend:'Acquisition = the largest holder changed and the new holder added 40 points or more. Accumulation = large holders are adding. Distribution = large holders are reducing. Changing hands = some add and some reduce by amounts that offset each other. Stocks with only small changes (neutral) are not shown.',
  filterNote:'Filters are active: calculations only use investors that pass the filters.',
@@ -3821,7 +3832,7 @@ const cls=v=>Math.round(v*100)>0?'pos':Math.round(v*100)<0?'neg':'';
 const THR=1, CA_TOL=0.02, ACQ=40;  /* Akuisisi: pemegang terbesar berganti dan investor baru naik >= 40 poin */
 const S={A:null,B:null,P1:null,P2:null,rows:[],f:[],agg:[],info:new Map(),ca:new Map(),spread:new Map(),stats:{},hist:[],open:{},lists:{},sec:'sum',ui:{},dl:{},demo:false,la:'',lb:''};
 const SECS=['sum','sig','stk','inv','nw'];
-const SIGCOL={ak:'var(--gold)',sa:'var(--up)',a:'var(--up)',n:'var(--flat)',d:'var(--down)',sd:'var(--exit)',rot:'var(--rot)'};
+const SIGCOL={ipo:'var(--new)',ak:'var(--gold)',sa:'var(--up)',a:'var(--up)',n:'var(--flat)',d:'var(--down)',sd:'var(--exit)',rot:'var(--rot)'};
 const STCOL={New:'var(--new)',Accumulation:'var(--up)',Distribution:'var(--down)',Unchanged:'var(--flat)',Exit:'var(--exit)'};
 const STL=()=>({New:t('sNew'),Accumulation:t('sAcc'),Distribution:t('sDis'),Unchanged:t('sUn'),Exit:t('sExit')});
 const sigTag=k=>`<span class="tag ${k==='sa'||k==='sd'||k==='ak'?'strong':''}" style="--c:${SIGCOL[k]}">${esc(t(k))}</span>`;
@@ -4012,8 +4023,9 @@ function agg(rows){const m=new Map();
   if(!s.lead||Math.abs(d)>Math.abs(s.lead.dpc))s.lead=r}
  const out=[...m.values()];
  for(const s of out){s.nUp=s.nAcc+s.nNew;s.nDn=s.nDis+s.nEx;s.gross=s.up+s.dn;s.sig=signal(s);s.ak=null;s.xfer=[];let rel40=false;
-  {const a=topA.get(s.t),b=topB.get(s.t);if(a&&b&&a.inv!==b.inv&&!sameEntity(a.inv,b.inv)){const g=b.pb-b.pa;if(g>=ACQ-1e-9){if(related(a.inv,b.inv))rel40=true;else{s.sig='ak';s.ak={buyer:b,seller:a,gain:g}}}}}
-  if(s.sig!=='ak'){const pr=xpairs(byT.get(s.t)||[]),xp=pr.reduce((z,p)=>z+p.pts,0);s.xfer=pr;
+  const inf=S.info&&S.info.get(s.t),ipo=!!(inf&&inf.nA===0&&inf.nB>0);
+  {const a=topA.get(s.t),b=topB.get(s.t);if(!ipo&&a&&b&&a.inv!==b.inv&&!sameEntity(a.inv,b.inv)){const g=b.pb-b.pa;if(g>=ACQ-1e-9){if(related(a.inv,b.inv))rel40=true;else{s.sig='ak';s.ak={buyer:b,seller:a,gain:g}}}}}
+  if(ipo)s.sig='ipo';else if(s.sig!=='ak'){const pr=xpairs(byT.get(s.t)||[]),xp=pr.reduce((z,p)=>z+p.pts,0);s.xfer=pr;
    if(xp>0){const b2=signal({up:Math.max(0,s.up-xp),dn:Math.max(0,s.dn-xp)});s.sig=(2*xp>=.6*s.gross||b2==='n')?'rot':b2}
    else if(rel40)s.sig='rot'}
   s.act=s.selfNet>.0049?'bb':s.selfNet<-.0049?'sl':null}
@@ -4092,7 +4104,7 @@ const selfMark=r=>r.self?` <span class="muted small">${t('selfMark')}</span>`:''
 const rowTag=r=>r.self&&r.st!=='Unchanged'?actTag(r.dp>0||r.st==='New'?'bb':'sl'):stTag(r.st);
 function rulesHtml(){
  const rule=(tag,text)=>`<div class="rl"><div class="rt">${tag}</div><div class="rx">${text}</div></div>`;
- return `<div class="small muted" style="margin-bottom:6px">${t('r_def')}</div>`+rule(sigTag('ak'),t('r_ak'))+rule(sigTag('sa'),t('r_sa'))+rule(sigTag('a'),t('r_a'))+rule(sigTag('sd'),t('r_sd'))+rule(sigTag('d'),t('r_d'))+rule(sigTag('rot'),t('r_rot'))+rule(actTag('bb'),t('r_bb'))+rule(actTag('sl'),t('r_sl'))+`<div class="small muted" style="margin-top:6px">${t('r_n')}</div><div class="small muted" style="margin-top:4px">${t('r_ex')}</div>`}
+ return `<div class="small muted" style="margin-bottom:6px">${t('r_def')}</div>`+rule(sigTag('ipo'),t('r_ipo'))+rule(sigTag('ak'),t('r_ak'))+rule(sigTag('sa'),t('r_sa'))+rule(sigTag('a'),t('r_a'))+rule(sigTag('sd'),t('r_sd'))+rule(sigTag('d'),t('r_d'))+rule(sigTag('rot'),t('r_rot'))+rule(actTag('bb'),t('r_bb'))+rule(actTag('sl'),t('r_sl'))+`<div class="small muted" style="margin-top:6px">${t('r_n')}</div><div class="small muted" style="margin-top:4px">${t('r_ex')}</div>`}
 /* Rincian di tempat (tanpa pindah halaman) */
 function holdersInline(tk,cap=10){
  const rows=S.rows.filter(r=>r.t===tk).sort((a,b)=>Math.max(b.pa,b.pb)-Math.max(a.pa,a.pb)),info=S.info.get(tk)||{totA:0,totB:0};
@@ -4148,10 +4160,10 @@ function vSum(v){
 }
 
 /* ============================== bagian: signal saham ============================== */
-const SF={ak:['ak'],acc:['a'],sa:['sa'],dis:['d'],sd:['sd'],rot:['rot']};
+const SF={ipo:['ipo'],ak:['ak'],acc:['a'],sa:['sa'],dis:['d'],sd:['sd'],rot:['rot']};
 function loadWL(){try{return localStorage.getItem('vf-ksei-watch')||''}catch(e){return ''}}
 function saveWL(x){try{localStorage.setItem('vf-ksei-watch',x)}catch(e){}}
-const sigRank=s=>s.sig!=='n'?({ak:6,sa:5,a:4,rot:3,d:1,sd:0})[s.sig]:(s.act==='bb'?2.6:2.4);
+const sigRank=s=>s.sig!=='n'?({ipo:2,ak:6,sa:5,a:4,rot:3,d:1,sd:0})[s.sig]:(s.act==='bb'?2.6:2.4);
 function vSig(v){const u=S.ui;u.sf=u.sf||'';u.mn=+u.mn||1;if(u.wl==null)u.wl=loadWL();
  const lst=u.list&&S.lists[u.list]?S.lists[u.list]:null;
  const base=S.agg.filter(s=>s.sig!=='n'||s.act);   /* Netral tidak ditampilkan */
@@ -4163,7 +4175,7 @@ function vSig(v){const u=S.ui;u.sf=u.sf||'';u.mn=+u.mn||1;if(u.wl==null)u.wl=loa
   const okSig=s=>u.sf==='bb'?s.act==='bb':u.sf==='sl'?s.act==='sl':(!u.sf||SF[u.sf].includes(s.sig));
   rows=base.filter(s=>okSig(s)&&((s.sig==='n'&&s.act)||(s.nUp+s.nDn)>=u.mn)&&(!terms.length||terms.some(x=>s.t===x||s.t.startsWith(x))));
   const so=(k,l)=>`<option value="${k}" ${u.sf===k?'selected':''}>${l}</option>`;
-  ctl+=`<div class="bar"><label class="f">${t('sigF')}<select id="ks-sf">${so('',t('sigAll'))}${so('ak',t('sigAk'))}${so('acc',t('sigAcc'))}${so('sa',t('sigSA'))}${so('dis',t('sigDis'))}${so('sd',t('sigSD'))}${so('rot',t('sigRot'))}${so('bb',t('bb'))}${so('sl',t('sl'))}</select></label>
+  ctl+=`<div class="bar"><label class="f">${t('sigF')}<select id="ks-sf">${so('',t('sigAll'))}${so('ak',t('sigAk'))}${so('ipo',t('sigIpo'))}${so('acc',t('sigAcc'))}${so('sa',t('sigSA'))}${so('dis',t('sigDis'))}${so('sd',t('sigSD'))}${so('rot',t('sigRot'))}${so('bb',t('bb'))}${so('sl',t('sl'))}</select></label>
   <label class="f">${t('wl')}<input type="text" id="ks-wl" value="${esc(u.wl)}" placeholder="${t('wlPh')}" autocomplete="off" style="min-width:min(260px,100%)"></label>
   <label class="f">${t('mn')}<select id="ks-mn">${[1,2,3].map(n=>`<option ${u.mn===n?'selected':''}>${n}</option>`).join('')}</select></label></div>
   <div class="muted small" style="margin-bottom:6px">${t('sigLegend')}</div>`+sec('sig:rules',t('rulesT'),'view',null,rulesHtml(),false)}
@@ -4205,7 +4217,7 @@ function vStk(v){const u=S.ui;u.stk=(u.stk||'').toUpperCase();const tk=u.stk.tri
  const s=agg(rows)[0]||{t:tk,net:0,up:0,dn:0,gross:0,nUp:0,nDn:0,nNew:0,nEx:0,seg:{},lead:null,sig:'n',movers:[],selfNet:0,act:null,selfRow:null};
  const ca=S.ca.get(tk);
  const msgs=[];
- if(s.lead){msgs.push(s.sig==='ak'?t('v_ak',s.ak):s.sig==='sa'||s.sig==='a'?t('v_acc',s):s.sig==='sd'||s.sig==='d'?t('v_dis',s):s.sig==='rot'?t('v_rot',s):t('v_neu',s));
+ if(s.lead){msgs.push(s.sig==='ipo'?t('v_ipo'):s.sig==='ak'?t('v_ak',s.ak):s.sig==='sa'||s.sig==='a'?t('v_acc',s):s.sig==='sd'||s.sig==='d'?t('v_dis',s):s.sig==='rot'?t('v_rot',s):t('v_neu',s));
   msgs.push(t('v_lead',s.lead));
   const sk=Object.keys(s.seg).sort((a,b)=>Math.abs(s.seg[b])-Math.abs(s.seg[a]))[0];
   if(sk&&Math.abs(s.seg[sk])>=.25&&Object.keys(s.seg).length>1)msgs.push(t('v_seg',segL(sk),s.seg[sk]))}
@@ -4314,6 +4326,11 @@ function toggleX(key,btn){
  const open=row.hidden;
  if(open){const cell=row.firstElementChild;if(!cell.innerHTML.trim()&&S.xfn[key])cell.innerHTML=S.xfn[key]();row.hidden=false}else row.hidden=true;
  S.exp[key]=open;btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open?'true':'false');queueSave()}
+const xb=document.createElement('button');xb.type='button';xb.id='ks-xclose';xb.hidden=true;document.body.appendChild(xb);
+function updX(){const n=root.querySelectorAll('tr.xr:not([hidden])').length;xb.hidden=!(n&&root.offsetParent);xb.textContent=(ID?'Tutup semua pemegang':'Collapse all holders')+' ('+n+')'}
+function collapseAll(){root.querySelectorAll('tr.xr:not([hidden])').forEach(r=>{r.hidden=true});root.querySelectorAll('.xbtn.open').forEach(b=>{b.classList.remove('open');b.setAttribute('aria-expanded','false')});S.exp={};queueSave();updX()}
+xb.addEventListener('click',collapseAll);
+let xt=0;new MutationObserver(()=>{if(!xt)xt=requestAnimationFrame(()=>{xt=0;updX()})}).observe(root,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden','class']});
 const navTo=()=>$('#ks-nav').scrollIntoView({behavior:'smooth',block:'start'});
 root.addEventListener('click',e=>{
  const b=e.target.closest('[data-sec],[data-go],[data-th],[data-more],[data-sub],[data-dl],[data-dir],[data-demo],[data-repo],[data-repocmp],[data-reset],[data-back],[data-list],[data-nw],[data-clearlist],[data-x],[data-forget]');
