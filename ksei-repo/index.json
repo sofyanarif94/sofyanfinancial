@@ -1,6 +1,84 @@
 {
-  "files": [
-    {"id": "2026-08", "date": "2026-08-31", "file": "/ksei-repo/ksei-2026-08-31.xlsx", "label": {"id": "Agustus 2026", "en": "August 2026"}, "rows": 7158},
-    {"id": "2026-09", "date": "2026-09-30", "file": "/ksei-repo/ksei-2026-09-30.xlsx", "label": {"id": "September 2026", "en": "September 2026"}, "rows": 7154}
-  ]
+ "files": [
+  {
+   "id": "2026-02",
+   "date": "2026-02-27",
+   "file": "/ksei-repo/ksei-2026-02-28.xlsx",
+   "label": {
+    "id": "Februari 2026",
+    "en": "February 2026"
+   },
+   "rows": 7257
+  },
+  {
+   "id": "2026-03",
+   "date": "2026-03-31",
+   "file": "/ksei-repo/ksei-2026-03-30.xlsx",
+   "label": {
+    "id": "Maret 2026",
+    "en": "March 2026"
+   },
+   "rows": 7213
+  },
+  {
+   "id": "2026-04",
+   "date": "2026-04-30",
+   "file": "/ksei-repo/ksei-2026-04-31.xlsx",
+   "label": {
+    "id": "April 2026",
+    "en": "April 2026"
+   },
+   "rows": 7172
+  },
+  {
+   "id": "2026-05",
+   "date": "2026-05-29",
+   "file": "/ksei-repo/ksei-2026-05-30.xlsx",
+   "label": {
+    "id": "Mei 2026",
+    "en": "May 2026"
+   },
+   "rows": 7161
+  },
+  {
+   "id": "2026-06",
+   "date": "2026-06-30",
+   "file": "/ksei-repo/ksei-2026-06-30.xlsx",
+   "label": {
+    "id": "Juni 2026",
+    "en": "June 2026"
+   },
+   "rows": 7197
+  },
+  {
+   "id": "2026-07",
+   "date": "2026-07-31",
+   "file": "/ksei-repo/ksei-2026-07-31.xlsx",
+   "label": {
+    "id": "Juli 2026",
+    "en": "July 2026"
+   },
+   "rows": 7193
+  },
+  {
+   "id": "2026-08",
+   "date": "2026-08-31",
+   "file": "/ksei-repo/ksei-2026-08-31.xlsx",
+   "label": {
+    "id": "Agustus 2026",
+    "en": "August 2026"
+   },
+   "rows": 7158
+  },
+  {
+   "id": "2026-09",
+   "date": "2026-09-30",
+   "file": "/ksei-repo/ksei-2026-09-30.xlsx",
+   "label": {
+    "id": "September 2026",
+    "en": "September 2026"
+   },
+   "rows": 7154
+  }
+ ]
 }
