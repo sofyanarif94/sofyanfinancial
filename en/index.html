@@ -100,7 +100,7 @@
     "Dividend Discount Model (DDM) Calculator",
     "Warren Buffett-style Equity Bond Valuation Calculator",
     "Stock Average Price Calculator",
-    "Target Price Calculator",
+    "Averaging Down Target Price Calculator",
     "Retirement Fund and Financial Freedom Calculator",
     "Investor Risk Profile and Portfolio Questionnaire",
     "Investing Glossary"
@@ -1457,7 +1457,7 @@ body{
   </button>
   <button class="vf-tab" data-tab="target">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle><line x1="19" y1="5" x2="15.5" y2="8.5"></line><line x1="19" y1="5" x2="19" y2="9"></line><line x1="19" y1="5" x2="15" y2="5"></line></svg>
-    Target Price Calculator
+    Averaging Down Target Price Calculator
   </button>
   <button class="vf-tab" data-tab="riskprofile">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5A8 8 0 1 1 19.5 16.5"></path><line x1="12" y1="13" x2="15.2" y2="8.8"></line><circle cx="12" cy="13" r="1.3" fill="currentColor" stroke="none"></circle></svg>
@@ -1981,7 +1981,7 @@ body{
   <section class="vf-panel" id="panel-target">
     <div class="vf-section-title">
       <span class="vf-eyebrow">Buy Planning</span>
-      <h2>Target Stock Price Calculator</h2>
+      <h2>Averaging Down Target Price Calculator</h2>
       <p>Want your average stock price to land on a specific number? This target price calculator computes how many shares and how much extra capital you need to reach your desired average price.</p>
     </div>
 
@@ -2690,7 +2690,7 @@ function setVal(id, v){
   var el = document.getElementById(id);
   if(el) el.value = v;
 }
-var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Average Stock Price Calculator', target:'Target Stock Price Calculator', riskprofile:'Investor Risk Profile'};
+var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Average Stock Price Calculator', target:'Averaging Down Target Price Calculator', riskprofile:'Investor Risk Profile'};
 function buildShareText(key){
   var lines = ['📊 ' + SHARE_TITLES[key] + ' Result — The Investor Toolkit (Sofyan Financial)'];
   if(key === 'dcf'){
@@ -3515,7 +3515,7 @@ document.addEventListener('DOMContentLoaded', function(){
   applyThemeButtons();
 
   // PDF export (uses browser's native print-to-PDF, no extra library needed)
-  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Average Stock Price Calculator', target:'Target Stock Price Calculator', riskprofile:'Investor Risk Profile'};
+  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Average Stock Price Calculator', target:'Averaging Down Target Price Calculator', riskprofile:'Investor Risk Profile'};
   function printCalculator(key){
     var meta = document.getElementById('print-meta');
     var now = new Date();

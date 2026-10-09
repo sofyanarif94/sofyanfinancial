@@ -100,7 +100,7 @@
     "Kalkulator Dividend Discount Model (DDM)",
     "Kalkulator Equity Bond Valuation ala Warren Buffett",
     "Kalkulator Average (rata-rata) Harga Saham",
-    "Kalkulator Target Harga Saham",
+    "Kalkulator Target Averaging Down Harga Saham",
     "Kalkulator Dana Pensiun dan Financial Freedom",
     "Kuesioner Profil Risiko dan Portofolio Investor",
     "Kamus Investasi"
@@ -1457,11 +1457,11 @@ body{
   </button>
   <button class="vf-tab" data-tab="average">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-    Kalkulator Average Saham
+    Kalkulator Average Harga Saham
   </button>
   <button class="vf-tab" data-tab="target">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle><line x1="19" y1="5" x2="15.5" y2="8.5"></line><line x1="19" y1="5" x2="19" y2="9"></line><line x1="19" y1="5" x2="15" y2="5"></line></svg>
-    Kalkulator Target Harga Saham
+    Kalkulator Target Averaging Down Harga Saham
   </button>
   <button class="vf-tab" data-tab="riskprofile">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5A8 8 0 1 1 19.5 16.5"></path><line x1="12" y1="13" x2="15.2" y2="8.8"></line><circle cx="12" cy="13" r="1.3" fill="currentColor" stroke="none"></circle></svg>
@@ -1917,7 +1917,7 @@ body{
   <section class="vf-panel" id="panel-average">
     <div class="vf-section-title">
       <span class="vf-eyebrow">Bonus</span>
-      <h2>Kalkulator Average Saham</h2>
+      <h2>Kalkulator Average Harga Saham</h2>
       <p>Hitung harga rata-rata (average) saham Anda setelah membeli di harga yang berbeda-beda — baik average down maupun average up. Cocok dipakai sebelum menambah posisi di saham yang sudah Anda pegang.</p>
     </div>
 
@@ -1985,7 +1985,7 @@ body{
   <section class="vf-panel" id="panel-target">
     <div class="vf-section-title">
       <span class="vf-eyebrow">Perencanaan Beli</span>
-      <h2>Kalkulator Target Harga Saham</h2>
+      <h2>Kalkulator Target Averaging Down Harga Saham</h2>
       <p>Ingin average price saham Anda tepat di angka tertentu? Kalkulator target harga saham ini menghitung berapa lot dan modal tambahan yang dibutuhkan untuk mencapai target average price yang Anda inginkan.</p>
     </div>
 
@@ -2607,7 +2607,7 @@ body{
 
     <div style="margin-top:16px;">
       <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Bagaimana cara menghitung average (rata-rata) harga saham?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Average harga saham dihitung dari total modal seluruh pembelian dibagi total lot/lembar yang dimiliki. Kalkulator Average Saham di situs ini menghitungnya otomatis, termasuk opsi fee beli sekuritas, dan bisa menambah beberapa harga pembelian sekaligus (average up maupun average down).</p>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Average harga saham dihitung dari total modal seluruh pembelian dibagi total lot/lembar yang dimiliki. Kalkulator Average Harga Saham di situs ini menghitungnya otomatis, termasuk opsi fee beli sekuritas, dan bisa menambah beberapa harga pembelian sekaligus (average up maupun average down).</p>
     </div>
 
     <div style="margin-top:16px;">
@@ -2693,7 +2693,7 @@ function setVal(id, v){
   var el = document.getElementById(id);
   if(el) el.value = v;
 }
-var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Saham', target:'Kalkulator Target Harga Saham', riskprofile:'Profil Risiko Investor'};
+var SHARE_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Harga Saham', target:'Kalkulator Target Averaging Down Harga Saham', riskprofile:'Profil Risiko Investor'};
 function buildShareText(key){
   var lines = ['\ud83d\udcca Hasil ' + SHARE_TITLES[key] + ' \u2014 The Investor Toolkit (Sofyan Financial)'];
   if(key === 'dcf'){
@@ -3522,7 +3522,7 @@ document.addEventListener('DOMContentLoaded', function(){
   applyThemeButtons();
 
   // PDF export (uses browser's native print-to-PDF, no extra library needed)
-  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Saham', target:'Kalkulator Target Harga Saham', riskprofile:'Profil Risiko Investor'};
+  var PDF_TITLES = {dcf:'Discounted Cash Flow (DCF)', ddm:'Dividend Discount Model (DDM)', eb:'Equity Bond Valuation', ff:'Financial Freedom', average:'Kalkulator Average Harga Saham', target:'Kalkulator Target Averaging Down Harga Saham', riskprofile:'Profil Risiko Investor'};
   function printCalculator(key){
     var meta = document.getElementById('print-meta');
     var now = new Date();
