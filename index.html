@@ -1474,6 +1474,40 @@ details.faq-d>summary::after{content:"+";position:absolute;right:4px;top:10px;fo
 details.faq-d[open]>summary::after{content:"–"}
 details.faq-d>p{margin:0 0 14px;color:var(--text-muted);font-size:13px;line-height:1.65}
 
+
+/* ---- Kesimpulan: kartu punchline ---- */
+#panel-ksei .hsub{margin:2px 0 8px}
+#panel-ksei .hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px;margin:0 0 8px}
+#panel-ksei .hc{--cc:var(--gold);position:relative;overflow:hidden;padding:12px 14px 12px 18px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(160deg,color-mix(in srgb,var(--cc) 11%,var(--panel)),var(--panel))}
+#panel-ksei .hc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--cc)}
+#panel-ksei .hc.up{--cc:var(--up)}#panel-ksei .hc.down{--cc:var(--exit)}#panel-ksei .hc.gold{--cc:var(--gold)}#panel-ksei .hc.fa{--cc:var(--new)}#panel-ksei .hc.fd{--cc:var(--down)}
+#panel-ksei .hh{display:flex;align-items:center;gap:10px}
+#panel-ksei .hi{width:30px;height:30px;flex:none;border-radius:9px;display:grid;place-items:center;background:color-mix(in srgb,var(--cc) 20%,transparent);color:var(--cc);font-weight:800}
+#panel-ksei .ht{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+#panel-ksei .ht b{font-size:14px}
+#panel-ksei .ht span{font-size:11.5px;color:var(--mute);line-height:1.35}
+#panel-ksei .hn{font:800 26px/1 var(--sans);color:var(--cc)}
+#panel-ksei .hch{margin-top:9px;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+#panel-ksei .hdisc{margin:2px 0 10px}
+#panel-ksei details.ks-more{margin:6px 0}
+#panel-ksei details.ks-more>summary{cursor:pointer;list-style:none;padding:9px 12px;border:1px solid var(--line);border-radius:10px;font-weight:600;font-size:13px;color:var(--gold-soft)}
+#panel-ksei details.ks-more>summary::-webkit-details-marker{display:none}
+#panel-ksei details.ks-more>summary::before{content:"▸ ";color:var(--gold)}
+#panel-ksei details.ks-more[open]>summary::before{content:"▾ "}
+#panel-ksei details.ks-more[open]>summary{margin-bottom:10px}
+/* ---- Signal saham: chip kartu ---- */
+#panel-ksei .sfs{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 8px}
+#panel-ksei .sfc{--cc:var(--gold);font:600 12.5px var(--sans);display:inline-flex;align-items:center;gap:6px;padding:6px 8px 6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--text);cursor:pointer;white-space:nowrap;transition:border-color .15s,background .15s}
+#panel-ksei .sfc i{width:8px;height:8px;border-radius:50%;background:var(--cc)}
+#panel-ksei .sfc em{font-style:normal;font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;background:color-mix(in srgb,var(--cc) 20%,transparent);color:var(--cc)}
+#panel-ksei .sfc:hover{border-color:var(--cc)}
+#panel-ksei .sfc.on{border-color:var(--cc);background:color-mix(in srgb,var(--cc) 16%,var(--panel))}
+#panel-ksei .sfb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+#panel-ksei .sfb input{flex:1 1 180px;min-width:0;padding:7px 11px;font-size:13px}
+#panel-ksei .sfm{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--mute)}
+#panel-ksei .sfm select{padding:6px 28px 6px 10px;font-size:13px}
+@container ksei (max-width:820px){#panel-ksei .sfs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}}
+
 /* ---------- Scrollbar ---------- */
 *{ scrollbar-width:thin; scrollbar-color:color-mix(in srgb,var(--gold) 45%,transparent) transparent; }
 
@@ -3999,7 +4033,7 @@ const TRAIL=new Set(['SH','SE','SKOM','SSOS','SSI','ST','STP','SPD','SPDI','SPT'
 function canonKey(name,ind,extra){
  const x=String(name).toUpperCase()
   .replace(/\bPRIVATE\s+LIMITED\b/g,' LTD ').replace(/\bPVT\.?\s*LTD\b/g,' LTD ')
-  .replace(/\bPTE\.?\s*LTD\b/g,' LTD ').replace(/\bPTELTD\b/g,' LTD ')
+  .replace(/\bPTE\.?\s*LTD\b/g,' LTD ').replace(/\bPTELTD\b/g,' LTD ').replace(/\bPAN\s+INDONESIA\b/g,' PANIN ')
   .replace(/\b([A-Z])\.(?=[A-Z])/g,'$1');
  let tk=x.replace(/[^A-Z0-9 ]+/g,' ').split(/\s+/).filter(w=>w&&!NOISE.has(w)&&!(extra&&extra.has(w)));
  if(ind){while(tk.length>1&&LEAD.has(tk[0]))tk.shift();while(tk.length>2&&TRAIL.has(tk[tk.length-1]))tk.pop()}
@@ -4089,7 +4123,7 @@ function signal(s){const T=s.up,K=s.dn,n=T-K,e=1e-9;
  return 'n'}
 /* Ganti nama / salah ketik bukan akuisisi: dua nama dianggap entitas yang sama bila hurufnya hampir identik,
    atau seluruh kata dari nama yang lebih pendek ada di nama yang lebih panjang (kata boleh disingkat, mis. PAN = PANIN). */
-function entTokens(name){return String(name).toUpperCase().replace(/[^A-Z0-9 ]+/g,' ').split(/\s+/).filter(w=>w&&!NOISE.has(w)&&w!=='PERUSAHAAN')}
+function entTokens(name){return String(name).toUpperCase().replace(/\bPAN\s+INDONESIA\b/g,' PANIN ').replace(/[^A-Z0-9 ]+/g,' ').split(/\s+/).filter(w=>w&&!NOISE.has(w)&&w!=='PERUSAHAAN')}
 function lev(a,b){let p=Array.from({length:b.length+1},(_,i)=>i);
  for(let i=1;i<=a.length;i++){const c=[i];for(let j=1;j<=b.length;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}
  return p[b.length]}
@@ -4170,7 +4204,7 @@ function table(id,rows,cols,o={}){
    if(i===0&&xo)inner+=` <button type="button" class="xbtn${open?' open':''}" data-x="${esc(key)}" aria-expanded="${open}"><span class="xa">▸</span> ${esc(xo.label)}</button>`;
    return `<td class="${c.n?'n':''} ${i===0?'k1':''} ${c.w?'wide':''} ${c.c?c.c(r):''}" data-l="${esc(c.h)}">${inner}</td>`}).join('');
   return `<tr>${cells}</tr>`+(xo?`<tr class="xr" data-xr="${esc(key)}" ${open?'':'hidden'}><td colspan="${cols.length}">${open?xo.html(r):''}</td></tr>`:'')}).join('');
- const sortm=`<div class="bar sortm"><label class="f">${t('sortBy')}<select data-sel="${id}">${cols.map(c=>`<option value="${c.k}" ${u.k===c.k?'selected':''}>${esc(c.h)}</option>`).join('')}</select></label><button type="button" class="btn" data-dir="${id}" aria-label="↕">${u.d<0?'↓':'↑'}</button></div>`;
+ const sortm=`<div class="bar sortm"><label class="f">${t('sortBy')}<select data-sel="${id}">${cols.filter(c=>!o.sortKeys||o.sortKeys.includes(c.k)).map(c=>`<option value="${c.k}" ${u.k===c.k?'selected':''}>${esc(o.sortLbl&&o.sortLbl[c.k]||c.h)}</option>`).join('')}</select></label><button type="button" class="btn" data-dir="${id}" aria-label="↕">${u.d<0?'↓':'↑'}</button></div>`;
  return `<div class="tcount">${t('shown',shown.length,rows.length,rows.length>0)} <button type="button" class="btn small" data-dl="${id}">${t('csv')}</button></div>${sortm}
  <div class="tw"><table><thead><tr>${head}</tr></thead><tbody>${body||`<tr><td class="muted">${t('none')}</td></tr>`}</tbody></table></div>
  ${rows.length>u.lim?`<div class="more"><button type="button" class="btn" data-more="${id}">${t('more',50)}</button></div>`:''}`}
@@ -4191,8 +4225,8 @@ function buildLists(){
  add('ak',t('ak'),topN(A.filter(x=>x.sig==='ak'),x=>x.ak.gain,1e9),'net',-1);
  add('sa',t('sa'),topN(A.filter(x=>x.sig==='sa'),x=>x.net,1e9),'net',-1);
  add('sd',t('sd'),topN(A.filter(x=>x.sig==='sd'),x=>-x.net,1e9),'net',1);
- add('fa',t('i_faT'),topN(A.filter(x=>(x.seg.FN||0)>=.25),x=>x.seg.FN,1e9),'fn',-1,1);
- add('fd',t('i_fdT'),topN(A.filter(x=>(x.seg.FN||0)<=-.25),x=>-x.seg.FN,1e9),'fn',1,1);
+ add('fa',t('i_faT'),topN(A.filter(x=>(x.seg.FN||0)>=1),x=>x.seg.FN,1e9),'fn',-1,1);
+ add('fd',t('i_fdT'),topN(A.filter(x=>(x.seg.FN||0)<=-1),x=>-x.seg.FN,1e9),'fn',1,1);
  add('cons',t('i_consT'),topN(A.filter(x=>x.nUp>=3&&x.nDn===0),x=>x.net,1e9),'net',-1);
  add('rot',t('rot'),topN(A.filter(x=>x.sig==='rot'),x=>x.gross,1e9),'net',-1);
  add('acc',t('cAcc'),topN(A.filter(x=>x.net>0),x=>x.net,1e9),'net',-1);
@@ -4254,11 +4288,20 @@ function vSum(v){
  for(const r of S.f){if(r.self)continue;if(r.st==='New')seg(r.seg).nw++;else if(r.st==='Exit')seg(r.seg).ex++}
  const order=['FN','FI','LN','LI'],sr=Object.values(segs).sort((a,b)=>(order.indexOf(a.k)+1||9)-(order.indexOf(b.k)+1||9));
  const sc=[{k:'s',h:t('segT'),v:r=>segL(r.k)},{k:'up',h:t('segUp'),n:1,v:r=>r.up,c:r=>r.up>r.dn?'pos':''},{k:'dn',h:t('segDn'),n:1,v:r=>r.dn,c:r=>r.dn>r.up?'neg':''},{k:'nw',h:t('segNew'),n:1,v:r=>r.nw},{k:'ex',h:t('segEx'),n:1,v:r=>r.ex}];
- put(v,'',(S.filtered?`<div class="note small">${t('filterNote')}</div>`:'')+kp
+ const T2=(a,b)=>ID?a:b;
+ const HC=(key,c,ic,title,punch)=>{const n=L[key].tickers.length;return `<div class="hc ${c}"><div class="hh"><span class="hi">${ic}</span><div class="ht"><b>${title}</b><span>${punch}</span></div><div class="hn">${fmt(n)}</div></div>${n?`<div class="hch">${five(key)}${all(key)}</div>`:`<div class="muted small">${t('none')}</div>`}</div>`};
+ const heroHtml=`<div class="hsub muted small">${fmt(nStocks)} ${T2('saham dibandingkan','stocks compared')} · ${esc(S.la)} → ${esc(S.lb)}</div><div class="hero">`
+  +HC('sa','up','▲',T2('Akumulasi kuat','Strong accumulation'),T2('Investor besar kompak menambah — layak masuk radar','Large holders adding together — worth watching'))
+  +HC('sd','down','▼',T2('Distribusi besar','Large distribution'),T2('Investor besar kompak mengurangi — waspadai tekanan jual','Large holders cutting together — watch selling pressure'))
+  +HC('ak','gold','⇄',T2('Akuisisi','Acquisition'),T2('Pemegang terbesar berganti — kendali saham berpindah','Largest holder changed — control has moved'))
+  +HC('fa','fa','＋',T2('Investor asing akumulasi','Foreign investors accumulating'),T2('Dana asing menambah porsi kepemilikan','Foreign funds adding to their stakes'))
+  +HC('fd','fd','－',T2('Investor asing distribusi','Foreign investors distributing'),T2('Dana asing mengurangi porsi kepemilikan','Foreign funds reducing their stakes'))
+  +`</div><div class="muted small hdisc">${T2('Sinyal dari perubahan kepemilikan KSEI antar dua periode — bukan prediksi harga atau rekomendasi beli/jual.','Signals from KSEI ownership changes between two periods — not a price forecast or buy/sell advice.')}</div>`;
+ put(v,'',(S.filtered?`<div class="note small">${t('filterNote')}</div>`:'')+heroHtml+`<details class="ks-more"><summary>${T2('Statistik & ringkasan lainnya','More stats & summary')}</summary>`+kp
  +sec('sum:key',t('hKey'),'view',null,`<ul class="ins">${ins.join('')}</ul>`,true)
  +sec('sum:top',t('hTop'),'calc',null,`<div class="cards">${card(t('cAcc'),tA,bL('acc'))}${card(t('cDis'),tD,bL('dis'))}${card(t('cNew'),tN,bN('New'))}${card(t('cExit'),tE,bN('Exit'))}</div>`,false)
  +sec('sum:seg',t('hSeg'),'calc',null,table('seg',sr,sc,{name:'groups',lim:20})+`<div class="muted small" style="margin-top:6px">${t('segNote')}</div>`,false)
- +`<details class="meth"><summary>${t('meth')}</summary><div class="mb"><ul>${T.m.map(x=>`<li>${x}</li>`).join('')}<li><b>${t('rulesT')}.</b>${rulesHtml()}</li></ul></div></details><div class="disc">${t('disc')}</div>`);
+ +`<details class="meth"><summary>${t('meth')}</summary><div class="mb"><ul>${T.m.map(x=>`<li>${x}</li>`).join('')}<li><b>${t('rulesT')}.</b>${rulesHtml()}</li></ul></div></details></details><div class="disc">${t('disc')}</div>`);
 }
 
 /* ============================== bagian: signal saham ============================== */
@@ -4278,10 +4321,9 @@ function vSig(v){const u=S.ui;u.sf=u.sf||'';u.mn=+u.mn||1;if(u.wl==null)u.wl=loa
   rows=base.filter(s=>okSig(s)&&((s.sig==='n'&&s.act)||(s.nUp+s.nDn)>=u.mn)&&(!terms.length||terms.some(x=>s.t===x||s.t.startsWith(x))));
   const so=(k,l)=>`<option value="${k}" ${u.sf===k?'selected':''}>${l}</option>`;
   const SL={'':t('sigAll'),ak:t('sigAk'),ipo:t('sigIpo'),acc:t('sigAcc'),sa:t('sigSA'),dis:t('sigDis'),sd:t('sigSD'),rot:t('sigRot'),bb:t('bb'),sl:t('sl')},fo=u.fo!=null?u.fo:!matchMedia('(max-width:820px)').matches,fsum=(ID?'Filter sinyal':'Signal filter')+' · '+(SL[u.sf]||'')+(terms.length?' · '+terms.join(', '):'')+' · min '+u.mn;
-  ctl+=`<details class="ks-fctl"${fo?' open':''}><summary>${esc(fsum)}</summary><div class="bar"><label class="f">${t('sigF')}<select id="ks-sf">${so('',t('sigAll'))}${so('ak',t('sigAk'))}${so('ipo',t('sigIpo'))}${so('acc',t('sigAcc'))}${so('sa',t('sigSA'))}${so('dis',t('sigDis'))}${so('sd',t('sigSD'))}${so('rot',t('sigRot'))}${so('bb',t('bb'))}${so('sl',t('sl'))}</select></label>
-  <label class="f">${t('wl')}<input type="text" id="ks-wl" value="${esc(u.wl)}" placeholder="${t('wlPh')}" autocomplete="off" style="min-width:min(260px,100%)"></label>
-  <label class="f">${t('mn')}<select id="ks-mn">${[1,2,3].map(n=>`<option ${u.mn===n?'selected':''}>${n}</option>`).join('')}</select></label></div>
-  <div class="muted small" style="margin-bottom:6px">${t('sigLegend')}</div></details>`;rulesSec=sec('sig:rules',t('rulesT'),'view',null,rulesHtml(),false)}
+  const cn=k=>k===''?base.length:(k==='bb'||k==='sl')?base.filter(s=>s.act===k).length:base.filter(s=>SF[k].includes(s.sig)).length;
+  const CC={ak:'var(--gold)',ipo:'var(--new)',acc:'var(--up)',sa:'var(--up)',dis:'var(--exit)',sd:'var(--exit)',rot:'var(--rot)',bb:'var(--new)',sl:'var(--down)'};
+  ctl+=`<div class="sfs">${Object.keys(SL).map(k=>`<button type="button" class="sfc${u.sf===k?' on':''}" data-sfv="${k}" style="--cc:${CC[k]||'var(--gold)'}"><i></i>${SL[k]}<em>${cn(k)}</em></button>`).join('')}</div><div class="sfb"><input type="text" id="ks-wl" value="${esc(u.wl)}" placeholder="${t('wlPh')}" autocomplete="off"><label class="sfm">${t('mn')}<select id="ks-mn">${[1,2,3].map(n=>`<option ${u.mn===n?'selected':''}>${n}</option>`).join('')}</select></label></div>`;rulesSec=sec('sig:rules',t('rulesT'),'view',null,rulesHtml(),false)}
  const cols=[
   {k:'t',h:t('cCode'),v:s=>s.t,f:s=>chip('stk',s.t)+(s.ca?' ⚠':'')},{k:'iss',h:t('cIss'),w:1,v:s=>s.iss||''},
   {k:'sig',h:t('cSig'),v:sigRank,f:sigCell},
@@ -4367,7 +4409,7 @@ function vInv(v){const u=S.ui;u.inv=u.inv||'';const q=u.inv.trim().toUpperCase()
   {k:'bias',h:t('cBias'),v:s=>s.bias,f:s=>`<span class="tag" style="--c:${biasCol(s.bias)}">${esc(t('b_'+s.bias))}</span>`},
   {k:'act',h:t('cAct'),n:1,v:s=>s.act},{k:'add',h:t('cAddN'),n:1,v:s=>s.nAcc,c:s=>s.nAcc?'pos':''},{k:'cut',h:t('cCutN'),n:1,v:s=>s.nDis,c:s=>s.nDis?'neg':''},
   {k:'ent',h:t('cEnt'),n:1,v:s=>s.nNew},{k:'ext',h:t('cExt'),n:1,v:s=>s.nEx}];
- h+=sec('inv:lead',t('hLead'),'calc',L.length,table('lead',L,cols2,{name:'investor_aktif',sk:'act',sd:-1,exp:{key:s=>s.inv,html:s=>portfolioInline(s.inv),label:t('xLblInv')}}),!exact);
+ h+=sec('inv:lead',t('hLead'),'calc',L.length,table('lead',L,cols2,{name:'investor_aktif',sk:'act',sd:-1,sortKeys:['add','cut','act'],sortLbl:{add:ID?'Saham diakumulasi':'Stocks accumulated',cut:ID?'Saham didistribusi':'Stocks distributed',act:ID?'Paling aktif (saham berubah)':'Most active (stocks changed)'},exp:{key:s=>s.inv,html:s=>portfolioInline(s.inv),label:t('xLblInv')}}),!exact);
  put(v,ctl,h);
 }
 
@@ -4438,8 +4480,9 @@ xb.addEventListener('click',collapseAll);
 let xt=0;new MutationObserver(()=>{if(!xt)xt=requestAnimationFrame(()=>{xt=0;updX()})}).observe(root,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden','class']});
 const navTo=()=>$('#ks-nav').scrollIntoView({behavior:'smooth',block:'start'});
 root.addEventListener('click',e=>{
- const b=e.target.closest('[data-sec],[data-go],[data-th],[data-more],[data-sub],[data-dl],[data-dir],[data-demo],[data-repo],[data-repocmp],[data-reset],[data-back],[data-list],[data-nw],[data-clearlist],[data-x],[data-forget]');
+ const b=e.target.closest('[data-sec],[data-go],[data-th],[data-more],[data-sub],[data-dl],[data-dir],[data-demo],[data-repo],[data-repocmp],[data-reset],[data-sfv],[data-back],[data-list],[data-nw],[data-clearlist],[data-x],[data-forget]');
  if(!b||!root.contains(b))return;const d=b.dataset;
+ if(d.sfv!==undefined){S.ui.sf=d.sfv;keepY(()=>render(true));return}
  if(d.repo!==undefined){onRepo(d.repo);return}
  if('repocmp' in d){onRepoBoth();return}
  if(d.sec)go(d.sec);
@@ -4641,10 +4684,10 @@ new MutationObserver(sch).observe(p,{childList:true,subtree:true,attributes:true
 window.addEventListener('resize',sch);sch()})();
 </script>
 <script>
-(function(){var p=document.getElementById('panel-ksei');if(!p)return;var h=0,KEY=/^(status|sinyal|signal)|selisih \(poin\)|\(pts\)|\(points\)|^%/i,ST=/^(status|sinyal|signal)/i;
+(function(){var p=document.getElementById('panel-ksei');if(!p)return;var h=0,KEY=/^(status|sinyal|signal|kecenderungan|tendency|bias)|selisih \(poin\)|\(pts\)|\(points\)|^%|ditambah|dikurangi|added|reduced/i,ST=/^(status|sinyal|signal|kecenderungan|tendency|bias)/i;
 function run(){h=0;p.querySelectorAll('tbody tr:not(.xr)').forEach(function(tr){if(tr.dataset.s)return;var k1=tr.querySelector('td.k1');if(!k1)return;
- var st='',pc=[],df='';[].forEach.call(tr.children,function(td){var l=td.dataset.l||'';if(td===k1||!KEY.test(l))return;var v=td.textContent.replace(/\s+/g,' ').trim();if(ST.test(l))st=v;else if(/^%/.test(l))pc.push(v);else df=v});
- var parts=[];if(st)parts.push(st);if(pc.length)parts.push(pc.join(' → '));if(df)parts.push('Δ '+df);if(!parts.length)return;
+ var st='',pc=[],df='',up='',dn='';[].forEach.call(tr.children,function(td){var l=td.dataset.l||'';if(td===k1||!KEY.test(l))return;var v=td.textContent.replace(/\s+/g,' ').trim();if(ST.test(l))st=v;else if(/^%/.test(l))pc.push(v);else if(/ditambah|added/i.test(l))up=v;else if(/dikurangi|reduced/i.test(l))dn=v;else df=v});
+ var parts=[];if(st)parts.push(st);if(pc.length)parts.push(pc.join(' → '));if(df)parts.push('Δ '+df);if(up!==''||dn!=='')parts.push('▲'+up+' ▼'+dn);if(!parts.length)return;
  var s=document.createElement('div');s.className='ksum';s.textContent=parts.join(' · ');k1.after(s);tr.dataset.s='1'})}
 function sch(){if(!h)h=requestAnimationFrame(run)}
 new MutationObserver(sch).observe(p,{childList:true,subtree:true});sch();
