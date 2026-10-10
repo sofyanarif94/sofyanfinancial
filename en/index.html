@@ -1414,8 +1414,9 @@ body{
   #panel-ksei tbody tr[data-s]:not(.kx)>td:not(.k1){display:none}
   #panel-ksei tbody tr[data-s]:not(.kx){padding:8px 12px}
   #panel-ksei tbody tr[data-s]:not(.kx)>.ksum{display:block;grid-column:1/-1;font-size:12.5px;color:var(--mute);line-height:1.45}
-  #panel-ksei tbody tr[data-s]>td.k1{cursor:pointer;position:relative;padding-right:22px}
-  #panel-ksei tbody tr[data-s]>td.k1::after{content:"▾";position:absolute;right:0;top:0;color:var(--gold);transition:transform .15s}
+  #panel-ksei tbody tr[data-s]{cursor:pointer}
+  #panel-ksei tbody tr[data-s]>td.k1{position:relative;padding-right:46px}
+  #panel-ksei tbody tr[data-s]>td.k1::after{content:"";position:absolute;right:0;top:-3px;width:34px;height:34px;border-radius:50%;border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);background:var(--gold-tint-strong) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9a24b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center/18px no-repeat;transition:transform .2s}
   #panel-ksei tbody tr[data-s].kx>td.k1::after{transform:rotate(180deg)}
   #panel-ksei tbody tr[data-s]:not(.kx)>td.k1{border-bottom:0;padding-bottom:0}
 }
@@ -1446,6 +1447,28 @@ details.vf-case[open] .vf-case-hint{display:none}
 @keyframes vfBlink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.6)}}
 @keyframes vfShine{0%{transform:translateX(-120%)}60%,100%{transform:translateX(120%)}}
 @keyframes vfTw{0%,100%{color:var(--gold-soft)}50%{color:#fff}}
+
+
+/* ---- Pilih Periode, upload ringkas, FAQ ---- */
+#panel-ksei .ks-repo{margin:0}
+#panel-ksei details.ks-up2{margin:8px 0}
+#panel-ksei details.ks-up2>summary{cursor:pointer;list-style:none;padding:9px 12px;border:1px solid var(--line);border-radius:10px;font-weight:600;font-size:13px;color:var(--gold-soft)}
+#panel-ksei details.ks-up2>summary::-webkit-details-marker{display:none}
+#panel-ksei details.ks-up2>summary::before{content:"▸ ";color:var(--gold)}
+#panel-ksei details.ks-up2[open]>summary::before{content:"▾ "}
+#panel-ksei details.ks-up2[open]>summary{margin-bottom:10px}
+details.faq-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:6px 22px}
+details.faq-wrap>summary{cursor:pointer;list-style:none;display:flex;flex-direction:column;gap:2px;padding:14px 0}
+details.faq-wrap>summary::-webkit-details-marker,details.faq-d>summary::-webkit-details-marker{display:none}
+.faq-eyebrow{font:600 10.5px 'Poppins',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.faq-title{font:600 18px 'Poppins',sans-serif;color:var(--text)}
+.faq-title::after{content:" ▾";color:var(--gold);font-size:14px}
+details.faq-wrap[open]>summary .faq-title::after{content:" ▴"}
+details.faq-d{border-top:1px solid var(--border-soft,var(--border))}
+details.faq-d>summary{cursor:pointer;list-style:none;padding:12px 28px 12px 0;position:relative;font:600 14px 'Poppins',sans-serif;color:var(--gold-soft);line-height:1.5}
+details.faq-d>summary::after{content:"+";position:absolute;right:4px;top:10px;font-size:20px;color:var(--gold)}
+details.faq-d[open]>summary::after{content:"–"}
+details.faq-d>p{margin:0 0 14px;color:var(--text-muted);font-size:13px;line-height:1.65}
 
 /* ---------- Scrollbar ---------- */
 *{ scrollbar-width:thin; scrollbar-color:color-mix(in srgb,var(--gold) 45%,transparent) transparent; }
@@ -2292,18 +2315,18 @@ details.vf-case[open] .vf-case-hint{display:none}
     <div class="box ks-upload">
       <details class="ks-src" id="ks-src" open>
       <summary class="ks-srcsum"><span data-i="srcT"></span> <span id="ks-srcs"></span></summary>
-      <details class="ks-repo" id="ks-repo" open>
-        <summary class="rt" data-i="repoT"></summary>
-        <div class="small muted" data-i="repoSub"></div>
+      <div class="ks-repo" id="ks-repo">
         <div class="rlist" id="ks-repo-list"></div>
         <div class="ks-actions"><button type="button" class="btn" id="ks-repo-cmp" data-repocmp="1" hidden></button></div>
-      </details>
-      <div class="ks-or small muted" id="ks-or" data-i="orUp"></div>
-      <div class="up">
+      </div>
+      <details class="ks-up2" id="ks-up2">
+        <summary data-i="upT"></summary>
+        <div class="up">
         <label class="drop" id="ks-d1"><input type="file" id="ks-f1" accept=".xlsx,.xls,.csv"><b data-i="p1"></b><span id="ks-s1" data-i="pick1"></span></label>
         <label class="drop" id="ks-d2"><input type="file" id="ks-f2" accept=".xlsx,.xls,.csv"><b data-i="p2"></b><span id="ks-s2" data-i="pick2"></span></label>
       </div>
-      <div class="ks-actions"><button type="button" class="btn" data-demo="1" data-i="demo"></button><span class="muted small" data-i="privacy"></span></div>
+        <div class="ks-actions"><button type="button" class="btn" data-demo="1" data-i="demo"></button><span class="muted small" data-i="privacy"></span></div>
+      </details>
       <div id="ks-saved" class="note small hide"><span id="ks-savedtxt"></span> <button type="button" class="btn small" data-forget="1" data-i="forget"></button></div>
       </details>
       <div id="ks-msg" class="note hide"></div>
@@ -2620,60 +2643,20 @@ details.vf-case[open] .vf-case-hint{display:none}
 
 <!-- ===================== FAQ ===================== -->
 <section class="no-print" style="max-width:1280px; margin:26px auto 0; padding:0 20px;">
-  <div style="background:linear-gradient(135deg,#16233a,#101a2c); border:1px solid #213249; border-radius:14px; padding:24px;">
-    <span style="font-family:'Poppins',sans-serif; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold);">FAQ</span>
-    <h3 style="font-family:'Poppins',sans-serif; font-size:19px; color:var(--text); margin:8px 0 16px;">Frequently Asked Questions About Stock Valuation</h3>
-
-    <div style="margin-bottom:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">What is a stock's intrinsic value?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Intrinsic value is an estimate of a stock's fair value based on projected future earnings, dividends, or cash flows — not a price shaped by market sentiment. This calculator computes it using 4 methods: DCF, DDM, Equity Bond Valuation, and a Financial Freedom simulator.</p>
-    </div>
-
-    <div style="margin-bottom:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">What's the difference between DCF and DDM in stock valuation?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">DCF discounts a company's projected net earnings, while DDM discounts projected dividends per share. DDM is more accurate for companies that pay dividends regularly, while DCF is more flexible even if a company doesn't pay dividends yet.</p>
-    </div>
-
-    <div style="margin-bottom:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">What is Warren Buffett-style Equity Bond Valuation?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">A method from the book "The Warren Buffett Stock Portfolio" that treats a stock like a bond — calculating the estimated total return (IRR) from the current price and comparing it to the 10-year government bond yield as a risk-free benchmark.</p>
-    </div>
-
-    <div style="margin-bottom:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">What's the difference between the DCF here and the DCF used by professional analysts?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">The essence and formulas are exactly the same as those used by professional analysts (cash flow projections, discount rate, and terminal value). The difference is that this calculator is simplified and faster so retail investors can use it right away without building an Excel model from scratch — without changing the essence of the calculation.</p>
-    </div>
-
-    <div>
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">Is this calculator free?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Yes, it's 100% free and works right in your browser — no login or app install needed.</p>
-    </div>
-
-    <div style="margin-top:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">How do you calculate stock valuation?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">There are several ways to calculate stock valuation: Discounted Cash Flow (DCF) from earnings projections, Dividend Discount Model (DDM) from dividend projections, or Equity Bond Valuation Warren Buffett style, which compares a stock to a bond. All three are available free on the "Stock Valuation Calculator" tab of this site.</p>
-    </div>
-
-    <div style="margin-top:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">What is a DCF (Discounted Cash Flow) stock calculator?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">A DCF stock calculator is a tool that computes a stock's fair value by discounting projected net earnings over the next 10 years using the Cost of Equity, plus a terminal value. It's the most common valuation method used by professional analysts and value investors like Warren Buffett.</p>
-    </div>
-
-    <div style="margin-top:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">How do you calculate average stock price?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Average stock price is calculated from total capital across all purchases divided by total shares owned. The Average Price Calculator on this site computes it automatically, including an optional broker fee, and supports multiple purchase prices at once (averaging up or down).</p>
-    </div>
-
-    <div style="margin-top:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">What is a target stock price calculator?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">A target stock price calculator works in reverse of a regular average calculator — you set your desired target average price first, and it calculates how many shares and how much extra capital you need to buy to reach that target.</p>
-    </div>
-
-    <div style="margin-top:16px;">
-      <p style="color:var(--gold-soft); font-weight:600; font-size:14px; margin:0 0 4px;">What is value investing?</p>
-      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Value investing is an investment strategy popularized by Warren Buffett — buying stocks below their intrinsic value and holding them long-term. Every calculator on this site (DCF, DDM, Equity Bond Valuation) is built on that value investing principle.</p>
-    </div>
-  </div>
+  <details class="faq-wrap">
+    <summary><span class="faq-eyebrow">FAQ</span><span class="faq-title">Questions About The Investor Toolkit</span></summary>
+    <div class="faq-list">
+      <details class="faq-d"><summary>What is The Investor Toolkit, and is it free?</summary><p>The Investor Toolkit is a 100% free set of stock investor tools that runs right in your browser: shareholder ownership analysis (Bandarmology), fair value calculation (DCF, DDM, Equity Bond Valuation), a Financial Freedom calculator, a stock average price calculator, an averaging-down target calculator, and an investor risk profile. Feel free to share it with other investors.</p></details>
+      <details class="faq-d"><summary>What is ownership analysis (Bandarmology) and where does the data come from?</summary><p>It compares two KSEI ownership reports (holders above 1%) to show who added, reduced, entered, or exited a stock. Just pick a period from the repository or upload your own files. Files are processed in your browser and never sent to a server.</p></details>
+      <details class="faq-d"><summary>What do the Acquisition, Accumulation, Distribution, Changing hands, and New listing (IPO) signals mean?</summary><p>Acquisition: the largest holder changed and the new holder added 40 points or more. Accumulation and Strong accumulation: large holders are adding. Distribution and Large distribution: large holders are reducing. Changing hands: one party sells and another buys the same number of shares (a crossing), especially when the names look related to one group. New listing (IPO): every holder above 1% is new, so it is not counted as accumulation.</p></details>
+      <details class="faq-d"><summary>Do Bandarmology signals guarantee the price will rise or fall?</summary><p>No. A signal only summarizes ownership changes between two KSEI periods. It is not a price forecast or a buy or sell recommendation. Use it alongside fundamental analysis and your own research.</p></details>
+      <details class="faq-d"><summary>What is intrinsic value, and how do DCF, DDM, and Equity Bond Valuation differ?</summary><p>Intrinsic value is an estimate of a stock&#x27;s fair value from projected earnings, dividends, or cash flow, not market sentiment. DCF discounts projected net income, DDM discounts projected dividends per share (best for regular dividend payers), and Warren Buffett-style Equity Bond Valuation treats a stock like a bond and compares its estimated return with government bond yields.</p></details>
+      <details class="faq-d"><summary>How do I use the Average Price and Averaging Down Target calculators?</summary><p>The average calculator divides the total capital of all purchases by total shares. The averaging-down target calculator shows how many lots and how much extra capital you need to bring your average price down to a target.</p></details>
+      <details class="faq-d"><summary>How do I calculate a retirement fund or Financial Freedom target?</summary><p>Enter your age, time horizon, monthly living cost, inflation, and expected return. The calculator shows the fund you need and the monthly investment required, adjusted for post-retirement inflation.</p></details>
+      <details class="faq-d"><summary>Are the results investment advice?</summary><p>No. All results are educational estimates based on the data and assumptions you use. They are not buy or sell recommendations or guarantees of returns. Investment decisions remain your own responsibility.</p></details>
+      <details class="faq-d"><summary>Can I use it on my phone and share it?</summary><p>Yes. The page is responsive on phone, tablet, and desktop. Use the round button at the bottom-left to share via WhatsApp or copy the link.</p></details>
+      </div>
+  </details>
 </section>
 
 <script type="application/ld+json">
@@ -2681,16 +2664,78 @@ details.vf-case[open] .vf-case-hint{display:none}
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"What is a stock's intrinsic value?","acceptedAnswer":{"@type":"Answer","text":"Intrinsic value is an estimate of a stock's fair value based on projected future earnings, dividends, or cash flows, calculated using DCF, DDM, Equity Bond Valuation, and Financial Freedom methods."}},
-    {"@type":"Question","name":"What is the difference between DCF and DDM in stock valuation?","acceptedAnswer":{"@type":"Answer","text":"DCF discounts projected net earnings, while DDM discounts projected dividends per share."}},
-    {"@type":"Question","name":"What is Warren Buffett-style Equity Bond Valuation?","acceptedAnswer":{"@type":"Answer","text":"A method that treats a stock like a bond, comparing the estimated IRR of the stock to the 10-year government bond yield."}},
-    {"@type":"Question","name":"Is this stock valuation calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes, this calculator is 100% free to use directly in your browser."}},
-    {"@type":"Question","name":"What's the difference between the DCF here and the DCF used by professional analysts?","acceptedAnswer":{"@type":"Answer","text":"The essence and formulas are the same as those used by professional analysts. This calculator is simplified and faster so retail investors can use it without building an Excel model from scratch."}},
-    {"@type":"Question","name":"How do you calculate stock valuation?","acceptedAnswer":{"@type":"Answer","text":"Stock valuation can be calculated with Discounted Cash Flow (DCF), Dividend Discount Model (DDM), or Equity Bond Valuation Warren Buffett style, all available free on this calculator."}},
-    {"@type":"Question","name":"What is a DCF stock calculator?","acceptedAnswer":{"@type":"Answer","text":"A DCF stock calculator computes a stock's fair value by discounting projected net earnings over 10 years using the Cost of Equity, plus a terminal value."}},
-    {"@type":"Question","name":"How do you calculate average stock price?","acceptedAnswer":{"@type":"Answer","text":"Average stock price is calculated from total capital across all purchases divided by total shares owned, including an optional broker fee."}},
-    {"@type":"Question","name":"What is a target stock price calculator?","acceptedAnswer":{"@type":"Answer","text":"A target stock price calculator computes how many shares and how much extra capital you need to buy to reach a desired target average price."}},
-    {"@type":"Question","name":"What is value investing?","acceptedAnswer":{"@type":"Answer","text":"Value investing is a Warren Buffett-style investment strategy of buying stocks below their intrinsic value and holding them long-term."}}
+    {
+      "@type": "Question",
+      "name": "What is The Investor Toolkit, and is it free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Investor Toolkit is a 100% free set of stock investor tools that runs right in your browser: shareholder ownership analysis (Bandarmology), fair value calculation (DCF, DDM, Equity Bond Valuation), a Financial Freedom calculator, a stock average price calculator, an averaging-down target calculator, and an investor risk profile. Feel free to share it with other investors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is ownership analysis (Bandarmology) and where does the data come from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It compares two KSEI ownership reports (holders above 1%) to show who added, reduced, entered, or exited a stock. Just pick a period from the repository or upload your own files. Files are processed in your browser and never sent to a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do the Acquisition, Accumulation, Distribution, Changing hands, and New listing (IPO) signals mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Acquisition: the largest holder changed and the new holder added 40 points or more. Accumulation and Strong accumulation: large holders are adding. Distribution and Large distribution: large holders are reducing. Changing hands: one party sells and another buys the same number of shares (a crossing), especially when the names look related to one group. New listing (IPO): every holder above 1% is new, so it is not counted as accumulation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do Bandarmology signals guarantee the price will rise or fall?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A signal only summarizes ownership changes between two KSEI periods. It is not a price forecast or a buy or sell recommendation. Use it alongside fundamental analysis and your own research."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is intrinsic value, and how do DCF, DDM, and Equity Bond Valuation differ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Intrinsic value is an estimate of a stock's fair value from projected earnings, dividends, or cash flow, not market sentiment. DCF discounts projected net income, DDM discounts projected dividends per share (best for regular dividend payers), and Warren Buffett-style Equity Bond Valuation treats a stock like a bond and compares its estimated return with government bond yields."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I use the Average Price and Averaging Down Target calculators?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The average calculator divides the total capital of all purchases by total shares. The averaging-down target calculator shows how many lots and how much extra capital you need to bring your average price down to a target."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I calculate a retirement fund or Financial Freedom target?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enter your age, time horizon, monthly living cost, inflation, and expected return. The calculator shows the fund you need and the monthly investment required, adjusted for post-retirement inflation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are the results investment advice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All results are educational estimates based on the data and assumptions you use. They are not buy or sell recommendations or guarantees of returns. Investment decisions remain your own responsibility."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use it on my phone and share it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The page is responsive on phone, tablet, and desktop. Use the round button at the bottom-left to share via WhatsApp or copy the link."
+      }
+    }
   ]
 }
 </script>
@@ -3677,7 +3722,7 @@ id:{
  i_faT:'Institusi asing menambah',i_fdT:'Institusi asing mengurangi',i_consT:'Minimal 3 investor menambah, tidak ada yang mengurangi',
  back:'Kembali',backTo:x=>`Kembali ke ${x}`,
  badRows:n=>`${fmt(n)} baris dikecualikan karena persentasenya kosong, nol, atau tidak wajar (di atas 100%).`,
- p1:'Periode 1 (lebih lama)',p2:'Periode 2 (lebih baru)',pick1:'Pilih file Excel atau CSV, mis. data Agustus',pick2:'Pilih file Excel atau CSV, mis. data September',
+ p1:'Periode 1 (sebelumnya)',p2:'Periode 2 (terbaru)',pick1:'Pilih file Excel atau CSV, mis. data Agustus',pick2:'Pilih file Excel atau CSV, mis. data September',
  demo:'Coba dengan data contoh',privacy:'File diproses di browser Anda dan tidak diunggah ke server. Agar tidak perlu upload ulang, data disimpan sementara di browser ini (maksimal 14 hari) dan bisa dihapus kapan saja.',
  demoNote:'Anda sedang melihat DATA CONTOH fiktif (kode DEMA–DEMN). Unggah file KSEI Anda untuk analisis sebenarnya.',
  errHeader:n=>`"${n}": header tidak ditemukan. Butuh kolom Kode Saham, Nama Investor, Jumlah Saham, dan % Kepemilikan.`,
@@ -3711,7 +3756,7 @@ id:{
  kAk:'Saham akuisisi',
  r_ipo:'Semua pemegang di atas 1% berstatus masuk (belum ada pemegang di atas 1% pada periode awal). Ini ciri saham yang baru IPO atau baru tercatat, jadi tidak dihitung sebagai Akumulasi atau Distribusi.',
  v_ipo:()=>`Semua pemegang di atas 1% baru muncul pada periode terbaru, sehingga saham ini kemungkinan baru IPO atau baru tercatat. Tidak dikategorikan sebagai akumulasi atau distribusi.`,
- srcT:'Sumber data (Repository & Upload)',repoT:'Repository file KSEI (siap pakai)',repoSub:'Klik dua file untuk dibandingkan, tanpa perlu upload.',repoCmp:(a,b)=>`Bandingkan ${a} → ${b}`,repoLoading:'Memuat file…',repoErr:'Repository tidak dapat dimuat. Anda tetap bisa upload file sendiri.',orUp:'atau upload file Anda sendiri',
+ srcT:'Pilih Periode',upT:'Upload file sendiri & data contoh',repoT:'Repository file KSEI (siap pakai)',repoSub:'Klik dua file untuk dibandingkan, tanpa perlu upload.',repoCmp:(a,b)=>`Bandingkan ${a} → ${b}`,repoLoading:'Memuat file…',repoErr:'Repository tidak dapat dimuat. Anda tetap bisa upload file sendiri.',orUp:'atau upload file Anda sendiri',
  sNew:'Masuk',sAcc:'Menambah',sDis:'Mengurangi',sUn:'Tetap',sExit:'Keluar',
  cCode:'Kode',cIss:'Emiten',cSig:'Sinyal',cNet:'Selisih (poin)',cUp:'Investor menambah',cDn:'Investor mengurangi',cFrg:'Asing (poin)',cIns:'Institusi (poin)',
  cInv:'Investor',cType:'Tipe',cLF:'L/A',cSt:'Status',cDp:'Selisih (poin)',cDs:'Selisih lembar',cSz:'Porsi (%)',cSh:'Lembar',cCalc:'Dihitung (poin)',cHow:'Cara hitung',
@@ -3785,7 +3830,7 @@ en:{
  i_faT:'Foreign institutions adding',i_fdT:'Foreign institutions reducing',i_consT:'At least 3 adding, none reducing',
  back:'Back',backTo:x=>`Back to ${x}`,
  badRows:n=>`${fmt(n)} row(s) excluded because the percentage is empty, zero, or not valid (above 100%).`,
- p1:'Period 1 (older)',p2:'Period 2 (newer)',pick1:'Choose an Excel or CSV file, e.g. August data',pick2:'Choose an Excel or CSV file, e.g. September data',
+ p1:'Period 1 (previous)',p2:'Period 2 (latest)',pick1:'Choose an Excel or CSV file, e.g. August data',pick2:'Choose an Excel or CSV file, e.g. September data',
  demo:'Try with sample data',privacy:'Files are processed in your browser and never uploaded to a server. So you do not have to upload again, the data is kept temporarily in this browser (up to 14 days) and can be deleted at any time.',
  demoNote:'You are viewing fictional SAMPLE DATA (tickers DEMA–DEMN). Upload your KSEI files for a real analysis.',
  errHeader:n=>`"${n}": header row not found. Required columns: Share Code, Investor Name, Total Holding Shares, and Percentage.`,
@@ -3819,7 +3864,7 @@ en:{
  kAk:'Acquisition stocks',
  r_ipo:'Every holder above 1% is a new entry (no holder above 1% existed in the starting period). This is typical of a recent IPO or new listing, so it is not counted as Accumulation or Distribution.',
  v_ipo:()=>`Every holder above 1% first appears in the latest period, so this stock is likely a recent IPO or new listing. It is not classified as accumulation or distribution.`,
- srcT:'Data source (Repository & Upload)',repoT:'KSEI file repository (ready to use)',repoSub:'Click two files to compare them, no upload needed.',repoCmp:(a,b)=>`Compare ${a} → ${b}`,repoLoading:'Loading file…',repoErr:'Repository could not be loaded. You can still upload your own files.',orUp:'or upload your own files',
+ srcT:'Select Period',upT:'Upload your own files & sample data',repoT:'KSEI file repository (ready to use)',repoSub:'Click two files to compare them, no upload needed.',repoCmp:(a,b)=>`Compare ${a} → ${b}`,repoLoading:'Loading file…',repoErr:'Repository could not be loaded. You can still upload your own files.',orUp:'or upload your own files',
  sNew:'Entered',sAcc:'Adding',sDis:'Reducing',sUn:'Unchanged',sExit:'Left',
  cCode:'Code',cIss:'Issuer',cSig:'Signal',cNet:'Difference (pts)',cUp:'Holders adding',cDn:'Holders reducing',cFrg:'Foreign (pts)',cIns:'Institution (pts)',
  cInv:'Investor',cType:'Type',cLF:'L/F',cSt:'Status',cDp:'Difference (pts)',cDs:'Share difference',cSz:'Stake (%)',cSh:'Shares',cCalc:'Counted (pts)',cHow:'How it is calculated',
@@ -4217,7 +4262,7 @@ const sigRank=s=>s.sig!=='n'?({ipo:2,ak:6,sa:5,a:4,rot:3,d:1,sd:0})[s.sig]:(s.ac
 function vSig(v){const u=S.ui;u.sf=u.sf||'';u.mn=+u.mn||1;if(u.wl==null)u.wl=loadWL();
  const lst=u.list&&S.lists[u.list]?S.lists[u.list]:null;
  const base=S.agg.filter(s=>s.sig!=='n'||s.act);   /* Netral tidak ditampilkan */
- let rows,ctl=S.filtered?`<div class="note small">${t('filterNote')}</div>`:'';
+ let rulesSec='',rows,ctl=S.filtered?`<div class="note small">${t('filterNote')}</div>`:'';
  if(lst){const set=new Set(lst.tickers);rows=base.filter(s=>set.has(s.t));
   ctl+=`<div class="note small">${t('listShow',esc(lst.title),rows.length)} <button type="button" class="btn small" data-clearlist="1">${t('listClear')}</button></div>`}
  else{
@@ -4229,7 +4274,7 @@ function vSig(v){const u=S.ui;u.sf=u.sf||'';u.mn=+u.mn||1;if(u.wl==null)u.wl=loa
   ctl+=`<details class="ks-fctl"${fo?' open':''}><summary>${esc(fsum)}</summary><div class="bar"><label class="f">${t('sigF')}<select id="ks-sf">${so('',t('sigAll'))}${so('ak',t('sigAk'))}${so('ipo',t('sigIpo'))}${so('acc',t('sigAcc'))}${so('sa',t('sigSA'))}${so('dis',t('sigDis'))}${so('sd',t('sigSD'))}${so('rot',t('sigRot'))}${so('bb',t('bb'))}${so('sl',t('sl'))}</select></label>
   <label class="f">${t('wl')}<input type="text" id="ks-wl" value="${esc(u.wl)}" placeholder="${t('wlPh')}" autocomplete="off" style="min-width:min(260px,100%)"></label>
   <label class="f">${t('mn')}<select id="ks-mn">${[1,2,3].map(n=>`<option ${u.mn===n?'selected':''}>${n}</option>`).join('')}</select></label></div>
-  <div class="muted small" style="margin-bottom:6px">${t('sigLegend')}</div></details>`+sec('sig:rules',t('rulesT'),'view',null,rulesHtml(),false)}
+  <div class="muted small" style="margin-bottom:6px">${t('sigLegend')}</div></details>`;rulesSec=sec('sig:rules',t('rulesT'),'view',null,rulesHtml(),false)}
  const cols=[
   {k:'t',h:t('cCode'),v:s=>s.t,f:s=>chip('stk',s.t)+(s.ca?' ⚠':'')},{k:'iss',h:t('cIss'),w:1,v:s=>s.iss||''},
   {k:'sig',h:t('cSig'),v:sigRank,f:sigCell},
@@ -4238,7 +4283,7 @@ function vSig(v){const u=S.ui;u.sf=u.sf||'';u.mn=+u.mn||1;if(u.wl==null)u.wl=loa
   {k:'up',h:t('cUp'),n:1,v:s=>s.nUp},{k:'dn',h:t('cDn'),n:1,v:s=>s.nDn},
   {k:'self',h:t('cSelf'),n:1,v:s=>s.selfNet,f:s=>s.act?sgn(s.selfNet,fp):'-',c:s=>cls(s.selfNet)}];
  if(lst&&lst.extra)cols.splice(4,0,{k:'fn',h:t('cFN'),n:1,v:s=>s.seg.FN||0,f:s=>sgn(s.seg.FN||0,fp),c:s=>cls(s.seg.FN||0)});
- put(v,ctl,table('sig',rows,cols,{name:'signal_saham',sk:lst?lst.sk:'net',sd:lst?lst.sd:-1,exp:{key:s=>s.t,html:s=>holdersInline(s.t),label:t('xLbl')}}));
+ put(v,ctl,table('sig',rows,cols,{name:'signal_saham',sk:lst?lst.sk:'net',sd:lst?lst.sd:-1,exp:{key:s=>s.t,html:s=>holdersInline(s.t),label:t('xLbl')}})+rulesSec);
 }
 
 /* ============================== bagian: detail saham ============================== */
@@ -4375,11 +4420,12 @@ function go(sec){S.hist=[];if(sec==='sig'&&S.ui.list){S.ui.list=null;delete S.ui
 function toggleX(key,btn){
  const row=[...root.querySelectorAll('tr.xr')].find(e=>e.dataset.xr===key);if(!row)return;
  const open=row.hidden;
- if(open){const cell=row.firstElementChild;if(!cell.innerHTML.trim()&&S.xfn[key])cell.innerHTML=S.xfn[key]();row.hidden=false}else row.hidden=true;
+ if(open){root.querySelectorAll('tr.xr:not([hidden])').forEach(r=>{if(r!==row){r.hidden=true;S.exp[r.dataset.xr]=false}});root.querySelectorAll('.xbtn.open').forEach(b=>{if(b!==btn){b.classList.remove('open');b.setAttribute('aria-expanded','false')}});const cell=row.firstElementChild;if(!cell.innerHTML.trim()&&S.xfn[key])cell.innerHTML=S.xfn[key]();row.hidden=false}else row.hidden=true;
  S.exp[key]=open;btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open?'true':'false');queueSave()}
 root.addEventListener('toggle',e=>{const d=e.target;if(d&&d.matches&&d.matches('details.ks-fctl')){S.ui.fo=d.open;queueSave()}},true);
 const xb=document.createElement('button');xb.type='button';xb.id='ks-xclose';xb.hidden=true;document.body.appendChild(xb);
-function updX(){const n=root.querySelectorAll('tr.xr:not([hidden])').length;xb.hidden=!(n&&root.offsetParent);xb.textContent=(ID?'Tutup semua pemegang':'Collapse all holders')+' ('+n+')'}
+let inView=true;new IntersectionObserver(es=>{inView=es[0].isIntersecting;updX()}).observe(root);
+function updX(){const n=root.querySelectorAll('tr.xr:not([hidden])').length;xb.hidden=!(n&&root.offsetParent&&inView);xb.textContent=(ID?'Tutup semua pemegang':'Collapse all holders')+' ('+n+')'}
 function collapseAll(){root.querySelectorAll('tr.xr:not([hidden])').forEach(r=>{r.hidden=true});root.querySelectorAll('.xbtn.open').forEach(b=>{b.classList.remove('open');b.setAttribute('aria-expanded','false')});S.exp={};queueSave();updX()}
 xb.addEventListener('click',collapseAll);
 let xt=0;new MutationObserver(()=>{if(!xt)xt=requestAnimationFrame(()=>{xt=0;updX()})}).observe(root,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden','class']});
@@ -4551,7 +4597,7 @@ async function onRepoBoth(){
  catch(e){msg(e.message||t('repoErr'),'err')}}
 fetch(REPO_URL,{cache:'no-cache'}).then(r=>r.ok?r.json():Promise.reject()).then(j=>{
  S.repo=(j.files||[]).slice().sort((a,b)=>String(a.date).localeCompare(String(b.date)));
- if(!S.repo.length)throw 0;renderRepo()}).catch(()=>{const r=$('#ks-repo'),o=$('#ks-or');if(r)r.hidden=true;if(o)o.hidden=true});
+ if(!S.repo.length)throw 0;renderRepo()}).catch(()=>{const r=$('#ks-repo'),u=$('#ks-up2');if(r)r.hidden=true;if(u)u.open=true});
 
 /* ============================== mulai ============================== */
 root.querySelectorAll('[data-i]').forEach(el=>{el.textContent=t(el.dataset.i)});
@@ -4595,7 +4641,8 @@ function run(){h=0;p.querySelectorAll('tbody tr:not(.xr)').forEach(function(tr){
  var s=document.createElement('div');s.className='ksum';s.textContent=parts.join(' · ');k1.after(s);tr.dataset.s='1'})}
 function sch(){if(!h)h=requestAnimationFrame(run)}
 new MutationObserver(sch).observe(p,{childList:true,subtree:true});sch();
-p.addEventListener('click',function(e){var td=e.target.closest('td.k1');if(!td||e.target.closest('button,a,input,label,[data-go],[data-x],[data-th]'))return;var tr=td.parentNode;if(tr.dataset.s)tr.classList.toggle('kx')})})();
+p.addEventListener('click',function(e){var tr=e.target.closest('tbody tr[data-s]');if(!tr||e.target.closest('button,a,input,label,select,[data-go],[data-x],[data-th]'))return;var op=tr.classList.contains('kx');if(op&&!e.target.closest('td.k1'))return;
+ if(!op)p.querySelectorAll('tbody tr[data-s].kx').forEach(function(o){if(o!==tr&&o.closest('table')===tr.closest('table'))o.classList.remove('kx')});tr.classList.toggle('kx')})})();
 (function(){var f=document.getElementById('vf-fab'),b=document.getElementById('vf-fab-btn');if(!f||!b)return;
 b.addEventListener('click',function(e){e.stopPropagation();var o=f.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false')});
 document.addEventListener('click',function(e){if(!f.contains(e.target)){f.classList.remove('open');b.setAttribute('aria-expanded','false')}})})();
