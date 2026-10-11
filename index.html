@@ -1508,6 +1508,15 @@ details.faq-d>p{margin:0 0 14px;color:var(--text-muted);font-size:13px;line-heig
 #panel-ksei .sfm select{padding:6px 28px 6px 10px;font-size:13px}
 @container ksei (max-width:820px){#panel-ksei .sfs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}}
 
+
+#panel-ksei .hc[data-list],#panel-ksei .hc[data-sec]{cursor:pointer;transition:border-color .15s,transform .15s}
+#panel-ksei .hc[data-list]:hover,#panel-ksei .hc[data-sec]:hover{border-color:var(--cc)}
+#panel-ksei .hact{margin-top:8px}
+#panel-ksei .mfs{margin:2px 0 8px;line-height:1.5}
+#panel-ksei label.f.chk{flex-direction:row;align-items:center;gap:8px;font-weight:600}
+#panel-ksei tbody tr{scroll-margin-top:16px}
+@media (max-width:860px){#panel-ksei tbody tr{scroll-margin-top:150px}}
+
 /* ---------- Scrollbar ---------- */
 *{ scrollbar-width:thin; scrollbar-color:color-mix(in srgb,var(--gold) 45%,transparent) transparent; }
 
@@ -3774,7 +3783,7 @@ id:{
  fil:'Filter',filNone:'tanpa filter',reset:'Reset filter',
  fLF:'Lokal / Asing',all:'Semua',local:'Lokal',foreign:'Asing',fGrp:'Kelompok',ind:'Individu',inst:'Institusi',fType:'Kategori investor',
  fThr:'Abaikan perubahan di bawah (poin)',fCA:'Sertakan saham yang jumlah sahamnya berubah',unk:'Tak diketahui',unclass:'Tidak Terklasifikasi',
- n_sum:'Kesimpulan',n_sig:'Signal Saham',n_stk:'Detail Saham',n_inv:'Cari Nama Investor',n_nw:'Masuk & Keluar',
+ n_sum:'Kesimpulan',n_sig:'Signal Saham',n_stk:'Detail Saham',n_inv:'Cari Nama Investor',n_nw:'Masuk & Keluar',n_man:'Filter Manual',
  kStocks:'Saham dibandingkan',kAcc:'Saham akumulasi',kDis:'Saham distribusi',kNew:'Investor masuk daftar',kExit:'Investor keluar daftar',
  hKey:'Kesimpulan utama',hTop:'Perubahan terbesar',hSeg:'Siapa yang menambah dan mengurangi',
  i_scale:(n,m)=>`${fmt(n)} saham dibandingkan. Pada ${fmt(m)} saham ada investor besar yang mengubah kepemilikannya.`,
@@ -3823,7 +3832,7 @@ id:{
  calcSum:(net,up,dn)=>`Selisih = jumlah kolom “Dihitung” = ${pp(net)}. Penambahan ${fp(up)} poin, pengurangan ${fp(dn)} poin${up>0?` (pengurangan = ${fmt(dn/up*100)}% dari penambahan)`:''}.`,
  how_up:(b,a)=>`${fp(b)} − ${fp(a)}`,how_in:b=>`${fp(b)} − 1,00 (hanya porsi di atas 1% yang pasti)`,how_out:a=>`−(${fp(a)} − 1,00) (hanya porsi di atas 1% yang pasti)`,
  lt1:'<1',
- iLbl:'Nama investor',iPh:'mis. BPJS KETENAGAKERJAAN',iHint:'Ketik nama investor, atau ketuk namanya di tabel, untuk melihat portofolionya.',iNo:'Investor tidak ditemukan di kedua file.',
+ iLbl:'Nama investor',iPh:'mis. LO KHENG HONG',iHint:'Ketik nama investor, atau ketuk namanya di tabel, untuk melihat portofolionya.',iNo:'Investor tidak ditemukan di kedua file.',
  hLead:'Investor paling aktif',hPort:'Saham yang dipegang (di atas 1%)',
  kHeld:'Saham dipegang (periode 2)',kUp:'Saham ditambah',kDn:'Saham dikurangi',kEnt:'Masuk',kExt:'Keluar',
  b_acc:'Lebih banyak menambah',b_dist:'Lebih banyak mengurangi',b_mix:'Campuran',b_flat:'Tidak ada perubahan',
@@ -3882,7 +3891,7 @@ en:{
  fil:'Filters',filNone:'no filters',reset:'Reset filters',
  fLF:'Local / Foreign',all:'All',local:'Local',foreign:'Foreign',fGrp:'Group',ind:'Individual',inst:'Institution',fType:'Investor category',
  fThr:'Ignore changes below (points)',fCA:'Include stocks whose share count changed',unk:'Unknown',unclass:'Unclassified',
- n_sum:'Takeaways',n_sig:'Stock Signals',n_stk:'Stock Detail',n_inv:'Search Investor',n_nw:'Entries & Exits',
+ n_sum:'Takeaways',n_sig:'Stock Signals',n_stk:'Stock Detail',n_inv:'Search Investor',n_nw:'Entries & Exits',n_man:'Manual Filter',
  kStocks:'Stocks compared',kAcc:'Accumulating stocks',kDis:'Distributing stocks',kNew:'Investors entering list',kExit:'Investors leaving list',
  hKey:'Key takeaways',hTop:'Biggest changes',hSeg:'Who is adding and who is reducing',
  i_scale:(n,m)=>`${fmt(n)} stocks compared. In ${fmt(m)} of them a large holder changed their stake.`,
@@ -3931,7 +3940,7 @@ en:{
  calcSum:(net,up,dn)=>`Difference = sum of the “Counted” column = ${pp(net)}. Added ${fp(up)} pts, reduced ${fp(dn)} pts${up>0?` (reduced = ${fmt(dn/up*100)}% of added)`:''}.`,
  how_up:(b,a)=>`${fp(b)} − ${fp(a)}`,how_in:b=>`${fp(b)} − 1.00 (only the part above 1% is certain)`,how_out:a=>`−(${fp(a)} − 1.00) (only the part above 1% is certain)`,
  lt1:'<1',
- iLbl:'Investor name',iPh:'e.g. BPJS KETENAGAKERJAAN',iHint:'Type an investor name, or tap a name in a table, to see their portfolio.',iNo:'Investor not found in either file.',
+ iLbl:'Investor name',iPh:'e.g. LO KHENG HONG',iHint:'Type an investor name, or tap a name in a table, to see their portfolio.',iNo:'Investor not found in either file.',
  hLead:'Most active investors',hPort:'Stocks held (above 1%)',
  kHeld:'Stocks held (period 2)',kUp:'Stocks added',kDn:'Stocks reduced',kEnt:'Entered',kExt:'Left',
  b_acc:'Mostly adding',b_dist:'Mostly reducing',b_mix:'Mixed',b_flat:'No change',
@@ -3967,7 +3976,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const cls=v=>Math.round(v*100)>0?'pos':Math.round(v*100)<0?'neg':'';
 const THR=1, CA_TOL=0.02, ACQ=40;  /* Akuisisi: pemegang terbesar berganti dan investor baru naik >= 40 poin */
 const S={A:null,B:null,P1:null,P2:null,rows:[],f:[],agg:[],info:new Map(),ca:new Map(),spread:new Map(),stats:{},hist:[],open:{},lists:{},sec:'sum',ui:{},dl:{},demo:false,la:'',lb:''};
-const SECS=['sum','sig','stk','inv','nw'];
+const SECS=['sum','sig','stk','inv','man'];
 const SIGCOL={ipo:'var(--new)',ak:'var(--gold)',sa:'var(--up)',a:'var(--up)',n:'var(--flat)',d:'var(--down)',sd:'var(--exit)',rot:'var(--rot)'};
 const STCOL={New:'var(--new)',Accumulation:'var(--up)',Distribution:'var(--down)',Unchanged:'var(--flat)',Exit:'var(--exit)'};
 const STL=()=>({New:t('sNew'),Accumulation:t('sAcc'),Distribution:t('sDis'),Unchanged:t('sUn'),Exit:t('sExit')});
@@ -4289,19 +4298,17 @@ function vSum(v){
  const order=['FN','FI','LN','LI'],sr=Object.values(segs).sort((a,b)=>(order.indexOf(a.k)+1||9)-(order.indexOf(b.k)+1||9));
  const sc=[{k:'s',h:t('segT'),v:r=>segL(r.k)},{k:'up',h:t('segUp'),n:1,v:r=>r.up,c:r=>r.up>r.dn?'pos':''},{k:'dn',h:t('segDn'),n:1,v:r=>r.dn,c:r=>r.dn>r.up?'neg':''},{k:'nw',h:t('segNew'),n:1,v:r=>r.nw},{k:'ex',h:t('segEx'),n:1,v:r=>r.ex}];
  const T2=(a,b)=>ID?a:b;
- const HC=(key,c,ic,title,punch)=>{const n=L[key].tickers.length;return `<div class="hc ${c}"><div class="hh"><span class="hi">${ic}</span><div class="ht"><b>${title}</b><span>${punch}</span></div><div class="hn">${fmt(n)}</div></div>${n?`<div class="hch">${five(key)}${all(key)}</div>`:`<div class="muted small">${t('none')}</div>`}</div>`};
+ const HC=(key,c,ic,title,punch)=>{const n=L[key].tickers.length;return `<div class="hc ${c}" data-list="${key}" role="button" tabindex="0"><div class="hh"><span class="hi">${ic}</span><div class="ht"><b>${title}</b><span>${punch}</span></div><div class="hn">${fmt(n)}</div></div>${n?`<div class="hch">${five(key)}${all(key)}</div>`:`<div class="muted small">${t('none')}</div>`}</div>`};
+ const act5=[...invAgg(S.f)].sort((a,b)=>b.act-a.act).slice(0,5);
+ const actHtml=`<div class="hc gold" data-sec="inv" role="button" tabindex="0"><div class="hh"><span class="hi">★</span><div class="ht"><b>${T2('Investor paling aktif','Most active investors')}</b><span>${T2('Urut dari paling banyak mengubah kepemilikan saham','Ranked by number of stocks changed')}</span></div></div><div class="hact">${act5.map(s=>`<div class="li">${chip('inv',s.inv)}<span class="nm muted">${esc(s.type)}${s.lf?' · '+lfL(s.lf):''}</span><span>${fmt(s.act)} ${T2('saham','stocks')} · ▲${fmt(s.nAcc)} ▼${fmt(s.nDis)}</span></div>`).join('')}</div><div class="hch"><button type="button" class="chip all" data-sec="inv">${T2('Lihat semua investor →','See all investors →')}</button></div></div>`;
  const heroHtml=`<div class="hsub muted small">${fmt(nStocks)} ${T2('saham dibandingkan','stocks compared')} · ${esc(S.la)} → ${esc(S.lb)}</div><div class="hero">`
   +HC('sa','up','▲',T2('Akumulasi kuat','Strong accumulation'),T2('Investor besar kompak menambah — layak masuk radar','Large holders adding together — worth watching'))
   +HC('sd','down','▼',T2('Distribusi besar','Large distribution'),T2('Investor besar kompak mengurangi — waspadai tekanan jual','Large holders cutting together — watch selling pressure'))
   +HC('ak','gold','⇄',T2('Akuisisi','Acquisition'),T2('Pemegang terbesar berganti — kendali saham berpindah','Largest holder changed — control has moved'))
   +HC('fa','fa','＋',T2('Investor asing akumulasi','Foreign investors accumulating'),T2('Dana asing menambah porsi kepemilikan','Foreign funds adding to their stakes'))
   +HC('fd','fd','－',T2('Investor asing distribusi','Foreign investors distributing'),T2('Dana asing mengurangi porsi kepemilikan','Foreign funds reducing their stakes'))
-  +`</div><div class="muted small hdisc">${T2('Sinyal dari perubahan kepemilikan KSEI antar dua periode — bukan prediksi harga atau rekomendasi beli/jual.','Signals from KSEI ownership changes between two periods — not a price forecast or buy/sell advice.')}</div>`;
- put(v,'',(S.filtered?`<div class="note small">${t('filterNote')}</div>`:'')+heroHtml+`<details class="ks-more"><summary>${T2('Statistik & ringkasan lainnya','More stats & summary')}</summary>`+kp
- +sec('sum:key',t('hKey'),'view',null,`<ul class="ins">${ins.join('')}</ul>`,true)
- +sec('sum:top',t('hTop'),'calc',null,`<div class="cards">${card(t('cAcc'),tA,bL('acc'))}${card(t('cDis'),tD,bL('dis'))}${card(t('cNew'),tN,bN('New'))}${card(t('cExit'),tE,bN('Exit'))}</div>`,false)
- +sec('sum:seg',t('hSeg'),'calc',null,table('seg',sr,sc,{name:'groups',lim:20})+`<div class="muted small" style="margin-top:6px">${t('segNote')}</div>`,false)
- +`<details class="meth"><summary>${t('meth')}</summary><div class="mb"><ul>${T.m.map(x=>`<li>${x}</li>`).join('')}<li><b>${t('rulesT')}.</b>${rulesHtml()}</li></ul></div></details></details><div class="disc">${t('disc')}</div>`);
+  +actHtml+`</div><div class="muted small hdisc">${T2('Sinyal dari perubahan kepemilikan KSEI antar dua periode — bukan prediksi harga atau rekomendasi beli/jual.','Signals from KSEI ownership changes between two periods — not a price forecast or buy/sell advice.')}</div>`;
+ put(v,'',(S.filtered?`<div class="note small">${t('filterNote')}</div>`:'')+heroHtml+`<div class="disc">${t('disc')}</div>`);
 }
 
 /* ============================== bagian: signal saham ============================== */
@@ -4430,7 +4437,64 @@ function vNew(v){const u=S.ui;u.sub=u.sub||'New';const isN=u.sub==='New';
 }
 
 /* ============================== tampil & event ============================== */
-const VIEWS={sum:vSum,sig:vSig,stk:vStk,inv:vInv,nw:vNew};
+/* ============================== bagian: filter manual ============================== */
+const MAN0={grp:'',lf:'',ty:'',dir:'acc',act:'',mnInv:1,mnPts:0.5,mnTot:0,minPb:0,sig:'',q:'',noSelf:true,noIpo:true};
+const MAN_P={
+ ind:{l:ID?'Individu akumulasi':'Individuals accumulating',s:{grp:'I',dir:'acc'}},
+ ind3:{l:ID?'3+ individu menambah':'3+ individuals adding',s:{grp:'I',dir:'acc',mnInv:3}},
+ inst:{l:ID?'Institusi akumulasi':'Institutions accumulating',s:{grp:'N',dir:'acc'}},
+ fa:{l:ID?'Asing akumulasi':'Foreign accumulating',s:{lf:'F',dir:'acc',mnTot:1}},
+ fd:{l:ID?'Asing distribusi':'Foreign distributing',s:{lf:'F',dir:'dis',mnTot:1}},
+ nw:{l:ID?'Investor baru ≥ 5%':'New holders ≥ 5%',s:{act:'new',dir:'acc',minPb:5}},
+ ex:{l:ID?'Pemegang besar keluar':'Big holders exiting',s:{act:'exit',dir:'dis',mnPts:2}}};
+function manHolders(x){const T2=(a,b)=>ID?a:b,rows=[...x.hit].sort((a,b)=>Math.abs(b.dp)-Math.abs(a.dp)),cap=12;
+ return `<div class="xh muted small">${rows.length} ${T2('investor memenuhi filter','matching investors')} · ${fp(x.pa)}% → ${fp(x.pb)}%</div>`
+ +rows.slice(0,cap).map(r=>`<div class="hl"><span class="hn">${chip('inv',r.inv)} <span class="muted small">${esc(r.type)} · ${lfL(r.lf)}</span></span><span class="hs">${stTag(r.st)}</span><span class="hv">${pctCell(r.pa)} → ${pctCell(r.pb)} <b class="${cls(r.dp)}">(${sgn(r.dp,fp)})</b></span></div>`).join('')
+ +`<div class="xo small muted">${rows.length>cap?t('xMore',rows.length-cap)+' ':''}<button type="button" class="chip" data-go="stk:${esc(x.t)}">${t('xOpen')}</button></div>`}
+function vMan(v){const u=S.ui,T2=(a,b)=>ID?a:b,m=u.manf=Object.assign({},MAN0,u.manf||{});
+ const byT=new Map(S.agg.map(s=>[s.t,s])),g=new Map(),terms=String(m.q).split(/[,\s]+/).map(x=>x.trim().toUpperCase()).filter(Boolean);
+ for(const r of S.f){if(r.st==='Unchanged'||(m.noSelf&&r.self))continue;
+  if(m.grp&&r.grp!==m.grp)continue;if(m.lf&&r.lf!==m.lf)continue;if(m.ty&&r.type!==m.ty)continue;
+  if(m.dir==='acc'&&!(r.dp>0))continue;if(m.dir==='dis'&&!(r.dp<0))continue;
+  if(m.act==='new'&&r.st!=='New')continue;if(m.act==='exit'&&r.st!=='Exit')continue;
+  if(m.act==='up'&&r.st!=='Accumulation')continue;if(m.act==='down'&&r.st!=='Distribution')continue;
+  if(Math.abs(r.dp)<m.mnPts||(m.minPb>0&&r.pb<m.minPb))continue;
+  (g.get(r.t)||g.set(r.t,[]).get(r.t)).push(r)}
+ const out=[];
+ for(const [tk,hit] of g){const s=byT.get(tk);if(!s||(m.noIpo&&s.sig==='ipo')||(m.sig&&s.sig!==m.sig))continue;
+  if(terms.length&&!terms.some(x=>tk===x||tk.startsWith(x)))continue;
+  const tot=hit.reduce((a,r)=>a+r.dp,0),n=hit.length,tm=m.dir==='dis'?-tot:m.dir==='acc'?tot:Math.abs(tot);
+  if(n<m.mnInv||tm<m.mnTot)continue;
+  out.push({t:tk,iss:s.iss,s,hit,n,tot,pa:hit.reduce((a,r)=>a+r.pa,0),pb:hit.reduce((a,r)=>a+r.pb,0)})}
+ const sel=(k,l,o)=>`<label class="f">${l}<select data-mf="${k}">${o.map(([x,y])=>`<option value="${x}"${String(m[k])===String(x)?' selected':''}>${esc(y)}</option>`).join('')}</select></label>`;
+ const types=[...new Set(S.f.map(r=>r.type))].sort().map(x=>[x,x]),all0=T2('Semua','All');
+ const lab=[];if(m.grp)lab.push(m.grp==='I'?T2('Individu','Individuals'):T2('Institusi','Institutions'));if(m.lf)lab.push(m.lf==='F'?T2('Asing','Foreign'):T2('Lokal','Local'));if(m.ty)lab.push(m.ty);
+ lab.push(m.dir==='acc'?T2('Akumulasi','Accumulation'):m.dir==='dis'?T2('Distribusi','Distribution'):T2('Semua pergerakan','All moves'));
+ if(m.act)lab.push({new:T2('Masuk baru','New entry'),exit:T2('Keluar','Exit'),up:T2('Menambah porsi','Adding'),down:T2('Mengurangi porsi','Reducing')}[m.act]);
+ lab.push('≥'+m.mnInv+' '+T2('investor','investors'));if(m.mnPts)lab.push('≥'+fp(m.mnPts)+' '+T2('poin per investor','pts each'));if(m.mnTot)lab.push(T2('total','total')+' ≥'+fp(m.mnTot));if(m.minPb)lab.push(T2('porsi akhir','final stake')+' ≥'+fp(m.minPb)+'%');if(m.sig)lab.push(t(m.sig));
+ const ctl=`<div class="sfs">${Object.keys(MAN_P).map(k=>`<button type="button" class="sfc" data-mp="${k}" style="--cc:var(--gold)"><i></i>${MAN_P[k].l}</button>`).join('')}<button type="button" class="sfc" data-mp="reset" style="--cc:var(--mute)">${T2('Reset','Reset')}</button></div>`
+ +`<details class="ks-more"${matchMedia('(max-width:820px)').matches?'':' open'}><summary>${T2('Atur filter','Set filters')} · ${lab.length}</summary><div class="bar">`
+ +sel('grp',T2('Jenis investor','Investor kind'),[['',all0],['I',T2('Individu','Individual')],['N',T2('Institusi','Institution')]])
+ +sel('lf',T2('Lokal / Asing','Local / Foreign'),[['',all0],['L',T2('Lokal','Local')],['F',T2('Asing','Foreign')]])
+ +sel('ty',T2('Kategori investor','Investor category'),[['',all0]].concat(types))
+ +sel('dir',T2('Arah pergerakan','Direction'),[['acc',T2('Akumulasi (menambah)','Accumulation (adding)')],['dis',T2('Distribusi (mengurangi)','Distribution (reducing)')],['all',T2('Semua pergerakan','All moves')]])
+ +sel('act',T2('Jenis aksi','Action'),[['',all0],['up',T2('Menambah porsi','Adding to stake')],['new',T2('Masuk baru','New entry')],['down',T2('Mengurangi porsi','Reducing stake')],['exit',T2('Keluar','Exit')]])
+ +sel('mnInv',T2('Minimal jumlah investor','Min. investors'),[1,2,3,4,5,7,10].map(x=>[x,String(x)]))
+ +sel('mnPts',T2('Min. perubahan per investor (poin)','Min. change per investor (pts)'),[0.25,0.5,1,2,5,10].map(x=>[x,fp(x)]))
+ +sel('mnTot',T2('Min. total perubahan (poin)','Min. total change (pts)'),[0,1,2,5,10,20].map(x=>[x,fp(x)]))
+ +sel('minPb',T2('Porsi akhir investor minimal (%)','Investor final stake min. (%)'),[0,1,2,5,10,20].map(x=>[x,fp(x)]))
+ +sel('sig',T2('Sinyal sistem','System signal'),[['',all0]].concat(['ak','sa','a','sd','d','rot'].map(k=>[k,t(k)])))
+ +`<label class="f">${T2('Kode saham (pisahkan koma)','Stock codes (comma-separated)')}<input type="text" data-mf="q" value="${esc(m.q)}" placeholder="${t('wlPh')}" autocomplete="off"></label>`
+ +`<label class="f chk"><input type="checkbox" data-mf="noSelf"${m.noSelf?' checked':''}> ${T2('Abaikan emiten sendiri (buyback)','Ignore issuer itself (buyback)')}</label>`
+ +`<label class="f chk"><input type="checkbox" data-mf="noIpo"${m.noIpo?' checked':''}> ${T2('Abaikan saham IPO baru','Ignore new IPOs')}</label>`
+ +`</div></details>`;
+ const cols=[{k:'t',h:t('cCode'),v:x=>x.t,f:x=>chip('stk',x.t)},{k:'iss',h:t('cIss'),w:1,v:x=>x.iss||''},
+  {k:'sig',h:t('cSig'),v:x=>sigRank(x.s),f:x=>sigCell(x.s)},
+  {k:'tot',h:t('cNet'),n:1,v:x=>x.tot,f:x=>sgn(x.tot,fp),c:x=>cls(x.tot)},
+  {k:'n',h:T2('Investor cocok','Matching'),n:1,v:x=>x.n},
+  {k:'pb',h:T2('% awal → akhir','% start → end'),v:x=>x.pb,f:x=>`${fp(x.pa)}% → ${fp(x.pb)}%`}];
+ put(v,ctl,`<div class="mfs muted small"><b>${fmt(out.length)}</b> ${T2('saham memenuhi','stocks match')}: ${lab.map(esc).join(' · ')}</div>`+table('mf',out,cols,{name:'filter_manual',sk:'tot',sd:m.dir==='dis'?1:-1,sortKeys:['tot','n','pb'],sortLbl:{tot:T2('Total perubahan','Total change'),n:T2('Jumlah investor','Investor count'),pb:T2('Porsi akhir','Final stake')},exp:{key:x=>x.t,html:x=>manHolders(x),label:t('xLbl')}}))}
+const VIEWS={sum:vSum,sig:vSig,stk:vStk,inv:vInv,nw:vNew,man:vMan};
 let PART=false;
 /* Kotak isian dan pilihan (ks-ctl) tidak dibangun ulang saat mengetik/memfilter; hanya hasilnya (ks-res).
    Ini mencegah kehilangan fokus dan lompatan scroll. */
@@ -4438,6 +4502,7 @@ function put(v,ctl,res){const r=PART?$('#ks-res'):null;
  if(r)r.innerHTML=res;else v.innerHTML=`<div id="ks-ctl">${ctl}</div><div id="ks-res">${res}</div>`}
 function render(part){
  S.dl={};S.xfn={};
+ if(!VIEWS[S.sec]||S.sec==='nw')S.sec='sum';
  const v=$('#ks-view');
  if(!part)$('#ks-nav').innerHTML=SECS.map(k=>`<button type="button" role="tab" aria-selected="${S.sec===k}" data-sec="${k}">${t('n_'+k)}</button>`).join('');
  PART=!!part&&!!$('#ks-res');
@@ -4470,8 +4535,10 @@ function toggleX(key,btn){
  const row=[...root.querySelectorAll('tr.xr')].find(e=>e.dataset.xr===key);if(!row)return;
  const open=row.hidden;
  if(open){root.querySelectorAll('tr.xr:not([hidden])').forEach(r=>{if(r!==row){r.hidden=true;S.exp[r.dataset.xr]=false}});root.querySelectorAll('.xbtn.open').forEach(b=>{if(b!==btn){b.classList.remove('open');b.setAttribute('aria-expanded','false')}});const cell=row.firstElementChild;if(!cell.innerHTML.trim()&&S.xfn[key])cell.innerHTML=S.xfn[key]();row.hidden=false}else row.hidden=true;
- S.exp[key]=open;btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open?'true':'false');queueSave()}
+ S.exp[key]=open;btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open?'true':'false');queueSave();if(open){const tr0=btn.closest('tr');if(tr0)setTimeout(()=>tr0.scrollIntoView({behavior:'smooth',block:'start'}),80)}}
 root.addEventListener('toggle',e=>{const d=e.target;if(d&&d.matches&&d.matches('details.ks-fctl')){S.ui.fo=d.open;queueSave()}},true);
+root.addEventListener('change',e=>{const x=e.target,k=x&&x.dataset&&x.dataset.mf;if(!k)return;const m=S.ui.manf=Object.assign({},MAN0,S.ui.manf||{});
+ m[k]=x.type==='checkbox'?x.checked:(['mnInv','mnPts','mnTot','minPb'].indexOf(k)>=0?(parseFloat(x.value)||0):x.value);if(k==='dir')delete S.ui.mf;keepY(()=>render());queueSave()});
 const xb=document.createElement('button');xb.type='button';xb.id='ks-xclose';xb.hidden=true;document.body.appendChild(xb);
 let inView=true;new IntersectionObserver(es=>{inView=es[0].isIntersecting;updX()}).observe(root);
 function updX(){const n=root.querySelectorAll('tr.xr:not([hidden])').length;xb.hidden=!(n&&root.offsetParent&&inView);xb.textContent=(ID?'Tutup semua pemegang':'Collapse all holders')+' ('+n+')'}
@@ -4480,9 +4547,10 @@ xb.addEventListener('click',collapseAll);
 let xt=0;new MutationObserver(()=>{if(!xt)xt=requestAnimationFrame(()=>{xt=0;updX()})}).observe(root,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden','class']});
 const navTo=()=>$('#ks-nav').scrollIntoView({behavior:'smooth',block:'start'});
 root.addEventListener('click',e=>{
- const b=e.target.closest('[data-sec],[data-go],[data-th],[data-more],[data-sub],[data-dl],[data-dir],[data-demo],[data-repo],[data-repocmp],[data-reset],[data-sfv],[data-back],[data-list],[data-nw],[data-clearlist],[data-x],[data-forget]');
+ const b=e.target.closest('[data-sec],[data-go],[data-th],[data-more],[data-sub],[data-dl],[data-dir],[data-demo],[data-repo],[data-repocmp],[data-reset],[data-sfv],[data-mp],[data-back],[data-list],[data-nw],[data-clearlist],[data-x],[data-forget]');
  if(!b||!root.contains(b))return;const d=b.dataset;
- if(d.sfv!==undefined){S.ui.sf=d.sfv;keepY(()=>render(true));return}
+ if(d.sfv!==undefined){S.ui.sf=d.sfv;keepY(()=>render());return}
+ if(d.mp!==undefined){S.ui.manf=Object.assign({},MAN0,d.mp==='reset'?{}:MAN_P[d.mp].s);delete S.ui.mf;keepY(()=>render());return}
  if(d.repo!==undefined){onRepo(d.repo);return}
  if('repocmp' in d){onRepoBoth();return}
  if(d.sec)go(d.sec);
@@ -4692,7 +4760,7 @@ function run(){h=0;p.querySelectorAll('tbody tr:not(.xr)').forEach(function(tr){
 function sch(){if(!h)h=requestAnimationFrame(run)}
 new MutationObserver(sch).observe(p,{childList:true,subtree:true});sch();
 p.addEventListener('click',function(e){var tr=e.target.closest('tbody tr[data-s]');if(!tr||e.target.closest('button,a,input,label,select,[data-go],[data-x],[data-th]'))return;var op=tr.classList.contains('kx');if(op&&!e.target.closest('td.k1'))return;
- if(!op)p.querySelectorAll('tbody tr[data-s].kx').forEach(function(o){if(o!==tr&&o.closest('table')===tr.closest('table'))o.classList.remove('kx')});tr.classList.toggle('kx')})})();
+ if(!op)p.querySelectorAll('tbody tr[data-s].kx').forEach(function(o){if(o!==tr&&o.closest('table')===tr.closest('table'))o.classList.remove('kx')});tr.classList.toggle('kx');if(tr.classList.contains('kx'))setTimeout(function(){tr.scrollIntoView({behavior:'smooth',block:'start'})},80)})})();
 (function(){var f=document.getElementById('vf-fab'),b=document.getElementById('vf-fab-btn');if(!f||!b)return;
 b.addEventListener('click',function(e){e.stopPropagation();var o=f.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false')});
 document.addEventListener('click',function(e){if(!f.contains(e.target)){f.classList.remove('open');b.setAttribute('aria-expanded','false')}})})();
