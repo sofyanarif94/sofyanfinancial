@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The Investor Toolkit: Your Guide to Smarter Markets | Aneka Kalkulator Valuasi Saham</title>
 <meta name="description" content="Toolkit investor gratis: kalkulator valuasi saham, nilai intrinsik &amp; wajar (DCF, DDM, Buffett), average saham, bandarmology, dana pensiun &amp; financial freedom." />
-<meta name="keywords" content="kalkulator valuasi saham, kalkulator saham, menghitung nilai intrinsik saham, nilai intrinsik saham, mencari nilai wajar saham, cara menghitung harga wajar saham, kalkulator average saham, kalkulator rata-rata harga saham, analisis bandarmology, bandarmology saham, analisis kepemilikan saham, cek kepemilikan saham di atas 1 persen KSEI, menghitung dana pensiun, kalkulator dana pensiun, kalkulator dana pensiun saham, cara financial freedom, kalkulator financial freedom, kalkulator FIRE Indonesia, kalkulator DCF saham, kalkulator DDM saham, valuasi saham Warren Buffett, analisis fundamental saham, belajar investasi saham pemula, tes profil risiko investor, kalkulator investasi saham gratis, alat bantu investor saham, saham BEI IHSG, value investing Indonesia, stock valuation calculator, intrinsic value calculator, fair value of a stock, DCF calculator, discounted cash flow calculator, dividend discount model calculator, DDM calculator, Warren Buffett valuation, equity bond valuation, stock average price calculator, target price calculator, shareholder ownership analysis, bandarmology, retirement fund calculator, financial freedom calculator, FIRE calculator, investor risk profile quiz, margin of safety, free investing tools, Indonesia Stock Exchange IDX, free investor toolkit, the investor toolkit, investor toolkit indonesia, analisis kepemilikan saham, bandarmology, analisa bandarmology saham, analisis bandar saham, kalkulator bandarmology, laporan kepemilikan saham KSEI, toolkit investor saham gratis, risk profile investor, kalkulator financial freedom, kalkulator dividend discount model, equity bond valuation, kalkulator nilai intrinsik saham, kalkulator saham paling lengkap gratis, kalkulator nilai wajar saham gratis dan lengkap, kalkulator menghitung harga wajar saham, kalkulator menghitung valuasi saham, cara menghitung valuasi saham, kalkulator dcf saham, kalkulator discounted cash flow, kalkulator warren buffett, menghitung average saham, kalkulator menghitung rata-rata harga saham, kalkulator value investing, kalkulator saham murah, valuasi target harga saham, kalkulator target harga saham, kalkulator saham lengkap murah gratis" />
+<meta name="keywords" content="cagr calculator, kalkulator cagr, compound interest calculator, kalkulator bunga majemuk, simulasi investasi compound, kalkulator valuasi saham, kalkulator saham, menghitung nilai intrinsik saham, nilai intrinsik saham, mencari nilai wajar saham, cara menghitung harga wajar saham, kalkulator average saham, kalkulator rata-rata harga saham, analisis bandarmology, bandarmology saham, analisis kepemilikan saham, cek kepemilikan saham di atas 1 persen KSEI, menghitung dana pensiun, kalkulator dana pensiun, kalkulator dana pensiun saham, cara financial freedom, kalkulator financial freedom, kalkulator FIRE Indonesia, kalkulator DCF saham, kalkulator DDM saham, valuasi saham Warren Buffett, analisis fundamental saham, belajar investasi saham pemula, tes profil risiko investor, kalkulator investasi saham gratis, alat bantu investor saham, saham BEI IHSG, value investing Indonesia, stock valuation calculator, intrinsic value calculator, fair value of a stock, DCF calculator, discounted cash flow calculator, dividend discount model calculator, DDM calculator, Warren Buffett valuation, equity bond valuation, stock average price calculator, target price calculator, shareholder ownership analysis, bandarmology, retirement fund calculator, financial freedom calculator, FIRE calculator, investor risk profile quiz, margin of safety, free investing tools, Indonesia Stock Exchange IDX, free investor toolkit, the investor toolkit, investor toolkit indonesia, analisis kepemilikan saham, bandarmology, analisa bandarmology saham, analisis bandar saham, kalkulator bandarmology, laporan kepemilikan saham KSEI, toolkit investor saham gratis, risk profile investor, kalkulator financial freedom, kalkulator dividend discount model, equity bond valuation, kalkulator nilai intrinsik saham, kalkulator saham paling lengkap gratis, kalkulator nilai wajar saham gratis dan lengkap, kalkulator menghitung harga wajar saham, kalkulator menghitung valuasi saham, cara menghitung valuasi saham, kalkulator dcf saham, kalkulator discounted cash flow, kalkulator warren buffett, menghitung average saham, kalkulator menghitung rata-rata harga saham, kalkulator value investing, kalkulator saham murah, valuasi target harga saham, kalkulator target harga saham, kalkulator saham lengkap murah gratis" />
 <meta name="google-site-verification" content="yEDYCzDjYLghaDx6KYNGsLaw-_3tkxSzCfxQuCrKeUQ" />
 
 <link rel="canonical" href="https://sofyanfinancial.vercel.app/" />
@@ -94,6 +94,8 @@
     }
   ],
   "featureList": [
+    "CAGR Calculator",
+    "Compound Interest Calculator",
     "Analisis Kepemilikan Saham (Bandarmology) dari data KSEI",
     "Kalkulator Valuasi Saham: nilai intrinsik dan nilai wajar saham",
     "Kalkulator Discounted Cash Flow (DCF)",
@@ -1555,6 +1557,15 @@ details.faq-d>p{margin:0 0 14px;color:var(--text-muted);font-size:13px;line-heig
 #panel-ksei .ahint{margin-top:10px}
 @media (max-width:860px){#panel-ksei details.acd{scroll-margin-top:150px}}
 
+
+/* ---- CAGR & bunga majemuk ---- */
+.ct-t{width:100%;border-collapse:collapse;font-size:13px}
+.ct-t th,.ct-t td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--border-soft,var(--border))}
+.ct-t th{color:var(--gold-soft);font-weight:700;white-space:nowrap}
+.ct-bar{height:6px;border-radius:4px;background:linear-gradient(90deg,#c9a24b,#f1d98f)}
+#subpanel-cagr select.vf-input,#subpanel-comp select.vf-input{width:100%;cursor:pointer}
+#subpanel-cagr input:disabled{opacity:.45}
+
 /* ---------- Scrollbar ---------- */
 *{ scrollbar-width:thin; scrollbar-color:color-mix(in srgb,var(--gold) 45%,transparent) transparent; }
 
@@ -1655,6 +1666,8 @@ details.faq-d>p{margin:0 0 14px;color:var(--text-muted);font-size:13px;line-heig
       <button class="vf-subtab active" data-subtab="dcf">Discounted Cash Flow</button>
       <button class="vf-subtab" data-subtab="ddm">Dividend Discount Model</button>
       <button class="vf-subtab" data-subtab="eb">Equity Bond Valuation</button>
+      <button class="vf-subtab" data-subtab="cagr">CAGR Calculator</button>
+      <button class="vf-subtab" data-subtab="comp">Bunga Majemuk (Compound)</button>
     </div>
 
     <div class="vf-subpanel active" id="subpanel-dcf">
@@ -1963,6 +1976,52 @@ details.faq-d>p{margin:0 0 14px;color:var(--text-muted);font-size:13px;line-heig
         </details>
       </div>
     </div>
+    </div>
+  
+    <div class="vf-subpanel" id="subpanel-cagr">
+      <div class="vf-section-title"><span class="vf-eyebrow">Alat bantu</span><h2>CAGR Calculator</h2><p>Hitung pertumbuhan majemuk tahunan (CAGR) dari nilai awal ke nilai akhir selama beberapa periode. Berguna untuk laba, pendapatan, EPS, dividen, atau harga saham.</p></div>
+      <div class="vf-toolbar"><button class="vf-mini-btn" id="cg-reset" type="button">↺ Reset</button></div>
+      <div class="vf-grid-2">
+        <div class="vf-card"><h3 id="cg-h-in"></h3>
+          <div class="vf-field"><label class="vf-label" id="cg-l-mode"></label><div class="vf-input-wrap"><select class="vf-input" id="cg-mode"></select></div></div>
+          <div class="vf-field-row">
+            <div class="vf-field"><label class="vf-label" id="cg-l-start"></label><div class="vf-input-wrap"><input type="number" step="any" class="vf-input" id="cg-start" value="100"></div></div>
+            <div class="vf-field"><label class="vf-label" id="cg-l-end"></label><div class="vf-input-wrap"><input type="number" step="any" class="vf-input" id="cg-end" value="250"></div></div>
+          </div>
+          <div class="vf-field-row">
+            <div class="vf-field"><label class="vf-label" id="cg-l-n"></label><div class="vf-input-wrap"><input type="number" step="any" class="vf-input" id="cg-n" value="5"></div></div>
+            <div class="vf-field"><label class="vf-label" id="cg-l-unit"></label><div class="vf-input-wrap"><select class="vf-input" id="cg-unit"></select></div></div>
+          </div>
+          <div class="vf-field"><label class="vf-label" id="cg-l-rate"></label><div class="vf-input-wrap"><input type="number" step="any" class="vf-input" id="cg-rate" value="10"><span class="vf-suffix">%</span></div></div>
+        </div>
+        <div class="vf-card vf-result-card"><h3 id="cg-h-out"></h3>
+          <div class="vf-result-list" id="cg-out"></div>
+          <p class="vf-note" id="cg-note" style="font-size:12px;opacity:.75;margin:10px 0 0"></p>
+        </div>
+      </div>
+      <details class="vf-case"><summary class="vf-case-head"><span class="vf-case-tag" id="cg-h-tab"></span></summary><div id="cg-table"></div></details>
+    </div>
+    <div class="vf-subpanel" id="subpanel-comp">
+      <div class="vf-section-title"><span class="vf-eyebrow">Alat bantu</span><h2>Kalkulator Bunga Majemuk (Compound)</h2><p>Berapa nilai investasi Anda di tahun ke-X jika modal awal ditumbuhkan dengan imbal hasil sekian persen per tahun? Bisa ditambah setoran rutin bulanan.</p></div>
+      <div class="vf-toolbar"><button class="vf-mini-btn" id="cp-reset" type="button">↺ Reset</button></div>
+      <div class="vf-grid-2">
+        <div class="vf-card"><h3 id="cp-h-in"></h3>
+          <div class="vf-field-row">
+            <div class="vf-field"><label class="vf-label" id="cp-l-init"></label><div class="vf-input-wrap"><input type="number" step="any" class="vf-input" id="cp-init" value="10000000"><span class="vf-suffix">Rp</span></div></div>
+            <div class="vf-field"><label class="vf-label" id="cp-l-rate"></label><div class="vf-input-wrap"><input type="number" step="any" class="vf-input" id="cp-rate" value="12"><span class="vf-suffix">%</span></div></div>
+          </div>
+          <div class="vf-field-row">
+            <div class="vf-field"><label class="vf-label" id="cp-l-years"></label><div class="vf-input-wrap"><input type="number" step="any" class="vf-input" id="cp-years" value="10"><span class="vf-suffix" id="cp-s-th"></span></div></div>
+            <div class="vf-field"><label class="vf-label" id="cp-l-freq"></label><div class="vf-input-wrap"><select class="vf-input" id="cp-freq"></select></div></div>
+          </div>
+          <div class="vf-field"><label class="vf-label" id="cp-l-add"></label><div class="vf-input-wrap"><input type="number" step="any" class="vf-input" id="cp-add" value="0"><span class="vf-suffix">Rp</span></div></div>
+        </div>
+        <div class="vf-card vf-result-card"><h3 id="cp-h-out"></h3>
+          <div class="vf-result-list" id="cp-out"></div>
+          <p class="vf-note" id="cp-note" style="font-size:12px;opacity:.75;margin:10px 0 0"></p>
+        </div>
+      </div>
+      <details class="vf-case" open><summary class="vf-case-head"><span class="vf-case-tag" id="cp-h-tab"></span></summary><div id="cp-table"></div></details>
     </div>
   </section>
 
@@ -4810,6 +4869,71 @@ p.addEventListener('click',function(e){var tr=e.target.closest('tbody tr[data-s]
 (function(){var f=document.getElementById('vf-fab'),b=document.getElementById('vf-fab-btn');if(!f||!b)return;
 b.addEventListener('click',function(e){e.stopPropagation();var o=f.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false')});
 document.addEventListener('click',function(e){if(!f.contains(e.target)){f.classList.remove('open');b.setAttribute('aria-expanded','false')}})})();
+</script>
+<script>
+(function(){
+var EN=document.documentElement.lang==='en',T=function(a,b){return EN?b:a},loc=EN?'en-US':'id-ID';
+var $=function(i){return document.getElementById(i)};
+if(!$('subpanel-cagr'))return;
+var num=function(i){var v=parseFloat($(i).value);return isFinite(v)?v:NaN};
+var nf=function(v,d){return isFinite(v)?v.toLocaleString(loc,{maximumFractionDigits:d==null?2:d}):'—'};
+var rp=function(v){return isFinite(v)?'Rp'+nf(v,0):'—'};
+var pc=function(v,d){return isFinite(v)?nf(v,d==null?2:d)+'%':'—'};
+var row=function(l,v,em){return '<div class="vf-result-row'+(em?' em':'')+'"><span class="vf-result-label">'+l+'</span><span class="vf-result-value">'+v+'</span></div>'};
+var tbl=function(h,rows){return '<div style="overflow-x:auto"><table class="ct-t"><tr>'+h.map(function(x){return '<th>'+x+'</th>'}).join('')+'</tr>'+rows.join('')+'</table></div>'};
+function opts(id,list,sel){$(id).innerHTML=list.map(function(o){return '<option value="'+o[0]+'"'+(String(o[0])===String(sel)?' selected':'')+'>'+o[1]+'</option>'}).join('')}
+function txt(id,s){$(id).textContent=s}
+/* ---------- CAGR ---------- */
+txt('cg-h-in',T('Input','Input'));txt('cg-h-out',T('Hasil','Result'));txt('cg-h-tab',T('Proyeksi per periode','Projection by period'));
+txt('cg-l-mode',T('Yang ingin dihitung','What to calculate'));txt('cg-l-start',T('Nilai awal (starting value)','Starting value'));txt('cg-l-end',T('Nilai akhir (ending value)','Ending value'));
+txt('cg-l-n',T('Jumlah periode','Number of periods'));txt('cg-l-unit',T('Satuan periode','Period unit'));txt('cg-l-rate',T('CAGR per tahun','CAGR per year'));
+opts('cg-mode',[['cagr',T('CAGR (dari nilai awal ke akhir)','CAGR (from start to end)')],['end',T('Nilai akhir (dari CAGR)','Ending value (from CAGR)')],['years',T('Lama periode (sampai target)','Time needed (to reach target)')]],'cagr');
+opts('cg-unit',[['y',T('Tahun','Years')],['m',T('Bulan','Months')]],'y');
+function calcCagr(){
+ var mode=$('cg-mode').value,u=$('cg-unit').value==='m'?1/12:1,s=num('cg-start'),e=num('cg-end'),nIn=num('cg-n'),n=nIn*u,r=num('cg-rate')/100;
+ $('cg-end').disabled=mode==='end';$('cg-n').disabled=mode==='years';$('cg-rate').disabled=mode==='cagr';
+ if(mode==='cagr')r=(s>0&&e>0&&n>0)?Math.pow(e/s,1/n)-1:NaN;
+ else if(mode==='end')e=(s>0&&n>0&&isFinite(r)&&r>-1)?s*Math.pow(1+r,n):NaN;
+ else n=(s>0&&e>0&&isFinite(r)&&r>-1&&r!==0)?Math.log(e/s)/Math.log(1+r):NaN;
+ var ok=s>0&&e>0&&n>0&&isFinite(r),inU=function(y){return $('cg-unit').value==='m'?y*12:y};
+ var h='';
+ h+=row('CAGR / '+T('tahun','year'),ok?pc(r*100):'—',true);
+ h+=row(T('Nilai akhir','Ending value'),isFinite(e)?nf(e,2):'—');
+ h+=row(T('Lama periode','Time period'),isFinite(n)?nf(inU(n),2)+' '+($('cg-unit').value==='m'?T('bulan','months'):T('tahun','years')):'—');
+ h+=row(T('Total pertumbuhan','Total growth'),ok?pc((e/s-1)*100):'—');
+ h+=row(T('Kelipatan nilai awal','Multiple of start'),ok?nf(e/s,2)+'x':'—');
+ h+=row(T('Selisih nilai','Absolute change'),ok?nf(e-s,2):'—');
+ h+=row(T('Waktu menggandakan nilai','Time to double'),(ok&&r>0)?nf(Math.log(2)/Math.log(1+r),1)+' '+T('tahun','years'):'—');
+ $('cg-out').innerHTML=h;
+ txt('cg-note',T('CAGR = (Nilai akhir ÷ Nilai awal)^(1 ÷ periode) − 1. Mengasumsikan pertumbuhan stabil tiap tahun; kenyataannya bisa naik turun. Bukan prediksi.','CAGR = (Ending ÷ Starting)^(1 ÷ periods) − 1. Assumes smooth yearly growth; reality fluctuates. Not a forecast.'));
+ var N=ok?Math.min(Math.ceil(n),40):0,rows=[];
+ for(var t=0;t<=N;t++){var v=s*Math.pow(1+r,t);rows.push('<tr><td>'+t+'</td><td>'+nf(v,2)+'</td><td>'+(t?pc((Math.pow(1+r,t)-1)*100):'—')+'</td></tr>')}
+ $('cg-table').innerHTML=ok?tbl([T('Tahun ke-','Year'),T('Nilai','Value'),T('Total tumbuh','Total growth')],rows):'<p class="vf-note">—</p>';
+}
+$('subpanel-cagr').addEventListener('input',calcCagr);$('subpanel-cagr').addEventListener('change',calcCagr);
+$('cg-reset').addEventListener('click',function(){$('cg-start').value=100;$('cg-end').value=250;$('cg-n').value=5;$('cg-rate').value=10;$('cg-mode').value='cagr';$('cg-unit').value='y';calcCagr()});
+/* ---------- Compound ---------- */
+txt('cp-h-in',T('Input','Input'));txt('cp-h-out',T('Hasil','Result'));txt('cp-h-tab',T('Proyeksi per tahun','Projection by year'));
+txt('cp-l-init',T('Modal awal (initial investment)','Initial investment'));txt('cp-l-rate',T('Imbal hasil per tahun','Annual return'));txt('cp-l-years',T('Lama investasi','Duration'));txt('cp-s-th',T('th','yr'));
+txt('cp-l-freq',T('Frekuensi compound','Compounding'));txt('cp-l-add',T('Setoran rutin per bulan (opsional)','Monthly contribution (optional)'));
+opts('cp-freq',[[1,T('Tahunan','Yearly')],[2,T('Semesteran','Semi-annual')],[4,T('Triwulanan','Quarterly')],[12,T('Bulanan','Monthly')],[365,T('Harian','Daily')]],12);
+function calcComp(){
+ var P=num('cp-init'),r=num('cp-rate')/100,Y=num('cp-years'),f=parseInt($('cp-freq').value,10),A=num('cp-add');if(!isFinite(A))A=0;
+ var ok=P>=0&&isFinite(r)&&r>-1&&Y>0&&Y<=60,M=ok?Math.round(Y*12):0;
+ var im=ok?Math.pow(1+r/f,f/12)-1:0,bal=ok?P:NaN,dep=ok?P:NaN,rows=[],maxV=0,yr=[];
+ if(ok){for(var m=1;m<=M;m++){bal=bal*(1+im)+A;dep+=A;if(m%12===0||m===M)yr.push({y:m/12,dep:dep,bal:bal})}maxV=bal}
+ var gain=bal-dep,ear=ok?Math.pow(1+r/f,f)-1:NaN;
+ var h=row(T('Nilai akhir investasi','Final value'),rp(bal),true)+row(T('Total modal disetor','Total contributed'),rp(dep))+row(T('Total keuntungan','Total gain'),rp(gain))+row(T('Kelipatan modal','Multiple of contributions'),ok&&dep>0?nf(bal/dep,2)+'x':'—')+row(T('Imbal hasil efektif / tahun','Effective annual return'),ok?pc(ear*100):'—');
+ if(ok&&r>0)h+=row(T('Waktu menggandakan modal awal','Time to double initial'),nf(Math.log(2)/Math.log(1+ear),1)+' '+T('tahun','years'));
+ $('cp-out').innerHTML=h;
+ txt('cp-note',T('Simulasi bulanan; setoran dianggap di akhir tiap bulan. Imbal hasil dianggap konstan, padahal investasi nyata berfluktuasi dan bisa merugi. Bukan prediksi atau rekomendasi.','Monthly simulation; contributions at the end of each month. Return is assumed constant, while real investments fluctuate and can lose money. Not a forecast or advice.'));
+ yr.forEach(function(x){rows.push('<tr><td>'+nf(x.y,x.y%1?1:0)+'</td><td>'+rp(x.dep)+'</td><td>'+rp(x.bal)+'</td><td>'+rp(x.bal-x.dep)+'</td><td style="min-width:90px"><div class="ct-bar" style="width:'+Math.max(2,Math.round(x.bal/maxV*100))+'%"></div></td></tr>')});
+ $('cp-table').innerHTML=ok?tbl([T('Tahun ke-','Year'),T('Modal disetor','Contributed'),T('Nilai investasi','Value'),T('Keuntungan','Gain'),''],rows):'<p class="vf-note">—</p>';
+}
+$('subpanel-comp').addEventListener('input',calcComp);$('subpanel-comp').addEventListener('change',calcComp);
+$('cp-reset').addEventListener('click',function(){$('cp-init').value=10000000;$('cp-rate').value=12;$('cp-years').value=10;$('cp-add').value=0;$('cp-freq').value=12;calcComp()});
+calcCagr();calcComp();
+})();
 </script>
 </body>
 </html>
