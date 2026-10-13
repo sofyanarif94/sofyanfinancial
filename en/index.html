@@ -1562,6 +1562,26 @@ details.faq-d>p{margin:0 0 14px;color:var(--text-muted);font-size:13px;line-heig
 #subpanel-cagr select.vf-input,#subpanel-comp select.vf-input{width:100%;cursor:pointer}
 #subpanel-cagr input:disabled{opacity:.45}
 
+
+/* ---- Alpha-Screening: chip warna & filter multi ---- */
+#panel-ksei .sfc.pre{background:linear-gradient(135deg,color-mix(in srgb,var(--cc) 24%,var(--panel)),var(--panel) 80%);border-color:color-mix(in srgb,var(--cc) 55%,var(--line));font-weight:700}
+#panel-ksei .sfc.pre i{width:9px;height:9px;box-shadow:0 0 8px var(--cc)}
+#panel-ksei .sfc.pre:hover{transform:translateY(-1px);box-shadow:0 6px 14px -8px var(--cc)}
+#panel-ksei .mts{flex:1 1 100%;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:3px;margin-top:8px}
+#panel-ksei .mtg{flex:1 1 100%;display:flex;flex-direction:column;gap:5px}
+#panel-ksei .mtl{font-size:12px;font-weight:700;color:var(--gold-soft)}
+#panel-ksei .mtr{display:flex;flex-wrap:wrap;gap:6px}
+#panel-ksei .mtc{font:600 12.5px var(--sans);padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--text);cursor:pointer;transition:border-color .15s,background .15s}
+#panel-ksei .mtc:hover{border-color:var(--gold)}
+#panel-ksei .mtc.on{border-color:var(--gold);background:var(--gold-tint-strong);color:var(--gold-soft)}
+#panel-ksei .mtc.on::before{content:"✓ "}
+#panel-ksei details.mtd{flex:1 1 100%}
+#panel-ksei details.mtd>summary{cursor:pointer;list-style:none;font-size:12px;font-weight:700;color:var(--gold-soft);padding:4px 0}
+#panel-ksei details.mtd>summary::-webkit-details-marker{display:none}
+#panel-ksei details.mtd>summary::before{content:"▸ ";color:var(--gold)}
+#panel-ksei details.mtd[open]>summary::before{content:"▾ "}
+#panel-ksei .apl .atopb{background:color-mix(in srgb,var(--gold) 22%,transparent);color:var(--gold-soft);font-weight:700}
+
 /* ---------- Scrollbar ---------- */
 *{ scrollbar-width:thin; scrollbar-color:color-mix(in srgb,var(--gold) 45%,transparent) transparent; }
 
@@ -4527,63 +4547,92 @@ function vNew(v){const u=S.ui;u.sub=u.sub||'New';const isN=u.sub==='New';
 }
 
 /* ============================== tampil & event ============================== */
-/* ============================== bagian: filter manual ============================== */
-const MAN0={grp:'',lf:'',ty:'',dir:'acc',act:'',mnInv:1,mnPts:0.5,mnTot:0,minPb:0,sig:'',q:'',noSelf:true,noIpo:true,sort:'score',lim:24};
+/* ============================== bagian: alpha-screening ============================== */
+const MAN0={grp:[],lf:[],ty:[],dir:'acc',act:[],mnInv:1,mnPts:0.5,mnTot:0,minPb:0,maxPa:100,mnRel:0,mnAct:1,nMin:0,nMax:0,top:false,sig:[],q:'',inv:'',xinv:'',noSelf:true,noIpo:true,noCa:false,sort:'score',lim:24};
 const MAN_P={
- ind:{l:ID?'Individu akumulasi':'Individuals accumulating',s:{grp:'I',dir:'acc'}},
- ind3:{l:ID?'3+ individu menambah':'3+ individuals adding',s:{grp:'I',dir:'acc',mnInv:3}},
- inst:{l:ID?'Institusi akumulasi':'Institutions accumulating',s:{grp:'N',dir:'acc'}},
- fa:{l:ID?'Asing akumulasi':'Foreign accumulating',s:{lf:'F',dir:'acc',mnTot:1}},
- fd:{l:ID?'Asing distribusi':'Foreign distributing',s:{lf:'F',dir:'dis',mnTot:1}},
- nw:{l:ID?'Investor baru ≥ 5%':'New holders ≥ 5%',s:{act:'new',dir:'acc',minPb:5}},
- ex:{l:ID?'Pemegang besar keluar':'Big holders exiting',s:{act:'exit',dir:'dis',mnPts:2}}};
+ ind:{l:ID?'Individu akumulasi':'Individuals accumulating',c:'#2dd4bf',s:{grp:['I'],dir:'acc'}},
+ ind3:{l:ID?'3+ individu menambah':'3+ individuals adding',c:'#a78bfa',s:{grp:['I'],dir:'acc',mnInv:3}},
+ inst:{l:ID?'Institusi akumulasi':'Institutions accumulating',c:'#60a5fa',s:{grp:['N'],dir:'acc'}},
+ fa:{l:ID?'Asing akumulasi':'Foreign accumulating',c:'#4ade80',s:{lf:['F'],dir:'acc',mnTot:1}},
+ fd:{l:ID?'Asing distribusi':'Foreign distributing',c:'#fb923c',s:{lf:['F'],dir:'dis',mnTot:1}},
+ nw:{l:ID?'Investor baru ≥ 5%':'New holders ≥ 5%',c:'#f472b6',s:{act:['new'],dir:'acc',minPb:5}},
+ ex:{l:ID?'Pemegang besar keluar':'Big holders exiting',c:'#f87171',s:{act:['exit'],dir:'dis',mnPts:2}}};
 function manHolders(x){const T2=(a,b)=>ID?a:b,rows=[...x.hit].sort((a,b)=>Math.abs(b.dp)-Math.abs(a.dp)),cap=12;
  return `<div class="xh muted small">${rows.length} ${T2('investor memenuhi filter','matching investors')} · ${fp(x.pa)}% → ${fp(x.pb)}%</div>`
- +rows.slice(0,cap).map(r=>`<div class="hl"><span class="hn">${chip('inv',r.inv)} <span class="muted small">${esc(r.type)} · ${lfL(r.lf)}</span></span><span class="hs">${stTag(r.st)}</span><span class="hv">${pctCell(r.pa)} → ${pctCell(r.pb)} <b class="${cls(r.dp)}">(${sgn(r.dp,fp)})</b></span></div>`).join('')
+ +rows.slice(0,cap).map(r=>`<div class="hl"><span class="hn">${chip('inv',r.inv)} <span class="muted small">${esc(r.type)} · ${lfL(r.lf)} · ${r.ds>0?'+':''}${fmt(r.ds)} ${T2('lembar','shares')}</span></span><span class="hs">${stTag(r.st)}</span><span class="hv">${pctCell(r.pa)} → ${pctCell(r.pb)} <b class="${cls(r.dp)}">(${sgn(r.dp,fp)})</b></span></div>`).join('')
  +`<div class="xo small muted">${rows.length>cap?t('xMore',rows.length-cap)+' ':''}<button type="button" class="chip" data-go="stk:${esc(x.t)}">${t('xOpen')}</button></div>`}
-function vMan(v){const u=S.ui,T2=(a,b)=>ID?a:b,m=u.manf=Object.assign({},MAN0,u.manf||{});
+function vMan(v){const u=S.ui,T2=(a,b)=>ID?a:b,A_=x=>Array.isArray(x)?x:(x?[x]:[]),m=Object.assign({},MAN0,u.manf||{});
+ ['grp','lf','ty','act','sig'].forEach(k=>m[k]=A_(m[k]));u.manf=m;
  const byT=new Map(S.agg.map(s=>[s.t,s])),g=new Map(),terms=String(m.q).split(/[,\s]+/).map(x=>x.trim().toUpperCase()).filter(Boolean);
+ const lst=x=>String(x||'').split(',').map(y=>y.trim().toUpperCase()).filter(Boolean),qi=lst(m.inv),xi=lst(m.xinv);
+ const actInv=new Map(invAgg(S.f).map(i=>[i.inv,i.act])),topB=new Map();
+ for(const r of S.f){if(r.self)continue;const o=topB.get(r.t);if(!o||r.pb>o.pb)topB.set(r.t,r)}
  for(const r of S.f){if(r.st==='Unchanged'||(m.noSelf&&r.self))continue;
-  if(m.grp&&r.grp!==m.grp)continue;if(m.lf&&r.lf!==m.lf)continue;if(m.ty&&r.type!==m.ty)continue;
+  if(m.grp.length&&!m.grp.includes(r.grp))continue;if(m.lf.length&&!m.lf.includes(r.lf))continue;if(m.ty.length&&!m.ty.includes(r.type))continue;
   if(m.dir==='acc'&&!(r.dp>0))continue;if(m.dir==='dis'&&!(r.dp<0))continue;
-  if(m.act==='new'&&r.st!=='New')continue;if(m.act==='exit'&&r.st!=='Exit')continue;
-  if(m.act==='up'&&r.st!=='Accumulation')continue;if(m.act==='down'&&r.st!=='Distribution')continue;
-  if(Math.abs(r.dp)<m.mnPts||(m.minPb>0&&r.pb<m.minPb))continue;
+  if(m.act.length){const k=r.st==='New'?'new':r.st==='Exit'?'exit':r.st==='Accumulation'?'up':r.st==='Distribution'?'down':'';if(!m.act.includes(k))continue}
+  if(Math.abs(r.dp)<m.mnPts||(m.minPb>0&&r.pb<m.minPb)||(m.maxPa<100&&r.pa>m.maxPa))continue;
+  if(m.mnRel>0&&(r.pa>0?Math.abs(r.pb/r.pa-1)*100:1e9)<m.mnRel)continue;
+  if(m.mnAct>1&&(actInv.get(r.inv)||0)<m.mnAct)continue;
+  const nm=String(r.inv).toUpperCase();if(qi.length&&!qi.some(x=>nm.includes(x)))continue;if(xi.length&&xi.some(x=>nm.includes(x)))continue;
   (g.get(r.t)||g.set(r.t,[]).get(r.t)).push(r)}
  const out=[];
- for(const [tk,hit] of g){const s=byT.get(tk);if(!s||(m.noIpo&&s.sig==='ipo')||(m.sig&&s.sig!==m.sig))continue;
+ for(const [tk,hit] of g){const s=byT.get(tk);if(!s||(m.noIpo&&s.sig==='ipo')||(m.noCa&&s.ca)||(m.sig.length&&!m.sig.includes(s.sig)))continue;
   if(terms.length&&!terms.some(x=>tk===x||tk.startsWith(x)))continue;
+  const inf=S.info&&S.info.get(tk);if(inf&&((m.nMin&&inf.nB<m.nMin)||(m.nMax&&inf.nB>m.nMax)))continue;
+  const tr=topB.get(tk),isTop=!!(tr&&hit.includes(tr));if(m.top&&!isTop)continue;
   const tot=hit.reduce((a,r)=>a+r.dp,0),n=hit.length,tm=m.dir==='dis'?-tot:m.dir==='acc'?tot:Math.abs(tot);
   if(n<m.mnInv||tm<m.mnTot)continue;
   const sg=s.sig,al=m.dir==='acc'?(sg==='sa'||sg==='ak'?1:sg==='a'?.65:sg==='rot'?.15:(sg==='d'||sg==='sd')?0:.35):m.dir==='dis'?(sg==='sd'?1:sg==='d'?.65:sg==='rot'?.15:(sg==='sa'||sg==='ak'||sg==='a')?0:.35):.5;
-  out.push({t:tk,iss:s.iss,s,hit,n,tot,pa:hit.reduce((a,r)=>a+r.pa,0),pb:hit.reduce((a,r)=>a+r.pb,0),score:Math.round(100*(.45*Math.min(Math.abs(tot)/10,1)+.3*Math.min(n/5,1)+.25*al))})}
+  out.push({t:tk,iss:s.iss,s,hit,n,tot,inf,isTop,pa:hit.reduce((a,r)=>a+r.pa,0),pb:hit.reduce((a,r)=>a+r.pb,0),score:Math.round(100*(.45*Math.min(Math.abs(tot)/10,1)+.3*Math.min(n/5,1)+.25*al))})}
  const SK=m.sort||'score';
  out.sort((a,b)=>SK==='n'?b.n-a.n||Math.abs(b.tot)-Math.abs(a.tot):SK==='tot'?Math.abs(b.tot)-Math.abs(a.tot):b.score-a.score||Math.abs(b.tot)-Math.abs(a.tot));
  const sel=(k,l,o)=>`<label class="f">${l}<select data-mf="${k}">${o.map(([x,y])=>`<option value="${x}"${String(m[k])===String(x)?' selected':''}>${esc(y)}</option>`).join('')}</select></label>`;
- const types=[...new Set(S.f.map(r=>r.type))].sort().map(x=>[x,x]),all0=T2('Semua','All');
- const lab=[];if(m.grp)lab.push(m.grp==='I'?T2('Individu','Individuals'):T2('Institusi','Institutions'));if(m.lf)lab.push(m.lf==='F'?T2('Asing','Foreign'):T2('Lokal','Local'));if(m.ty)lab.push(m.ty);
+ const mt=(k,x,l)=>`<button type="button" class="mtc${m[k].includes(x)?' on':''}" data-mt="${k}:${esc(x)}">${esc(l)}</button>`;
+ const grp=(k,label,items)=>`<div class="mtg"><span class="mtl">${label}</span><div class="mtr">${items.map(([x,l])=>mt(k,x,l)).join('')}</div></div>`;
+ const types=[...new Set(S.f.map(r=>r.type))].sort(),H=x=>`<div class="mts">${x}</div>`;
+ const nm0=[[0,T2('Tanpa batas','No limit')]],num=a=>a.map(x=>[x,String(x)]),pn=a=>a.map(x=>[x,fp(x)]);
+ const lab=[],AN={new:T2('Masuk baru','New entry'),exit:T2('Keluar','Exit'),up:T2('Menambah porsi','Adding'),down:T2('Mengurangi porsi','Reducing')};
+ if(m.grp.length)lab.push(m.grp.map(x=>x==='I'?T2('Individu','Individuals'):T2('Institusi','Institutions')).join('/'));if(m.lf.length)lab.push(m.lf.map(x=>x==='F'?T2('Asing','Foreign'):T2('Lokal','Local')).join('/'));if(m.ty.length)lab.push(m.ty.length+' '+T2('kategori','categories'));
  lab.push(m.dir==='acc'?T2('Akumulasi','Accumulation'):m.dir==='dis'?T2('Distribusi','Distribution'):T2('Semua pergerakan','All moves'));
- if(m.act)lab.push({new:T2('Masuk baru','New entry'),exit:T2('Keluar','Exit'),up:T2('Menambah porsi','Adding'),down:T2('Mengurangi porsi','Reducing')}[m.act]);
- lab.push('≥'+m.mnInv+' '+T2('investor','investors'));if(m.mnPts)lab.push('≥'+fp(m.mnPts)+' '+T2('poin per investor','pts each'));if(m.mnTot)lab.push(T2('total','total')+' ≥'+fp(m.mnTot));if(m.minPb)lab.push(T2('porsi akhir','final stake')+' ≥'+fp(m.minPb)+'%');if(m.sig)lab.push(t(m.sig));
- const ctl=`<div class="sfs">${Object.keys(MAN_P).map(k=>`<button type="button" class="sfc" data-mp="${k}" style="--cc:var(--gold)"><i></i>${MAN_P[k].l}</button>`).join('')}<button type="button" class="sfc" data-mp="reset" style="--cc:var(--mute)">${T2('Reset','Reset')}</button></div>`
- +`<details class="ks-more"${matchMedia('(max-width:820px)').matches?'':' open'}><summary>${T2('Atur filter','Set filters')} · ${lab.length}</summary><div class="bar">`
- +sel('grp',T2('Jenis investor','Investor kind'),[['',all0],['I',T2('Individu','Individual')],['N',T2('Institusi','Institution')]])
- +sel('lf',T2('Lokal / Asing','Local / Foreign'),[['',all0],['L',T2('Lokal','Local')],['F',T2('Asing','Foreign')]])
- +sel('ty',T2('Kategori investor','Investor category'),[['',all0]].concat(types))
+ if(m.act.length)lab.push(m.act.map(x=>AN[x]).join(' + '));
+ lab.push('≥'+m.mnInv+' '+T2('investor','investors'));if(m.mnPts)lab.push('≥'+fp(m.mnPts)+' '+T2('poin per investor','pts each'));if(m.mnTot)lab.push(T2('total','total')+' ≥'+fp(m.mnTot));if(m.minPb)lab.push(T2('porsi akhir','final stake')+' ≥'+fp(m.minPb)+'%');
+ if(m.maxPa<100)lab.push(T2('porsi awal','start stake')+' ≤'+fp(m.maxPa)+'%');if(m.mnRel)lab.push(T2('naik relatif','rel. change')+' ≥'+m.mnRel+'%');if(m.mnAct>1)lab.push(T2('investor aktif','active investor')+' ≥'+m.mnAct);
+ if(m.top)lab.push(T2('pemegang terbesar','top holder'));if(m.sig.length)lab.push(m.sig.map(x=>t(x)).join('/'));if(qi.length)lab.push(T2('nama: ','name: ')+qi.join('/'));if(xi.length)lab.push(T2('tanpa: ','excl.: ')+xi.join('/'));
+ const op=u.manOpen!=null?u.manOpen:!matchMedia('(max-width:820px)').matches;
+ const ctl=`<div class="sfs">${Object.keys(MAN_P).map(k=>`<button type="button" class="sfc pre" data-mp="${k}" style="--cc:${MAN_P[k].c}"><i></i>${MAN_P[k].l}</button>`).join('')}<button type="button" class="sfc pre" data-mp="reset" style="--cc:#94a3b8">${T2('Reset','Reset')}</button></div>`
+ +`<details class="ks-more ks-adv"${op?' open':''}><summary>Advanced Filter · ${lab.length}</summary><div class="bar">`
+ +H(T2('Profil investor','Investor profile'))
+ +grp('grp',T2('Jenis investor (boleh pilih lebih dari satu)','Investor kind (multi-select)'),[['I',T2('Individu','Individual')],['N',T2('Institusi','Institution')]])
+ +grp('lf',T2('Lokal / Asing','Local / Foreign'),[['L',T2('Lokal','Local')],['F',T2('Asing','Foreign')]])
+ +`<details class="mtd"${u.manTy?' open':''}><summary>${T2('Kategori investor','Investor category')} · ${m.ty.length?m.ty.length+' '+T2('dipilih','selected'):T2('semua','all')}</summary><div class="mtr">${types.map(x=>mt('ty',x,x)).join('')}</div></details>`
+ +H(T2('Aksi & arah','Action & direction'))
  +sel('dir',T2('Arah pergerakan','Direction'),[['acc',T2('Akumulasi (menambah)','Accumulation (adding)')],['dis',T2('Distribusi (mengurangi)','Distribution (reducing)')],['all',T2('Semua pergerakan','All moves')]])
- +sel('act',T2('Jenis aksi','Action'),[['',all0],['up',T2('Menambah porsi','Adding to stake')],['new',T2('Masuk baru','New entry')],['down',T2('Mengurangi porsi','Reducing stake')],['exit',T2('Keluar','Exit')]])
- +sel('mnInv',T2('Minimal jumlah investor','Min. investors'),[1,2,3,4,5,7,10].map(x=>[x,String(x)]))
- +sel('mnPts',T2('Min. perubahan per investor (poin)','Min. change per investor (pts)'),[0.25,0.5,1,2,5,10].map(x=>[x,fp(x)]))
- +sel('mnTot',T2('Min. total perubahan (poin)','Min. total change (pts)'),[0,1,2,5,10,20].map(x=>[x,fp(x)]))
- +sel('minPb',T2('Porsi akhir investor minimal (%)','Investor final stake min. (%)'),[0,1,2,5,10,20].map(x=>[x,fp(x)]))
- +sel('sig',T2('Sinyal sistem','System signal'),[['',all0]].concat(['ak','sa','a','sd','d','rot'].map(k=>[k,t(k)])))
- +`<label class="f">${T2('Kode saham (pisahkan koma)','Stock codes (comma-separated)')}<input type="text" data-mf="q" value="${esc(m.q)}" placeholder="${t('wlPh')}" autocomplete="off"></label>`
+ +grp('act',T2('Jenis aksi (boleh pilih lebih dari satu)','Action (multi-select)'),Object.keys(AN).map(k=>[k,AN[k]]))
+ +H(T2('Ambang kekuatan','Strength thresholds'))
+ +sel('mnInv',T2('Minimal jumlah investor','Min. investors'),num([1,2,3,4,5,7,10]))
+ +sel('mnPts',T2('Min. perubahan per investor (poin)','Min. change per investor (pts)'),pn([0.25,0.5,1,2,5,10]))
+ +sel('mnTot',T2('Min. total perubahan (poin)','Min. total change (pts)'),pn([0,1,2,5,10,20]))
+ +sel('minPb',T2('Porsi akhir investor minimal (%)','Investor final stake min. (%)'),pn([0,1,2,5,10,20]))
+ +sel('maxPa',T2('Porsi awal investor maksimal (%)','Investor start stake max. (%)'),[[100,T2('Tanpa batas','No limit')]].concat(pn([1,3,5,10,20])))
+ +sel('mnRel',T2('Min. kenaikan/penurunan relatif (%)','Min. relative change (%)'),pn([0,10,25,50,100,200]))
+ +sel('mnAct',T2('Investor aktif di minimal N saham','Investor active in at least N stocks'),num([1,2,3,5,10]))
+ +H(T2('Kondisi saham','Stock conditions'))
+ +grp('sig',T2('Sinyal sistem (boleh pilih lebih dari satu)','System signal (multi-select)'),['ak','sa','a','sd','d','rot','ipo'].map(k=>[k,t(k)]))
+ +sel('nMin',T2('Pemegang >1% (akhir) minimal','Holders >1% (end) min.'),nm0.concat(num([1,2,3,5])))
+ +sel('nMax',T2('Pemegang >1% (akhir) maksimal','Holders >1% (end) max.'),nm0.concat(num([3,5,8,10])))
+ +`<label class="f chk"><input type="checkbox" data-mf="top"${m.top?' checked':''}> ${T2('Investor yang cocok adalah pemegang terbesar','Matching investor is the top holder')}</label>`
  +`<label class="f chk"><input type="checkbox" data-mf="noSelf"${m.noSelf?' checked':''}> ${T2('Abaikan emiten sendiri (buyback)','Ignore issuer itself (buyback)')}</label>`
  +`<label class="f chk"><input type="checkbox" data-mf="noIpo"${m.noIpo?' checked':''}> ${T2('Abaikan saham IPO baru','Ignore new IPOs')}</label>`
+ +`<label class="f chk"><input type="checkbox" data-mf="noCa"${m.noCa?' checked':''}> ${T2('Abaikan saham dengan aksi korporasi (jumlah saham berubah)','Ignore stocks with corporate actions')}</label>`
+ +H(T2('Pencarian','Search'))
+ +`<label class="f">${T2('Kode saham (pisahkan koma)','Stock codes (comma-separated)')}<input type="text" data-mf="q" value="${esc(m.q)}" placeholder="${t('wlPh')}" autocomplete="off"></label>`
+ +`<label class="f">${T2('Nama investor mengandung (pisahkan koma)','Investor name contains (comma-separated)')}<input type="text" data-mf="inv" value="${esc(m.inv)}" placeholder="${T2('mis. RAJAWALI, PANIN','e.g. RAJAWALI, PANIN')}" autocomplete="off"></label>`
+ +`<label class="f">${T2('Kecualikan nama investor','Exclude investor names')}<input type="text" data-mf="xinv" value="${esc(m.xinv)}" placeholder="${T2('mis. BANK, SEKURITAS','e.g. BANK, SECURITIES')}" autocomplete="off"></label>`
  +`</div></details>`;
  const lim=m.lim||24,shown=out.slice(0,lim);
  const card=x=>{const top=[...x.hit].sort((a,b)=>Math.abs(b.dp)-Math.abs(a.dp))[0],c=x.tot>=0?'var(--up)':'var(--down)';
-  return `<details class="acd" style="--cc:${c};--p:${x.score}"><summary><span class="asc"><b>${x.score}</b></span><span class="amid"><span class="atk">${chip('stk',x.t)} ${sigCell(x.s)}</span><span class="aiss">${esc(x.iss||'')}</span><span class="apl"><i>${x.n} ${T2('investor','investors')}</i><i>${fp(x.pa)}% → ${fp(x.pb)}%</i>${top?`<i class="atop">${esc(top.inv)}</i>`:''}</span></span><span class="adl ${cls(x.tot)}">${sgn(x.tot,fp)}<small>${T2('poin','pts')}</small></span></summary><div class="abody">${manHolders(x)}</div></details>`};
+  return `<details class="acd" style="--cc:${c};--p:${x.score}"><summary><span class="asc"><b>${x.score}</b></span><span class="amid"><span class="atk">${chip('stk',x.t)} ${sigCell(x.s)}</span><span class="aiss">${esc(x.iss||'')}</span><span class="apl"><i>${x.n} ${T2('investor','investors')}</i><i>${fp(x.pa)}% → ${fp(x.pb)}%</i>${x.inf?`<i>${x.inf.nA}→${x.inf.nB} ${T2('pemegang','holders')}</i>`:''}${x.isTop?`<i class="atopb">★ ${T2('terbesar','top')}</i>`:''}${top?`<i class="atop">${esc(top.inv)}</i>`:''}</span></span><span class="adl ${cls(x.tot)}">${sgn(x.tot,fp)}<small>${T2('poin','pts')}</small></span></summary><div class="abody">${manHolders(x)}</div></details>`};
  const sorts=[['score',T2('Skor Alpha','Alpha score')],['tot',T2('Perubahan','Change')],['n',T2('Investor','Investors')]].map(([k,l])=>`<button type="button" class="asb${SK===k?' on':''}" data-ms="${k}">${l}</button>`).join('');
  put(v,ctl,`<div class="mfs muted small"><b>${fmt(out.length)}</b> ${T2('saham memenuhi','stocks match')}: ${lab.map(esc).join(' · ')}</div>`
   +`<div class="asort"><span>${T2('Urutkan','Sort')}</span>${sorts}</div>`
@@ -4629,12 +4678,13 @@ function go(sec){S.hist=[];if(sec==='sig'&&S.ui.list){S.ui.list=null;delete S.ui
 function toggleX(key,btn){
  const row=[...root.querySelectorAll('tr.xr')].find(e=>e.dataset.xr===key);if(!row)return;
  const open=row.hidden;
- if(open){root.querySelectorAll('tr.xr:not([hidden])').forEach(r=>{if(r!==row){r.hidden=true;S.exp[r.dataset.xr]=false}});root.querySelectorAll('.xbtn.open').forEach(b=>{if(b!==btn){b.classList.remove('open');b.setAttribute('aria-expanded','false')}});const cell=row.firstElementChild;if(!cell.innerHTML.trim()&&S.xfn[key])cell.innerHTML=S.xfn[key]();row.hidden=false}else row.hidden=true;
- S.exp[key]=open;btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open?'true':'false');queueSave();if(open){const tr0=btn.closest('tr');if(tr0)setTimeout(()=>tr0.scrollIntoView({behavior:'smooth',block:'start'}),80)}}
+ if(open){if(matchMedia('(max-width:860px)').matches){root.querySelectorAll('tr.xr:not([hidden])').forEach(r=>{if(r!==row){r.hidden=true;S.exp[r.dataset.xr]=false}});root.querySelectorAll('.xbtn.open').forEach(b=>{if(b!==btn){b.classList.remove('open');b.setAttribute('aria-expanded','false')}})}const cell=row.firstElementChild;if(!cell.innerHTML.trim()&&S.xfn[key])cell.innerHTML=S.xfn[key]();row.hidden=false}else row.hidden=true;
+ S.exp[key]=open;btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open?'true':'false');queueSave();if(open){const tr0=btn.closest('tr');if(tr0)setTimeout(()=>tr0.scrollIntoView({behavior:'smooth',block:matchMedia('(max-width:860px)').matches?'start':'nearest'}),80)}}
 root.addEventListener('toggle',e=>{const d=e.target;if(d&&d.matches&&d.matches('details.ks-fctl')){S.ui.fo=d.open;queueSave()}},true);
 root.addEventListener('change',e=>{const x=e.target,k=x&&x.dataset&&x.dataset.mf;if(!k)return;const m=S.ui.manf=Object.assign({},MAN0,S.ui.manf||{});
- m[k]=x.type==='checkbox'?x.checked:(['mnInv','mnPts','mnTot','minPb'].indexOf(k)>=0?(parseFloat(x.value)||0):x.value);m.lim=24;if(k==='dir')delete S.ui.mf;keepY(()=>render());queueSave()});
-root.addEventListener('toggle',e=>{const d=e.target;if(d&&d.classList&&d.classList.contains('acd')&&d.open){root.querySelectorAll('details.acd[open]').forEach(o=>{if(o!==d)o.open=false});setTimeout(()=>d.scrollIntoView({behavior:'smooth',block:'start'}),80)}},true);
+ m[k]=x.type==='checkbox'?x.checked:(['mnInv','mnPts','mnTot','minPb','maxPa','mnRel','mnAct','nMin','nMax'].indexOf(k)>=0?(parseFloat(x.value)||0):x.value);m.lim=24;if(k==='dir')delete S.ui.mf;keepY(()=>render());queueSave()});
+root.addEventListener('toggle',e=>{const d=e.target;if(d&&d.classList&&d.classList.contains('acd')&&d.open&&matchMedia('(max-width:860px)').matches){root.querySelectorAll('details.acd[open]').forEach(o=>{if(o!==d)o.open=false});setTimeout(()=>d.scrollIntoView({behavior:'smooth',block:'start'}),80)}},true);
+root.addEventListener('toggle',e=>{const d=e.target;if(d&&d.classList){if(d.classList.contains('ks-adv'))S.ui.manOpen=d.open;if(d.classList.contains('mtd'))S.ui.manTy=d.open}},true);
 const xb=document.createElement('button');xb.type='button';xb.id='ks-xclose';xb.hidden=true;document.body.appendChild(xb);
 let inView=true;new IntersectionObserver(es=>{inView=es[0].isIntersecting;updX()}).observe(root);
 function updX(){const n=root.querySelectorAll('tr.xr:not([hidden])').length;xb.hidden=!(n&&root.offsetParent&&inView);xb.textContent=(ID?'Tutup semua pemegang':'Collapse all holders')+' ('+n+')'}
@@ -4643,9 +4693,10 @@ xb.addEventListener('click',collapseAll);
 let xt=0;new MutationObserver(()=>{if(!xt)xt=requestAnimationFrame(()=>{xt=0;updX()})}).observe(root,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden','class']});
 const navTo=()=>$('#ks-nav').scrollIntoView({behavior:'smooth',block:'start'});
 root.addEventListener('click',e=>{
- const b=e.target.closest('[data-sec],[data-go],[data-th],[data-more],[data-sub],[data-dl],[data-dir],[data-demo],[data-repo],[data-repocmp],[data-reset],[data-sfv],[data-mp],[data-ms],[data-mm],[data-back],[data-list],[data-nw],[data-clearlist],[data-x],[data-forget]');
+ const b=e.target.closest('[data-sec],[data-go],[data-th],[data-more],[data-sub],[data-dl],[data-dir],[data-demo],[data-repo],[data-repocmp],[data-reset],[data-sfv],[data-mp],[data-ms],[data-mm],[data-mt],[data-back],[data-list],[data-nw],[data-clearlist],[data-x],[data-forget]');
  if(!b||!root.contains(b))return;const d=b.dataset;
  if(d.sfv!==undefined){S.ui.sf=d.sfv;keepY(()=>render());return}
+ if(d.mt!==undefined){const kv=d.mt.split(':'),k=kv[0],vv=kv.slice(1).join(':'),mm=S.ui.manf=Object.assign({},MAN0,S.ui.manf||{}),a=(Array.isArray(mm[k])?mm[k]:(mm[k]?[mm[k]]:[])).slice(),i=a.indexOf(vv);if(i<0)a.push(vv);else a.splice(i,1);mm[k]=a;mm.lim=24;keepY(()=>render());return}
  if(d.mp!==undefined){S.ui.manf=Object.assign({},MAN0,d.mp==='reset'?{}:MAN_P[d.mp].s);delete S.ui.mf;keepY(()=>render());return}
  if(d.ms!==undefined||d.mm!==undefined){const mm=S.ui.manf=Object.assign({},MAN0,S.ui.manf||{});if(d.ms!==undefined)mm.sort=d.ms;if(d.mm!==undefined)mm.lim=(mm.lim||24)+24;keepY(()=>render());return}
  if(d.repo!==undefined){onRepo(d.repo);return}
@@ -4858,7 +4909,7 @@ function run(){h=0;p.querySelectorAll('tbody tr:not(.xr)').forEach(function(tr){
 function sch(){if(!h)h=requestAnimationFrame(run)}
 new MutationObserver(sch).observe(p,{childList:true,subtree:true});sch();
 p.addEventListener('click',function(e){var tr=e.target.closest('tbody tr[data-s]');if(!tr||e.target.closest('button,a,input,label,select,[data-go],[data-x],[data-th]'))return;var op=tr.classList.contains('kx');if(op&&!e.target.closest('td.k1'))return;
- if(!op)p.querySelectorAll('tbody tr[data-s].kx').forEach(function(o){if(o!==tr&&o.closest('table')===tr.closest('table'))o.classList.remove('kx')});tr.classList.toggle('kx');if(tr.classList.contains('kx'))setTimeout(function(){tr.scrollIntoView({behavior:'smooth',block:'start'})},80)})})();
+ if(!op)p.querySelectorAll('tbody tr[data-s].kx').forEach(function(o){if(o!==tr&&o.closest('table')===tr.closest('table'))o.classList.remove('kx')});tr.classList.toggle('kx');if(tr.classList.contains('kx'))setTimeout(function(){tr.scrollIntoView({behavior:'smooth',block:matchMedia('(max-width:860px)').matches?'start':'nearest'})},80)})})();
 (function(){var f=document.getElementById('vf-fab'),b=document.getElementById('vf-fab-btn');if(!f||!b)return;
 b.addEventListener('click',function(e){e.stopPropagation();var o=f.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false')});
 document.addEventListener('click',function(e){if(!f.contains(e.target)){f.classList.remove('open');b.setAttribute('aria-expanded','false')}})})();
