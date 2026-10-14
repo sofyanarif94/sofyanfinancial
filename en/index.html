@@ -1582,6 +1582,32 @@ details.faq-d>p{margin:0 0 14px;color:var(--text-muted);font-size:13px;line-heig
 #panel-ksei details.mtd[open]>summary::before{content:"▾ "}
 #panel-ksei .apl .atopb{background:color-mix(in srgb,var(--gold) 22%,transparent);color:var(--gold-soft);font-weight:700}
 
+
+/* ---- Fitur unggulan (hero), LED sinyal, ikon Alpha ---- */
+details.vf-feat{position:relative;z-index:1;margin-top:16px;max-width:860px;border:1px solid color-mix(in srgb,var(--gold) 38%,var(--border));border-radius:14px;background:var(--gold-tint)}
+details.vf-feat>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:11px 16px;font-weight:700;font-size:14px;color:var(--gold-soft)}
+details.vf-feat>summary::-webkit-details-marker{display:none}
+details.vf-feat>summary em{font-style:normal;font-weight:600;font-size:11.5px;padding:2px 9px;border-radius:999px;background:var(--gold-tint-strong);color:var(--gold)}
+details.vf-feat>summary::after{content:"▾";margin-left:auto;color:var(--gold);transition:transform .2s}
+details.vf-feat[open]>summary::after{transform:rotate(180deg)}
+.vf-feat-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;padding:2px 12px 12px}
+.vf-fc{--cc:var(--gold);text-align:left;font:inherit;display:flex;flex-direction:column;gap:3px;padding:10px 12px;border-radius:12px;border:1px solid color-mix(in srgb,var(--cc) 45%,var(--border));background:linear-gradient(135deg,color-mix(in srgb,var(--cc) 15%,var(--card)),var(--card));color:var(--text);cursor:pointer;transition:transform .15s,border-color .15s}
+.vf-fc b{font-size:13.5px}
+.vf-fc span{font-size:11.5px;color:var(--text-muted);line-height:1.4}
+.vf-fc:hover{transform:translateY(-2px);border-color:var(--cc)}
+div.vf-fc{cursor:default}div.vf-fc:hover{transform:none}
+@media print{details.vf-feat{display:none}}
+@keyframes led{0%,100%{opacity:1;box-shadow:0 0 7px 1px var(--cc)}50%{opacity:.3;box-shadow:0 0 1px 0 var(--cc)}}
+@keyframes ledring{0%,100%{box-shadow:0 0 0 0 transparent}50%{box-shadow:0 0 14px 1px color-mix(in srgb,var(--cc) 55%,transparent)}}
+#panel-ksei .sfc i{animation:led 1.7s ease-in-out infinite}
+#panel-ksei .sfc:nth-child(2n) i{animation-delay:.35s}
+#panel-ksei .sfc:nth-child(3n) i{animation-delay:.7s}
+#panel-ksei .sfc:nth-child(5n) i{animation-delay:1.05s}
+#panel-ksei .sfc.on{animation:ledring 2.2s ease-in-out infinite}
+#panel-ksei .pico{display:grid;place-items:center;width:22px;height:22px;flex:none;border-radius:7px;font-size:13px;line-height:1;background:color-mix(in srgb,var(--cc) 25%,transparent);box-shadow:0 0 10px -2px var(--cc);transition:transform .2s}
+#panel-ksei .sfc.pre:hover .pico{transform:rotate(-10deg) scale(1.15)}
+#panel-ksei .ksum b{display:inline}
+
 /* ---------- Scrollbar ---------- */
 *{ scrollbar-width:thin; scrollbar-color:color-mix(in srgb,var(--gold) 45%,transparent) transparent; }
 
@@ -1627,6 +1653,7 @@ details.faq-d>p{margin:0 0 14px;color:var(--text-muted);font-size:13px;line-heig
     </div>
     <h1>THE INVESTOR TOOLKIT: YOUR GUIDE TO SMARTER MARKETS</h1>
     <p>This toolkit helps investors make better decisions, such as analyzing share ownership comprehensively and effectively, calculating a stock's fair (intrinsic) value through Discounted Cash Flow and the Dividend Discount Model, long-term Warren Buffett-style stock analysis through Equity Bond Valuation, preparing a Financial Freedom fund target, calculating a target average stock price, and a feature to adjust to each investor's risk profile.</p>
+    <details class="vf-feat"><summary>✨ What you get <em>8 free tools</em></summary><div class="vf-feat-g"><button type="button" class="vf-fc" data-ft="ksei" style="--cc:#2dd4bf"><b>🔎 Bandarmology</b><span>Track accumulation, distribution, acquisitions, and crossings from KSEI data.</span></button><button type="button" class="vf-fc" data-ft="ksei" style="--cc:#a78bfa" data-fs="man"><b>🎯 Alpha-Screening</b><span>Screen stocks with layered filters and an Alpha Score.</span></button><button type="button" class="vf-fc" data-ft="valuation" style="--cc:#c9a24b" data-fs="dcf"><b>💎 Fair Value</b><span>DCF, DDM, and Buffett-style Equity Bond Valuation.</span></button><button type="button" class="vf-fc" data-ft="valuation" style="--cc:#60a5fa" data-fs="cagr"><b>📈 CAGR & Compound Growth</b><span>Calculate growth and project investment value.</span></button><button type="button" class="vf-fc" data-ft="ff" style="--cc:#4ade80"><b>🏖️ Financial Freedom</b><span>Retirement fund target and monthly investment.</span></button><button type="button" class="vf-fc" data-ft="average" style="--cc:#fb923c"><b>📉 Average & Averaging Down</b><span>Average price and the target to lower it.</span></button><button type="button" class="vf-fc" data-ft="riskprofile" style="--cc:#f472b6"><b>🧭 Risk Profile</b><span>Match your strategy to your risk profile.</span></button><div class="vf-fc" style="--cc:#94a3b8"><b>🆓 100% Free & Private</b><span>Runs in your browser, no sign-up.</span></div></div></details>
     
   </div>
 </header>
@@ -3893,7 +3920,7 @@ id:{
  fil:'Filter',filNone:'tanpa filter',reset:'Reset filter',
  fLF:'Lokal / Asing',all:'Semua',local:'Lokal',foreign:'Asing',fGrp:'Kelompok',ind:'Individu',inst:'Institusi',fType:'Kategori investor',
  fThr:'Abaikan perubahan di bawah (poin)',fCA:'Sertakan saham yang jumlah sahamnya berubah',unk:'Tak diketahui',unclass:'Tidak Terklasifikasi',
- n_sum:'Kesimpulan',n_sig:'Signal Saham',n_stk:'Detail Saham',n_inv:'Cari Nama Investor',n_nw:'Masuk & Keluar',n_man:'Alpha-Screening',
+ n_sum:'Overview',n_sig:'Signal Saham',n_stk:'Detail Saham',n_inv:'Cari Nama Investor',n_nw:'Masuk & Keluar',n_man:'Alpha-Screening',
  kStocks:'Saham dibandingkan',kAcc:'Saham akumulasi',kDis:'Saham distribusi',kNew:'Investor masuk daftar',kExit:'Investor keluar daftar',
  hKey:'Kesimpulan utama',hTop:'Perubahan terbesar',hSeg:'Siapa yang menambah dan mengurangi',
  i_scale:(n,m)=>`${fmt(n)} saham dibandingkan. Pada ${fmt(m)} saham ada investor besar yang mengubah kepemilikannya.`,
@@ -4001,7 +4028,7 @@ en:{
  fil:'Filters',filNone:'no filters',reset:'Reset filters',
  fLF:'Local / Foreign',all:'All',local:'Local',foreign:'Foreign',fGrp:'Group',ind:'Individual',inst:'Institution',fType:'Investor category',
  fThr:'Ignore changes below (points)',fCA:'Include stocks whose share count changed',unk:'Unknown',unclass:'Unclassified',
- n_sum:'Takeaways',n_sig:'Stock Signals',n_stk:'Stock Detail',n_inv:'Search Investor',n_nw:'Entries & Exits',n_man:'Alpha-Screening',
+ n_sum:'Overview',n_sig:'Stock Signals',n_stk:'Stock Detail',n_inv:'Search Investor',n_nw:'Entries & Exits',n_man:'Alpha-Screening',
  kStocks:'Stocks compared',kAcc:'Accumulating stocks',kDis:'Distributing stocks',kNew:'Investors entering list',kExit:'Investors leaving list',
  hKey:'Key takeaways',hTop:'Biggest changes',hSeg:'Who is adding and who is reducing',
  i_scale:(n,m)=>`${fmt(n)} stocks compared. In ${fmt(m)} of them a large holder changed their stake.`,
@@ -4367,7 +4394,7 @@ function holdersInline(tk,cap=10){
  return `<div class="xh muted small">${t('xHold',rows.length)} · ${fp(info.totA)}% → ${fp(info.totB)}%</div>`
   +rows.slice(0,cap).map(r=>`<div class="hl"><span class="hn">${chip('inv',r.inv)}${selfMark(r)}</span><span class="hs">${rowTag(r)}</span><span class="hv">${pctCell(r.pa)} → ${pctCell(r.pb)} <b class="${cls(r.dp)}">(${sgn(r.dp,fp)})</b></span></div>`).join('')
   +`<div class="xo small muted">${rows.length>cap?t('xMore',rows.length-cap)+' ':''}${open}</div>`}
-function portfolioInline(inv,cap=10){
+function portfolioInline(inv,cap=1e9){
  const rows=S.rows.filter(r=>r.inv===inv&&(r.pa>0||r.pb>0)).sort((a,b)=>Math.max(b.pa,b.pb)-Math.max(a.pa,a.pb));
  const open=`<button type="button" class="chip" data-go="inv:${esc(inv)}">${t('xOpenInv')}</button>`;
  return `<div class="xh muted small">${t('xPort',rows.length)}</div>`
@@ -4550,13 +4577,13 @@ function vNew(v){const u=S.ui;u.sub=u.sub||'New';const isN=u.sub==='New';
 /* ============================== bagian: alpha-screening ============================== */
 const MAN0={grp:[],lf:[],ty:[],dir:'acc',act:[],mnInv:1,mnPts:0.5,mnTot:0,minPb:0,maxPa:100,mnRel:0,mnAct:1,nMin:0,nMax:0,top:false,sig:[],q:'',inv:'',xinv:'',noSelf:true,noIpo:true,noCa:false,sort:'score',lim:24};
 const MAN_P={
- ind:{l:ID?'Individu akumulasi':'Individuals accumulating',c:'#2dd4bf',s:{grp:['I'],dir:'acc'}},
- ind3:{l:ID?'3+ individu menambah':'3+ individuals adding',c:'#a78bfa',s:{grp:['I'],dir:'acc',mnInv:3}},
- inst:{l:ID?'Institusi akumulasi':'Institutions accumulating',c:'#60a5fa',s:{grp:['N'],dir:'acc'}},
- fa:{l:ID?'Asing akumulasi':'Foreign accumulating',c:'#4ade80',s:{lf:['F'],dir:'acc',mnTot:1}},
- fd:{l:ID?'Asing distribusi':'Foreign distributing',c:'#fb923c',s:{lf:['F'],dir:'dis',mnTot:1}},
- nw:{l:ID?'Investor baru ≥ 5%':'New holders ≥ 5%',c:'#f472b6',s:{act:['new'],dir:'acc',minPb:5}},
- ex:{l:ID?'Pemegang besar keluar':'Big holders exiting',c:'#f87171',s:{act:['exit'],dir:'dis',mnPts:2}}};
+ ind:{l:ID?'Individu akumulasi':'Individuals accumulating',c:'#2dd4bf',e:'⛏️',s:{grp:['I'],dir:'acc'}},
+ ind3:{l:ID?'3+ individu menambah':'3+ individuals adding',c:'#a78bfa',e:'👥',s:{grp:['I'],dir:'acc',mnInv:3}},
+ inst:{l:ID?'Institusi akumulasi':'Institutions accumulating',c:'#60a5fa',e:'🏦',s:{grp:['N'],dir:'acc'}},
+ fa:{l:ID?'Asing akumulasi':'Foreign accumulating',c:'#4ade80',e:'🌏',s:{lf:['F'],dir:'acc',mnTot:1}},
+ fd:{l:ID?'Asing distribusi':'Foreign distributing',c:'#fb923c',e:'🛫',s:{lf:['F'],dir:'dis',mnTot:1}},
+ nw:{l:ID?'Investor baru ≥ 5%':'New holders ≥ 5%',c:'#f472b6',e:'🌱',s:{act:['new'],dir:'acc',minPb:5}},
+ ex:{l:ID?'Pemegang besar keluar':'Big holders exiting',c:'#f87171',e:'🚪',s:{act:['exit'],dir:'dis',mnPts:2}}};
 function manHolders(x){const T2=(a,b)=>ID?a:b,rows=[...x.hit].sort((a,b)=>Math.abs(b.dp)-Math.abs(a.dp)),cap=12;
  return `<div class="xh muted small">${rows.length} ${T2('investor memenuhi filter','matching investors')} · ${fp(x.pa)}% → ${fp(x.pb)}%</div>`
  +rows.slice(0,cap).map(r=>`<div class="hl"><span class="hn">${chip('inv',r.inv)} <span class="muted small">${esc(r.type)} · ${lfL(r.lf)} · ${r.ds>0?'+':''}${fmt(r.ds)} ${T2('lembar','shares')}</span></span><span class="hs">${stTag(r.st)}</span><span class="hv">${pctCell(r.pa)} → ${pctCell(r.pb)} <b class="${cls(r.dp)}">(${sgn(r.dp,fp)})</b></span></div>`).join('')
@@ -4600,7 +4627,7 @@ function vMan(v){const u=S.ui,T2=(a,b)=>ID?a:b,A_=x=>Array.isArray(x)?x:(x?[x]:[
  if(m.maxPa<100)lab.push(T2('porsi awal','start stake')+' ≤'+fp(m.maxPa)+'%');if(m.mnRel)lab.push(T2('naik relatif','rel. change')+' ≥'+m.mnRel+'%');if(m.mnAct>1)lab.push(T2('investor aktif','active investor')+' ≥'+m.mnAct);
  if(m.top)lab.push(T2('pemegang terbesar','top holder'));if(m.sig.length)lab.push(m.sig.map(x=>t(x)).join('/'));if(qi.length)lab.push(T2('nama: ','name: ')+qi.join('/'));if(xi.length)lab.push(T2('tanpa: ','excl.: ')+xi.join('/'));
  const op=u.manOpen!=null?u.manOpen:!matchMedia('(max-width:820px)').matches;
- const ctl=`<div class="sfs">${Object.keys(MAN_P).map(k=>`<button type="button" class="sfc pre" data-mp="${k}" style="--cc:${MAN_P[k].c}"><i></i>${MAN_P[k].l}</button>`).join('')}<button type="button" class="sfc pre" data-mp="reset" style="--cc:#94a3b8">${T2('Reset','Reset')}</button></div>`
+ const ctl=`<div class="sfs">${Object.keys(MAN_P).map(k=>`<button type="button" class="sfc pre" data-mp="${k}" style="--cc:${MAN_P[k].c}"><span class="pico">${MAN_P[k].e}</span>${MAN_P[k].l}</button>`).join('')}<button type="button" class="sfc pre" data-mp="reset" style="--cc:#94a3b8"><span class="pico">↺</span>${T2('Reset','Reset')}</button></div>`
  +`<details class="ks-more ks-adv"${op?' open':''}><summary>Advanced Filter · ${lab.length}</summary><div class="bar">`
  +H(T2('Profil investor','Investor profile'))
  +grp('grp',T2('Jenis investor (boleh pilih lebih dari satu)','Investor kind (multi-select)'),[['I',T2('Individu','Individual')],['N',T2('Institusi','Institution')]])
@@ -4978,6 +5005,10 @@ $('subpanel-comp').addEventListener('input',calcComp);$('subpanel-comp').addEven
 $('cp-reset').addEventListener('click',function(){$('cp-init').value=10000000;$('cp-rate').value=12;$('cp-years').value=10;$('cp-add').value=0;$('cp-freq').value=12;calcComp()});
 calcCagr();calcComp();
 })();
+</script>
+<script>
+(function(){document.addEventListener('click',function(e){var c=e.target.closest('button[data-ft]');if(!c)return;var tb=document.querySelector('.vf-tab[data-tab="'+c.dataset.ft+'"]');if(!tb)return;tb.click();var sub=c.dataset.fs;
+setTimeout(function(){if(sub){var sb=document.querySelector('.vf-subtab[data-subtab="'+sub+'"]')||document.querySelector('[data-sec="'+sub+'"]');if(sb)sb.click()}var sh=document.querySelector('.vf-shell');if(sh)sh.scrollIntoView({behavior:'smooth',block:'start'})},260)})})();
 </script>
 </body>
 </html>
