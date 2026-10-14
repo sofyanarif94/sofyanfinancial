@@ -1608,6 +1608,40 @@ div.vf-fc{cursor:default}div.vf-fc:hover{transform:none}
 #panel-ksei .sfc.pre:hover .pico{transform:rotate(-10deg) scale(1.15)}
 #panel-ksei .ksum b{display:inline}
 
+
+/* ---- Spotlight ---- */
+.sp-wrap{position:relative;z-index:2;margin-top:18px;max-width:860px}
+.sp-bar{display:flex;align-items:center;gap:8px;padding:6px 6px 6px 14px;border-radius:16px;background:var(--card);border:1.5px solid color-mix(in srgb,var(--gold) 60%,var(--border));box-shadow:0 10px 30px -14px rgba(0,0,0,.6)}
+.sp-bar:focus-within{box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 25%,transparent)}
+.sp-ico{font-size:17px}
+.sp-bar input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--text);font:500 15px 'Poppins',sans-serif;padding:9px 4px}
+.sp-go{font:700 13px 'Poppins',sans-serif;padding:9px 18px;border-radius:12px;border:0;cursor:pointer;color:#10192b;background:linear-gradient(135deg,#f1d98f,#c9a24b)}
+.sp-ex{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.sp-chip,.sp-ex button{font:600 12px 'Poppins',sans-serif;padding:5px 11px;border-radius:999px;border:1px solid color-mix(in srgb,var(--gold) 40%,var(--border));background:var(--gold-tint);color:var(--gold-soft);cursor:pointer;text-align:left}
+.sp-chip:hover,.sp-ex button:hover{border-color:var(--gold)}
+.sp-note{margin:7px 0 0;font-size:11px;color:var(--text-muted)}
+.sp-res{position:relative;margin-top:12px;padding:12px;border-radius:16px;background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--border);max-height:70vh;overflow:auto}
+.sp-res[hidden]{display:none}
+.sp-x{position:absolute;right:8px;top:6px;border:0;background:transparent;color:var(--text-muted);font-size:20px;cursor:pointer;z-index:1}
+.sp-card{padding:10px 12px;border:1px solid var(--border);border-radius:12px;margin-bottom:8px;background:var(--card)}
+.sp-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding-right:22px;margin-bottom:6px}
+.sp-h b{font-size:14px;color:var(--gold-soft)}.sp-h span{font-size:11.5px;color:var(--text-muted)}
+.sp-row{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr) auto;gap:2px 10px;align-items:center;padding:6px 0;border-top:1px solid var(--border-soft,var(--border));font-size:12.5px}
+.sp-m{color:var(--text-muted);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sp-r{text-align:right;white-space:nowrap}
+.sp-tag{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;color:var(--c);border:1px solid color-mix(in srgb,var(--c) 55%,transparent);background:color-mix(in srgb,var(--c) 12%,transparent)}
+.sp-up{color:var(--up,#3fb97a)}.sp-dn{color:var(--down,#fb923c)}
+.sp-k{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:6px 0}
+.sp-k>div{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:10px;background:var(--gold-tint)}
+.sp-k b{font-size:17px}.sp-k span{font-size:10.5px;color:var(--text-muted);line-height:1.35}
+.sp-sc{display:inline-block;min-width:26px;text-align:center;font-size:11px;font-weight:700;padding:1px 6px;border-radius:8px;background:var(--gold-tint-strong);color:var(--gold)}
+.sp-msg{margin:4px 0;font-size:12.5px;line-height:1.55;color:var(--text-muted)}
+.sp-f{margin-top:8px;font-size:11.5px;color:var(--text-muted);line-height:1.55}
+.sp-chips{display:flex;flex-wrap:wrap;gap:6px}
+.sp-card .sp-go{margin-top:2px}
+@media (max-width:640px){.sp-row{grid-template-columns:minmax(0,1fr) auto}.sp-m{grid-column:1/-1;order:3;white-space:normal}}
+@media print{.sp-wrap{display:none}}
+
 /* ---------- Scrollbar ---------- */
 *{ scrollbar-width:thin; scrollbar-color:color-mix(in srgb,var(--gold) 45%,transparent) transparent; }
 
@@ -1653,6 +1687,7 @@ div.vf-fc{cursor:default}div.vf-fc:hover{transform:none}
     </div>
     <h1>THE INVESTOR TOOLKIT: YOUR GUIDE TO SMARTER MARKETS</h1>
     <p>This toolkit helps investors make better decisions, such as analyzing share ownership comprehensively and effectively, calculating a stock's fair (intrinsic) value through Discounted Cash Flow and the Dividend Discount Model, long-term Warren Buffett-style stock analysis through Equity Bond Valuation, preparing a Financial Freedom fund target, calculating a target average stock price, and a feature to adjust to each investor's risk profile.</p>
+    <div class="sp-wrap" id="sp-wrap"><form class="sp-bar" id="sp-form" autocomplete="off"><span class="sp-ico">✨</span><input id="sp-in" type="search" enterkeyhint="search" placeholder="Ask the data… e.g. “top 5 strong accumulation stocks”" aria-label="Ask the data… e.g. “top 5 strong accumulation stocks”"><button type="submit" class="sp-go">Search</button></form><div class="sp-ex"><button type="button" data-spq="Top 5 strong accumulation stocks">Top 5 strong accumulation stocks</button><button type="button" data-spq="Foreign investors selling the most">Foreign investors selling the most</button><button type="button" data-spq="Acquired stocks">Acquired stocks</button><button type="button" data-spq="Who is the largest holder of ARCI?">Who is the largest holder of ARCI?</button></div><p class="sp-note">Smart rule-based search that runs in your browser (not generative AI). Data: KSEI ownership changes.</p><div class="sp-res" id="sp-res" hidden></div></div>
     <details class="vf-feat"><summary>✨ What you get <em>8 free tools</em></summary><div class="vf-feat-g"><button type="button" class="vf-fc" data-ft="ksei" style="--cc:#2dd4bf"><b>🔎 Bandarmology</b><span>Track accumulation, distribution, acquisitions, and crossings from KSEI data.</span></button><button type="button" class="vf-fc" data-ft="ksei" style="--cc:#a78bfa" data-fs="man"><b>🎯 Alpha-Screening</b><span>Screen stocks with layered filters and an Alpha Score.</span></button><button type="button" class="vf-fc" data-ft="valuation" style="--cc:#c9a24b" data-fs="dcf"><b>💎 Fair Value</b><span>DCF, DDM, and Buffett-style Equity Bond Valuation.</span></button><button type="button" class="vf-fc" data-ft="valuation" style="--cc:#60a5fa" data-fs="cagr"><b>📈 CAGR & Compound Growth</b><span>Calculate growth and project investment value.</span></button><button type="button" class="vf-fc" data-ft="ff" style="--cc:#4ade80"><b>🏖️ Financial Freedom</b><span>Retirement fund target and monthly investment.</span></button><button type="button" class="vf-fc" data-ft="average" style="--cc:#fb923c"><b>📉 Average & Averaging Down</b><span>Average price and the target to lower it.</span></button><button type="button" class="vf-fc" data-ft="riskprofile" style="--cc:#f472b6"><b>🧭 Risk Profile</b><span>Match your strategy to your risk profile.</span></button><div class="vf-fc" style="--cc:#94a3b8"><b>🆓 100% Free & Private</b><span>Runs in your browser, no sign-up.</span></div></div></details>
     
   </div>
@@ -4574,6 +4609,84 @@ function vNew(v){const u=S.ui;u.sub=u.sub||'New';const isN=u.sub==='New';
 }
 
 /* ============================== tampil & event ============================== */
+/* ============================== spotlight: tanya data (rule-based, lokal) ============================== */
+const KW={
+ acc:['akumulasi*','menambah*','tambah*','nambah*','membeli','beli','dibeli','borong*','memborong','serok*','naik','masuk','accumulat*','buy*','bought','add*','increas*'],
+ dis:['distribusi*','menjual','jual','dijual','mengurangi','kurangi','dikurangi','buang*','lepas*','melepas*','keluar','kabur','dump*','sell*','sold','distribut*','reduc*','exit*','decreas*','cabut','hengkang'],
+ strong:['kuat','besar','jumbo','strong','large','massive','signifikan'],
+ foreign:['asing','foreign*','overseas','offshore','internasional'],local:['lokal','local','domestik'],
+ ind:['individu','individual*','perorangan','retail','ritel','pribadi'],inst:['institusi','institutional*','institution*','lembaga'],
+ best:['terbaik','terkuat','teratas','top','best','bagus','menarik','potensi','potensial','prospek','rekomendasi','rekomen*','recommend*','profit','cuan','untung','layak','unggulan','favorit','promising','strongest','mantap','gacor','hot'],
+ worst:['terburuk','rawan','waspada','risiko','berisiko','bahaya','jelek','anjlok','rontok','worst','risky','danger*','lemah','hindari','avoid'],
+ count:['berapa','jumlah','total','count','many','much','sum','banyak'],who:['siapa','who'],why:['kenapa','mengapa','why','alasan','bagaimana','how'],
+ port:['portofolio','portfolio','dipegang','memegang','dimiliki','koleksi'],holder:['pemegang','holder*','owner*','pemilik']};
+const KSIG={ak:['akuisisi*','diakuisisi','mengakuisisi','takeover','acqui*','ambil alih'],ipo:['ipo','baru listing','pencatatan perdana','new listing'],rot:['crossing','berpindah tangan','pindah tangan','changing hands'],bb:['buyback','buy back'],sl:['treasury','jual saham sendiri']};
+const KTOOL=[[['dcf','discounted'],'valuation','dcf'],[['ddm','dividend discount','dividen discount'],'valuation','ddm'],[['equity bond','buffett'],'valuation','eb'],[['nilai wajar','intrinsic','valuasi','fair value'],'valuation','dcf'],[['cagr'],'valuation','cagr'],[['bunga majemuk','compound','majemuk'],'valuation','comp'],[['pensiun','financial freedom','kebebasan finansial','fire','retire*'],'ff',''],[['averaging down','target averaging'],'target',''],[['average','rata-rata','rata rata'],'average',''],[['profil risiko','risk profile','toleransi risiko'],'riskprofile',''],[['kamus','glosarium','glossary','istilah'],'glossary','']];
+const KTY=[[['reksadana','reksa','mutual'],'mutual'],[['pensiun','pension','bpjs'],'pension'],[['asuransi','insurance'],'insurance'],[['sekuritas','securities','broker'],'securit'],[['bank'],'bank'],[['sovereign','swf'],'sovereign'],[['yayasan','foundation'],'foundation'],[['korporasi','corporate','perusahaan'],'corporate']];
+const SPN={satu:1,dua:2,tiga:3,empat:4,lima:5,enam:6,tujuh:7,delapan:8,sembilan:9,sepuluh:10,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10};
+const STOPW=['yang','dari','saya','bisa','atau','dengan','untuk','pada','oleh','dalam','tolong','carikan','cari','tampilkan','tunjukkan','list','daftar','that','with','from','what','show','give','find','have','does','the','and','which','tell','this','saham','emiten','investor','apa','dan','ada','saja','semua','mana','lagi','dong','ya','kah','apakah','di','ke','itu','ini','nya'];
+const mk=(toks,str,list)=>list.some(w=>w.endsWith('*')?toks.some(x=>x.startsWith(w.slice(0,-1))):(w.includes(' ')?str.includes(w):toks.includes(w)));
+const ALLKW=[].concat(...Object.values(KW),...Object.values(KSIG),...KTOOL.map(x=>x[0]),...KTY.map(x=>x[0]),STOPW);
+function parseQ(q){const raw=String(q||'').trim(),str=raw.toLowerCase().replace(/[^a-z0-9%.\s-]/g,' ').replace(/\s+/g,' ').trim(),toks=str.split(' ').filter(Boolean),o={raw,str,toks};
+ Object.keys(KW).forEach(k=>o[k]=mk(toks,str,KW[k]));
+ o.sigk=Object.keys(KSIG).filter(k=>mk(toks,str,KSIG[k]));o.tool=KTOOL.filter(x=>mk(toks,str,x[0]));o.ty=KTY.filter(x=>mk(toks,str,x[0])).map(x=>x[1]);
+ const nm=str.match(/(?:top|teratas|terbaik|best|first)\s*(\d{1,2})|(\d{1,2})\s*(?:saham|emiten|stocks?|teratas|terbaik|besar|top)/);
+ o.n=Math.max(1,Math.min(20,nm?parseInt(nm[1]||nm[2],10):(toks.map(x=>SPN[x]).find(Boolean)||5)));
+ const tk=new Set(S.agg.map(s=>s.t)),kwl=new Set(ALLKW.filter(w=>!w.endsWith('*')));
+ o.tick=[];o.unk=[];raw.split(/[^A-Za-z]+/).filter(w=>w.length===4).forEach(w=>{const u=w.toUpperCase();if(kwl.has(w.toLowerCase())&&w!==u)return;if(tk.has(u)){if(!o.tick.includes(u))o.tick.push(u)}else if(w===u&&!kwl.has(w.toLowerCase()))o.unk.push(u)});
+ const rest=toks.filter(x=>x.length>=3&&!/^\d+$/.test(x)&&!mk([x],x,ALLKW)&&!o.tick.includes(x.toUpperCase()));o.rest=rest;return o}
+function scan(f){const g=new Map();for(const r of S.rows){if(r.self||r.st==='Unchanged')continue;
+ if(f.tick&&r.t!==f.tick)continue;if(f.lf&&r.lf!==f.lf)continue;if(f.grp&&r.grp!==f.grp)continue;if(f.ty&&!String(r.type).toLowerCase().includes(f.ty))continue;if(f.inv&&r.inv!==f.inv)continue;
+ if(f.dir==='acc'&&!(r.dp>0))continue;if(f.dir==='dis'&&!(r.dp<0))continue;(g.get(r.t)||g.set(r.t,[]).get(r.t)).push(r)}
+ const by=new Map(S.agg.map(s=>[s.t,s])),out=[];for(const [tk,hit] of g){const s=by.get(tk);if(s)out.push({t:tk,s,hit,n:hit.length,tot:hit.reduce((a,r)=>a+r.dp,0),sh:hit.reduce((a,r)=>a+r.ds,0)})}return out}
+const SPT=(a,b)=>ID?a:b,spc=v=>v>0?'sp-up':v<0?'sp-dn':'';
+const spChip=(k,v,l)=>`<button type="button" class="sp-chip" data-sp="${k}:${esc(v)}">${esc(l||v)}</button>`;
+const spTag=s=>`<span class="sp-tag" style="--c:${SIGCOL[s.sig]||'var(--mute)'}">${esc(t(s.sig))}</span>`;
+const spRow=(a,b,c)=>`<div class="sp-row"><span class="sp-l">${a}</span><span class="sp-m">${b||''}</span><span class="sp-r">${c}</span></div>`;
+const spCard=(title,sub,body,foot)=>`<div class="sp-card"><div class="sp-h"><b>${title}</b>${sub?`<span>${sub}</span>`:''}</div>${body}${foot?`<div class="sp-f">${foot}</div>`:''}</div>`;
+const spPer=()=>`${SPT('Periode','Period')}: ${esc(S.la)} → ${esc(S.lb)}`;
+const spNote=SPT('Berdasarkan perubahan kepemilikan KSEI antar dua periode — bukan prediksi harga, bukan jaminan profit, dan bukan rekomendasi.','Based on KSEI ownership changes between two periods — not a price forecast, profit guarantee, or advice.');
+const spHolders=(hit,cap)=>[...hit].sort((a,b)=>Math.abs(b.dp)-Math.abs(a.dp)).slice(0,cap||8).map(r=>spRow(spChip('inv',r.inv),`${esc(r.type)} · ${lfL(r.lf)}`,`${fp(r.pa)}% → ${fp(r.pb)}% <b class="${spc(r.dp)}">${sgn(r.dp,fp)}</b>`)).join('');
+function spLabel(o){const g=o.foreign?SPT('asing','foreign'):o.local?SPT('lokal','local'):o.ind?SPT('individu','individual'):o.inst?SPT('institusi','institutional'):o.ty[0]?o.ty[0]:'';return g}
+function spTick(o){const T=o.tick[0],s=S.agg.find(x=>x.t===T);if(!s)return spCard(esc(T),'',`<p class="sp-msg">${SPT('Saham ini tidak punya perubahan di data periode ini.','No changes for this stock in this period.')}</p>`);
+ const f={tick:T,lf:o.foreign?'F':o.local?'L':'',grp:o.ind?'I':o.inst?'N':'',ty:o.ty[0]||''},filt=f.lf||f.grp||f.ty,
+  rows=S.rows.filter(r=>r.t===T&&!r.self),top=[...rows].sort((a,b)=>b.pb-a.pb)[0];
+ if(o.who||o.holder&&!o.acc&&!o.dis)return spCard(`${T} · ${esc(s.iss||'')}`,SPT('Pemegang terbesar (di atas 1%)','Largest holders (above 1%)'),[...rows].filter(r=>r.pb>0).sort((a,b)=>b.pb-a.pb).slice(0,8).map(r=>spRow(spChip('inv',r.inv),`${esc(r.type)} · ${lfL(r.lf)}`,`${fp(r.pb)}% <b class="${spc(r.dp)}">${sgn(r.dp,fp)}</b>`)).join(''),spChip('stk',T,SPT('Buka detail saham →','Open stock detail →'))+' · '+spPer());
+ if(o.count||o.acc||o.dis||filt){const dirs=o.acc&&!o.dis?['acc']:o.dis&&!o.acc?['dis']:['acc','dis'],lab=spLabel(o);let body='';
+  dirs.forEach(d=>{const r=scan(Object.assign({},f,{dir:d}))[0]||{n:0,tot:0,sh:0,hit:[]},w=d==='acc'?SPT('menambah','adding'):SPT('mengurangi','reducing');
+   body+=`<div class="sp-k"><div><b>${r.n}</b><span>${SPT('investor','investors')} ${esc(lab)} ${w}</span></div><div><b class="${spc(r.tot)}">${sgn(r.tot,fp)}</b><span>${SPT('poin kepemilikan','ownership pts')}</span></div><div><b class="${spc(r.sh)}">${r.sh>0?'+':''}${fmt(r.sh)}</b><span>${SPT('lembar saham','shares')}</span></div></div>`+(r.n?spHolders(r.hit,6):`<p class="sp-msg">${SPT('Tidak ada pada periode ini.','None in this period.')}</p>`)});
+  return spCard(`${T} · ${esc(s.iss||'')}`,`${spTag(s)}`,body,spChip('stk',T,SPT('Buka detail saham →','Open stock detail →'))+' · '+spPer())}
+ const fr=rows.filter(r=>r.lf==='F').reduce((a,r)=>a+r.dp,0),ex=['sa','a','sd','d','rot','ak','ipo'].includes(s.sig)?t('r_'+s.sig):'';
+ return spCard(`${T} · ${esc(s.iss||'')}`,spTag(s),`<div class="sp-k"><div><b class="${spc(s.net)}">${sgn(s.net,fp)}</b><span>${SPT('selisih investor besar (poin)','big-holder net (pts)')}</span></div><div><b>▲${s.nUp} ▼${s.nDn}</b><span>${SPT('investor menambah / mengurangi','investors adding / reducing')}</span></div><div><b class="${spc(fr)}">${sgn(fr,fp)}</b><span>${SPT('net investor asing (poin)','foreign net (pts)')}</span></div></div>`
+  +(ex?`<p class="sp-msg">${esc(ex)}</p>`:'')+(top?spRow(spChip('inv',top.inv),SPT('pemegang terbesar','largest holder'),`${fp(top.pb)}%`):''),spChip('stk',T,SPT('Buka detail saham →','Open stock detail →'))+' · '+spPer())}
+function spRank(o){const dis=(o.dis&&!o.acc)||o.worst,n=o.n,filt=o.foreign||o.local||o.ind||o.inst||o.ty.length;
+ if(filt){const r=scan({lf:o.foreign?'F':o.local?'L':'',grp:o.ind?'I':o.inst?'N':'',ty:o.ty[0]||'',dir:dis?'dis':'acc'}).sort((a,b)=>dis?a.tot-b.tot:b.tot-a.tot).slice(0,n),lab=spLabel(o);
+  return spCard(SPT(`${r.length} saham: investor ${lab} ${dis?'paling banyak mengurangi':'paling banyak menambah'}`,`${r.length} stocks: ${lab} investors ${dis?'reducing the most':'adding the most'}`),spPer(),r.map(x=>spRow(spChip('stk',x.t)+' '+spTag(x.s),`${esc(x.s.iss||'')} · ${x.n} ${SPT('investor','investors')}`,`<b class="${spc(x.tot)}">${sgn(x.tot,fp)}</b>`)).join('')||`<p class="sp-msg">${SPT('Tidak ada data yang cocok.','No matching data.')}</p>`,spNote)}
+ const keys=o.strong?(dis?['sd']:['sa','ak']):(dis?['sd','d']:['sa','ak','a']),al=s=>(s.sig==='sa'||s.sig==='sd'||s.sig==='ak')?1:.65;
+ const r=S.agg.filter(s=>keys.includes(s.sig)).map(s=>({s,score:Math.round(100*(.45*Math.min(Math.abs(s.net)/10,1)+.3*Math.min((dis?s.nDn:s.nUp)/5,1)+.25*al(s)))})).sort((a,b)=>b.score-a.score||Math.abs(b.s.net)-Math.abs(a.s.net)).slice(0,n);
+ return spCard(dis?SPT(`${r.length} saham dengan sinyal distribusi terkuat`,`${r.length} stocks with the strongest distribution signal`):SPT(`${r.length} saham dengan sinyal akumulasi terkuat`,`${r.length} stocks with the strongest accumulation signal`),spPer(),r.map(x=>spRow(spChip('stk',x.s.t)+' '+spTag(x.s),esc(x.s.iss||''),`<span class="sp-sc">${x.score}</span> <b class="${spc(x.s.net)}">${sgn(x.s.net,fp)}</b>`)).join('')||`<p class="sp-msg">${SPT('Belum ada saham yang memenuhi.','No stocks qualify yet.')}</p>`,`${spChip('sig',dis?'sd':'sa',SPT('Lihat semua di Signal Saham →','See all in Stock Signals →'))}<br>${SPT('Skor 0–100 = besar perubahan, jumlah investor, dan kekuatan sinyal. ','Score 0–100 = size of change, number of investors, and signal strength. ')}${spNote}`)}
+function spSig(o){return o.sigk.map(k=>{const l=S.agg.filter(s=>k==='bb'||k==='sl'?s.act===k:s.sig===k).sort((a,b)=>Math.abs(b.net)-Math.abs(a.net));return spCard(`${esc(t(k))} · ${l.length} ${SPT('saham','stocks')}`,spPer(),l.slice(0,o.n).map(s=>spRow(spChip('stk',s.t),esc(s.iss||''),`<b class="${spc(s.net)}">${sgn(s.net,fp)}</b>`)).join('')||`<p class="sp-msg">${SPT('Tidak ada.','None.')}</p>`,spChip('sig',k,SPT('Lihat semua →','See all →')))}).join('')}
+function spInv(o){const INV=[...new Set(S.rows.map(r=>r.inv))],ac=new Map(invAgg(S.f).map(i=>[i.inv,i.act])),
+ m=INV.filter(n=>o.rest.every(w=>n.toLowerCase().includes(w))).sort((a,b)=>(ac.get(b)||0)-(ac.get(a)||0));if(!o.rest.length||!m.length)return '';
+ const nm=m[0],rows=S.rows.filter(r=>r.inv===nm&&!r.self);let l=o.port?rows.filter(r=>r.pb>0).sort((a,b)=>b.pb-a.pb):rows.filter(r=>r.dp!==0&&(o.acc&&!o.dis?r.dp>0:o.dis&&!o.acc?r.dp<0:true)).sort((a,b)=>Math.abs(b.dp)-Math.abs(a.dp));
+ const up=rows.filter(r=>r.dp>0).length,dn=rows.filter(r=>r.dp<0).length;
+ return spCard(esc(nm),`${esc(rows[0]?rows[0].type:'')} · ${rows[0]?lfL(rows[0].lf):''}`,`<p class="sp-msg">${SPT('Mengubah','Changed')} ${up+dn} ${SPT('saham','stocks')}: <b class="sp-up">▲${up}</b> <b class="sp-dn">▼${dn}</b></p>`+l.slice(0,10).map(r=>spRow(spChip('stk',r.t),esc(r.iss||''),`${fp(r.pa)}% → ${fp(r.pb)}% <b class="${spc(r.dp)}">${sgn(r.dp,fp)}</b>`)).join('')+(m.length>1?`<p class="sp-msg">${SPT('Nama lain yang mirip','Similar names')}: ${m.slice(1,5).map(n=>spChip('inv',n)).join(' ')}</p>`:''),spChip('inv',nm,SPT('Buka profil investor →','Open investor profile →'))+' · '+spPer())}
+function spTool(o){const seen=new Set();return o.tool.filter(x=>{const k=x[1]+x[2];if(seen.has(k))return false;seen.add(k);return true}).slice(0,3).map(x=>`<div class="sp-card"><div class="sp-h"><b>${SPT('Alat yang cocok','Matching tool')}</b></div><button type="button" class="sp-go" data-ft="${x[1]}" data-fs="${x[2]}">${SPT('Buka','Open')} ${esc(x[2]?x[2].toUpperCase():x[1])} →</button></div>`).join('')}
+function spHelp(){const ex=ID?['5 saham akumulasi kuat terbaik','Investor asing paling banyak menjual','Saham yang diakuisisi','Siapa pemegang terbesar ARCI?','Berapa investor asing yang mengurangi ARCI?','Saham apa yang dibeli Lo Kheng Hong','Hitung nilai wajar saham']:['Top 5 strong accumulation stocks','Foreign investors selling the most','Acquired stocks','Who is the largest holder of ARCI?','How many foreign investors reduced ARCI?','Which stocks did Lo Kheng Hong buy','Calculate fair value'];
+ return spCard(SPT('Coba tanyakan seperti ini','Try asking like this'),'',`<div class="sp-chips">${ex.map(x=>`<button type="button" class="sp-chip" data-spq="${esc(x)}">${esc(x)}</button>`).join('')}</div>`,'')}
+function ask(q){try{const o=parseQ(q);if(!o.raw)return '';
+ const other=o.acc||o.dis||o.best||o.worst||o.tick.length||o.foreign||o.local||o.ind||o.inst||o.sigk.length||o.count||o.who;
+ if(o.tool.length&&!other)return spTool(o);
+ if(o.tick.length)return spTick(o);
+ if(o.unk.length&&!o.sigk.length&&!o.foreign&&!o.local)return spCard(esc(o.unk[0]),'',`<p class="sp-msg">${SPT('Kode ini tidak ditemukan di data. Data hanya memuat pemegang di atas 1%.','This code is not in the data. Data covers holders above 1% only.')}</p>`,'')+spHelp();
+ const inv=(o.rest.length&&!o.sigk.length)?spInv(o):'';if(inv)return inv;
+ if(o.sigk.length)return spSig(o);
+ if(o.acc||o.dis||o.best||o.worst||o.foreign||o.local||o.ind||o.inst||o.ty.length)return spRank(o);
+ if(o.count){const c=k=>S.agg.filter(s=>s.sig===k).length;return spCard(SPT('Ringkasan pasar','Market overview'),spPer(),['sa','sd','ak','ipo','rot'].map(k=>spRow(spChip('sig',k,t(k)),'',`<b>${c(k)}</b> ${SPT('saham','stocks')}`)).join(''),spNote)}
+ return spHelp()}catch(e){return `<p class="sp-msg">${SPT('Maaf, pertanyaan ini belum bisa diproses.','Sorry, this question could not be processed.')}</p>`+spHelp()}}
+window.KSEI={ask:ask,ready:()=>!!(S.agg&&S.agg.length),
+ ensure:async()=>{if(S.agg&&S.agg.length)return true;for(let i=0;i<40&&!S.repo.length;i++)await new Promise(r=>setTimeout(r,150));if(S.repo.length>=2)await onRepoBoth();return !!(S.agg&&S.agg.length)},
+ open:(kd,val)=>{S.hist=[];if(kd==='stk'){S.ui.stk=val;S.sec='stk'}else if(kd==='inv'){S.ui.inv=val;S.sec='inv'}else{S.ui.list=null;delete S.ui.sig;S.ui.sf=val;S.sec='sig'}render();navTo()}};
 /* ============================== bagian: alpha-screening ============================== */
 const MAN0={grp:[],lf:[],ty:[],dir:'acc',act:[],mnInv:1,mnPts:0.5,mnTot:0,minPb:0,maxPa:100,mnRel:0,mnAct:1,nMin:0,nMax:0,top:false,sig:[],q:'',inv:'',xinv:'',noSelf:true,noIpo:true,noCa:false,sort:'score',lim:24};
 const MAN_P={
@@ -5009,6 +5122,24 @@ calcCagr();calcComp();
 <script>
 (function(){document.addEventListener('click',function(e){var c=e.target.closest('button[data-ft]');if(!c)return;var tb=document.querySelector('.vf-tab[data-tab="'+c.dataset.ft+'"]');if(!tb)return;tb.click();var sub=c.dataset.fs;
 setTimeout(function(){if(sub){var sb=document.querySelector('.vf-subtab[data-subtab="'+sub+'"]')||document.querySelector('[data-sec="'+sub+'"]');if(sb)sb.click()}var sh=document.querySelector('.vf-shell');if(sh)sh.scrollIntoView({behavior:'smooth',block:'start'})},260)})})();
+</script>
+<script>
+(function(){var f=document.getElementById('sp-form'),inp=document.getElementById('sp-in'),res=document.getElementById('sp-res');if(!f)return;
+var EN=document.documentElement.lang==='en',PH=["Top 5 strong accumulation stocks", "How many foreign investors reduced ARCI?", "Which stocks did Lo Kheng Hong buy", "Acquired stocks this month", "Calculate fair value"],pi=0;
+function show(h){res.innerHTML='<button type="button" class="sp-x" aria-label="Close" data-spx="1">×</button>'+h;res.hidden=false}
+function run(q){q=(q||'').trim();if(!q){res.hidden=true;return}
+ show('<p class="sp-msg">'+(EN?'Loading KSEI data…':'Memuat data KSEI…')+'</p>');
+ if(!window.KSEI){show('<p class="sp-msg">'+(EN?'Open the Bandarmology tab once, then try again.':'Buka menu Bandarmology sekali, lalu coba lagi.')+'</p>');return}
+ window.KSEI.ensure().then(function(ok){show(ok?window.KSEI.ask(q):'<p class="sp-msg">'+(EN?'KSEI data could not be loaded. Open the Bandarmology tab and choose a period.':'Data KSEI belum bisa dimuat. Buka menu Bandarmology lalu pilih periode.')+'</p>')}).catch(function(){show('<p class="sp-msg">'+(EN?'Something went wrong.':'Terjadi kendala. Coba lagi.')+'</p>')})}
+f.addEventListener('submit',function(e){e.preventDefault();run(inp.value)});
+document.addEventListener('click',function(e){var b=e.target.closest('[data-sp],[data-spq],[data-spx]');if(!b)return;
+ if(b.hasAttribute('data-spx')){res.hidden=true;return}
+ if(b.dataset.spq){inp.value=b.dataset.spq;run(b.dataset.spq);return}
+ var kv=b.dataset.sp.split(':'),tb=document.querySelector('.vf-tab[data-tab="ksei"]');if(tb)tb.click();
+ setTimeout(function(){window.KSEI.open(kv[0],kv.slice(1).join(':'));var sh=document.querySelector('.vf-shell');if(sh)sh.scrollIntoView({behavior:'smooth',block:'start'})},220)});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&!/input|textarea|select/i.test((document.activeElement||{}).tagName)){e.preventDefault();inp.focus()}});
+setInterval(function(){if(document.activeElement!==inp&&!inp.value){pi=(pi+1)%PH.length;inp.placeholder=PH[pi]}},4000);
+})();
 </script>
 </body>
 </html>
