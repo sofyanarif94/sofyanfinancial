@@ -1613,37 +1613,57 @@ div.vf-fc{cursor:default}div.vf-fc:hover{transform:none}
 #panel-ksei .ksum b{display:inline}
 
 
-/* ---- Spotlight ---- */
-.sp-wrap{position:relative;z-index:2;margin-top:18px;max-width:860px}
+/* ---- Spotlight (pencarian & tanya-jawab data) ---- */
+.sp-wrap{position:relative;z-index:3;margin-top:18px;max-width:900px}
 .sp-bar{display:flex;align-items:center;gap:8px;padding:6px 6px 6px 14px;border-radius:16px;background:var(--card);border:1.5px solid color-mix(in srgb,var(--gold) 60%,var(--border));box-shadow:0 10px 30px -14px rgba(0,0,0,.6)}
-.sp-bar:focus-within{box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 25%,transparent)}
+.sp-bar:focus-within{box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 28%,transparent)}
 .sp-ico{font-size:17px}
 .sp-bar input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--text);font:500 15px 'Poppins',sans-serif;padding:9px 4px}
 .sp-go{font:700 13px 'Poppins',sans-serif;padding:9px 18px;border-radius:12px;border:0;cursor:pointer;color:#10192b;background:linear-gradient(135deg,#f1d98f,#c9a24b)}
+.sp-sug{list-style:none;margin:6px 0 0;padding:4px;border-radius:14px;background:var(--card);border:1px solid var(--border);box-shadow:0 14px 34px -14px rgba(0,0,0,.7);max-height:300px;overflow:auto;position:absolute;left:0;right:0;z-index:5}
+.sp-sug[hidden]{display:none}
+.sp-sug li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:10px;cursor:pointer;font-size:13px}
+.sp-sug li.on,.sp-sug li:hover{background:var(--gold-tint-strong)}
+.sp-k{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--gold-tint);color:var(--gold);flex:none}
+.sp-state{min-height:0;font-size:11.5px;color:var(--text-muted);margin-top:6px}
+.sp-ctx{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:4px 6px 4px 11px;border-radius:999px;background:var(--gold-tint-strong);color:var(--gold-soft);font-size:12px;font-weight:600}
+.sp-ctx[hidden]{display:none}
+.sp-ctx button{border:0;background:transparent;color:inherit;cursor:pointer;font-size:15px;padding:0 6px}
 .sp-ex{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
-.sp-chip,.sp-ex button{font:600 12px 'Poppins',sans-serif;padding:5px 11px;border-radius:999px;border:1px solid color-mix(in srgb,var(--gold) 40%,var(--border));background:var(--gold-tint);color:var(--gold-soft);cursor:pointer;text-align:left}
-.sp-chip:hover,.sp-ex button:hover{border-color:var(--gold)}
-.sp-note{margin:7px 0 0;font-size:11px;color:var(--text-muted)}
-.sp-res{position:relative;margin-top:12px;padding:12px;border-radius:16px;background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--border);max-height:70vh;overflow:auto}
+.sp-ex button,.sp-chip,.sp-btn{font:600 12px 'Poppins',sans-serif;padding:5px 11px;border-radius:999px;border:1px solid color-mix(in srgb,var(--gold) 40%,var(--border));background:var(--gold-tint);color:var(--gold-soft);cursor:pointer;text-align:left}
+.sp-ex button:hover,.sp-chip:hover,.sp-btn:hover{border-color:var(--gold)}
+.sp-btn.pri{background:linear-gradient(135deg,#f1d98f,#c9a24b);color:#10192b;border:0}
+.sp-note{margin:7px 0 0;font-size:11px;color:var(--text-muted);line-height:1.5}
+.sp-res{position:relative;margin-top:12px;padding:12px;border-radius:16px;background:color-mix(in srgb,var(--card) 94%,transparent);border:1px solid var(--border);max-height:75vh;overflow:auto}
 .sp-res[hidden]{display:none}
-.sp-x{position:absolute;right:8px;top:6px;border:0;background:transparent;color:var(--text-muted);font-size:20px;cursor:pointer;z-index:1}
-.sp-card{padding:10px 12px;border:1px solid var(--border);border-radius:12px;margin-bottom:8px;background:var(--card)}
-.sp-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding-right:22px;margin-bottom:6px}
-.sp-h b{font-size:14px;color:var(--gold-soft)}.sp-h span{font-size:11.5px;color:var(--text-muted)}
-.sp-row{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr) auto;gap:2px 10px;align-items:center;padding:6px 0;border-top:1px solid var(--border-soft,var(--border));font-size:12.5px}
-.sp-m{color:var(--text-muted);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sp-r{text-align:right;white-space:nowrap}
-.sp-tag{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;color:var(--c);border:1px solid color-mix(in srgb,var(--c) 55%,transparent);background:color-mix(in srgb,var(--c) 12%,transparent)}
-.sp-up{color:var(--up,#3fb97a)}.sp-dn{color:var(--down,#fb923c)}
-.sp-k{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:6px 0}
-.sp-k>div{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:10px;background:var(--gold-tint)}
-.sp-k b{font-size:17px}.sp-k span{font-size:10.5px;color:var(--text-muted);line-height:1.35}
-.sp-sc{display:inline-block;min-width:26px;text-align:center;font-size:11px;font-weight:700;padding:1px 6px;border-radius:8px;background:var(--gold-tint-strong);color:var(--gold)}
+.sp-wrap.has-res .sp-ex,.sp-wrap.has-res .sp-note{display:none}
+.sp-x{position:absolute;right:8px;top:6px;border:0;background:transparent;color:var(--text-muted);font-size:20px;cursor:pointer}
+.sp-ans{padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:var(--card);margin-bottom:10px}
+.sp-ans.sp-nodata,.sp-ans.sp-unsupported{border-color:color-mix(in srgb,var(--down,#fb923c) 55%,var(--border))}
+.sp-ans.sp-ambiguous,.sp-ans.sp-partial{border-color:color-mix(in srgb,var(--gold) 55%,var(--border))}
+.sp-th{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding-right:24px}
+.sp-th b{font-size:14.5px;color:var(--gold-soft)}
+.sp-bdg{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--gold-tint-strong);color:var(--gold)}
+.sp-hd{margin:6px 0;font-size:14px;line-height:1.6;font-weight:600}
+.sp-ul{margin:6px 0 8px;padding-left:18px;font-size:12.5px;line-height:1.6;color:var(--text-muted)}
+.sp-tt{margin:10px 0 4px;font-size:12px;font-weight:700;color:var(--gold-soft)}
+.sp-tw{overflow-x:auto}
+.sp-t{width:100%;border-collapse:collapse;font-size:12.5px}
+.sp-t th,.sp-t td{padding:6px 8px;text-align:left;border-bottom:1px solid var(--border-soft,var(--border));vertical-align:top}
+.sp-t th{color:var(--gold-soft);font-weight:700;white-space:nowrap;font-size:11.5px}
+.sp-t .r{text-align:right;white-space:nowrap}
+.sp-up{color:var(--up,#3fb97a);font-weight:700}.sp-dn{color:var(--down,#fb923c);font-weight:700}.sp-mu{color:var(--text-muted)}
+.sp-ev{margin-top:8px;border-top:1px dashed var(--border);padding-top:6px}
+.sp-ev summary{cursor:pointer;font-size:12px;font-weight:700;color:var(--gold-soft)}
+.sp-ev h5{margin:8px 0 2px;font-size:11.5px;color:var(--gold)}
+.sp-ev ul{margin:2px 0;padding-left:18px;font-size:11.5px;line-height:1.55;color:var(--text-muted)}
+.sp-ev small{display:block;margin-top:6px;font-size:10.5px;color:var(--text-muted)}
+.sp-acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.sp-rel{margin-top:6px}
+.sp-rel h5{margin:8px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.sp-rel div{display:flex;flex-wrap:wrap;gap:6px}
 .sp-msg{margin:4px 0;font-size:12.5px;line-height:1.55;color:var(--text-muted)}
-.sp-f{margin-top:8px;font-size:11.5px;color:var(--text-muted);line-height:1.55}
-.sp-chips{display:flex;flex-wrap:wrap;gap:6px}
-.sp-card .sp-go{margin-top:2px}
-@media (max-width:640px){.sp-row{grid-template-columns:minmax(0,1fr) auto}.sp-m{grid-column:1/-1;order:3;white-space:normal}}
+@media (max-width:640px){.sp-hd{font-size:13px}.sp-t{font-size:12px}}
 @media print{.sp-wrap{display:none}}
 
 /* ---------- Scrollbar ---------- */
@@ -1691,7 +1711,7 @@ div.vf-fc{cursor:default}div.vf-fc:hover{transform:none}
     </div>
     <h1>THE INVESTOR TOOLKIT: YOUR GUIDE TO SMARTER MARKETS</h1>
     <p>Toolkit ini berguna untuk investor dalam mengambil keputusan seperti menganalisis kepemilikan saham secara komprehensif dan efektif, menghitung nilai wajar (intrinsic value) saham melalui Discounted Cash Flow dan Dividen Discount Model, dan analisis saham jangka panjang ala Warren Buffett melalui Equity Bond Valuation, mempersiapkan dana target Financial Freedom, menghitung target average price saham, serta fitur menyesuaikan risk profile pada investor.</p>
-    <div class="sp-wrap" id="sp-wrap"><form class="sp-bar" id="sp-form" autocomplete="off"><span class="sp-ico">✨</span><input id="sp-in" type="search" enterkeyhint="search" placeholder="Tanya data… mis. “5 saham akumulasi kuat terbaik”" aria-label="Tanya data… mis. “5 saham akumulasi kuat terbaik”"><button type="submit" class="sp-go">Cari</button></form><div class="sp-ex"><button type="button" data-spq="5 saham akumulasi kuat terbaik">5 saham akumulasi kuat terbaik</button><button type="button" data-spq="Asing paling banyak menjual">Asing paling banyak menjual</button><button type="button" data-spq="Saham diakuisisi">Saham diakuisisi</button><button type="button" data-spq="Siapa pemegang terbesar ARCI?">Siapa pemegang terbesar ARCI?</button></div><p class="sp-note">Pencarian cerdas berbasis aturan yang berjalan di browser Anda (bukan AI generatif). Data: perubahan kepemilikan KSEI.</p><div class="sp-res" id="sp-res" hidden></div></div>
+    <div class="sp-wrap" id="sp-wrap" role="search"><div class="sp-bar"><span class="sp-ico" aria-hidden="true">✨</span><input id="sp-in" type="text" role="combobox" aria-expanded="false" aria-controls="sp-sug" aria-autocomplete="list" aria-haspopup="listbox" aria-label="Tanya data kepemilikan saham" placeholder="Tanya data… mis. “Siapa pemegang terbesar ARCI?”" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"><button type="button" class="sp-go" id="sp-go">Cari</button></div><ul class="sp-sug" id="sp-sug" role="listbox" hidden></ul><div class="sp-state" id="sp-state" aria-live="polite"></div><div class="sp-ctx" id="sp-ctx" hidden></div><div class="sp-ex" id="sp-ex"><button type="button" data-spq="Top 5 saham dengan kenaikan kepemilikan asing terbesar">Top 5 saham dengan kenaikan kepemilikan asing terbesar</button><button type="button" data-spq="Saham yang diindikasikan akuisisi">Saham yang diindikasikan akuisisi</button></div><p class="sp-note">Pencarian berbasis aturan yang berjalan di browser Anda (bukan AI generatif; tidak mengirim pertanyaan ke server). Menjawab dari data KSEI yang dimuat: kepemilikan, perubahan, tren, ranking, dan sinyal. Tidak mencakup harga atau fundamental.</p><div class="sp-res" id="sp-res" role="region" aria-label="Tanya data kepemilikan saham" aria-live="polite" hidden></div></div>
     <details class="vf-feat"><summary>✨ Apa yang Anda dapatkan <em>8 fitur gratis</em></summary><div class="vf-feat-g"><button type="button" class="vf-fc" data-ft="ksei" style="--cc:#2dd4bf"><b>🔎 Bandarmology</b><span>Lacak akumulasi, distribusi, akuisisi, dan crossing dari data KSEI.</span></button><button type="button" class="vf-fc" data-ft="ksei" style="--cc:#a78bfa" data-fs="man"><b>🎯 Alpha-Screening</b><span>Saring saham dengan filter berlapis dan Skor Alpha.</span></button><button type="button" class="vf-fc" data-ft="valuation" style="--cc:#c9a24b" data-fs="dcf"><b>💎 Nilai Wajar Saham</b><span>DCF, DDM, dan Equity Bond Valuation ala Buffett.</span></button><button type="button" class="vf-fc" data-ft="valuation" style="--cc:#60a5fa" data-fs="cagr"><b>📈 CAGR & Bunga Majemuk</b><span>Hitung pertumbuhan dan proyeksi nilai investasi.</span></button><button type="button" class="vf-fc" data-ft="ff" style="--cc:#4ade80"><b>🏖️ Financial Freedom</b><span>Target dana pensiun dan investasi rutin per bulan.</span></button><button type="button" class="vf-fc" data-ft="average" style="--cc:#fb923c"><b>📉 Average & Averaging Down</b><span>Harga rata-rata dan target menurunkannya.</span></button><button type="button" class="vf-fc" data-ft="riskprofile" style="--cc:#f472b6"><b>🧭 Profil Risiko</b><span>Sesuaikan strategi dengan profil risiko Anda.</span></button><div class="vf-fc" style="--cc:#94a3b8"><b>🆓 100% Gratis & Privat</b><span>Berjalan di browser Anda, tanpa daftar.</span></div></div></details>
     
   </div>
@@ -4616,84 +4636,57 @@ function vNew(v){const u=S.ui;u.sub=u.sub||'New';const isN=u.sub==='New';
 }
 
 /* ============================== tampil & event ============================== */
-/* ============================== spotlight: tanya data (rule-based, lokal) ============================== */
-const KW={
- acc:['akumulasi*','menambah*','tambah*','nambah*','membeli','beli','dibeli','borong*','memborong','serok*','naik','masuk','accumulat*','buy*','bought','add*','increas*'],
- dis:['distribusi*','menjual','jual','dijual','mengurangi','kurangi','dikurangi','buang*','lepas*','melepas*','keluar','kabur','dump*','sell*','sold','distribut*','reduc*','exit*','decreas*','cabut','hengkang'],
- strong:['kuat','besar','jumbo','strong','large','massive','signifikan'],
- foreign:['asing','foreign*','overseas','offshore','internasional'],local:['lokal','local','domestik'],
- ind:['individu','individual*','perorangan','retail','ritel','pribadi'],inst:['institusi','institutional*','institution*','lembaga'],
- best:['terbaik','terkuat','teratas','top','best','bagus','menarik','potensi','potensial','prospek','rekomendasi','rekomen*','recommend*','profit','cuan','untung','layak','unggulan','favorit','promising','strongest','mantap','gacor','hot'],
- worst:['terburuk','rawan','waspada','risiko','berisiko','bahaya','jelek','anjlok','rontok','worst','risky','danger*','lemah','hindari','avoid'],
- count:['berapa','jumlah','total','count','many','much','sum','banyak'],who:['siapa','who'],why:['kenapa','mengapa','why','alasan','bagaimana','how'],
- port:['portofolio','portfolio','dipegang','memegang','dimiliki','koleksi'],holder:['pemegang','holder*','owner*','pemilik']};
-const KSIG={ak:['akuisisi*','diakuisisi','mengakuisisi','takeover','acqui*','ambil alih'],ipo:['ipo','baru listing','pencatatan perdana','new listing'],rot:['crossing','berpindah tangan','pindah tangan','changing hands'],bb:['buyback','buy back'],sl:['treasury','jual saham sendiri']};
-const KTOOL=[[['dcf','discounted'],'valuation','dcf'],[['ddm','dividend discount','dividen discount'],'valuation','ddm'],[['equity bond','buffett'],'valuation','eb'],[['nilai wajar','intrinsic','valuasi','fair value'],'valuation','dcf'],[['cagr'],'valuation','cagr'],[['bunga majemuk','compound','majemuk'],'valuation','comp'],[['pensiun','financial freedom','kebebasan finansial','fire','retire*'],'ff',''],[['averaging down','target averaging'],'target',''],[['average','rata-rata','rata rata'],'average',''],[['profil risiko','risk profile','toleransi risiko'],'riskprofile',''],[['kamus','glosarium','glossary','istilah'],'glossary','']];
-const KTY=[[['reksadana','reksa','mutual'],'mutual'],[['pensiun','pension','bpjs'],'pension'],[['asuransi','insurance'],'insurance'],[['sekuritas','securities','broker'],'securit'],[['bank'],'bank'],[['sovereign','swf'],'sovereign'],[['yayasan','foundation'],'foundation'],[['korporasi','corporate','perusahaan'],'corporate']];
-const SPN={satu:1,dua:2,tiga:3,empat:4,lima:5,enam:6,tujuh:7,delapan:8,sembilan:9,sepuluh:10,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10};
-const STOPW=['yang','dari','saya','bisa','atau','dengan','untuk','pada','oleh','dalam','tolong','carikan','cari','tampilkan','tunjukkan','list','daftar','that','with','from','what','show','give','find','have','does','the','and','which','tell','this','saham','emiten','investor','apa','dan','ada','saja','semua','mana','lagi','dong','ya','kah','apakah','di','ke','itu','ini','nya'];
-const mk=(toks,str,list)=>list.some(w=>w.endsWith('*')?toks.some(x=>x.startsWith(w.slice(0,-1))):(w.includes(' ')?str.includes(w):toks.includes(w)));
-const ALLKW=[].concat(...Object.values(KW),...Object.values(KSIG),...KTOOL.map(x=>x[0]),...KTY.map(x=>x[0]),STOPW);
-function parseQ(q){const raw=String(q||'').trim(),str=raw.toLowerCase().replace(/[^a-z0-9%.\s-]/g,' ').replace(/\s+/g,' ').trim(),toks=str.split(' ').filter(Boolean),o={raw,str,toks};
- Object.keys(KW).forEach(k=>o[k]=mk(toks,str,KW[k]));
- o.sigk=Object.keys(KSIG).filter(k=>mk(toks,str,KSIG[k]));o.tool=KTOOL.filter(x=>mk(toks,str,x[0]));o.ty=KTY.filter(x=>mk(toks,str,x[0])).map(x=>x[1]);
- const nm=str.match(/(?:top|teratas|terbaik|best|first)\s*(\d{1,2})|(\d{1,2})\s*(?:saham|emiten|stocks?|teratas|terbaik|besar|top)/);
- o.n=Math.max(1,Math.min(20,nm?parseInt(nm[1]||nm[2],10):(toks.map(x=>SPN[x]).find(Boolean)||5)));
- const tk=new Set(S.agg.map(s=>s.t)),kwl=new Set(ALLKW.filter(w=>!w.endsWith('*')));
- o.tick=[];o.unk=[];raw.split(/[^A-Za-z]+/).filter(w=>w.length===4).forEach(w=>{const u=w.toUpperCase();if(kwl.has(w.toLowerCase())&&w!==u)return;if(tk.has(u)){if(!o.tick.includes(u))o.tick.push(u)}else if(w===u&&!kwl.has(w.toLowerCase()))o.unk.push(u)});
- const rest=toks.filter(x=>x.length>=3&&!/^\d+$/.test(x)&&!mk([x],x,ALLKW)&&!o.tick.includes(x.toUpperCase()));o.rest=rest;return o}
-function scan(f){const g=new Map();for(const r of S.rows){if(r.self||r.st==='Unchanged')continue;
- if(f.tick&&r.t!==f.tick)continue;if(f.lf&&r.lf!==f.lf)continue;if(f.grp&&r.grp!==f.grp)continue;if(f.ty&&!String(r.type).toLowerCase().includes(f.ty))continue;if(f.inv&&r.inv!==f.inv)continue;
- if(f.dir==='acc'&&!(r.dp>0))continue;if(f.dir==='dis'&&!(r.dp<0))continue;(g.get(r.t)||g.set(r.t,[]).get(r.t)).push(r)}
- const by=new Map(S.agg.map(s=>[s.t,s])),out=[];for(const [tk,hit] of g){const s=by.get(tk);if(s)out.push({t:tk,s,hit,n:hit.length,tot:hit.reduce((a,r)=>a+r.dp,0),sh:hit.reduce((a,r)=>a+r.ds,0)})}return out}
-const SPT=(a,b)=>ID?a:b,spc=v=>v>0?'sp-up':v<0?'sp-dn':'';
-const spChip=(k,v,l)=>`<button type="button" class="sp-chip" data-sp="${k}:${esc(v)}">${esc(l||v)}</button>`;
-const spTag=s=>`<span class="sp-tag" style="--c:${SIGCOL[s.sig]||'var(--mute)'}">${esc(t(s.sig))}</span>`;
-const spRow=(a,b,c)=>`<div class="sp-row"><span class="sp-l">${a}</span><span class="sp-m">${b||''}</span><span class="sp-r">${c}</span></div>`;
-const spCard=(title,sub,body,foot)=>`<div class="sp-card"><div class="sp-h"><b>${title}</b>${sub?`<span>${sub}</span>`:''}</div>${body}${foot?`<div class="sp-f">${foot}</div>`:''}</div>`;
-const spPer=()=>`${SPT('Periode','Period')}: ${esc(S.la)} → ${esc(S.lb)}`;
-const spNote=SPT('Berdasarkan perubahan kepemilikan KSEI antar dua periode — bukan prediksi harga, bukan jaminan profit, dan bukan rekomendasi.','Based on KSEI ownership changes between two periods — not a price forecast, profit guarantee, or advice.');
-const spHolders=(hit,cap)=>[...hit].sort((a,b)=>Math.abs(b.dp)-Math.abs(a.dp)).slice(0,cap||8).map(r=>spRow(spChip('inv',r.inv),`${esc(r.type)} · ${lfL(r.lf)}`,`${fp(r.pa)}% → ${fp(r.pb)}% <b class="${spc(r.dp)}">${sgn(r.dp,fp)}</b>`)).join('');
-function spLabel(o){const g=o.foreign?SPT('asing','foreign'):o.local?SPT('lokal','local'):o.ind?SPT('individu','individual'):o.inst?SPT('institusi','institutional'):o.ty[0]?o.ty[0]:'';return g}
-function spTick(o){const T=o.tick[0],s=S.agg.find(x=>x.t===T);if(!s)return spCard(esc(T),'',`<p class="sp-msg">${SPT('Saham ini tidak punya perubahan di data periode ini.','No changes for this stock in this period.')}</p>`);
- const f={tick:T,lf:o.foreign?'F':o.local?'L':'',grp:o.ind?'I':o.inst?'N':'',ty:o.ty[0]||''},filt=f.lf||f.grp||f.ty,
-  rows=S.rows.filter(r=>r.t===T&&!r.self),top=[...rows].sort((a,b)=>b.pb-a.pb)[0];
- if(o.who||o.holder&&!o.acc&&!o.dis)return spCard(`${T} · ${esc(s.iss||'')}`,SPT('Pemegang terbesar (di atas 1%)','Largest holders (above 1%)'),[...rows].filter(r=>r.pb>0).sort((a,b)=>b.pb-a.pb).slice(0,8).map(r=>spRow(spChip('inv',r.inv),`${esc(r.type)} · ${lfL(r.lf)}`,`${fp(r.pb)}% <b class="${spc(r.dp)}">${sgn(r.dp,fp)}</b>`)).join(''),spChip('stk',T,SPT('Buka detail saham →','Open stock detail →'))+' · '+spPer());
- if(o.count||o.acc||o.dis||filt){const dirs=o.acc&&!o.dis?['acc']:o.dis&&!o.acc?['dis']:['acc','dis'],lab=spLabel(o);let body='';
-  dirs.forEach(d=>{const r=scan(Object.assign({},f,{dir:d}))[0]||{n:0,tot:0,sh:0,hit:[]},w=d==='acc'?SPT('menambah','adding'):SPT('mengurangi','reducing');
-   body+=`<div class="sp-k"><div><b>${r.n}</b><span>${SPT('investor','investors')} ${esc(lab)} ${w}</span></div><div><b class="${spc(r.tot)}">${sgn(r.tot,fp)}</b><span>${SPT('poin kepemilikan','ownership pts')}</span></div><div><b class="${spc(r.sh)}">${r.sh>0?'+':''}${fmt(r.sh)}</b><span>${SPT('lembar saham','shares')}</span></div></div>`+(r.n?spHolders(r.hit,6):`<p class="sp-msg">${SPT('Tidak ada pada periode ini.','None in this period.')}</p>`)});
-  return spCard(`${T} · ${esc(s.iss||'')}`,`${spTag(s)}`,body,spChip('stk',T,SPT('Buka detail saham →','Open stock detail →'))+' · '+spPer())}
- const fr=rows.filter(r=>r.lf==='F').reduce((a,r)=>a+r.dp,0),ex=['sa','a','sd','d','rot','ak','ipo'].includes(s.sig)?t('r_'+s.sig):'';
- return spCard(`${T} · ${esc(s.iss||'')}`,spTag(s),`<div class="sp-k"><div><b class="${spc(s.net)}">${sgn(s.net,fp)}</b><span>${SPT('selisih investor besar (poin)','big-holder net (pts)')}</span></div><div><b>▲${s.nUp} ▼${s.nDn}</b><span>${SPT('investor menambah / mengurangi','investors adding / reducing')}</span></div><div><b class="${spc(fr)}">${sgn(fr,fp)}</b><span>${SPT('net investor asing (poin)','foreign net (pts)')}</span></div></div>`
-  +(ex?`<p class="sp-msg">${esc(ex)}</p>`:'')+(top?spRow(spChip('inv',top.inv),SPT('pemegang terbesar','largest holder'),`${fp(top.pb)}%`):''),spChip('stk',T,SPT('Buka detail saham →','Open stock detail →'))+' · '+spPer())}
-function spRank(o){const dis=(o.dis&&!o.acc)||o.worst,n=o.n,filt=o.foreign||o.local||o.ind||o.inst||o.ty.length;
- if(filt){const r=scan({lf:o.foreign?'F':o.local?'L':'',grp:o.ind?'I':o.inst?'N':'',ty:o.ty[0]||'',dir:dis?'dis':'acc'}).sort((a,b)=>dis?a.tot-b.tot:b.tot-a.tot).slice(0,n),lab=spLabel(o);
-  return spCard(SPT(`${r.length} saham: investor ${lab} ${dis?'paling banyak mengurangi':'paling banyak menambah'}`,`${r.length} stocks: ${lab} investors ${dis?'reducing the most':'adding the most'}`),spPer(),r.map(x=>spRow(spChip('stk',x.t)+' '+spTag(x.s),`${esc(x.s.iss||'')} · ${x.n} ${SPT('investor','investors')}`,`<b class="${spc(x.tot)}">${sgn(x.tot,fp)}</b>`)).join('')||`<p class="sp-msg">${SPT('Tidak ada data yang cocok.','No matching data.')}</p>`,spNote)}
- const keys=o.strong?(dis?['sd']:['sa','ak']):(dis?['sd','d']:['sa','ak','a']),al=s=>(s.sig==='sa'||s.sig==='sd'||s.sig==='ak')?1:.65;
- const r=S.agg.filter(s=>keys.includes(s.sig)).map(s=>({s,score:Math.round(100*(.45*Math.min(Math.abs(s.net)/10,1)+.3*Math.min((dis?s.nDn:s.nUp)/5,1)+.25*al(s)))})).sort((a,b)=>b.score-a.score||Math.abs(b.s.net)-Math.abs(a.s.net)).slice(0,n);
- return spCard(dis?SPT(`${r.length} saham dengan sinyal distribusi terkuat`,`${r.length} stocks with the strongest distribution signal`):SPT(`${r.length} saham dengan sinyal akumulasi terkuat`,`${r.length} stocks with the strongest accumulation signal`),spPer(),r.map(x=>spRow(spChip('stk',x.s.t)+' '+spTag(x.s),esc(x.s.iss||''),`<span class="sp-sc">${x.score}</span> <b class="${spc(x.s.net)}">${sgn(x.s.net,fp)}</b>`)).join('')||`<p class="sp-msg">${SPT('Belum ada saham yang memenuhi.','No stocks qualify yet.')}</p>`,`${spChip('sig',dis?'sd':'sa',SPT('Lihat semua di Signal Saham →','See all in Stock Signals →'))}<br>${SPT('Skor 0–100 = besar perubahan, jumlah investor, dan kekuatan sinyal. ','Score 0–100 = size of change, number of investors, and signal strength. ')}${spNote}`)}
-function spSig(o){return o.sigk.map(k=>{const l=S.agg.filter(s=>k==='bb'||k==='sl'?s.act===k:s.sig===k).sort((a,b)=>Math.abs(b.net)-Math.abs(a.net));return spCard(`${esc(t(k))} · ${l.length} ${SPT('saham','stocks')}`,spPer(),l.slice(0,o.n).map(s=>spRow(spChip('stk',s.t),esc(s.iss||''),`<b class="${spc(s.net)}">${sgn(s.net,fp)}</b>`)).join('')||`<p class="sp-msg">${SPT('Tidak ada.','None.')}</p>`,spChip('sig',k,SPT('Lihat semua →','See all →')))}).join('')}
-function spInv(o){const INV=[...new Set(S.rows.map(r=>r.inv))],ac=new Map(invAgg(S.f).map(i=>[i.inv,i.act])),
- m=INV.filter(n=>o.rest.every(w=>n.toLowerCase().includes(w))).sort((a,b)=>(ac.get(b)||0)-(ac.get(a)||0));if(!o.rest.length||!m.length)return '';
- const nm=m[0],rows=S.rows.filter(r=>r.inv===nm&&!r.self);let l=o.port?rows.filter(r=>r.pb>0).sort((a,b)=>b.pb-a.pb):rows.filter(r=>r.dp!==0&&(o.acc&&!o.dis?r.dp>0:o.dis&&!o.acc?r.dp<0:true)).sort((a,b)=>Math.abs(b.dp)-Math.abs(a.dp));
- const up=rows.filter(r=>r.dp>0).length,dn=rows.filter(r=>r.dp<0).length;
- return spCard(esc(nm),`${esc(rows[0]?rows[0].type:'')} · ${rows[0]?lfL(rows[0].lf):''}`,`<p class="sp-msg">${SPT('Mengubah','Changed')} ${up+dn} ${SPT('saham','stocks')}: <b class="sp-up">▲${up}</b> <b class="sp-dn">▼${dn}</b></p>`+l.slice(0,10).map(r=>spRow(spChip('stk',r.t),esc(r.iss||''),`${fp(r.pa)}% → ${fp(r.pb)}% <b class="${spc(r.dp)}">${sgn(r.dp,fp)}</b>`)).join('')+(m.length>1?`<p class="sp-msg">${SPT('Nama lain yang mirip','Similar names')}: ${m.slice(1,5).map(n=>spChip('inv',n)).join(' ')}</p>`:''),spChip('inv',nm,SPT('Buka profil investor →','Open investor profile →'))+' · '+spPer())}
-function spTool(o){const seen=new Set();return o.tool.filter(x=>{const k=x[1]+x[2];if(seen.has(k))return false;seen.add(k);return true}).slice(0,3).map(x=>`<div class="sp-card"><div class="sp-h"><b>${SPT('Alat yang cocok','Matching tool')}</b></div><button type="button" class="sp-go" data-ft="${x[1]}" data-fs="${x[2]}">${SPT('Buka','Open')} ${esc(x[2]?x[2].toUpperCase():x[1])} →</button></div>`).join('')}
-function spHelp(){const ex=ID?['5 saham akumulasi kuat terbaik','Investor asing paling banyak menjual','Saham yang diakuisisi','Siapa pemegang terbesar ARCI?','Berapa investor asing yang mengurangi ARCI?','Saham apa yang dibeli Lo Kheng Hong','Hitung nilai wajar saham']:['Top 5 strong accumulation stocks','Foreign investors selling the most','Acquired stocks','Who is the largest holder of ARCI?','How many foreign investors reduced ARCI?','Which stocks did Lo Kheng Hong buy','Calculate fair value'];
- return spCard(SPT('Coba tanyakan seperti ini','Try asking like this'),'',`<div class="sp-chips">${ex.map(x=>`<button type="button" class="sp-chip" data-spq="${esc(x)}">${esc(x)}</button>`).join('')}</div>`,'')}
-function ask(q){try{const o=parseQ(q);if(!o.raw)return '';
- const other=o.acc||o.dis||o.best||o.worst||o.tick.length||o.foreign||o.local||o.ind||o.inst||o.sigk.length||o.count||o.who;
- if(o.tool.length&&!other)return spTool(o);
- if(o.tick.length)return spTick(o);
- if(o.unk.length&&!o.sigk.length&&!o.foreign&&!o.local)return spCard(esc(o.unk[0]),'',`<p class="sp-msg">${SPT('Kode ini tidak ditemukan di data. Data hanya memuat pemegang di atas 1%.','This code is not in the data. Data covers holders above 1% only.')}</p>`,'')+spHelp();
- const inv=(o.rest.length&&!o.sigk.length)?spInv(o):'';if(inv)return inv;
- if(o.sigk.length)return spSig(o);
- if(o.acc||o.dis||o.best||o.worst||o.foreign||o.local||o.ind||o.inst||o.ty.length)return spRank(o);
- if(o.count){const c=k=>S.agg.filter(s=>s.sig===k).length;return spCard(SPT('Ringkasan pasar','Market overview'),spPer(),['sa','sd','ak','ipo','rot'].map(k=>spRow(spChip('sig',k,t(k)),'',`<b>${c(k)}</b> ${SPT('saham','stocks')}`)).join(''),spNote)}
- return spHelp()}catch(e){return `<p class="sp-msg">${SPT('Maaf, pertanyaan ini belum bisa diproses.','Sorry, this question could not be processed.')}</p>`+spHelp()}}
-window.KSEI={ask:ask,ready:()=>!!(S.agg&&S.agg.length),
- ensure:async()=>{if(S.agg&&S.agg.length)return true;for(let i=0;i<40&&!S.repo.length;i++)await new Promise(r=>setTimeout(r,150));if(S.repo.length>=2)await onRepoBoth();return !!(S.agg&&S.agg.length)},
- open:(kd,val)=>{S.hist=[];if(kd==='stk'){S.ui.stk=val;S.sec='stk'}else if(kd==='inv'){S.ui.inv=val;S.sec='inv'}else{S.ui.list=null;delete S.ui.sig;S.ui.sf=val;S.sec='sig'}render();navTo()}};
+/* ============================== spotlight: adapter data (histori semua periode) ============================== */
+function unifyN(P){const count=new Map(),tokByKey=new Map(),occ=new Map();
+ P.forEach((p,pi)=>{for(const e of p.map.values()){const ind=grpOf(e.type)==='I',k=canonKey(e.inv,ind);if(!count.has(k))count.set(k,new Map());const m=count.get(k);m.set(e.inv,(m.get(e.inv)||0)+1);if(ind){if(!tokByKey.has(k))tokByKey.set(k,indTokens(e.inv));if(!occ.has(k))occ.set(k,new Set());occ.get(k).add(pi+'|'+e.t)}}});
+ const grp=abbrMap(tokByKey,occ),g=k=>grp.get(k)||k,merged=new Map();
+ count.forEach((m,k)=>{const gk=g(k);if(!merged.has(gk))merged.set(gk,new Map());const mm=merged.get(gk);m.forEach((n,nm)=>mm.set(nm,(mm.get(nm)||0)+n))});
+ const ini=nm=>indTokens(nm).filter(w=>w.length===1).length,display=new Map();
+ merged.forEach((m,k)=>display.set(k,[...m.entries()].sort((x,y)=>ini(x[0])-ini(y[0])||y[1]-x[1]||y[0].length-x[0].length)[0][0]));
+ return P.map(p=>{const map=new Map();for(const e of p.map.values()){const name=display.get(g(canonKey(e.inv,grpOf(e.type)==='I'))),key=e.t+'|'+name,o=map.get(key);if(o){o.sh+=e.sh;o.pc+=e.pc;if(!o.lf)o.lf=e.lf;if(!o.iss)o.iss=e.iss}else map.set(key,{...e,inv:name})}return {...p,map}})}
+const SPOT={model:null,parsed:null,idx:{},sig:'',cache:new Map(),building:null,docs:null};
+const spotKey=()=>S.repo.map(it=>it.id).join(',')+'|'+[S.P1,S.P2].map(p=>p?(p.name+':'+p.map.size):'-').join(',');
+async function spotBuild(cb){
+ if(SPOT.model&&SPOT.sig===spotKey())return true;if(SPOT.building)return SPOT.building;
+ SPOT.building=(async()=>{try{
+  for(let i=0;i<40&&!S.repo.length;i++)await new Promise(r=>setTimeout(r,150));
+  const items=S.repo.slice(),parsed=[],meta=[];
+  for(let i=0;i<items.length;i++){cb&&cb(i+1,items.length);try{const p=await loadRepoItem(items[i]);parsed.push(p);meta.push({id:items[i].id,date:items[i].date,src:items[i].file.split('/').pop()})}catch(e){}}
+  [S.P1,S.P2].forEach(p=>{if(!p||!p.date)return;let iso='';try{iso=(p.date instanceof Date?p.date:new Date(p.date)).toISOString().slice(0,10)}catch(e){}if(!iso||meta.some(m=>m.date===iso))return;parsed.push(p);meta.push({id:'up-'+iso,date:iso,src:p.name||'upload'})});
+  if(!parsed.length)return false;
+  const U=unifyN(parsed),core=window.SpotEngine.core;
+  const periods=U.map((p,i)=>({id:meta[i].id,date:meta[i].date,label:core.dateLabel(meta[i].date,LANG),src:meta[i].src,rows:[...p.map.values()].map(e=>({t:e.t,iss:e.iss,inv:e.inv,type:e.type,lf:e.lf,grp:grpOf(e.type)==='I'?'I':'N',sh:e.sh,pc:e.pc,self:isIssuer(e.iss,e.inv)}))}));
+  SPOT.model=window.SpotEngine.buildModel({periods});SPOT.parsed=U;SPOT.idx={};meta.forEach((m,i)=>SPOT.idx[m.id]=i);SPOT.cache.clear();SPOT.sig=spotKey();return true
+ }catch(e){return false}finally{SPOT.building=null}})();
+ return SPOT.building}
+function spotSigs(pa,pb){const M=SPOT.model,ia=SPOT.idx[M.periods[pa].id],ib=SPOT.idx[M.periods[pb].id],k=ia+'-'+ib;if(SPOT.cache.has(k))return SPOT.cache.get(k);
+ let out=null;try{const c=compare(SPOT.parsed[ia],SPOT.parsed[ib]),keep=S.info;S.info=c.info;try{out=new Map(agg(c.rows).map(s=>[s.t,{sig:s.sig,net:s.net,nUp:s.nUp,nDn:s.nDn,act:s.act}]))}finally{S.info=keep}}catch(e){out=null}
+ SPOT.cache.set(k,out);return out}
+function spotDocs(){if(SPOT.docs)return SPOT.docs;const d=[],tx=el=>(el&&el.textContent||'').replace(/\s+/g,' ').trim(),T2=(a,b)=>ID?a:b;
+ document.querySelectorAll('.vf-fc[data-ft]').forEach(b=>d.push({id:'f:'+b.dataset.ft+':'+(b.dataset.fs||''),kind:'fitur',title:tx(b.querySelector('b')).replace(/^\S+\s/,''),text:tx(b.querySelector('span')),tab:b.dataset.ft,sub:b.dataset.fs||''}));
+ document.querySelectorAll('.vf-subpanel').forEach(sp=>{const sub=sp.id.replace('subpanel-','');d.push({id:'s:'+sub,kind:'fitur',title:tx(sp.querySelector('h2')),text:tx(sp.querySelector('.vf-section-title p, p')),tab:'valuation',sub})});
+ document.querySelectorAll('.vf-panel').forEach(pn=>{if(pn.id==='panel-ksei'||pn.id==='panel-valuation')return;const h=pn.querySelector('h2');if(h)d.push({id:'p:'+pn.id,kind:'fitur',title:tx(h),text:tx(pn.querySelector('p')),tab:pn.id.replace('panel-','')})});
+ document.querySelectorAll('details.faq-d').forEach((x,i)=>d.push({id:'faq:'+i,kind:'faq',title:tx(x.querySelector('summary')),text:tx(x.querySelector('p')),faq:i}));
+ const gl=document.getElementById('panel-glossary');if(gl)gl.querySelectorAll('dt,h3,h4,summary').forEach((h,i)=>{const title=tx(h);let text=h.tagName==='SUMMARY'?tx(h.parentElement).replace(title,'').trim():tx(h.nextElementSibling);if(title.length>2&&text)d.push({id:'g:'+i,kind:'kamus',title,text,tab:'glossary'})});
+ [['ov',t('n_sum'),T2('Ringkasan kartu: akumulasi kuat, distribusi besar, akuisisi, asing, dan investor paling aktif.','Cards: strong accumulation, large distribution, acquisitions, foreign flows, and most active investors.'),'sum'],['sg',t('n_sig'),T2('Daftar saham menurut sinyal kepemilikan antara dua periode.','Stocks by ownership signal between two periods.'),'sig'],['st',t('n_stk'),T2('Detail pemegang dan perubahan satu saham.','Holders and changes for one stock.'),'stk'],['iv',t('n_inv'),T2('Cari investor dan lihat portofolio serta aktivitasnya.','Find an investor and see portfolio and activity.'),'inv'],['am',t('n_man'),T2('Filter berlapis dengan Skor Alpha dan Advanced Filter.','Layered filters with the Alpha score and Advanced Filter.'),'man']].forEach(x=>d.push({id:'k:'+x[0],kind:'fitur',title:x[1]+' ('+T2('Bandarmology','Bandarmology')+')',text:x[2],tab:'ksei',sec:x[3]}));
+ ['sa','a','sd','d','ak','rot','ipo'].forEach(k=>{const r=T['r_'+k];if(typeof r==='string')d.push({id:'sg:'+k,kind:'kamus',title:t(k),text:r,tab:'ksei',sec:'sig',sf:k})});
+ d.push({id:'k:alpha',kind:'kamus',title:T2('Skor Alpha','Alpha score'),text:T2('Skor 0–100 = besar perubahan (45%) + jumlah investor (30%) + kesesuaian dengan sinyal sistem (25%). Skor heuristik untuk menyaring, bukan prediksi return atau rekomendasi.','Score 0–100 = size of change (45%) + number of investors (30%) + fit with the system signal (25%). A heuristic for screening, not a return forecast or advice.'),tab:'ksei',sec:'man'});
+ SPOT.docs=d;return d}
+function spotEnsure(cb){return spotBuild(cb)}
+const spOpts=()=>({model:SPOT.model,lang:LANG,signals:spotSigs,signalLabel:k=>{const v=T[k];return typeof v==='string'?v:k},explainSignal:k=>{const v=T['r_'+k];return typeof v==='string'?v:''},docs:spotDocs()});
+function spClick(sel,fn){const e=document.querySelector(sel);if(e){e.click();return true}return false}
+window.KSEI={
+ ready:()=>!!SPOT.model,ensure:spotEnsure,
+ ask:(q,ctx)=>window.SpotEngine.ask(q,ctx,spOpts()),
+ suggest:p=>SPOT.model?window.SpotEngine.suggest(p,spOpts()):[],
+ examples:()=>SPOT.model?window.SpotEngine.examples(spOpts()):[],
+ related:q=>{const o={stk:[],inv:[],fitur:[],faq:[]};if(!SPOT.model)return o;const E=window.SpotEngine,seen={};
+  String(q).split(/[^A-Za-z0-9]+/).filter(w=>w.length>=3).slice(0,6).forEach(w=>E.suggest(w,spOpts()).forEach(s=>{if((s.kind==='stk'||s.kind==='inv')&&!seen[s.kind+s.label]&&o[s.kind].length<3){seen[s.kind+s.label]=1;o[s.kind].push(s)}}));
+  E.searchDocs(q,spotDocs(),8).forEach(x=>{const k=x.d.kind==='fitur'?'fitur':'faq';if(o[k].length<3)o[k].push({kind:'doc',label:x.d.title,doc:x.d.id,query:x.d.title})});return o},
+ open:(kd,val)=>{S.hist=[];if(kd==='stk'){S.ui.stk=val;S.sec='stk'}else if(kd==='inv'){S.ui.inv=val;S.sec='inv'}else if(kd==='man'){S.sec='man'}else{S.ui.list=null;delete S.ui.sig;S.ui.sf=val;S.sec='sig'}render();navTo()},
+ openDoc:id=>{const d=spotDocs().find(x=>x.id===id);if(!d)return;
+  if(d.kind==='faq'){const w=document.querySelector('details.faq-wrap');if(w)w.open=true;const it=document.querySelectorAll('details.faq-d')[d.faq];if(it){it.open=true;it.scrollIntoView({behavior:'smooth',block:'center'})}return}
+  if(d.tab&&spClick('.vf-tab[data-tab="'+d.tab+'"]')){setTimeout(()=>{if(d.sub)spClick('.vf-subtab[data-subtab="'+d.sub+'"]');if(d.sec){S.sec=d.sec;if(d.sf)S.ui.sf=d.sf;if(d.tab==='ksei'){if(!S.agg||!S.agg.length)return;render()}}const sh=document.querySelector('.vf-shell');if(sh)sh.scrollIntoView({behavior:'smooth',block:'start'})},220)}}};
 /* ============================== bagian: alpha-screening ============================== */
 const MAN0={grp:[],lf:[],ty:[],dir:'acc',act:[],mnInv:1,mnPts:0.5,mnTot:0,minPb:0,maxPa:100,mnRel:0,mnAct:1,nMin:0,nMax:0,top:false,sig:[],q:'',inv:'',xinv:'',noSelf:true,noIpo:true,noCa:false,sort:'score',lim:24};
 const MAN_P={
@@ -5131,21 +5124,523 @@ calcCagr();calcComp();
 setTimeout(function(){if(sub){var sb=document.querySelector('.vf-subtab[data-subtab="'+sub+'"]')||document.querySelector('[data-sec="'+sub+'"]');if(sb)sb.click()}var sh=document.querySelector('.vf-shell');if(sh)sh.scrollIntoView({behavior:'smooth',block:'start'})},260)})})();
 </script>
 <script>
-(function(){var f=document.getElementById('sp-form'),inp=document.getElementById('sp-in'),res=document.getElementById('sp-res');if(!f)return;
-var EN=document.documentElement.lang==='en',PH=["5 saham akumulasi kuat terbaik", "Berapa investor asing yang mengurangi ARCI?", "Saham apa yang dibeli Lo Kheng Hong", "Saham diakuisisi bulan ini", "Hitung nilai wajar saham"],pi=0;
-function show(h){res.innerHTML='<button type="button" class="sp-x" aria-label="Close" data-spx="1">×</button>'+h;res.hidden=false}
-function run(q){q=(q||'').trim();if(!q){res.hidden=true;return}
- show('<p class="sp-msg">'+(EN?'Loading KSEI data…':'Memuat data KSEI…')+'</p>');
- if(!window.KSEI){show('<p class="sp-msg">'+(EN?'Open the Bandarmology tab once, then try again.':'Buka menu Bandarmology sekali, lalu coba lagi.')+'</p>');return}
- window.KSEI.ensure().then(function(ok){show(ok?window.KSEI.ask(q):'<p class="sp-msg">'+(EN?'KSEI data could not be loaded. Open the Bandarmology tab and choose a period.':'Data KSEI belum bisa dimuat. Buka menu Bandarmology lalu pilih periode.')+'</p>')}).catch(function(){show('<p class="sp-msg">'+(EN?'Something went wrong.':'Terjadi kendala. Coba lagi.')+'</p>')})}
-f.addEventListener('submit',function(e){e.preventDefault();run(inp.value)});
-document.addEventListener('click',function(e){var b=e.target.closest('[data-sp],[data-spq],[data-spx]');if(!b)return;
- if(b.hasAttribute('data-spx')){res.hidden=true;return}
+/* SpotEngine: mesin tanya-jawab data (lihat tests/spotlight.test.js) */
+/* ===================================================================
+   SpotEngine — mesin tanya-jawab data kepemilikan saham (tanpa DOM, tanpa jaringan)
+   Lapisan: A data model/adapter • B normalisasi • C registry+index • D parser NL
+            E query planner • F executor analitik • G evidence • H composer
+   =================================================================== */
+(function(G){'use strict';
+var THR=1; /* ambang pelaporan KSEI: pemegang di atas 1% */
+function norm(s){return String(s==null?'':s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()}
+function wd(s){return norm(s).replace(/[^a-z0-9%.,\s\-\/]/g,' ').replace(/\s+/g,' ').trim()}
+function r2(x){return Math.round(x*100)/100}
+function lev(a,b,mx){if(Math.abs(a.length-b.length)>mx)return mx+1;var p=[],i,j;for(j=0;j<=b.length;j++)p[j]=j;
+ for(i=1;i<=a.length;i++){var c=[i],lo=i;for(j=1;j<=b.length;j++){c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));if(c[j]<lo)lo=c[j]}if(lo>mx)return mx+1;p=c}return p[b.length]}
+function median(a){if(!a.length)return null;var s=a.slice().sort(function(x,y){return x-y}),m=s.length>>1;return s.length%2?s[m]:(s[m-1]+s[m])/2}
+var MON={jan:1,januari:1,january:1,feb:2,februari:2,february:2,mar:3,maret:3,march:3,apr:4,april:4,mei:5,may:5,jun:6,juni:6,june:6,jul:7,juli:7,july:7,agu:8,agt:8,agustus:8,aug:8,august:8,sep:9,sept:9,september:9,okt:10,oktober:10,oct:10,october:10,nov:11,november:11,des:12,desember:12,dec:12,december:12};
+var MONID=['','Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],MONEN=['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function dateLabel(iso,lang){var y=iso.slice(0,4),m=+iso.slice(5,7),d=+iso.slice(8,10);return d+' '+(lang==='en'?MONEN:MONID)[m]+' '+y}
+
+/* ------------------ A/B. model data ------------------ */
+/* input: {periods:[{id,date:'YYYY-MM-DD',label,src,rows:[{t,iss,inv,type,lf,grp,sh,pc,self}]}]}
+   Nilai kosong ≠ nol: holder yang tidak ada di sebuah periode disimpan sebagai null (tidak tercatat). */
+function buildModel(input){
+ var ps=input.periods.slice().sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:0});
+ var M={periods:[],stocks:new Map(),inv:new Map(),hist:new Map(),selfOf:new Map(),total:new Map(),counts:{rows:0},_reg:null};
+ ps.forEach(function(p,i){M.periods.push({i:i,id:p.id,date:p.date,label:p.label||p.date,src:p.src||'',n:p.rows.length});M.counts.rows+=p.rows.length});
+ var P=ps.length;
+ ps.forEach(function(p,pi){p.rows.forEach(function(r){
+  var t=String(r.t).toUpperCase(),id=r.invId||String(r.inv).toUpperCase(),s=M.stocks.get(t);
+  if(!s)M.stocks.set(t,s={t:t,iss:r.iss||''});else if(r.iss)s.iss=r.iss;
+  var ii=M.inv.get(id);if(!ii)M.inv.set(id,ii={id:id,name:r.inv,type:r.type||'',lf:r.lf||'',grp:r.grp||'',n:0});
+  ii.name=r.inv;if(r.type)ii.type=r.type;if(r.lf)ii.lf=r.lf;if(r.grp)ii.grp=r.grp;
+  var h=M.hist.get(t);if(!h)M.hist.set(t,h=new Map());var a=h.get(id);if(!a){a=new Array(P);for(var k=0;k<P;k++)a[k]=null;h.set(id,a);ii.n++}
+  a[pi]={sh:Number(r.sh)||0,pc:Number(r.pc)||0};
+  if(r.self){var so=M.selfOf.get(t);if(!so)M.selfOf.set(t,so=new Set());so.add(id)}
+ })});
+ /* total saham beredar tersirat = sh / pc × 100 (median per periode) */
+ M.hist.forEach(function(h,t){var arr=new Array(P);for(var pi=0;pi<P;pi++){var v=[];h.forEach(function(a){var c=a[pi];if(c&&c.pc>0&&c.sh>0)v.push(c.sh/c.pc*100)});arr[pi]=median(v)}M.total.set(t,arr)});
+ return M}
+function isSelf(M,t,id){var s=M.selfOf.get(t);return !!(s&&s.has(id))}
+function holdersAt(M,t,pi,opt){var h=M.hist.get(t),out=[];if(!h)return out;
+ h.forEach(function(a,id){var c=a[pi];if(!c)return;var ii=M.inv.get(id);if(opt&&opt.noSelf&&isSelf(M,t,id))return;out.push({id:id,name:ii.name,type:ii.type,lf:ii.lf,grp:ii.grp,sh:c.sh,pc:c.pc,self:isSelf(M,t,id)})});
+ return out.sort(function(x,y){return y.pc-x.pc||y.sh-x.sh})}
+/* perubahan satu holder antar dua snapshot. new/exit memakai batas bawah konservatif karena sisi tak tercatat < ambang. */
+function rowChange(M,t,id,pa,pb){var a=(M.hist.get(t).get(id)||[])[pa]||null,b=(M.hist.get(t).get(id)||[])[pb]||null,ii=M.inv.get(id),o={id:id,name:ii.name,type:ii.type,lf:ii.lf,grp:ii.grp,a:a,b:b,self:isSelf(M,t,id)};
+ if(a&&b){o.state=b.pc>a.pc?'up':b.pc<a.pc?'down':'same';o.dp=r2(b.pc-a.pc);o.ds=b.sh-a.sh;o.rel=a.pc>0?o.dp/a.pc*100:null;o.relSh=a.sh>0?o.ds/a.sh*100:null;o.dpr=o.dp;o.dsr=o.ds;o.exact=true}
+ else if(b){o.state='new';o.dp=null;o.ds=null;o.rel=null;o.dpr=Math.max(0,r2(b.pc-THR));o.dsr=b.pc>0?Math.round(b.sh*(b.pc-THR)/b.pc):0;o.exact=false}
+ else if(a){o.state='exit';o.dp=null;o.ds=null;o.rel=null;o.dpr=-Math.max(0,r2(a.pc-THR));o.dsr=a.pc>0?-Math.round(a.sh*(a.pc-THR)/a.pc):0;o.exact=false}
+ else return null;
+ return o}
+function passF(o,f){if(!f)return true;
+ if(f.lf&&((o.lf===f.lf)===!!f.notLf))return false;
+ if(f.grp&&((o.grp===f.grp)===!!f.notGrp))return false;
+ if(f.types&&f.types.length){var m=f.types.some(function(s){return norm(o.type).indexOf(s)>=0});if(m===!!f.notType)return false}
+ if(f.noSelf!==false&&o.self)return false;
+ return true}
+function changeRows(M,t,pa,pb,f){var h=M.hist.get(t),out=[];if(!h)return out;
+ h.forEach(function(arr,id){var o=rowChange(M,t,id,pa,pb);if(o&&passF(o,f))out.push(o)});return out}
+function netOf(rows){var up=0,dn=0,upS=0,dnS=0,nUp=0,nDn=0,nNew=0,nExit=0;
+ rows.forEach(function(o){if(o.dpr>0){up+=o.dpr;upS+=o.dsr;nUp++}else if(o.dpr<0){dn+=o.dpr;dnS+=o.dsr;nDn++}if(o.state==='new')nNew++;if(o.state==='exit')nExit++});
+ return {up:r2(up),dn:r2(dn),net:r2(up+dn),upS:upS,dnS:dnS,netS:upS+dnS,nUp:nUp,nDn:nDn,nNew:nNew,nExit:nExit,n:rows.length}}
+function topHolder(M,t,pi){var h=holdersAt(M,t,pi,{noSelf:true});return h[0]||null}
+function totalShift(M,t,pa,pb){var T=M.total.get(t);if(!T||T[pa]==null||T[pb]==null)return null;return T[pb]/T[pa]-1}
+
+/* ------------------ C. registry & index ------------------ */
+var NOISE_N=new Set(['pt','tbk','persero','perseroan','terbuka','the','co','ltd','limited','inc','corp','corporation','company','pte','plc','llc','tbk.','of','and']);
+function ntoks(name){return wd(name).split(/[\s,.\-\/]+/).filter(function(w){return w.length>=2&&!NOISE_N.has(w)})}
+function addIdx(m,k,v){var s=m.get(k);if(!s)m.set(k,s=new Set());s.add(v)}
+function registry(M){if(M._reg)return M._reg;
+ var r={tick:new Map(),issTok:new Map(),invTok:new Map()};
+ M.stocks.forEach(function(s,t){r.tick.set(t.toLowerCase(),t);ntoks(s.iss).forEach(function(w){addIdx(r.issTok,w,t)})});
+ M.inv.forEach(function(i,id){ntoks(i.name).forEach(function(w){addIdx(r.invTok,w,id)})});
+ M._reg=r;return r}
+/* cocokkan frasa (token) ke indeks. exact=1, prefix(>=4)=.8, fuzzy(lev<=1, len>=5)=.6 -> fuzzy ditandai. */
+function matchPhrase(ptoks,idx){var cand=null,fz=false,score={};
+ for(var i=0;i<ptoks.length;i++){var w=ptoks[i],set=new Map();
+  if(idx.has(w))idx.get(w).forEach(function(id){set.set(id,1)});
+  if(!set.size&&w.length>=4)idx.forEach(function(ids,k){if(k.indexOf(w)===0||(w.length>=5&&k.length>=5&&w.indexOf(k)===0))ids.forEach(function(id){if(!set.has(id))set.set(id,.8)})});
+  if(!set.size&&w.length>=5)idx.forEach(function(ids,k){if(k.length>=5&&lev(w,k,1)<=1)ids.forEach(function(id){if(!set.has(id)){set.set(id,.6);fz=true}})});
+  if(!set.size)return null;
+  if(cand===null){cand=set;set.forEach(function(v,id){score[id]=v})}
+  else{var nx=new Map();set.forEach(function(v,id){if(cand.has(id)){nx.set(id,1);score[id]=(score[id]||0)+v}});cand=nx;if(!cand.size)return null}}
+ var out=[];cand.forEach(function(_,id){out.push({id:id,score:(score[id]||0)/ptoks.length})});
+ out.sort(function(a,b){return b.score-a.score});return {list:out,fuzzy:fz&&out.length>0&&out[0].score<1}}
+
+G.__core={norm:norm,wd:wd,r2:r2,lev:lev,median:median,MON:MON,dateLabel:dateLabel,buildModel:buildModel,isSelf:isSelf,holdersAt:holdersAt,rowChange:rowChange,passF:passF,changeRows:changeRows,netOf:netOf,topHolder:topHolder,totalShift:totalShift,ntoks:ntoks,NOISE:NOISE_N,registry:registry,matchPhrase:matchPhrase,THR:THR};
+})(typeof window!=='undefined'?window:globalThis);
+
+/* ---------------- D. natural-language parser (slot-based) ---------------- */
+(function(G){'use strict';var C=G.__core,norm=C.norm,wd=C.wd,MON=C.MON,lev=C.lev;
+var V={
+ up:/\b(naik|menaik\w*|menambah\w*|ditambah|menaikkan|dinaikkan|tambah\w*|nambah\w*|bertambah|akumulasi\w*|beli|membeli|dibeli|borong\w*|serok\w*|meningkat|peningkatan|kenaikan|increas\w*|rise|rises|rose|add|added|adding|buy\w*|bought|accumulat\w*|gain\w*)\b/,
+ down:/\b(turun|menurun|penurunan|berkurang|pengurangan|mengurangi|dikurangi|kurangi|jual|menjual|dijual|penjualan|melepas|lepas\w*|buang\w*|distribusi\w*|keluar|kabur|hengkang|cabut\w*|decreas\w*|drop\w*|fell|fall|reduc\w*|sell\w*|sold|exit\w*|dump\w*|distribut\w*|shed)\b/,
+ foreign:/\b(asing|foreign\w*|luar negeri|offshore|overseas)\b/,
+ local:/\b(lokal|domestik|local|domestic|dalam negeri)\b/,
+ ind:/\b(individu|individual\w*|perorangan|retail|ritel|pribadi)\b/,
+ inst:/\b(institusi\w*|lembaga|institutional\w*|institution\w*)\b/,
+ rank:/\b(top|teratas|terbesar|terbanyak|tertinggi|terkecil|tersedikit|terendah|paling|ranking|peringkat|terbaik|terkuat|best|most|largest|biggest|highest|lowest|smallest|strongest)\b/,
+ best:/\b(terbaik|terkuat|bagus|menarik|potensi\w*|prospek|rekomendasi|rekomen\w*|recommend\w*|profit\w*|cuan|untung|layak|unggulan|favorit|promising|best|strongest|gacor|mantap)\b/,
+ compare:/\b(vs|versus|banding\w*|compare\w*|perbandingan|bandingkan)\b/,
+ explain:/\b(kenapa|mengapa|why|alasan|penyebab|kok|dasar)\b/,
+ first:/\b(kapan|sejak kapan|mulai terlihat|pertama\s+(?:kali\s+)?(?:terlihat|muncul|tercatat|terdeteksi)|baru muncul|when|first seen)\b/,
+ port:/\b(portofolio|portfolio|pegang apa|memegang saham apa|saham apa saja|saham apa aja|punya apa|dimiliki oleh|koleksi|holdings)\b|\b(pegang|memegang|punya|memiliki|miliki)\s+(?:saham\s+)?apa\b/,
+ who:/\b(siapa|who)\b/,
+ holder:/\b(pemegang|pemilik|owner\w*|holders?|shareholders?|kepemilikan|ownership|komposisi|struktur)\b/,
+ trend:/\b(tren|trend|histori\w*|history|riwayat|perkembangan|per bulan|sepanjang|selama periode|dari bulan ke bulan|konsisten|berturut|beruntun|berurutan|puncak|tertinggi pada|terendah pada|peak)\b/,
+ change:/\b(perubahan|berubah|change[sd]?|selisih|delta|dibanding\w*|sebelumnya|bulan lalu|naik|turun|bertambah|berkurang|menambah|mengurangi)\b/,
+ signal:/\b(sinyal|signal|akuisisi\w*|diakuisisi|ipo|crossing|berpindah tangan|pindah tangan|buyback|akumulasi kuat|distribusi besar|takeover|acqui\w*)\b/,
+ feature:/\b(cara|menu|fitur|feature|kalkulator|calculator|hitung\w*|menghitung|apa itu|apa arti|arti|definisi|pengertian|maksud|jelaskan|penjelasan|what is|meaning|how to|dimana|di mana|buka|tutorial|panduan|rumus|formula)\b/,
+ meta:/\b(data apa|periode apa|sumber data|cakupan|berapa banyak saham|tersedia|coverage|dataset|data yang ada|bulan apa saja|periode apa saja)\b/,
+ count:/\b(berapa|jumlah|how many|how much|count|banyaknya)\b/,
+ streak:/\b(konsisten|berturut\s*-?\s*turut|beruntun|terus(?:\s+menerus)?|consecutive|straight|berurutan)\b/,
+ not:/\b(bukan|tanpa|selain|kecuali|non|tidak termasuk|exclude|excluding|not|except|minus)\b/,
+ price:/\b(harga|price|target price|pbv|eps|roe|laba|rugi|dividen|dividend|fundamental|murah|mahal|undervalued|overvalued|prediksi|ramal\w*|forecast|valuasi saham)\b/,
+ tx:/\b(transaksi|volume|nilai transaksi|turnover|frekuensi|order)\b/,
+ bo:/\b(beneficial|pengendali|controller|ultimate|pemilik sebenarnya|pemilik manfaat|menguasai|kontrol)\b/,
+ grp:/\b(satu grup|se-?grup|grup|afiliasi|terafiliasi|related|same group)\b/};
+var TYPES=[[/\b(reksa\s*dana|mutual)\b/,'mutual'],[/\b(pensiun|pension|bpjs)\b/,'pension'],[/\b(asuransi|insurance)\b/,'insurance'],[/\b(sekuritas|securities|broker)\b/,'securit'],[/\b(sovereign|swf)\b/,'sovereign'],[/\b(yayasan|foundation)\b/,'foundation'],[/\b(korporasi|corporate|korporat)\b/,'corporate'],[/\b(bank)\b/,'bank']];
+var NUMW={satu:1,dua:2,tiga:3,empat:4,lima:5,enam:6,tujuh:7,delapan:8,sembilan:9,sepuluh:10,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10};
+var STOP=new Set(['yang','dari','saya','bisa','atau','dengan','untuk','pada','oleh','dalam','tolong','carikan','cari','tampilkan','tunjukkan','list','daftar','that','with','from','what','show','give','find','have','does','the','and','which','tell','this','saham','emiten','investor','investors','apa','dan','ada','saja','aja','semua','mana','lagi','dong','ya','kah','apakah','di','ke','itu','ini','nya','berapa','jumlah','total','kah','lah','sih','nih','kalau','jika','kalo','sebesar','sebanyak','periode','bulan','data','sekarang','saat','tahun','harga','ambil','kasih','lihat','tunjuk','tentang','soal','mengenai','tersebut','para','akan','sudah','telah','masih','hanya','cuma','juga','lebih','paling','sangat','banyak','sedikit','sama','antara','adalah','yaitu','yakni','jadi','agar','supaya','kapan','siapa','mengapa','kenapa','bagaimana','gimana','how','many','much','who','why','when','where','are','is','was','were','of','in','on','at','to','for','by','as','an','a','be','it','its','me','my','our','all','any','new','old','last','first','than','then','not','no','yes','dan','serta','maupun','vs','versus','mulai','terlihat','memegang','pegang','muncul','tercatat','dimiliki','hari','kemarin','aja','apa','lalu','terakhir','terbaru','terkini','awal','sejak','selama','sampai','hingga','antara','diberi','berikan','mana','kamu']);
+var GR=[];Object.keys(V).forEach(function(k){GR.push(V[k])});TYPES.forEach(function(x){GR.push(x[0])});
+function isGram(l){if(STOP.has(l)||NUMW[l]!=null||MON[l]!=null)return true;for(var i=0;i<GR.length;i++)if(GR[i].test(l))return true;return false}
+function pnum(x){x=String(x).trim();if(x.indexOf('.')>=0&&x.indexOf(',')>=0)return x.lastIndexOf(',')>x.lastIndexOf('.')?parseFloat(x.replace(/\./g,'').replace(',','.')):parseFloat(x.replace(/,/g,''));
+ if(/^\d{1,3}(\.\d{3})+$/.test(x))return parseFloat(x.replace(/\./g,''));if(/^\d{1,3}(,\d{3})+$/.test(x))return parseFloat(x.replace(/,/g,''));return parseFloat(x.replace(',','.'))}
+
+/* ---- periode ---- */
+var MRE=/\b(jan(?:uari|uary)?|feb(?:ruari|ruary)?|mar(?:et|ch)?|apr(?:il)?|mei|may|jun(?:i|e)?|jul(?:i|y)?|agu(?:stus)?|agt|aug(?:ust)?|sept?(?:ember)?|okt(?:ober)?|oct(?:ober)?|nov(?:ember)?|des(?:ember)?|dec(?:ember)?)\b(?:\s+(20\d\d))?/g;
+function monthIdx(M,m,y){var b=-1;M.periods.forEach(function(p,i){if(+p.date.slice(5,7)===m&&(!y||+p.date.slice(0,4)===y))b=i});return b}
+function parsePeriod(s,M){var n=M.periods.length,last=n-1,o={kind:'default',missing:[],prev:false,found:false},mons=[],m;
+ MRE.lastIndex=0;while((m=MRE.exec(s)))mons.push({m:MON[m[1]],y:m[2]?+m[2]:0,pos:m.index,txt:m[0]});
+ function res(x){var i=monthIdx(M,x.m,x.y);if(i<0)o.missing.push(x.txt.trim()+(x.y?'':' '));return i}
+ if(/\bbulan lalu\b|\blast month\b/.test(s)&&last>=0){var d=M.periods[last].date,mm=+d.slice(5,7)-1,yy=+d.slice(0,4);if(mm<1){mm=12;yy--}var i=monthIdx(M,mm,yy);if(i<0)o.missing.push('bulan lalu ('+C.dateLabel(yy+'-'+String(mm).padStart(2,'0')+'-01').replace(/^1 /,'')+')');o.kind='range';o.from=i;o.to=last;o.found=true;o.relMonth=true;return o}
+ var mr=s.match(/\b(\d{1,2})\s+(?:periode|bulan|period|periods|months?)\s+(?:terakhir|terbaru|belakangan|last)\b|\blast\s+(\d{1,2})\s+(?:periods?|months?)\b/);
+ if(mr){var k=+(mr[1]||mr[2]);o.kind='lastN';o.n=k;o.from=Math.max(0,last-k+1);o.to=last;o.found=true;o.short=n<k;return o}
+ if(/\b(semua|seluruh|sepanjang|all)\s+(periode|bulan|period|periods|data)\b|\bselama (periode|data)\b|\bsepanjang\b/.test(s)){o.kind='all';o.from=0;o.to=last;o.found=true;return o}
+ if(/\b(sejak|since|mulai dari|dari sejak)\b/.test(s)&&mons.length){var i2=res(mons[0]);o.kind='range';o.from=i2;o.to=last;o.found=true;return o}
+ if(mons.length>=2&&/\b(ke|sampai|hingga|to|until|-|dan|vs|versus|dibanding\w*)\b/.test(s)){var a=res(mons[0]),b=res(mons[1]);o.kind='range';o.from=a;o.to=b;o.found=true;if(a>b&&b>=0){o.from=b;o.to=a}return o}
+ if(mons.length===1){var i3=res(mons[0]);o.kind='at';o.at=i3;o.found=true;if(/\b(dibanding\w*|dari|vs|versus|compared|since)\b/.test(s)&&i3>=0&&i3<last){o.kind='range';o.from=i3;o.to=last}return o}
+ if(/\b(awal|pertama|first period|earliest)\b/.test(s)&&/\bperiode\b/.test(s)){o.kind='at';o.at=0;o.found=true;return o}
+ if(/\b(sebelumnya|previous|prior|sebelum itu)\b/.test(s)){o.prev=true;o.found=true}
+ if(/\b(terbaru|terakhir|terkini|latest|current|bulan ini|sekarang|saat ini|most recent)\b/.test(s)){o.kind='at';o.at=last;o.found=true}
+ return o}
+
+/* ---- entitas ---- */
+var INV_CUE=/^(investor|oleh|milik|portofolio|portfolio|punya|nama|holder|owner|dimiliki)$/,STK_CUE=/^(saham|emiten|kode|ticker|perusahaan|stock|company|shares)$/;
+function resolveEntities(raw,M){var NZ=C.NOISE,selfIds=new Set();M.selfOf.forEach(function(s){s.forEach(function(id){selfIds.add(id)})});var R=C.registry(M),rt=raw.split(/[^A-Za-z0-9]+/).filter(Boolean),lt=rt.map(norm),used=new Array(rt.length).fill(false),
+ out={tickers:[],investors:[],stockCands:[],clarify:null,unknown:[]};
+ var nameRun=new Array(rt.length).fill(false),mixed=rt.some(function(w){return /[a-z]/.test(w)});
+ if(mixed){var i0=0;while(i0<rt.length){if(!/^[A-Z]{2,}$/.test(rt[i0])){i0++;continue}var j0=i0;while(j0<rt.length&&/^[A-Z]{2,}$/.test(rt[j0]))j0++;
+  if(j0-i0>=2){var allT=true;for(var q0=i0;q0<j0;q0++)if(!R.tick.has(lt[q0]))allT=false;if(!allT)for(var q1=i0;q1<j0;q1++)nameRun[q1]=true}i0=j0}}
+ rt.forEach(function(w,i){var l=lt[i];if(!R.tick.has(l))return;
+  if(nameRun[i])return;
+  var up=w===w.toUpperCase()&&/[A-Z]/.test(w)&&w.length>=2,ok=up||!isGram(l)||STK_CUE.test(lt[i-1]||'')||rt.length<=2;
+  if(ok){used[i]=true;var T=R.tick.get(l);if(!out.tickers.some(function(x){return x.t===T}))out.tickers.push({t:T,fuzzy:false})}});
+ var runs=[],cur=[];
+ rt.forEach(function(w,i){var l=lt[i];if(!used[i]&&l.length>=2&&!/^\d+$/.test(l)&&!isGram(l)){cur.push(i)}else{if(cur.length)runs.push(cur);cur=[]}});if(cur.length)runs.push(cur);
+ runs.forEach(function(run){var done=false;
+  for(var len=run.length;len>=1&&!done;len--)for(var st=0;st+len<=run.length&&!done;st++){var idxs=run.slice(st,st+len),ptoks=idxs.map(function(i){return lt[i]}).filter(function(w){return w.length>=2&&!NZ.has(w)});
+   if(!ptoks.length||(len===1&&ptoks[0].length<4))continue;
+   var im=C.matchPhrase(ptoks,R.invTok),sm=C.matchPhrase(ptoks,R.issTok);
+   var p1=lt[idxs[0]-1]||'',p2=lt[idxs[0]-2]||'',cueI=INV_CUE.test(p1)||INV_CUE.test(p2),cueS=STK_CUE.test(p1)||STK_CUE.test(p2);
+   if(im&&!cueI){var l2=im.list.filter(function(c){return !selfIds.has(c.id)});im=l2.length?{list:l2,fuzzy:im.fuzzy}:null}
+   if(!im&&!sm)continue;
+   var iTop=im?im.list[0].score:0,sTop=sm?sm.list[0].score:0,pick;
+   if(cueI&&im)pick='i';else if(cueS&&sm)pick='s';else if(im&&!sm)pick='i';else if(sm&&!im)pick='s';else pick=iTop>sTop?'i':sTop>iTop?'s':'x';
+   var m=pick==='i'?im:pick==='s'?sm:null;
+   if(pick!=='x'&&m.list.length>30&&m.list[0].score<1&&!(cueI||cueS))continue;
+   done=true;idxs.forEach(function(i){used[i]=true});
+   if(pick==='x'){out.clarify={question:'name',options:im.list.slice(0,3).map(function(c){return {kind:'inv',id:c.id,label:M.inv.get(c.id).name}}).concat(sm.list.slice(0,3).map(function(c){return {kind:'stk',id:c.id,label:c.id+' · '+M.stocks.get(c.id).iss}})),phrase:ptoks.join(' ')};return}
+   if(pick==='s'){var top=m.list.filter(function(c){return c.score===m.list[0].score});if(top.length===1||m.list.length===1)out.tickers.push({t:m.list[0].id,fuzzy:m.fuzzy,byName:ptoks.join(' ')});
+    else out.clarify=out.clarify||{question:'stock',options:m.list.slice(0,6).map(function(c){return {kind:'stk',id:c.id,label:c.id+' · '+M.stocks.get(c.id).iss}}),phrase:ptoks.join(' ')}}
+   else{var topI=m.list.filter(function(c){return c.score===m.list[0].score});
+    if(topI.length===1||m.list.length===1)out.investors.push({id:m.list[0].id,name:M.inv.get(m.list[0].id).name,fuzzy:m.fuzzy,phrase:ptoks.join(' '),weak:ptoks.length===1&&!cueI});
+    else out.clarify=out.clarify||{question:'inv',options:m.list.slice(0,6).map(function(c){return {kind:'inv',id:c.id,label:M.inv.get(c.id).name}}),phrase:ptoks.join(' '),total:m.list.length}}}});
+ /* kode tak dikenal: huruf besar 3-6 karakter -> kandidat typo (tidak ditebak diam-diam) */
+ rt.forEach(function(w,i){if(used[i])return;var l=lt[i];if(w.length>=3&&w.length<=6&&w===w.toUpperCase()&&/^[A-Z]+$/.test(w)&&!isGram(l)){
+  var near=[];R.tick.forEach(function(T,k){if(Math.abs(k.length-l.length)<=1&&lev(k,l,1)<=1)near.push(T)});out.unknown.push({code:w,near:near.slice(0,4)})}});
+ return out}
+
+/* ---- slot parser ---- */
+function parseSlots(raw0,M){var raw=String(raw0||'').trim().replace(/>=|≥/g,' lebih dari ').replace(/<=|≤/g,' kurang dari ').replace(/>/g,' lebih dari ').replace(/</g,' kurang dari ');
+ var s=wd(raw),S={raw:raw0,s:s,assume:[]};
+ S.has={};Object.keys(V).forEach(function(k){S.has[k]=V[k].test(s)});
+ S.ent=resolveEntities(raw,M);S.period=parsePeriod(s,M);
+ /* ambang */
+ var thr={},re=/\b(lebih dari|lebih besar dari|di atas|diatas|minimal|min|paling sedikit|at least|more than|above|over|kurang dari|lebih kecil dari|di bawah|dibawah|maksimal|max|paling banyak|at most|less than|below|under)\s*([0-9][0-9.,]*)\s*(poin persentase|poin|persen|%|juta|jt|miliar|milyar|ribu|lembar|lot|million|billion|shares?|percent|pts?|investor|pemegang|holders?)?/g,m,ge=/^(lebih|di atas|diatas|minimal|min|paling sedikit|at least|more|above|over)/;
+ var s2=s,chg=S.has.up||S.has.down||S.has.change,posCue=/\b(kepemilikan|porsi|miliki|memiliki|pegang|memegang|holding|stake|ownership)\b/.test(s);
+ while((m=re.exec(s))){var ge1=ge.test(m[1]),val=pnum(m[2]),u=m[3]||'',key,mult=1;
+  if(/^(juta|jt|million)$/.test(u))mult=1e6;else if(/^(miliar|milyar|billion)$/.test(u))mult=1e9;else if(u==='ribu')mult=1e3;else if(u==='lot')mult=100;
+  var kind=/poin|pts?/.test(u)?'pp':/persen|%|percent/.test(u)?'pct':/investor|pemegang|holder/.test(u)?'n':/juta|jt|miliar|milyar|ribu|lembar|lot|million|billion|share/.test(u)?'sh':(val>=1000?'sh':'pct');
+  if(kind==='pct'){if(chg&&!posCue){key=ge1?'minRel':'maxRel';S.assume.push('rel')}else key=ge1?'minPc':'maxPc'}
+  else if(kind==='pp')key=ge1?'minDpp':'maxDpp';else if(kind==='n')key=ge1?'minN':'maxN';else key=chg&&!posCue?(ge1?'minDsh':'maxDsh'):(ge1?'minSh':'maxSh');
+  thr[key]=val*mult;s2=s2.replace(m[0],' ')}
+ S.thr=thr;
+ /* filter + negasi */
+ var f={},toks=s.split(' '),neg=function(rx){var m2=rx.exec(s);if(!m2)return false;var pre=s.slice(Math.max(0,m2.index-24),m2.index);return V.not.test(pre)};
+ if(S.has.foreign&&S.has.local){}else if(S.has.foreign){f.lf='F';f.notLf=neg(V.foreign)}else if(S.has.local){f.lf='L';f.notLf=neg(V.local)}
+ if(S.has.ind&&S.has.inst){}else if(S.has.ind){f.grp='I';f.notGrp=neg(V.ind)}else if(S.has.inst){f.grp='N';f.notGrp=neg(V.inst)}
+ var tys=[];TYPES.forEach(function(x){var mm=x[0].exec(s);if(!mm)return;if(x[1]==='bank'&&!/\b(investor|pemegang|oleh|tipe|jenis|type)\s+(?:\w+\s+)?bank\b/.test(s))return;tys.push({s:x[1],neg:V.not.test(s.slice(Math.max(0,mm.index-24),mm.index))})});
+ if(tys.length){f.types=tys.map(function(x){return x.s});f.notType=tys.every(function(x){return x.neg})}
+ S.filter=f;
+ /* arah, metrik, urutan, limit */
+ var up=S.has.up,dn=S.has.down;S.dir=up&&dn?'both':up?'up':dn?'down':null;
+ if(/\b(naik atau turun|perubahan terbesar|biggest (?:change|mover)|paling berubah|paling aktif)\b/.test(s))S.dir='both';
+ S.metric=/\b(poin|pp|point|points|persentase kepemilikan)\b/.test(s)?'pp':/\b(lembar|shares?|lot)\b/.test(s)?'shares':/\b(relatif|pertumbuhan|growth)\b/.test(s)?'rel':/\b(jumlah investor|banyak investor|berapa investor|number of investors|how many investors|jumlah pemegang)\b/.test(s)?'holders':/\b(skor|score|alpha)\b/.test(s)?'score':null;
+ S.asc=/\b(terkecil|tersedikit|terendah|paling sedikit|smallest|lowest|least|ascending|naik urut)\b/.test(s2);
+ var lm=s2.match(/\b(?:top|teratas|best|first|show|tampilkan|ambil|list)\s*(\d{1,3})\b|\b(\d{1,3})\s*(?:saham|emiten|stocks?|investor|teratas|terbaik|top|besar|pemegang|holders?)\b/);
+ S.limit=lm?Math.min(50,+(lm[1]||lm[2])):((s2.match(/\b(top|teratas)\s+(satu|dua|tiga|empat|lima|enam|tujuh|delapan|sembilan|sepuluh|one|two|three|four|five|six|seven|eight|nine|ten)\b/)||[])[2]?NUMW[(s2.match(/\b(top|teratas)\s+(\w+)\b/)||[])[2]]:null);
+ var sk=s.match(/\b(\d{1,2})\s*(?:periode|period)\b/);S.streak=S.has.streak?{n:sk?+sk[1]:3,dir:dn&&!up?'down':'up'}:null;
+ S.compareCue=S.has.compare||(S.ent.tickers.length>=2&&/\b(dan|and|dengan|with|dibanding\w*)\b/.test(s));
+ S.wantsScore=S.has.best;
+ return S}
+
+G.__parse={STOP:STOP,V:V,isGram:isGram,parseSlots:parseSlots,parsePeriod:parsePeriod,resolveEntities:resolveEntities,pnum:pnum,NUMW:NUMW};
+})(typeof window!=='undefined'?window:globalThis);
+
+/* ---------------- E/F/G/H. planner, executor, evidence, composer ---------------- */
+(function(G){'use strict';var C=G.__core,P=G.__parse,norm=C.norm,r2=C.r2;
+function searchDocs(q,docs,n){var qt=C.wd(q).split(' ').filter(function(w){return w.length>=3&&!P.STOP.has(w)});if(!qt.length)return [];
+ return (docs||[]).map(function(d){var hay=norm(d.title+' '+d.text),ti=norm(d.title),s=0;qt.forEach(function(w){if(ti.indexOf(w)>=0)s+=3;else if(hay.indexOf(w)>=0)s+=1;else if(w.length>=5&&hay.split(/\W+/).some(function(h){return h.length>=5&&C.lev(h,w,1)<=1}))s+=.6});return {d:d,s:s}}).filter(function(x){return x.s>0}).sort(function(x,y){return y.s-x.s}).slice(0,n||5)}
+function mkFmt(lang){var loc=lang==='en'?'en-US':'id-ID';
+ function num(v,d){if(v==null||!isFinite(v))return '—';return v.toLocaleString(loc,{minimumFractionDigits:d,maximumFractionDigits:d})}
+ var sg=function(v){return v>0?'+':v<0?'−':''};
+ return {num:num,pc:function(v){return v==null?'—':num(v,2)+'%'},pp:function(v){return v==null?'—':sg(v)+num(Math.abs(v),2)},
+  sh:function(v){return v==null?'—':Math.abs(Math.round(v)).toLocaleString(loc)},dsh:function(v){return v==null?'—':sg(v)+Math.abs(Math.round(v)).toLocaleString(loc)},
+  rel:function(v){return v==null?'—':sg(v)+num(Math.abs(v),1)+'%'},int:function(v){return v==null?'—':Math.round(v).toLocaleString(loc)}}}
+function ask(q,ctx,opts){opts=opts||{};var lang=opts.lang==='en'?'en':'id',T=function(a,b){return lang==='en'?b:a},F=mkFmt(lang),M=opts.model;
+ if(!M||!M.periods.length)return {answer:{status:'nodata',intent:'none',title:T('Data belum tersedia','Data not available'),headline:T('Belum ada data kepemilikan yang dimuat.','No ownership data has been loaded yet.'),bullets:[],tables:[],evidence:{caveats:[]},actions:[],followups:[]},ctx:ctx||null};
+ var n=M.periods.length,last=n-1,PL=function(i){return M.periods[i]?M.periods[i].label:'?'},now=Date.now();
+ var S=P.parseSlots(q,M);ctx=ctx||null;
+ function out(a,plan){a.intent=a.intent||plan&&plan.intent||'';a.ms=Date.now()-now;return {answer:a,ctx:plan?{plan:plan,q:q}:ctx}}
+ function std(extra){var c=[];c.push(T('Laporan hanya memuat pemegang di atas 1%. "Tidak tercatat" berarti di bawah ambang atau tidak memegang — bukan otomatis nol.','The report lists holders above 1% only. "Not recorded" means below the threshold or not holding — not automatically zero.'));
+  c.push(T('Angka adalah selisih snapshot kepemilikan antar tanggal laporan, bukan volume transaksi pasar.','Figures are differences between ownership snapshots, not market trading volume.'));return c.concat(extra||[])}
+ function evid(idxs,formulas,caveats,counts){return {periods:(idxs||[]).map(function(i){return {label:PL(i),date:M.periods[i].date,src:M.periods[i].src}}),formulas:formulas||[],caveats:caveats||std(),counts:counts||{stocks:M.stocks.size,investors:M.inv.size,periods:n,rows:M.counts.rows},scope:T('Cakupan: seluruh '+M.stocks.size+' saham dan '+M.inv.size+' investor pada dataset ('+n+' periode), bukan seluruh bursa.','Scope: all '+M.stocks.size+' stocks and '+M.inv.size+' investors in the dataset ('+n+' periods), not the whole exchange.')}}
+ function cav(S,pl){var c=std();if(S.has.price)c.push(T('Data harga dan fundamental tidak tersedia, jadi penilaian murah/mahal atau prediksi harga tidak dapat dijawab.','Price and fundamental data are unavailable, so cheap/expensive valuation or price forecasts cannot be answered.'));
+  if(S.has.tx)c.push(T('Tidak ada data transaksi aktual (volume/nilai transaksi); hanya snapshot kepemilikan.','No actual trade data (volume/value); only ownership snapshots.'));
+  if(S.has.bo)c.push(T('Data tidak memuat beneficial owner/pengendali. Pemegang terbesar tidak otomatis pengendali; kustodian atau nominee tidak disamakan dengan pemilik akhir.','Data has no beneficial-owner/controller info. The largest holder is not automatically the controller; custodians/nominees are not treated as ultimate owners.'));
+  if(S.has.grp)c.push(T('Relasi satu grup hanya dapat dijawab bila tercatat; kemiripan nama bukan bukti hubungan grup.','Group relations can only be answered when recorded; similar names are not proof of a group relationship.'));
+  S.assume.forEach(function(a){if(a==='rel')c.push(T('"Persen" pada perubahan saya tafsirkan sebagai perubahan relatif (%). Gunakan kata "poin" untuk selisih poin persentase.','"Percent" on a change was read as relative change (%). Use "points" for percentage-point differences.'))});return c}
+ /* ---------- tindak lanjut (konteks) ---------- */
+ var S0=S,follow=false;
+ if(ctx&&ctx.plan&&!S.ent.tickers.length&&!S.ent.investors.length&&!S.ent.clarify){var cp=ctx.plan,toks=S.s.split(' ').filter(Boolean),slotty=S.period.found||Object.keys(S.filter).length||S.limit||S.metric||S.dir||Object.keys(S.thr).length||S.streak||S.compareCue||S.asc;
+  if(toks.length<=6&&!/\b(saham|emiten|stocks?|investors?)\b/.test(S.s)&&slotty&&!S.has.signal&&!S.has.feature&&!S.has.meta){follow=true;S.ent.tickers=(cp.tickers||[]).map(function(t){return {t:t}});S.ent.investors=(cp.investors||[]).map(function(i){return {id:i}});
+   S.filter=Object.assign({},cp.filter||{},S.filter);if(!S.period.found&&cp.period)S.period=cp.period;if(!S.metric&&cp.metric)S.metric=cp.metric;if(!S.limit&&cp.limit)S.limit=cp.limit;if(!S.dir&&cp.dir)S.dir=cp.dir;S.thr=Object.assign({},cp.thr||{},S.thr);S.forcedIntent=cp.intent}}
+ else if(ctx&&ctx.plan&&S.ent.tickers.length===1&&ctx.plan.tickers&&ctx.plan.tickers.length&&S.compareCue&&ctx.plan.tickers[0]!==S.ent.tickers[0].t){S.ent.tickers=[{t:ctx.plan.tickers[0]},S.ent.tickers[0]];follow=true}
+ else if(ctx&&ctx.plan&&S.ent.tickers.length===1&&S.s.split(' ').length<=5&&/\b(bagaimana dengan|gimana dengan|how about|what about|kalau|dengan)\b/.test(S.s)&&['HOLDERS','CHANGE','TREND','OVERVIEW'].indexOf(ctx.plan.intent)>=0){follow=true;S.forcedIntent=ctx.plan.intent;S.filter=Object.assign({},ctx.plan.filter||{},S.filter);if(!S.period.found&&ctx.plan.period)S.period=ctx.plan.period}
+ if(S.ent.investors.length&&(S.has.rank||S.has.foreign||S.has.local||S.has.ind||S.has.inst||S.has.best||S.period.found))S.ent.investors=S.ent.investors.filter(function(x){return !x.weak});
+ var nT=S.ent.tickers.length,nI=S.ent.investors.length,t0=nT?S.ent.tickers[0].t:null,id0=nI?S.ent.investors[0].id:null,f=S.filter;
+ f.noSelf=true;
+ /* ---------- niat ---------- */
+ var intent=S.forcedIntent||null;
+ if(!intent&&!nT&&!nI&&!ctx&&/\bberapa (poin|persen)\b/.test(S.s)&&!S.has.rank&&!S.has.foreign&&!S.has.local&&!S.has.signal)return out({status:'partial',title:T('Poin untuk apa?','Points for what?'),headline:T('Poin untuk saham atau investor yang mana? Di aplikasi ini "poin" berarti poin persentase kepemilikan; perubahan harga tidak tersedia.','Points for which stock or investor? Here "points" means ownership percentage points; price changes are not available.'),bullets:[],tables:[],evidence:evid([],[],std()),actions:[],followups:[]},{intent:'CLARIFY',tickers:[],investors:[],filter:{},period:S.period});
+ if(!intent){
+  if(S.ent.clarify&&!nT&&!nI)intent='AMBIG';
+  else if(S.has.explain&&(nT||nI))intent='EXPLAIN';
+  else if(S.compareCue&&nT>=2)intent='COMPARE';
+  else if(S.has.first&&(nI||nT))intent='FIRST';
+  else if(nI&&!nT)intent='PORTFOLIO';
+  else if(nI&&nT)intent='INVHOLD';
+  else if(nT){var span=S.period.kind==='all'||S.period.kind==='lastN'||(S.period.kind==='range'&&S.period.to-S.period.from>=2);
+   intent=(S.has.trend||S.streak||span)?'TREND':((S.has.who||S.has.holder)&&!S.has.up&&!S.has.down&&!S.has.change)?'HOLDERS':(S.has.change||S.has.up||S.has.down||S.period.kind==='range'||S.period.prev||S.period.relMonth)?'CHANGE':(S.has.holder||S.has.who||S.has.port)?'HOLDERS':'OVERVIEW'}
+  else if(S.has.signal&&!(S.has.feature&&/\b(arti|apa itu|maksud|definisi|pengertian|jelaskan|what is|meaning)\b/.test(S.s)))intent='SIGNAL';
+  else if(S.has.meta)intent='META';
+  else if(S.has.feature&&(/\b(arti|apa itu|maksud|definisi|pengertian|jelaskan|what is|meaning|cara|how to)\b/.test(S.s)||!(S.has.up||S.has.down||S.has.rank||S.has.foreign||S.has.local)))intent='FEATURE';
+  else if(S.has.rank||S.has.up||S.has.down||S.has.foreign||S.has.local||S.has.ind||S.has.inst||(f.types&&f.types.length)||S.has.best||S.streak||Object.keys(S.thr).length)intent='RANK';
+  else intent='FEATURE'}
+ var plan={intent:intent,tickers:S.ent.tickers.map(function(x){return x.t}),investors:S.ent.investors.map(function(x){return x.id}),filter:f,metric:S.metric,dir:S.dir,period:S.period,limit:S.limit,asc:S.asc,thr:S.thr,follow:follow};
+ /* ---------- periode ---------- */
+ var pr=S.period;
+ if(pr.missing.length&&intent!=='FEATURE'&&intent!=='META')return out({status:'nodata',title:T('Periode tidak tersedia','Period not available'),headline:T('Data untuk '+pr.missing.join(', ')+' tidak tersedia pada dataset. Saya tidak menggantinya dengan periode lain tanpa izin Anda.','Data for '+pr.missing.join(', ')+' is not available in the dataset. I will not substitute another period without your consent.'),bullets:[T('Periode yang tersedia: ','Available periods: ')+M.periods.map(function(p){return p.label}).join(' · ')],tables:[],evidence:evid([],[],std()),actions:M.periods.slice(-4).map(function(p){return {label:p.label,kind:'q',arg:q.replace(pr.missing[0],p.label)}}),followups:[]},plan);
+ function pair(){var a,b;
+  if(pr.kind==='range'&&pr.from>=0&&pr.to>=0){a=pr.from;b=pr.to}
+  else if(pr.kind==='lastN'||pr.kind==='all'){a=pr.from;b=pr.to}
+  else if(pr.kind==='at'&&pr.at>=0){b=pr.at;a=b-1}
+  else if(pr.prev){a=last-2;b=last-1}
+  else{a=last-1;b=last}
+  return [Math.max(0,a),Math.max(0,b)]}
+ function atIdx(){return pr.kind==='at'&&pr.at>=0?pr.at:pr.kind==='range'&&pr.to>=0?pr.to:pr.prev&&last>0?last-1:last}
+ function needTwo(){if(n<2)return out({status:'partial',title:T('Perlu minimal dua periode','Needs at least two periods'),headline:T('Hanya satu periode yang tersedia, sehingga perubahan tidak dapat dihitung.','Only one period is available, so changes cannot be computed.'),bullets:[],tables:[],evidence:evid([last],[],std()),actions:[],followups:[]},plan);return null}
+ /* ---------- helpers tabel ---------- */
+ var invL=function(id){return {s:M.inv.get(id).name,l:'inv:'+M.inv.get(id).name}},stkL=function(t){return {s:t,l:'stk:'+t}},LA=function(lf){return lf==='F'?T('Asing','Foreign'):lf==='L'?T('Lokal','Local'):'—'};
+ function stateTxt(s){return {up:T('Menambah','Adding'),down:T('Mengurangi','Reducing'),same:T('Tetap','Unchanged'),new:T('Tercatat baru','Newly recorded'),exit:T('Tidak tercatat lagi','No longer recorded')}[s]}
+ function dTxt(o,k){if(k==='pp')return o.exact?F.pp(o.dp):(o.state==='new'?'≥'+F.pp(o.dpr):'≤'+F.pp(o.dpr));if(k==='sh')return o.exact?F.dsh(o.ds):(o.state==='new'?'≥'+F.dsh(o.dsr):'≤'+F.dsh(o.dsr));return o.rel==null?'—':F.rel(o.rel)}
+ function filtLabel(){var a=[];if(f.lf)a.push((f.notLf?T('bukan ','not '):'')+(f.lf==='F'?T('asing','foreign'):T('lokal','local')));if(f.grp)a.push((f.notGrp?T('bukan ','not '):'')+(f.grp==='I'?T('individu','individual'):T('institusi','institutional')));if(f.types&&f.types.length)a.push((f.notType?T('bukan ','not '):'')+f.types.join('/'));return a.join(', ')}
+ function thrOK(o,t){if(t.minPc!=null&&!(o.b&&o.b.pc>=t.minPc))return false;if(t.maxPc!=null&&!(o.b&&o.b.pc<=t.maxPc))return false;if(t.minSh!=null&&!(o.b&&o.b.sh>=t.minSh))return false;if(t.maxSh!=null&&!(o.b&&o.b.sh<=t.maxSh))return false;
+  if(t.minDpp!=null&&!(Math.abs(o.dpr)>=t.minDpp))return false;if(t.maxDpp!=null&&!(Math.abs(o.dpr)<=t.maxDpp))return false;if(t.minRel!=null&&!(o.rel!=null&&Math.abs(o.rel)>=t.minRel))return false;if(t.maxRel!=null&&!(o.rel!=null&&Math.abs(o.rel)<=t.maxRel))return false;
+  if(t.minDsh!=null&&!(Math.abs(o.dsr)>=t.minDsh))return false;if(t.maxDsh!=null&&!(Math.abs(o.dsr)<=t.maxDsh))return false;return true}
+ function dirOK(o,d){return d==='up'?o.dpr>0:d==='down'?o.dpr<0:o.dpr!==0}
+ function caNote(t,a,b){var sft=C.totalShift(M,t,a,b);return sft!=null&&Math.abs(sft)>0.02?T('Total saham beredar tersirat berubah '+F.rel(sft*100)+' antar '+PL(a)+' dan '+PL(b)+' (kemungkinan aksi korporasi); persentase dapat berubah tanpa transaksi.','Implied total shares changed '+F.rel(sft*100)+' between '+PL(a)+' and '+PL(b)+' (possible corporate action); percentages may move without trades.'):null}
+ function noData(t){return out({status:'nodata',title:T('Saham tidak ditemukan','Stock not found'),headline:T('Kode '+t+' tidak ada pada dataset ini (cakupan: pemegang di atas 1%).','Code '+t+' is not in this dataset (scope: holders above 1%).'),bullets:[],tables:[],evidence:evid([],[],std()),actions:[],followups:[]},plan)}
+ var A;
+ /* ======== AMBIGU ======== */
+ if(intent==='AMBIG'||(S.ent.clarify&&!(nT||nI))){var cl=S.ent.clarify;return out({status:'ambiguous',title:T('Maksud Anda yang mana?','Which one do you mean?'),headline:T('Ada beberapa kandidat untuk "'+cl.phrase+'". Pilih salah satu agar jawabannya tepat.','There are several candidates for "'+cl.phrase+'". Pick one so the answer is accurate.'),bullets:cl.total?[T('Total nama yang cocok: '+cl.total+'.','Total matching names: '+cl.total+'.')]:[],tables:[],clarify:cl,evidence:evid([],[],[T('Kemiripan nama bukan bukti bahwa dua pihak adalah entitas yang sama.','Name similarity is not proof that two parties are the same entity.')]),actions:cl.options.map(function(o){return {label:o.label,kind:'q',arg:(o.kind==='inv'?'portofolio ':'pemegang ')+o.id}}),followups:[]},plan)}
+ if(S.ent.unknown.length&&!nT&&!nI&&(intent!=='FEATURE'||!S.has.feature)&&intent!=='SIGNAL'&&intent!=='RANK'&&intent!=='META'){var u=S.ent.unknown[0];return out({status:'ambiguous',title:T('Kode tidak ditemukan','Code not found'),headline:T('Kode "'+u.code+'" tidak ada di dataset.'+(u.near.length?' Maksud Anda '+u.near.join(', ')+'?':' Dataset hanya memuat pemegang di atas 1%.'),'Code "'+u.code+'" is not in the dataset.'+(u.near.length?' Did you mean '+u.near.join(', ')+'?':' The dataset covers holders above 1% only.')),bullets:[],tables:[],evidence:evid([],[],std()),actions:u.near.map(function(c){return {label:c,kind:'q',arg:q.replace(u.code,c)}}),followups:[]},plan)}
+ /* ======== HOLDERS ======== */
+ if(intent==='HOLDERS'){if(!M.stocks.has(t0))return noData(t0);var pi=atIdx(),rows=C.holdersAt(M,t0,pi).filter(function(h){return C.passF(Object.assign({},h),Object.assign({},f,{noSelf:false}))&&(S.thr.minPc==null||h.pc>=S.thr.minPc)&&(S.thr.maxPc==null||h.pc<=S.thr.maxPc)&&(S.thr.minSh==null||h.sh>=S.thr.minSh)&&(S.thr.maxSh==null||h.sh<=S.thr.maxSh)}),lim=S.limit||8;
+  if(!rows.length)return out({status:'nodata',title:t0,headline:T(t0+' tidak memiliki pemegang tercatat pada '+PL(pi)+'.',t0+' has no recorded holders on '+PL(pi)+'.'),bullets:[],tables:[],evidence:evid([pi],[],std()),actions:[],followups:[]},plan);
+  var top=rows.filter(function(h){return !h.self})[0]||rows[0],tot=rows.reduce(function(a,h){return a+h.pc},0),prev=pi>0?pi-1:null,hs=rows.slice(0,lim);
+  var tb={title:T('Pemegang tercatat pada '+PL(pi),'Recorded holders on '+PL(pi)),cols:[{h:'#'},{h:T('Investor','Investor')},{h:T('Tipe','Type')},{h:'L/A'},{h:T('Lembar','Shares'),a:'r'},{h:'%',a:'r'},{h:prev!=null?T('Δ poin vs '+PL(prev),'Δ pts vs '+PL(prev)):'Δ',a:'r'}],rows:hs.map(function(h,i){var ch=prev!=null?C.rowChange(M,t0,h.id,prev,pi):null;return [String(i+1),invL(h.id),h.type||'—',LA(h.lf),F.sh(h.sh),F.pc(h.pc),ch?{s:dTxt(ch,'pp'),c:ch.dpr>0?'up':ch.dpr<0?'dn':'mu'}:'—']})};
+  var cv=cav(S,plan);if(rows.some(function(h){return h.self}))cv.push(T('Baris emiten sendiri (buyback/treasury) ditandai sebagai pemegang tercatat.','Issuer-self rows (buyback/treasury) are shown as recorded holders.'));
+  A={status:'ok',title:t0+' · '+(M.stocks.get(t0).iss||''),headline:T('Pemegang terbesar '+t0+' pada '+PL(pi)+' yang tercatat: '+top.name+' ('+F.pc(top.pc)+', '+F.sh(top.sh)+' lembar).','Largest recorded holder of '+t0+' on '+PL(pi)+': '+top.name+' ('+F.pc(top.pc)+', '+F.sh(top.sh)+' shares).'),
+   bullets:[T(rows.length+' pemegang di atas 1% tercatat; total persentase yang tercatat '+F.pc(tot)+' (bukan total seluruh pemegang).',rows.length+' holders above 1% recorded; recorded total '+F.pc(tot)+' (not the total of all holders).'),T('Pemegang terbesar tercatat tidak otomatis berarti pengendali.','The largest recorded holder is not automatically the controller.')],tables:[tb],evidence:evid(prev!=null?[prev,pi]:[pi],[T('Persentase dan lembar diambil langsung dari laporan snapshot.','Percentages and shares are taken directly from the snapshot report.')],cv),
+   actions:[{label:T('Buka detail saham','Open stock detail'),kind:'stk',arg:t0},{label:T('Lihat tren','See trend'),kind:'q',arg:T('tren kepemilikan ','ownership trend of ')+t0}],followups:[T('Sebelumnya berapa?','What was it before?'),T('Yang asing saja','Foreign only'),T('Bandingkan dengan ','Compare with ')+(M.stocks.size>1?[].concat.apply([],[[...M.stocks.keys()].filter(function(x){return x!==t0})])[0]:'')]};return out(A,plan)}
+ /* ======== CHANGE ======== */
+ if(intent==='CHANGE'){if(!M.stocks.has(t0))return noData(t0);var nd=needTwo();if(nd)return nd;var pp=pair(),pa=pp[0],pb=pp[1];if(pa===pb){pa=Math.max(0,pb-1)}
+  var rows=C.changeRows(M,t0,pa,pb,f).filter(function(o){return dirOK(o,S.dir||'both')&&thrOK(o,S.thr)}).sort(function(x,y){return Math.abs(y.dpr)-Math.abs(x.dpr)}),lim=S.limit||10,net=C.netOf(C.changeRows(M,t0,pa,pb,f));
+  var top=rows[0],cv=cav(S,plan).concat([T('Untuk investor yang tercatat baru atau tidak tercatat lagi, selisih dihitung sebagai batas bawah konservatif terhadap ambang 1% (tanda ≥ / ≤).','For newly recorded or no-longer-recorded investors, differences are conservative bounds against the 1% threshold (≥ / ≤ signs).')]),ca=caNote(t0,pa,pb);if(ca)cv.push(ca);
+  var tb={title:T('Perubahan '+PL(pa)+' → '+PL(pb),'Change '+PL(pa)+' → '+PL(pb)),cols:[{h:T('Investor','Investor')},{h:'L/A'},{h:T('% awal','% start'),a:'r'},{h:T('% akhir','% end'),a:'r'},{h:T('Δ poin','Δ pts'),a:'r'},{h:T('Δ relatif','Δ rel.'),a:'r'},{h:T('Δ lembar','Δ shares'),a:'r'},{h:T('Status','Status')}],
+   rows:rows.slice(0,lim).map(function(o){return [invL(o.id),LA(o.lf),o.a?F.pc(o.a.pc):T('tidak tercatat','not recorded'),o.b?F.pc(o.b.pc):T('tidak tercatat','not recorded'),{s:dTxt(o,'pp'),c:o.dpr>0?'up':o.dpr<0?'dn':'mu'},dTxt(o,'rel'),dTxt(o,'sh'),stateTxt(o.state)]})};
+  var hdc=null;if(S.has.count){var sP=rows.reduce(function(x,o){return x+o.dpr},0),sS=rows.reduce(function(x,o){return x+o.dsr},0),vb=S.dir==='down'?T('mengurangi','reducing'):S.dir==='up'?T('menambah','adding'):T('mengubah','changing'),lb=filtLabel();
+   hdc=T('Ada '+rows.length+' investor'+(lb?' '+lb:'')+' yang '+vb+' kepemilikan '+t0+' ('+PL(pa)+' → '+PL(pb)+')'+(rows.length?': total '+F.pp(sP)+' poin persentase dan '+F.dsh(sS)+' lembar.':'.'),'There '+(rows.length===1?'is ':'are ')+rows.length+' '+(lb?lb+' ':'')+'investor'+(rows.length===1?'':'s')+' '+vb+' '+t0+' ('+PL(pa)+' → '+PL(pb)+')'+(rows.length?': total '+F.pp(sP)+' percentage points and '+F.dsh(sS)+' shares.':'.'))}
+  var hd=hdc||(rows.length?T('Pada '+t0+' ('+PL(pa)+' → '+PL(pb)+')'+(filtLabel()?' untuk investor '+filtLabel():'')+', perubahan terbesar: '+top.name+' '+(top.exact?F.pp(top.dp)+' poin persentase':(top.state==='new'?'tercatat baru (≥'+F.pp(top.dpr)+' poin)':'tidak tercatat lagi (≤'+F.pp(top.dpr)+' poin)'))+'.','For '+t0+' ('+PL(pa)+' → '+PL(pb)+')'+(filtLabel()?' ('+filtLabel()+' investors)':'')+', the largest change: '+top.name+' '+(top.exact?F.pp(top.dp)+' percentage points':(top.state==='new'?'newly recorded (≥'+F.pp(top.dpr)+' pts)':'no longer recorded (≤'+F.pp(top.dpr)+' pts)'))+'.'):T('Tidak ada perubahan yang memenuhi kriteria pada '+t0+' ('+PL(pa)+' → '+PL(pb)+').','No changes match the criteria for '+t0+' ('+PL(pa)+' → '+PL(pb)+').'));
+  A={status:(rows.length||hdc)?'ok':'partial',title:t0+' · '+(M.stocks.get(t0).iss||''),headline:hd,bullets:[T(net.nUp+' investor menambah ('+F.pp(net.up)+' poin) dan '+net.nDn+' mengurangi ('+F.pp(net.dn)+' poin); net '+F.pp(net.net)+' poin persentase.',net.nUp+' investors added ('+F.pp(net.up)+' pts) and '+net.nDn+' reduced ('+F.pp(net.dn)+' pts); net '+F.pp(net.net)+' percentage points.'),T('"Poin" = selisih persentase kepemilikan; "relatif" = selisih ÷ persentase awal.','"Points" = difference in ownership percentage; "relative" = difference ÷ starting percentage.')],tables:[tb],
+   evidence:evid([pa,pb],[T('Δ poin = % akhir − % awal','Δ pts = end % − start %'),T('Δ relatif = Δ poin ÷ % awal × 100','Δ rel. = Δ pts ÷ start % × 100'),T('Δ lembar = lembar akhir − lembar awal','Δ shares = end shares − start shares')],cv),actions:[{label:T('Buka detail saham','Open stock detail'),kind:'stk',arg:t0},{label:T('Lihat tren semua periode','See full trend'),kind:'q',arg:T('tren kepemilikan ','ownership trend of ')+t0}],followups:[T('Yang asing saja','Foreign only'),T('Bulan lalu bagaimana?','What about last month?')]};return out(A,plan)}
+ /* ======== TREND / INVHOLD ======== */
+ if(intent==='TREND'||intent==='INVHOLD'){var tk=t0;if(!tk&&nI){return out({status:'partial',title:T('Sebutkan sahamnya','Name the stock'),headline:T('Sebutkan kode saham untuk melihat tren kepemilikan investor tersebut.','Name a stock code to see that investor\'s ownership trend.'),bullets:[],tables:[],evidence:evid([],[],std()),actions:[],followups:[]},plan)}
+  if(!M.stocks.has(tk))return noData(tk);var a0=0,b0=last;if(pr.kind==='lastN'||pr.kind==='all'||pr.kind==='range'){a0=Math.max(0,pr.from);b0=Math.max(a0,pr.to)}
+  var idxs=[];for(var i=a0;i<=b0;i++)idxs.push(i);
+  if(intent==='INVHOLD'||(nI&&nT)){var id=id0,ser=idxs.map(function(i){return {i:i,c:(M.hist.get(tk).get(id)||[])[i]||null}});var obs=ser.filter(function(x){return x.c});
+   if(!obs.length)return out({status:'nodata',title:M.inv.get(id).name,headline:T(M.inv.get(id).name+' tidak tercatat memegang '+tk+' (di atas 1%) pada periode yang tersedia.',M.inv.get(id).name+' is not recorded holding '+tk+' (above 1%) in the available periods.'),bullets:[],tables:[],evidence:evid(idxs,[],std()),actions:[],followups:[]},plan);
+   var pk=obs.reduce(function(a,b){return b.c.pc>a.c.pc?b:a}),tr=obs.reduce(function(a,b){return b.c.pc<a.c.pc?b:a}),st=0,mx=0,prevC=null;ser.forEach(function(x){if(x.c&&prevC&&x.c.pc>prevC.pc){st++;mx=Math.max(mx,st)}else if(x.c&&prevC&&x.c.pc<=prevC.pc)st=0;if(x.c)prevC=x.c;else prevC=null});
+   var tb={title:M.inv.get(id).name+' · '+tk,cols:[{h:T('Periode','Period')},{h:T('Lembar','Shares'),a:'r'},{h:'%',a:'r'},{h:T('Δ poin vs sebelumnya','Δ pts vs prev.'),a:'r'}],rows:ser.map(function(x,k){var pv=k>0?ser[k-1].c:null,d=x.c&&pv?r2(x.c.pc-pv.pc):null;return [PL(x.i),x.c?F.sh(x.c.sh):T('tidak tercatat','not recorded'),x.c?F.pc(x.c.pc):'—',d==null?'—':{s:F.pp(d),c:d>0?'up':d<0?'dn':'mu'}]})};
+   var first=obs[0],lastObs=obs[obs.length-1];
+   A={status:'ok',title:M.inv.get(id).name,headline:T(M.inv.get(id).name+' pertama kali terlihat memegang '+tk+' pada '+PL(first.i)+' ('+F.pc(first.c.pc)+') dan terakhir tercatat '+PL(lastObs.i)+' ('+F.pc(lastObs.c.pc)+').',M.inv.get(id).name+' first appears holding '+tk+' on '+PL(first.i)+' ('+F.pc(first.c.pc)+') and was last recorded on '+PL(lastObs.i)+' ('+F.pc(lastObs.c.pc)+').'),
+    bullets:[T('Tertinggi tercatat: '+F.pc(pk.c.pc)+' ('+PL(pk.i)+'); terendah tercatat: '+F.pc(tr.c.pc)+' ('+PL(tr.i)+').','Highest recorded: '+F.pc(pk.c.pc)+' ('+PL(pk.i)+'); lowest recorded: '+F.pc(tr.c.pc)+' ('+PL(tr.i)+').'),T('Kenaikan beruntun terpanjang: '+mx+' periode.','Longest consecutive increase: '+mx+' periods.'),T('"Pertama terlihat" adalah snapshot pertama yang memuat investor ini, bukan tanggal pembelian.','"First seen" is the first snapshot listing this investor, not a purchase date.')],tables:[tb],evidence:evid(idxs,[T('Δ poin = % periode ini − % periode sebelumnya (hanya bila keduanya tercatat)','Δ pts = this period % − previous period % (only when both recorded)')],cav(S,plan)),actions:[{label:T('Buka detail saham','Open stock detail'),kind:'stk',arg:tk}],followups:[T('Bandingkan dengan saham lain','Compare with another stock')]};return out(A,plan)}
+  /* tren saham: top holder per periode + total tercatat */
+  var topSet=C.holdersAt(M,tk,last,{noSelf:true}).filter(function(h){return C.passF(h,f)}).slice(0,4);
+  var cols=[{h:T('Periode','Period')},{h:T('Pemegang terbesar','Largest holder')},{h:T('Total tercatat','Recorded total'),a:'r'},{h:T('Jml pemegang','Holders'),a:'r'}].concat(topSet.map(function(h){return {h:h.name.length>18?h.name.slice(0,17)+'…':h.name,a:'r'}}));
+  var rowsT=idxs.map(function(i){var hs=C.holdersAt(M,tk,i,{noSelf:true}).filter(function(h){return C.passF(h,f)});var tp=hs[0];return [PL(i),tp?tp.name+' ('+F.pc(tp.pc)+')':'—',hs.length?F.pc(hs.reduce(function(a,h){return a+h.pc},0)):'—',String(hs.length)].concat(topSet.map(function(h){var c=(M.hist.get(tk).get(h.id)||[])[i];return c?F.pc(c.pc):'—'}))});
+  var tots=idxs.map(function(i){return C.holdersAt(M,tk,i,{noSelf:true}).filter(function(h){return C.passF(h,f)}).reduce(function(a,h){return a+h.pc},0)}),stk=0,dirw=S.streak?S.streak.dir:'up',run=0;for(var k=tots.length-1;k>0;k--){if(dirw==='up'?tots[k]>tots[k-1]:tots[k]<tots[k-1])run++;else break}
+  var tops=idxs.map(function(i){var t=C.topHolder(M,tk,i);return t?t.id:null}),chg=[];for(var k2=1;k2<tops.length;k2++)if(tops[k2]&&tops[k2-1]&&tops[k2]!==tops[k2-1])chg.push(PL(idxs[k2]));
+  var ca2=caNote(tk,a0,b0),cv=cav(S,plan);if(ca2)cv.push(ca2);
+  A={status:idxs.length>=2?'ok':'partial',title:tk+' · '+(M.stocks.get(tk).iss||''),headline:T('Tren kepemilikan '+tk+(filtLabel()?' ('+filtLabel()+')':'')+' pada '+idxs.length+' periode ('+PL(a0)+' → '+PL(b0)+'): total pemegang tercatat '+F.pc(tots[0])+' → '+F.pc(tots[tots.length-1])+' ('+F.pp(tots[tots.length-1]-tots[0])+' poin).','Ownership trend of '+tk+(filtLabel()?' ('+filtLabel()+')':'')+' over '+idxs.length+' periods ('+PL(a0)+' → '+PL(b0)+'): recorded holders total '+F.pc(tots[0])+' → '+F.pc(tots[tots.length-1])+' ('+F.pp(tots[tots.length-1]-tots[0])+' pts).'),
+   bullets:[run>0?T('Total tercatat '+(dirw==='up'?'naik':'turun')+' berturut-turut selama '+run+' interval terakhir.','Recorded total has '+(dirw==='up'?'risen':'fallen')+' for '+run+' consecutive latest intervals.'):T('Total tercatat tidak '+(dirw==='up'?'naik':'turun')+' pada interval terakhir.','Recorded total did not '+(dirw==='up'?'rise':'fall')+' in the latest interval.'),chg.length?T('Pemegang terbesar berganti pada: '+chg.join(', ')+'.','Largest holder changed at: '+chg.join(', ')+'.'):T('Pemegang terbesar tidak berganti pada rentang ini.','The largest holder did not change in this range.'),T('"Total tercatat" hanya menjumlahkan pemegang di atas 1% dalam laporan, bukan total kepemilikan.','"Recorded total" sums holders above 1% only, not total ownership.')],tables:[{title:T('Snapshot per periode','Snapshots by period'),cols:cols,rows:rowsT}],
+   evidence:evid(idxs,[T('Total tercatat = Σ persentase pemegang di atas 1% pada periode itu','Recorded total = Σ percentages of holders above 1% in that period')],cv),actions:[{label:T('Buka detail saham','Open stock detail'),kind:'stk',arg:tk}],followups:[T('Yang asing saja','Foreign only'),T('Siapa yang menambah?','Who added?')]};return out(A,plan)}
+ /* ======== PORTFOLIO ======== */
+ if(intent==='PORTFOLIO'){var id=id0,pi=atIdx(),inv=M.inv.get(id),prevI=pi>0?pi-1:null,rows=[];
+  M.hist.forEach(function(h,t){var a=h.get(id);if(!a||!a[pi])return;var ch=prevI!=null?C.rowChange(M,t,id,prevI,pi):null,fs=null;for(var i=0;i<a.length;i++)if(a[i]){fs=i;break}rows.push({t:t,c:a[pi],ch:ch,fs:fs})});
+  rows.sort(function(x,y){return y.c.pc-x.c.pc});
+  if(S.dir&&prevI!=null){rows=rows.filter(function(r){return r.ch&&dirOK(r.ch,S.dir)}).sort(function(x,y){return Math.abs(y.ch.dpr)-Math.abs(x.ch.dpr)})}
+  var lim=S.limit||12,upN=rows.filter(function(r){return r.ch&&r.ch.dpr>0}).length,dnN=rows.filter(function(r){return r.ch&&r.ch.dpr<0}).length;
+  if(!rows.length)return out({status:'nodata',title:inv.name,headline:T(inv.name+' tidak tercatat memegang saham di atas 1% pada '+PL(pi)+'.',inv.name+' has no recorded stakes above 1% on '+PL(pi)+'.'),bullets:[],tables:[],evidence:evid([pi],[],std()),actions:[],followups:[]},plan);
+  A={status:'ok',title:inv.name,headline:T(inv.name+' ('+(inv.type||'tipe tidak tercatat')+', '+LA(inv.lf)+') tercatat memegang '+rows.length+' saham (di atas 1%) pada '+PL(pi)+'.',inv.name+' ('+(inv.type||'type n/a')+', '+LA(inv.lf)+') is recorded holding '+rows.length+' stocks (above 1%) on '+PL(pi)+'.'),
+   bullets:[prevI!=null?T('Dibanding '+PL(prevI)+': '+upN+' saham bertambah, '+dnN+' berkurang.','Versus '+PL(prevI)+': '+upN+' stocks increased, '+dnN+' decreased.'):'',T('Hanya posisi di atas 1% yang terlihat; kepemilikan di bawah ambang tidak tercatat.','Only stakes above 1% are visible; holdings below the threshold are not recorded.')].filter(Boolean),
+   tables:[{title:T('Saham yang tercatat','Recorded stocks'),cols:[{h:T('Saham','Stock')},{h:T('Emiten','Issuer')},{h:'%',a:'r'},{h:T('Lembar','Shares'),a:'r'},{h:prevI!=null?T('Δ poin vs '+PL(prevI),'Δ pts vs '+PL(prevI)):'Δ',a:'r'},{h:T('Pertama terlihat','First seen')}],rows:rows.slice(0,lim).map(function(r){return [stkL(r.t),M.stocks.get(r.t).iss||'',F.pc(r.c.pc),F.sh(r.c.sh),r.ch?{s:dTxt(r.ch,'pp'),c:r.ch.dpr>0?'up':r.ch.dpr<0?'dn':'mu'}:'—',PL(r.fs)]})}],
+   evidence:evid(prevI!=null?[prevI,pi]:[pi],[],cav(S,plan)),actions:[{label:T('Buka profil investor','Open investor profile'),kind:'inv',arg:inv.name}],followups:[T('Yang menambah saja','Only increases'),T('Yang asing saja','Foreign only')]};return out(A,plan)}
+ /* ======== FIRST ======== */
+ if(intent==='FIRST'){if(nI&&nT){var id=id0,a=M.hist.get(t0)&&M.hist.get(t0).get(id)||[],fi=-1;for(var i=0;i<a.length;i++)if(a[i]){fi=i;break}
+   return out({status:fi<0?'nodata':'ok',title:M.inv.get(id).name+' · '+t0,headline:fi<0?T(M.inv.get(id).name+' tidak tercatat memegang '+t0+' pada periode mana pun yang tersedia.',M.inv.get(id).name+' is not recorded holding '+t0+' in any available period.'):T(M.inv.get(id).name+' pertama kali terlihat memegang '+t0+' pada snapshot '+PL(fi)+' ('+F.pc(a[fi].pc)+').',M.inv.get(id).name+' first appears holding '+t0+' in the '+PL(fi)+' snapshot ('+F.pc(a[fi].pc)+').'),bullets:[T('Ini adalah snapshot pertama yang memuat investor tersebut di atas 1%, bukan tanggal transaksi atau pembelian pertama.','This is the first snapshot listing the investor above 1%, not a trade or first-purchase date.'),fi>0?T('Pada '+PL(fi-1)+' investor ini tidak tercatat (di bawah ambang atau belum memegang).','On '+PL(fi-1)+' the investor was not recorded (below threshold or not holding).'):T('Investor sudah tercatat sejak periode pertama dataset ('+PL(0)+'); awal kepemilikan sebenarnya tidak diketahui.','The investor is recorded from the dataset\'s first period ('+PL(0)+'); the real start is unknown.')],tables:[],evidence:evid(fi<0?[]:[fi],[],std()),actions:[{label:T('Lihat tren','See trend'),kind:'q',arg:T('tren '+M.inv.get(id).name+' di '+t0,'trend of '+M.inv.get(id).name+' in '+t0)}],followups:[]},plan)}
+  if(nT){if(!M.stocks.has(t0))return noData(t0);var newc=[];M.hist.get(t0).forEach(function(a,id){var fi=-1;for(var i=0;i<a.length;i++)if(a[i]){fi=i;break}if(fi>0&&C.passF(Object.assign({self:C.isSelf(M,t0,id)},M.inv.get(id)),f))newc.push({id:id,fi:fi,c:a[fi]})});newc.sort(function(x,y){return y.fi-x.fi||y.c.pc-x.c.pc});
+   return out({status:newc.length?'ok':'partial',title:t0,headline:newc.length?T(newc.length+' investor baru terlihat pada '+t0+' setelah '+PL(0)+'; terbaru: '+M.inv.get(newc[0].id).name+' ('+PL(newc[0].fi)+').',newc.length+' investors first appear in '+t0+' after '+PL(0)+'; latest: '+M.inv.get(newc[0].id).name+' ('+PL(newc[0].fi)+').'):T('Tidak ada investor baru yang terlihat pada '+t0+' setelah periode pertama.','No newly appearing investors in '+t0+' after the first period.'),bullets:[T('"Baru terlihat" = pertama kali melewati ambang 1% pada laporan.','"Newly seen" = first time above the 1% threshold in a report.')],tables:[{title:T('Investor yang baru terlihat','Newly seen investors'),cols:[{h:T('Investor','Investor')},{h:T('Pertama terlihat','First seen')},{h:'%',a:'r'},{h:T('Lembar','Shares'),a:'r'}],rows:newc.slice(0,S.limit||10).map(function(x){return [invL(x.id),PL(x.fi),F.pc(x.c.pc),F.sh(x.c.sh)]})}],evidence:evid(newc.length?[newc[0].fi]:[],[],cav(S,plan)),actions:[{label:T('Buka detail saham','Open stock detail'),kind:'stk',arg:t0}],followups:[]},plan)}
+  if(nI){var id=id0,rows=[];M.hist.get&&M.hist.forEach(function(h,t){var a=h.get(id);if(!a)return;var fi=-1;for(var i=0;i<a.length;i++)if(a[i]){fi=i;break}if(fi>=0)rows.push({t:t,fi:fi,c:a[fi]})});rows.sort(function(x,y){return y.fi-x.fi||y.c.pc-x.c.pc});
+   return out({status:rows.length?'ok':'nodata',title:M.inv.get(id).name,headline:T(M.inv.get(id).name+' pertama kali terlihat pada '+rows.length+' saham; yang terbaru muncul: '+(rows[0]?rows[0].t+' ('+PL(rows[0].fi)+')':'-')+'.',M.inv.get(id).name+' first appears in '+rows.length+' stocks; most recent: '+(rows[0]?rows[0].t+' ('+PL(rows[0].fi)+')':'-')+'.'),bullets:[T('"Pertama terlihat" bukan tanggal pembelian.','"First seen" is not a purchase date.')],tables:[{title:T('Saham dan kapan pertama terlihat','Stocks and first-seen date'),cols:[{h:T('Saham','Stock')},{h:T('Pertama terlihat','First seen')},{h:'%',a:'r'}],rows:rows.slice(0,S.limit||12).map(function(x){return [stkL(x.t),PL(x.fi),F.pc(x.c.pc)]})}],evidence:evid([],[],cav(S,plan)),actions:[],followups:[]},plan)}}
+ /* ======== COMPARE ======== */
+ if(intent==='COMPARE'){var tk2=S.ent.tickers.slice(0,2).map(function(x){return x.t});if(tk2.length<2||!M.stocks.has(tk2[0])||!M.stocks.has(tk2[1]))return noData(tk2[0]||t0);var nd=needTwo();var pp=pair(),pa=pp[0],pb=pp[1];if(pa===pb)pa=Math.max(0,pb-1);
+  var inf=tk2.map(function(t){var cr=C.changeRows(M,t,pa,pb,{noSelf:true}),nn=C.netOf(cr),fr=C.netOf(cr.filter(function(o){return o.lf==='F'})),th=C.topHolder(M,t,pb),hs=C.holdersAt(M,t,pb,{noSelf:true}),sg=opts.signals?opts.signals(pa,pb):null,se=sg&&sg.get?sg.get(t):null;return {t:t,nn:nn,fr:fr,th:th,hs:hs,se:se}});
+  var common=[];inf[0].hs.forEach(function(h){var o=inf[1].hs.filter(function(x){return x.id===h.id})[0];if(o)common.push([invL(h.id),F.pc(h.pc),F.pc(o.pc)])});
+  var rw=[[T('Pemegang terbesar','Largest holder')].concat(inf.map(function(x){return x.th?x.th.name+' ('+F.pc(x.th.pc)+')':'—'})),[T('Jumlah pemegang tercatat','Recorded holders')].concat(inf.map(function(x){return String(x.hs.length)})),[T('Net perubahan (poin)','Net change (pts)')].concat(inf.map(function(x){return {s:F.pp(x.nn.net),c:x.nn.net>0?'up':x.nn.net<0?'dn':'mu'}})),[T('Net asing (poin)','Foreign net (pts)')].concat(inf.map(function(x){return {s:F.pp(x.fr.net),c:x.fr.net>0?'up':x.fr.net<0?'dn':'mu'}})),[T('Investor menambah / mengurangi','Investors adding / reducing')].concat(inf.map(function(x){return x.nn.nUp+' / '+x.nn.nDn}))];
+  if(inf[0].se||inf[1].se)rw.push([T('Sinyal aplikasi','App signal')].concat(inf.map(function(x){return x.se?(opts.signalLabel?opts.signalLabel(x.se.sig):x.se.sig):'—'})));
+  var win=inf[0].nn.net===inf[1].nn.net?null:inf[0].nn.net>inf[1].nn.net?inf[0]:inf[1];
+  A={status:'ok',title:tk2[0]+' vs '+tk2[1],headline:T('Perbandingan '+tk2[0]+' dan '+tk2[1]+' ('+PL(pa)+' → '+PL(pb)+'): net perubahan '+tk2[0]+' '+F.pp(inf[0].nn.net)+' poin, '+tk2[1]+' '+F.pp(inf[1].nn.net)+' poin'+(win?'; kenaikan lebih besar pada '+win.t+'.':'.'),'Comparison of '+tk2[0]+' and '+tk2[1]+' ('+PL(pa)+' → '+PL(pb)+'): net change '+tk2[0]+' '+F.pp(inf[0].nn.net)+' pts, '+tk2[1]+' '+F.pp(inf[1].nn.net)+' pts'+(win?'; larger increase in '+win.t+'.':'.')),bullets:[common.length?T(common.length+' investor tercatat pada kedua saham.',common.length+' investors are recorded in both stocks.'):T('Tidak ada investor yang sama di atas 1% pada kedua saham.','No investor appears above 1% in both stocks.'),T('Perbandingan ini hanya soal kepemilikan; bukan penilaian mana yang lebih baik.','This compares ownership only; it does not judge which is better.')],
+   tables:[{title:T('Ringkasan','Summary'),cols:[{h:T('Metrik','Metric')},{h:tk2[0]},{h:tk2[1]}],rows:rw}].concat(common.length?[{title:T('Investor yang sama (%)','Shared investors (%)'),cols:[{h:T('Investor','Investor')},{h:tk2[0],a:'r'},{h:tk2[1],a:'r'}],rows:common.slice(0,8)}]:[]),evidence:evid([pa,pb],[T('Net = Σ Δ poin investor (batas bawah untuk tercatat baru/keluar)','Net = Σ investor Δ pts (lower bounds for new/exit)')],cav(S,plan)),actions:tk2.map(function(t){return {label:T('Buka ','Open ')+t,kind:'stk',arg:t}}),followups:[]};return out(A,plan)}
+ /* ======== OVERVIEW ======== */
+ if(intent==='OVERVIEW'){if(!M.stocks.has(t0))return noData(t0);var pb=last,pa=Math.max(0,last-1),hs=C.holdersAt(M,t0,pb,{noSelf:true}),cr=pa<pb?C.changeRows(M,t0,pa,pb,{noSelf:true}):[],nn=C.netOf(cr),sg=opts.signals&&pa<pb?opts.signals(pa,pb):null,se=sg&&sg.get?sg.get(t0):null,top=hs[0],ca=pa<pb?caNote(t0,pa,pb):null,cv=cav(S,plan);if(ca)cv.push(ca);
+  A={status:'ok',title:t0+' · '+(M.stocks.get(t0).iss||''),headline:T(t0+' pada '+PL(pb)+': pemegang terbesar tercatat '+(top?top.name+' ('+F.pc(top.pc)+')':'-')+(pa<pb?'; net perubahan '+F.pp(nn.net)+' poin dibanding '+PL(pa)+'.':'.'),t0+' on '+PL(pb)+': largest recorded holder '+(top?top.name+' ('+F.pc(top.pc)+')':'-')+(pa<pb?'; net change '+F.pp(nn.net)+' pts vs '+PL(pa)+'.':'.')),bullets:[se?T('Sinyal aplikasi: '+(opts.signalLabel?opts.signalLabel(se.sig):se.sig)+' (aturan heuristik aplikasi, bukan prediksi).','App signal: '+(opts.signalLabel?opts.signalLabel(se.sig):se.sig)+' (heuristic rule, not a forecast).'):'',pa<pb?T(nn.nUp+' investor menambah dan '+nn.nDn+' mengurangi.',nn.nUp+' investors added and '+nn.nDn+' reduced.'):''].filter(Boolean),
+   tables:[{title:T('Pemegang terbesar '+PL(pb),'Largest holders '+PL(pb)),cols:[{h:'#'},{h:T('Investor','Investor')},{h:'%',a:'r'},{h:T('Lembar','Shares'),a:'r'}],rows:hs.slice(0,5).map(function(h,i){return [String(i+1),invL(h.id),F.pc(h.pc),F.sh(h.sh)]})}],evidence:evid(pa<pb?[pa,pb]:[pb],[],cv),actions:[{label:T('Buka detail saham','Open stock detail'),kind:'stk',arg:t0},{label:T('Lihat tren','See trend'),kind:'q',arg:T('tren kepemilikan ','ownership trend of ')+t0},{label:T('Perubahan terbaru','Latest change'),kind:'q',arg:T('perubahan kepemilikan ','ownership change of ')+t0}],followups:[T('Mengapa sinyalnya begitu?','Why this signal?')]};return out(A,plan)}
+ /* ======== EXPLAIN ======== */
+ if(intent==='EXPLAIN'){var tk=t0||(ctx&&ctx.plan&&ctx.plan.tickers[0]);if(!tk||!M.stocks.has(tk))return out({status:'partial',title:T('Sebutkan sahamnya','Name the stock'),headline:T('Saham mana yang ingin dijelaskan sinyalnya? Sebutkan kodenya.','Which stock should I explain? Please give the code.'),bullets:[],tables:[],evidence:evid([],[],std()),actions:[],followups:[]},plan);
+  var nd=needTwo();if(nd)return nd;var pp=pair(),pa=pp[0],pb=pp[1];if(pa===pb)pa=Math.max(0,pb-1);var sg=opts.signals?opts.signals(pa,pb):null,se=sg&&sg.get?sg.get(tk):null,cr=C.changeRows(M,tk,pa,pb,{noSelf:true}).sort(function(x,y){return Math.abs(y.dpr)-Math.abs(x.dpr)}),nn=C.netOf(cr);
+  var rule=se&&opts.explainSignal?opts.explainSignal(se.sig):null;
+  A={status:se?'ok':'partial',title:tk+' · '+(M.stocks.get(tk).iss||''),headline:se?T(tk+' diberi label "'+(opts.signalLabel?opts.signalLabel(se.sig):se.sig)+'" karena penambahan investor '+F.pp(nn.up)+' poin berbanding pengurangan '+F.pp(nn.dn)+' poin ('+nn.nUp+' menambah, '+nn.nDn+' mengurangi) antara '+PL(pa)+' dan '+PL(pb)+'.',tk+' is labelled "'+(opts.signalLabel?opts.signalLabel(se.sig):se.sig)+'" because holders added '+F.pp(nn.up)+' pts versus '+F.pp(nn.dn)+' pts reduced ('+nn.nUp+' adding, '+nn.nDn+' reducing) between '+PL(pa)+' and '+PL(pb)+'.'):T('Label sinyal untuk '+tk+' tidak tersedia pada pasangan periode ini; berikut data perubahannya.','No signal label for '+tk+' for this period pair; here is the change data.'),
+   bullets:[rule?rule:'',T('Penjelasan ini hanya berdasarkan data dan aturan aplikasi; alasan atau motif investor tidak dapat diketahui dari data snapshot.','This explanation uses only data and the app\'s rules; investors\' motives cannot be known from snapshot data.')].filter(Boolean),tables:[{title:T('Kontributor perubahan terbesar','Largest contributors'),cols:[{h:T('Investor','Investor')},{h:T('Δ poin','Δ pts'),a:'r'},{h:T('Status','Status')}],rows:cr.slice(0,6).map(function(o){return [invL(o.id),{s:dTxt(o,'pp'),c:o.dpr>0?'up':'dn'},stateTxt(o.state)]})}],evidence:evid([pa,pb],[T('Skor/label memakai aturan sinyal aplikasi pada total penambahan dan pengurangan investor besar.','Labels use the app\'s signal rules on total additions and reductions of large holders.')],cav(S,plan)),actions:[{label:T('Lihat formula ranking','See ranking formula'),kind:'q',arg:T('bagaimana skor alpha dihitung','how is the alpha score calculated')},{label:T('Buka detail saham','Open stock detail'),kind:'stk',arg:tk}],followups:[]};return out(A,plan)}
+ /* ======== SIGNAL ======== */
+ if(intent==='SIGNAL'){var nd=needTwo();if(nd)return nd;var pp=pair(),pa=pp[0],pb=pp[1];if(pa===pb)pa=Math.max(0,pb-1);var sg=opts.signals?opts.signals(pa,pb):null;
+  if(!sg)return out({status:'unsupported',title:T('Sinyal tidak tersedia','Signals unavailable'),headline:T('Penghitung sinyal belum tersedia pada konteks ini.','The signal calculator is not available in this context.'),bullets:[],tables:[],evidence:evid([pa,pb],[],std()),actions:[],followups:[]},plan);
+  var want=[],s=S.s;if(/akuisisi|acqui|takeover|diakuisisi/.test(s))want.push('ak');if(/\bipo\b|listing|perdana/.test(s))want.push('ipo');if(/crossing|pindah tangan|changing hands/.test(s))want.push('rot');if(/buyback|buy back/.test(s))want.push('bb');if(/akumulasi kuat|strong accum/.test(s))want.push('sa');else if(/akumulasi|accumulat/.test(s)&&!want.length)want.push('sa','a');if(/distribusi besar|large distrib/.test(s))want.push('sd');else if(/distribusi|distribut/.test(s)&&!want.length)want.push('sd','d');
+  if(!want.length)want.push('sa','sd','ak');var list=[];sg.forEach(function(e,t){if(want.some(function(w){return w==='bb'||w==='sl'?e.act===w:e.sig===w})){var ok=true;if(f.lf||f.grp||(f.types&&f.types.length)){var nr=C.netOf(C.changeRows(M,t,pa,pb,f));ok=nr.n>0}if(ok)list.push({t:t,e:e})}});
+  list.sort(function(x,y){return Math.abs(y.e.net)-Math.abs(x.e.net)});var lim=S.limit||10;
+  A={status:list.length?'ok':'partial',title:want.map(function(w){return opts.signalLabel?opts.signalLabel(w):w}).join(' / '),headline:list.length?T(list.length+' saham dengan sinyal '+want.map(function(w){return opts.signalLabel?opts.signalLabel(w):w}).join('/')+' pada '+PL(pa)+' → '+PL(pb)+'. Teratas: '+list.slice(0,3).map(function(x){return x.t}).join(', ')+'.',list.length+' stocks with '+want.map(function(w){return opts.signalLabel?opts.signalLabel(w):w}).join('/')+' signal for '+PL(pa)+' → '+PL(pb)+'. Top: '+list.slice(0,3).map(function(x){return x.t}).join(', ')+'.'):T('Tidak ada saham dengan sinyal tersebut pada '+PL(pa)+' → '+PL(pb)+'.','No stocks with that signal for '+PL(pa)+' → '+PL(pb)+'.'),
+   bullets:[want.indexOf('ak')>=0?T('"Akuisisi" adalah indikasi berdasarkan aturan aplikasi (pemegang terbesar berganti dan investor baru menambah ≥40 poin), bukan akuisisi korporasi yang terkonfirmasi.','"Acquisition" is an indication from app rules (largest holder changed and new holder added ≥40 pts), not a confirmed corporate acquisition.'):'',want.indexOf('rot')>=0?T('"Berpindah tangan/crossing" adalah indikasi dari perubahan lembar yang saling berlawanan, bukan transaksi crossing yang terkonfirmasi.','"Changing hands/crossing" is an indication from offsetting share changes, not a confirmed crossing trade.'):''].filter(Boolean),
+   tables:[{title:T('Daftar saham','Stocks'),cols:[{h:T('Saham','Stock')},{h:T('Emiten','Issuer')},{h:T('Sinyal','Signal')},{h:T('Net poin','Net pts'),a:'r'},{h:T('Investor ▲/▼','Investors ▲/▼'),a:'r'}],rows:list.slice(0,lim).map(function(x){return [stkL(x.t),M.stocks.get(x.t)?M.stocks.get(x.t).iss:'',opts.signalLabel?opts.signalLabel(x.e.sig):x.e.sig,{s:F.pp(x.e.net),c:x.e.net>0?'up':x.e.net<0?'dn':'mu'},x.e.nUp+' / '+x.e.nDn]})}],evidence:evid([pa,pb],[T('Sinyal = aturan aplikasi atas total penambahan (T) dan pengurangan (K) pemegang di atas 1%.','Signal = app rules on total additions (T) and reductions (K) of holders above 1%.')],cav(S,plan)),actions:[{label:T('Buka Signal Saham','Open Stock Signals'),kind:'sig',arg:want[0]}],followups:[T('Yang asing saja','Foreign only'),T('Kenapa saham pertama diberi sinyal itu?','Why does the first stock have that signal?')]};return out(A,plan)}
+ /* ======== RANK ======== */
+ if(intent==='RANK'){var nd=needTwo();if(nd)return nd;var pp=pair(),pa=pp[0],pb=pp[1];if(S.streak&&!pr.found)pa=Math.max(0,pb-S.streak.n);if(pa===pb)pa=Math.max(0,pb-1);
+  var dir=S.dir||(S.has.worst?'down':'up'),wantScore=S.metric==='score'||(!S.metric&&S.wantsScore&&!Object.keys(f).length-0&&!S.dir)||(!S.metric&&S.has.best&&!S.dir&&!(f.lf||f.grp||(f.types&&f.types.length))),metric=wantScore?'score':(S.metric||'pp'),sg=opts.signals?opts.signals(pa,pb):null,notes=[];
+  if(metric==='score'&&!sg){metric='pp';notes.push(T('Skor Alpha tidak tersedia pada konteks ini; ranking memakai poin perubahan.','Alpha score unavailable here; ranking uses change points.'))}
+  var span=(pr.kind==='lastN'||pr.kind==='all'||(pr.kind==='range'&&pr.to-pr.from>=2)),idxs=[];for(var i=pa;i<=pb;i++)idxs.push(i);
+  var res=[];
+  M.stocks.forEach(function(s,t){var cr=C.changeRows(M,t,pa,pb,f);if(!cr.length)return;var nn=C.netOf(cr.filter(function(o){return thrOK(o,{minPc:S.thr.minPc,maxPc:S.thr.maxPc,minSh:S.thr.minSh,maxSh:S.thr.maxSh})}));
+   var val,cnt;if(metric==='score'){var e=sg.get(t);if(!e)return;var key=dir==='down'?['sd','d']:['sa','ak','a'];if(key.indexOf(e.sig)<0)return;var al=(e.sig==='sa'||e.sig==='sd'||e.sig==='ak')?1:.65;val=Math.round(100*(.45*Math.min(Math.abs(e.net)/10,1)+.3*Math.min((dir==='down'?e.nDn:e.nUp)/5,1)+.25*al));cnt=dir==='down'?e.nDn:e.nUp}
+   else if(metric==='shares'){val=dir==='down'?nn.dnS:dir==='both'?nn.upS-nn.dnS:nn.upS;cnt=dir==='down'?nn.nDn:nn.nUp}
+   else if(metric==='holders'){val=dir==='down'?nn.nDn+nn.nExit*0:nn.nUp;cnt=val}
+   else{val=dir==='down'?nn.dn:dir==='both'?nn.up-nn.dn:nn.up;cnt=dir==='down'?nn.nDn:nn.nUp}
+   if(dir==='down'&&metric!=='score'&&val>=0)return;if(dir!=='down'&&val<=0)return;
+   var th=S.thr;if(th.minDpp!=null&&Math.abs(metric==='pp'?val:dir==='down'?nn.dn:nn.up)<th.minDpp)return;if(th.maxDpp!=null&&Math.abs(metric==='pp'?val:nn.net)>th.maxDpp)return;if(th.minN!=null&&cnt<th.minN)return;if(th.maxN!=null&&cnt>th.maxN)return;
+   if(th.minRel!=null||th.maxRel!=null){var base=cr.reduce(function(a,o){return a+(o.a?o.a.pc:0)},0),rl=base>0?(dir==='down'?nn.dn:nn.up)/base*100:null;if(rl==null)return;if(th.minRel!=null&&Math.abs(rl)<th.minRel)return;if(th.maxRel!=null&&Math.abs(rl)>th.maxRel)return}
+   if(th.minDsh!=null&&Math.abs(dir==='down'?nn.dnS:nn.upS)<th.minDsh)return;
+   if(S.s.match(/(keluarkan|kecualikan|exclude|tanpa).{0,30}(tidak lengkap|incomplete|aksi korporasi|corporate action)/)){var cmp=true;for(var i=pa;i<=pb;i++)if(!C.holdersAt(M,t,i).length)cmp=false;var sft=C.totalShift(M,t,pa,pb);if(!cmp||(sft!=null&&Math.abs(sft)>0.02))return}
+   var streakOK=true;if(S.streak){var sd=S.streak.dir;if(pb-pa<S.streak.n){streakOK=false}else{for(var k=pb;k>pb-S.streak.n;k--){var ci=C.netOf(C.changeRows(M,t,k-1,k,f));if(sd==='up'?!(ci.net>0):!(ci.net<0)){streakOK=false;break}}}}
+   if(!streakOK)return;
+   res.push({t:t,val:val,nn:nn,cnt:cnt,cr:cr})});
+  var asc=S.asc;res.sort(function(x,y){var a=dir==='down'&&metric!=='score'?-x.val:x.val,b=dir==='down'&&metric!=='score'?-y.val:y.val;return asc?a-b:b-a||x.t.localeCompare(y.t)});
+  var lim=S.limit||10,mname=metric==='score'?T('Skor Alpha','Alpha score'):metric==='shares'?T('perubahan lembar','share change'):metric==='holders'?T('jumlah investor','investor count'):T('perubahan poin persentase','percentage-point change');
+  var fl=filtLabel();var cv=cav(S,plan).concat(notes);
+  if(S.streak&&pb-pa<S.streak.n)cv.push(T('Histori tersedia ('+(pb-pa)+' interval) lebih pendek dari '+S.streak.n+' periode yang diminta, sehingga hasil kosong.','Available history ('+(pb-pa)+' intervals) is shorter than the requested '+S.streak.n+' periods, so results are empty.'));
+  cv.push(T('Skor Alpha 0–100 = besar perubahan (45%) + jumlah investor (30%) + kesesuaian sinyal (25%); skor heuristik, bukan prediksi return.','Alpha score 0–100 = size of change (45%) + investor count (30%) + signal fit (25%); a heuristic, not a return forecast.'));
+  var cols=[{h:'#'},{h:T('Saham','Stock')},{h:T('Emiten','Issuer')},{h:metric==='score'?T('Skor','Score'):metric==='shares'?T('Δ lembar','Δ shares'):metric==='holders'?T('Investor','Investors'):T('Δ poin','Δ pts'),a:'r'},{h:T('Investor','Investors'),a:'r'},{h:T('Penyumbang terbesar','Top contributors')}];
+  var rowsR=res.slice(0,lim).map(function(x,i){var tc=x.cr.slice().sort(function(a,b){return Math.abs(b.dpr)-Math.abs(a.dpr)}).slice(0,2).map(function(o){return o.name}).join(', ');return [String(i+1),stkL(x.t),M.stocks.get(x.t).iss||'',{s:metric==='score'?String(x.val):metric==='shares'?F.dsh(x.val):metric==='holders'?String(x.val):F.pp(x.val),c:(dir==='down'&&metric!=='score')?'dn':'up'},String(x.cnt),tc]});
+  var crit=T('kriteria: '+mname+(fl?' investor '+fl:'')+', arah '+(dir==='down'?'penurunan':dir==='both'?'perubahan':'kenaikan'),'criteria: '+mname+(fl?' of '+fl+' investors':'')+', direction '+(dir==='down'?'decrease':dir==='both'?'any change':'increase'));
+  var dnm=metric==='score'?mname:(dir==='down'?T('penurunan ','decrease in '):dir==='both'?T('perubahan ','change in '):T('kenaikan ','increase in '))+(metric==='shares'?T('lembar saham','shares'):metric==='holders'?T('jumlah investor','investor count'):T('poin persentase kepemilikan','ownership percentage points'));
+  A={status:res.length?'ok':'partial',title:T('Ranking saham','Stock ranking'),headline:res.length?T('Berdasarkan '+dnm+(fl?' investor '+fl:'')+' pada '+PL(pa)+' → '+PL(pb)+', ranking teratas: '+res.slice(0,3).map(function(x){return x.t+(metric==='score'?' ('+x.val+')':'')}).join(', ')+' dari '+res.length+' saham yang memenuhi.','By '+dnm+(fl?' of '+fl+' investors':'')+' for '+PL(pa)+' → '+PL(pb)+', top ranked: '+res.slice(0,3).map(function(x){return x.t+(metric==='score'?' ('+x.val+')':'')}).join(', ')+' of '+res.length+' qualifying stocks.'):T('Tidak ada saham yang memenuhi kriteria pada '+PL(pa)+' → '+PL(pb)+'.','No stocks match the criteria for '+PL(pa)+' → '+PL(pb)+'.'),
+   bullets:[S.streak?T('Hanya saham dengan net kepemilikan yang naik/turun pada setiap interval selama '+S.streak.n+' periode berturut-turut ('+PL(pa)+' → '+PL(pb)+').','Only stocks whose net holding moved in the same direction in every interval over '+S.streak.n+' consecutive periods ('+PL(pa)+' → '+PL(pb)+').'):'',crit.charAt(0).toUpperCase()+crit.slice(1)+'. '+T('Seluruh '+M.stocks.size+' saham dalam dataset dipertimbangkan.','All '+M.stocks.size+' stocks in the dataset were considered.'),S.has.best||S.has.price?T('Ini ranking berdasarkan kriteria di atas, bukan rekomendasi beli atau jaminan profit.','This ranks by the criteria above; it is not a buy recommendation or a profit guarantee.'):''].filter(Boolean),tables:[{title:T('Hasil ranking','Ranking'),cols:cols,rows:rowsR}],
+   evidence:evid(idxs.length>4?[pa,pb]:idxs,[crit,T('Δ poin investor tercatat baru/keluar memakai batas bawah konservatif terhadap ambang 1%.','Newly recorded/exited investors use conservative lower bounds against the 1% threshold.')],cv,{stocks:M.stocks.size,qualifying:res.length,investors:M.inv.size,periods:n}),actions:[{label:T('Buka Alpha-Screening','Open Alpha-Screening'),kind:'man',arg:''}].concat(res.slice(0,1).map(function(x){return {label:T('Detail '+x.t,'Details '+x.t),kind:'stk',arg:x.t}})),followups:[T('Yang asing saja','Foreign only'),T('10 teratas','Top 10'),T('Bukan asing','Not foreign')]};return out(A,plan)}
+ /* ======== META ======== */
+ if(intent==='META'){return out({status:'ok',title:T('Cakupan data','Data coverage'),headline:T('Dataset memuat '+n+' periode, '+M.stocks.size+' saham, dan '+M.inv.size+' investor (pemegang di atas 1%).','The dataset has '+n+' periods, '+M.stocks.size+' stocks, and '+M.inv.size+' investors (holders above 1%).'),bullets:[T('Data TIDAK tersedia: harga saham, fundamental, transaksi aktual, beneficial owner, dan relasi grup.','NOT available: share prices, fundamentals, actual trades, beneficial owners, and group relations.'),T('Tanggal yang ditampilkan adalah tanggal snapshot kepemilikan pada file, bukan tanggal publikasi atau transaksi.','Dates shown are ownership snapshot dates in the files, not publication or trade dates.')],tables:[{title:T('Periode tersedia','Available periods'),cols:[{h:T('Periode','Period')},{h:T('Tanggal snapshot','Snapshot date')},{h:T('Baris','Rows'),a:'r'},{h:T('Sumber','Source')}],rows:M.periods.map(function(p){return [p.label,p.date,F.int(p.n),p.src||'—']})}],evidence:evid(M.periods.map(function(p){return p.i}),[],std()),actions:[],followups:[]},plan)}
+ /* ======== FEATURE / FALLBACK ======== */
+ var docs=opts.docs||[],sc=searchDocs(q,docs,5);
+ if(sc.length&&(intent==='FEATURE'||!nT)){return out({status:'ok',title:T('Fitur dan panduan','Features and guides'),headline:T('Saya menemukan '+sc.length+' bagian yang relevan di aplikasi ini.','I found '+sc.length+' relevant sections in this app.'),bullets:sc.slice(0,3).map(function(x){return x.d.title+' — '+x.d.text.slice(0,150)}),tables:[],evidence:evid([],[],[T('Hasil ini berasal dari konten halaman (fitur, FAQ, kamus), bukan dari data kepemilikan.','These results come from page content (features, FAQ, glossary), not ownership data.')]),actions:sc.map(function(x){return {label:x.d.title,kind:'doc',arg:x.d.id}}),followups:[],docs:sc.map(function(x){return {id:x.d.id,kind:x.d.kind,title:x.d.title,text:x.d.text.slice(0,200)}})},plan)}
+ if(S.has.price){return out({status:'unsupported',title:T('Belum bisa dijawab','Cannot answer yet'),headline:T('Pertanyaan ini membutuhkan data harga atau fundamental yang belum tersedia di aplikasi.','This question needs price or fundamental data that the app does not have.'),bullets:[T('Yang bisa dijawab: kepemilikan, perubahan, tren, ranking investor, dan sinyal berdasarkan laporan KSEI.','What I can answer: ownership, changes, trends, investor rankings, and signals based on KSEI reports.')],tables:[],evidence:evid([],[],cav(S,plan)),actions:[{label:T('Hitung nilai wajar sendiri','Compute fair value yourself'),kind:'tool',arg:'valuation:dcf'}],followups:[]},plan)}
+ return out({status:'partial',title:T('Belum menemukan jawaban','No answer found yet'),headline:T('Saya belum menangkap maksud pertanyaan ini. Coba sebut kode saham, nama investor, atau metrik (poin, lembar, asing, akumulasi).','I could not quite catch that. Try naming a stock code, an investor, or a metric (points, shares, foreign, accumulation).'),bullets:[],tables:[],evidence:evid([],[],std()),actions:[],followups:[]},plan)}
+
+/* ---------- autocomplete & contoh dinamis ---------- */
+function suggest(prefix,opts){opts=opts||{};var M=opts.model,out=[],raw=String(prefix||''),p=norm(raw).trim();if(!M||p.length<2)return out;
+ var lang=opts.lang==='en'?'en':'id',T=function(a,b){return lang==='en'?b:a},R=C.registry(M),last=p.split(' ').pop(),seen={};if(last.length<2)return out;
+ function add(o){var k=o.kind+o.label;if(!seen[k]&&out.length<8){seen[k]=1;out.push(o)}}
+ var tk=[];R.tick.forEach(function(t,l){if(l.indexOf(last)===0)tk.push(t)});tk.sort().slice(0,3).forEach(function(t){add({kind:'stk',label:t+' · '+(M.stocks.get(t).iss||''),query:T('pemegang terbesar ','largest holders of ')+t})});
+ var it=[];R.issTok.forEach(function(ts,w){if(w.length>=3&&w.indexOf(last)===0)ts.forEach(function(t){if(it.indexOf(t)<0)it.push(t)})});it.slice(0,3).forEach(function(t){add({kind:'stk',label:t+' · '+(M.stocks.get(t).iss||''),query:T('pemegang terbesar ','largest holders of ')+t})});
+ var iv=[];R.invTok.forEach(function(ids,w){if(w.length>=3&&w.indexOf(last)===0)ids.forEach(function(id){if(iv.indexOf(id)<0)iv.push(id)})});iv.sort(function(a,b){return M.inv.get(b).n-M.inv.get(a).n}).slice(0,4).forEach(function(id){add({kind:'inv',label:M.inv.get(id).name,query:T('saham apa saja yang dipegang ','stocks held by ')+M.inv.get(id).name})});
+ (opts.docs||[]).filter(function(d){return norm(d.title).indexOf(p)>=0}).slice(0,3).forEach(function(d){add({kind:'doc',label:d.title,query:d.title,doc:d.id})});
+ [[T('akumulasi asing','foreign accumulation'),'asing akumulasi'],[T('distribusi asing','foreign distribution'),'asing distribusi'],[T('pemegang terbesar','largest holder'),'pemegang terbesar'],[T('tren kepemilikan','ownership trend'),'tren kepemilikan'],[T('saham diakuisisi','acquired stocks'),'saham diakuisisi'],[T('investor paling aktif','most active investors'),'investor paling aktif'],[T('kenaikan poin','point increase'),'kenaikan poin']].forEach(function(m){if(norm(m[0]).indexOf(last)>=0||norm(m[1]).indexOf(last)>=0)add({kind:'metric',label:m[0],query:m[0]})});
+ M.periods.forEach(function(pd){if(norm(pd.label).indexOf(last)>=0)add({kind:'period',label:pd.label,query:T('perubahan kepemilikan ','ownership change ')+pd.label})});
+ return out}
+function examples(opts){opts=opts||{};var M=opts.model,lang=opts.lang==='en'?'en':'id',T=function(a,b){return lang==='en'?b:a},ex=[];if(!M||!M.periods.length)return ex;var n=M.periods.length,last=n-1;
+ var best=null,cnt=0;M.stocks.forEach(function(s,t){var c=C.holdersAt(M,t,last).length;if(c>cnt||(c===cnt&&best&&t<best)){cnt=c;best=t}});
+ var bi=null,bn=0;M.inv.forEach(function(i,id){if(i.n>bn||(i.n===bn&&bi&&id<bi)){bn=i.n;bi=id}});
+ ex.push(T('Top 5 saham dengan kenaikan kepemilikan asing terbesar','Top 5 stocks with the largest increase in foreign ownership'));
+ if(best)ex.push(T('Siapa pemegang terbesar '+best+'?','Who is the largest holder of '+best+'?'));
+ if(best&&n>=3)ex.push(T('Bagaimana tren kepemilikan '+best+' selama periode tersedia?','How has ownership of '+best+' trended over the available periods?'));
+ if(bi)ex.push(T('Investor '+M.inv.get(bi).name+' memegang saham apa saja?','Which stocks does '+M.inv.get(bi).name+' hold?'));
+ ex.push(T('Saham mana yang paling banyak turun kepemilikan asingnya?','Which stocks saw the largest drop in foreign ownership?'));
+ ex.push(T('Apa saja saham yang diindikasikan akuisisi?','Which stocks show acquisition indications?'));
+ if(n>=3)ex.push(T('Saham dengan kepemilikan asing yang konsisten naik 3 periode','Stocks with foreign ownership rising for 3 consecutive periods'));
+ return ex}
+G.SpotEngine={buildModel:C.buildModel,searchDocs:searchDocs,ask:ask,suggest:suggest,examples:examples,core:C,parse:P};
+})(typeof window!=='undefined'?window:globalThis);
+
+</script>
+<script>
+(function(){
+var inp=document.getElementById('sp-in');if(!inp)return;
+var EN=document.documentElement.lang==='en',T=function(a,b){return EN?b:a};
+function $(i){return document.getElementById(i)}
+var sug=$('sp-sug'),res=$('sp-res'),ex=$('sp-ex'),stt=$('sp-state'),cx=$('sp-ctx'),st={ctx:null,seq:0,items:[],act:-1,prep:null,timer:0,ph:[],pi:0};
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function K(){return window.KSEI}
+function setState(s){stt.textContent=s||''}
+function showRes(){res.hidden=false;$('sp-wrap').classList.add('has-res')}
+function hideRes(){res.hidden=true;$('sp-wrap').classList.remove('has-res')}
+function prep(){if(!K())return Promise.resolve(false);if(K().ready())return Promise.resolve(true);if(st.prep)return st.prep;
+ st.prep=K().ensure(function(i,n){setState(T('Menyiapkan data riwayat… periode '+i+' dari '+n,'Preparing history data… period '+i+' of '+n))}).then(function(ok){setState('');if(ok)renderEx();else st.prep=null;return ok}).catch(function(){st.prep=null;setState('');return false});return st.prep}
+var KL={stk:T('Saham','Stock'),inv:T('Investor','Investor'),doc:T('Panduan','Guide'),metric:T('Metrik','Metric'),period:T('Periode','Period')};
+function showSug(items){st.items=items||[];st.act=-1;inp.removeAttribute('aria-activedescendant');
+ if(!st.items.length){sug.hidden=true;inp.setAttribute('aria-expanded','false');return}
+ sug.innerHTML=st.items.map(function(it,i){return '<li role="option" id="sp-o'+i+'" data-i="'+i+'" aria-selected="false"><span class="sp-k">'+esc(KL[it.kind]||it.kind)+'</span><span>'+esc(it.label)+'</span></li>'}).join('');sug.hidden=false;inp.setAttribute('aria-expanded','true')}
+function setAct(i){var n=st.items.length;if(!n)return;st.act=(i+n)%n;[].forEach.call(sug.children,function(li,k){li.setAttribute('aria-selected',k===st.act?'true':'false');li.classList.toggle('on',k===st.act)});inp.setAttribute('aria-activedescendant','sp-o'+st.act);sug.children[st.act].scrollIntoView({block:'nearest'})}
+function onType(){var v=inp.value.trim();if(v.length<2){showSug([]);return}if(!K()||!K().ready()){prep().then(function(ok){if(ok&&inp.value.trim()===v)showSug(K().suggest(v))});return}showSug(K().suggest(v))}
+function choose(i){var it=st.items[i];if(!it)return;showSug([]);if(it.kind==='doc'&&it.doc){inp.value=it.label;K().openDoc(it.doc);return}inp.value=it.query;run(it.query)}
+function cell(c){if(c==null)return '';if(typeof c==='string')return esc(c);var s=esc(c.s);if(c.l)return '<button type="button" class="sp-chip" data-sp="'+esc(c.l)+'">'+s+'</button>';if(c.c)return '<span class="sp-'+c.c+'">'+s+'</span>';return s}
+function table(t){return (t.title?'<div class="sp-tt">'+esc(t.title)+'</div>':'')+'<div class="sp-tw"><table class="sp-t"><thead><tr>'+t.cols.map(function(c){return '<th class="'+(c.a==='r'?'r':'')+'">'+esc(c.h)+'</th>'}).join('')+'</tr></thead><tbody>'+t.rows.map(function(r){return '<tr>'+r.map(function(c,i){return '<td class="'+(t.cols[i]&&t.cols[i].a==='r'?'r':'')+'">'+cell(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>'}
+var BD={partial:T('Sebagian','Partial'),nodata:T('Data tidak tersedia','Data unavailable'),unsupported:T('Di luar cakupan data','Outside data scope'),ambiguous:T('Perlu klarifikasi','Needs clarification')};
+function ev(e,ms){if(!e)return '';var h='<details class="sp-ev"><summary>'+T('Dasar jawaban','Basis of answer')+'</summary>';
+ if(e.periods&&e.periods.length)h+='<h5>'+T('Periode (snapshot kepemilikan)','Periods (ownership snapshots)')+'</h5><ul>'+e.periods.map(function(p){return '<li>'+esc(p.label)+' · '+esc(p.date)+(p.src?' · '+esc(p.src):'')+'</li>'}).join('')+'</ul>';
+ if(e.formulas&&e.formulas.length)h+='<h5>'+T('Perhitungan','Calculation')+'</h5><ul>'+e.formulas.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ul>';
+ if(e.scope)h+='<h5>'+T('Cakupan','Scope')+'</h5><ul><li>'+esc(e.scope)+'</li></ul>';
+ if(e.caveats&&e.caveats.length)h+='<h5>'+T('Keterbatasan','Limitations')+'</h5><ul>'+e.caveats.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ul>';
+ return h+'<small>'+T('Dihitung di browser Anda dalam ','Computed in your browser in ')+esc(ms)+' ms. '+T('Tanggal adalah tanggal snapshot pada file, bukan tanggal publikasi atau transaksi.','Dates are snapshot dates in the files, not publication or trade dates.')+'</small></details>'}
+function act(a){var m={stk:'data-sp="stk:'+esc(a.arg)+'"',inv:'data-sp="inv:'+esc(a.arg)+'"',sig:'data-sp="sig:'+esc(a.arg)+'"',man:'data-sp="man:"',q:'data-spq="'+esc(a.arg)+'"',tool:'data-sptool="'+esc(a.arg)+'"',doc:'data-doc="'+esc(a.arg)+'"'}[a.kind];return m?'<button type="button" class="sp-btn" '+m+'>'+esc(a.label)+'</button>':''}
+function answerHtml(a){var h='<div class="sp-ans sp-'+esc(a.status)+'"><div class="sp-th"><b>'+esc(a.title)+'</b>'+(BD[a.status]?'<span class="sp-bdg">'+esc(BD[a.status])+'</span>':'')+'</div><p class="sp-hd">'+esc(a.headline)+'</p>';
+ if(a.bullets&&a.bullets.length)h+='<ul class="sp-ul">'+a.bullets.map(function(b){return '<li>'+esc(b)+'</li>'}).join('')+'</ul>';
+ (a.tables||[]).forEach(function(t){h+=table(t)});
+ h+=ev(a.evidence,a.ms);
+ var acts=(a.actions||[]).map(act).join(''),fu=(a.followups||[]).map(function(f){return '<button type="button" class="sp-chip" data-spq="'+esc(f)+'">'+esc(f)+'</button>'}).join('');
+ if(acts)h+='<div class="sp-acts">'+acts+'</div>';if(fu)h+='<div class="sp-acts"><span class="sp-msg">'+T('Lanjutkan:','Next:')+'</span>'+fu+'</div>';return h+'</div>'}
+function relHtml(q){var r=K().related(q),h='',L={stk:T('Saham','Stocks'),inv:T('Investor','Investors'),fitur:T('Fitur & kalkulator','Features & calculators'),faq:T('Kamus & FAQ','Glossary & FAQ')};
+ ['stk','inv','fitur','faq'].forEach(function(k){if(!r[k]||!r[k].length)return;h+='<h5>'+esc(L[k])+'</h5><div>'+r[k].map(function(x){return x.doc?'<button type="button" class="sp-chip" data-doc="'+esc(x.doc)+'">'+esc(x.label)+'</button>':'<button type="button" class="sp-chip" data-spq="'+esc(x.query)+'">'+esc(x.label)+'</button>'}).join('')+'</div>'});return h?'<div class="sp-rel">'+h+'</div>':''}
+function ctxLabel(c){if(!c||!c.plan)return '';var p=c.plan,a=[];(p.tickers||[]).forEach(function(t){a.push(t)});(p.investors||[]).forEach(function(i){a.push(i)});var f=p.filter||{};if(f.lf)a.push((f.notLf?T('bukan ','not '):'')+(f.lf==='F'?T('asing','foreign'):T('lokal','local')));if(f.grp)a.push((f.notGrp?T('bukan ','not '):'')+(f.grp==='I'?T('individu','individual'):T('institusi','institutional')));return a.join(' · ')}
+function renderCtx(){var l=ctxLabel(st.ctx);if(!l){cx.hidden=true;return}cx.hidden=false;cx.innerHTML=esc(T('Konteks: ','Context: ')+l)+' <button type="button" data-spctx="1" aria-label="'+T('Hapus konteks','Clear context')+'">×</button>'}
+function renderEx(){var l=(K()&&K().ready())?K().examples():[];if(!l.length)l=st.ph;st.ph=l.length?l:st.ph;ex.innerHTML=l.slice(0,5).map(function(x){return '<button type="button" data-spq="'+esc(x)+'">'+esc(x)+'</button>'}).join('')}
+function box(m){return '<button type="button" class="sp-x" data-spx="1" aria-label="'+T('Tutup','Close')+'">×</button><p class="sp-msg">'+esc(m)+'</p>'}
+function run(q){q=(q||'').trim();showSug([]);if(!q){hideRes();return}
+ var my=++st.seq;showRes();res.innerHTML=box(T('Memproses…','Processing…'));
+ if(!K()){res.innerHTML=box(T('Mesin pencarian belum siap. Muat ulang halaman.','Search engine is not ready. Reload the page.'));return}
+ prep().then(function(ok){if(my!==st.seq)return;if(!ok){res.innerHTML=box(T('Data KSEI belum bisa dimuat. Buka menu Bandarmology lalu pilih periode, atau periksa koneksi internet (pembaca Excel dimuat dari CDN).','KSEI data could not be loaded. Open the Bandarmology tab and choose a period, or check your connection (the Excel reader loads from a CDN).'));return}
+  var r;try{r=K().ask(q,st.ctx)}catch(e){res.innerHTML=box(T('Terjadi kendala saat memproses pertanyaan.','Something went wrong processing the question.'));return}
+  if(my!==st.seq)return;st.ctx=r.ctx;res.innerHTML='<button type="button" class="sp-x" data-spx="1" aria-label="'+T('Tutup','Close')+'">×</button>'+answerHtml(r.answer)+relHtml(q);renderCtx();res.scrollTop=0
+ }).catch(function(){if(my!==st.seq)return;res.innerHTML=box(T('Terjadi kendala. Coba lagi.','Something went wrong. Try again.'))})}
+function openApp(kind,arg){var tb=document.querySelector('.vf-tab[data-tab="ksei"]');if(tb)tb.click();setTimeout(function(){K().open(kind,arg);var sh=document.querySelector('.vf-shell');if(sh)sh.scrollIntoView({behavior:'smooth',block:'start'})},220)}
+inp.addEventListener('input',function(){clearTimeout(st.timer);st.timer=setTimeout(onType,120)});
+inp.addEventListener('focus',function(){prep()});
+inp.addEventListener('keydown',function(e){
+ if(e.key==='ArrowDown'){if(sug.hidden)onType();else{e.preventDefault();setAct(st.act+1)}}
+ else if(e.key==='ArrowUp'){if(!sug.hidden){e.preventDefault();setAct(st.act-1)}}
+ else if(e.key==='Enter'){e.preventDefault();if(!sug.hidden&&st.act>=0)choose(st.act);else run(inp.value)}
+ else if(e.key==='Escape'){if(!sug.hidden)showSug([]);else if(!res.hidden){st.seq++;hideRes()}else if(inp.value)inp.value='';else inp.blur()}
+ else if(e.key==='Tab')showSug([])});
+inp.addEventListener('blur',function(){setTimeout(function(){showSug([])},160)});
+sug.addEventListener('mousedown',function(e){e.preventDefault();var li=e.target.closest('li');if(li)choose(+li.dataset.i)});
+$('sp-go').addEventListener('click',function(){run(inp.value)});
+$('sp-wrap').addEventListener('click',function(e){var b=e.target.closest('[data-sp],[data-spq],[data-doc],[data-spx],[data-spctx],[data-sptool]');if(!b)return;
+ if(b.hasAttribute('data-spx')){st.seq++;hideRes();return}
+ if(b.hasAttribute('data-spctx')){st.ctx=null;renderCtx();return}
  if(b.dataset.spq){inp.value=b.dataset.spq;run(b.dataset.spq);return}
- var kv=b.dataset.sp.split(':'),tb=document.querySelector('.vf-tab[data-tab="ksei"]');if(tb)tb.click();
- setTimeout(function(){window.KSEI.open(kv[0],kv.slice(1).join(':'));var sh=document.querySelector('.vf-shell');if(sh)sh.scrollIntoView({behavior:'smooth',block:'start'})},220)});
-document.addEventListener('keydown',function(e){if(e.key==='/'&&!/input|textarea|select/i.test((document.activeElement||{}).tagName)){e.preventDefault();inp.focus()}});
-setInterval(function(){if(document.activeElement!==inp&&!inp.value){pi=(pi+1)%PH.length;inp.placeholder=PH[pi]}},4000);
+ if(b.dataset.doc){K().openDoc(b.dataset.doc);return}
+ if(b.dataset.sptool){var kv=b.dataset.sptool.split(':'),tb=document.querySelector('.vf-tab[data-tab="'+kv[0]+'"]');if(tb)tb.click();setTimeout(function(){if(kv[1]){var sb=document.querySelector('.vf-subtab[data-subtab="'+kv[1]+'"]');if(sb)sb.click()}var sh=document.querySelector('.vf-shell');if(sh)sh.scrollIntoView({behavior:'smooth',block:'start'})},220);return}
+ if(b.dataset.sp){var p=b.dataset.sp.split(':');openApp(p[0],p.slice(1).join(':'))}});
+document.addEventListener('keydown',function(e){var tag=((document.activeElement||{}).tagName||'').toLowerCase(),typing=/input|textarea|select/.test(tag)||(document.activeElement&&document.activeElement.isContentEditable);
+ if((e.key==='/'&&!typing&&!e.ctrlKey&&!e.metaKey)||((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k')){e.preventDefault();inp.focus();inp.select()}});
+setInterval(function(){if(document.activeElement!==inp&&!inp.value&&st.ph.length){st.pi=(st.pi+1)%st.ph.length;inp.placeholder=st.ph[st.pi]}},4500);
+renderEx();
 })();
 </script>
 </body>
