@@ -13,6 +13,7 @@ const SPEC=[
  ['EEEE','Elang Energi Tbk',1e9,[['GOVERNMENT OF NORWAY','Sovereign Wealth Fund','F','N',[15,10,8,5]],['UBS AG LONDON','Bank','F','N',[6,4,2,1.2]],['PT ELANG ENERGI TBK','Corporate','L','N',[3,3,3,3],null,true]]],
  ['FFFF','Fajar Foreign Tbk',1e9,[['GOVERNMENT OF NORWAY','Sovereign Wealth Fund','F','N',[2,3,4,5]],['DANA PENSIUN ALPHA','Pension Funds','L','N',[10,10,10,10]]]],
  ['JAYA','Jaya Makmur Tbk',1e9,[['DANA PENSIUN ALPHA','Pension Funds','L','N',[20,20,20,21]]]],
+ ['HHHH','Hijau Harmoni Tbk',1e9,[['DANA PENSIUN ALPHA','Pension Funds','L','N',[5,6,6,6]]]],
  ['EMAS','Emas Murni Tbk',1e9,[['DANA PENSIUN ALPHA','Pension Funds','L','N',[7,7,7,7]]]],
  ['GGGG','Giga Besar Tbk',1e14,[['BIG FUND','Mutual Fund','L','N',null,[4000000000000,4000000000001,4000000000001,4000000000001]]]]];
 function mk(skip){const periods=DATES.map((d,pi)=>({id:d,date:d,label:lbl(d),src:'fixture-'+d+'.xlsx',rows:[]}));
@@ -24,6 +25,7 @@ function sigProv(MM){return (pa,pb)=>{const m=new Map();MM.stocks.forEach((s,t)=
 const DOCS=[{id:'avg',kind:'fitur',title:'Kalkulator Average Harga Saham',text:'Hitung harga rata-rata pembelian saham dan average down.'},{id:'dcf',kind:'fitur',title:'Discounted Cash Flow',text:'Hitung nilai wajar saham dengan DCF.'},{id:'faq1',kind:'faq',title:'Apa arti sinyal distribusi?',text:'Distribusi berarti investor besar mengurangi kepemilikan.'}];
 const O=(MM,lang)=>({model:MM||M,lang:lang||'id',signals:sigProv(MM||M),signalLabel:k=>LBL[k]||k,explainSignal:k=>'Aturan: '+(LBL[k]||k),docs:DOCS});
 const ask=(q,ctx,MM,lang)=>E.ask(q,ctx,O(MM,lang));
+const askNF=(q,ctx,MM,lang)=>E.ask(q,ctx,Object.assign(O(MM,lang),{noFallback:true}));
 const txt=a=>[a.headline].concat(a.bullets||[],(a.evidence&&a.evidence.caveats)||[]).join(' | ');
 const cell=c=>typeof c==='string'?c:c&&c.s;
 const rowsOf=a=>[].concat(...(a.tables||[]).map(t=>t.rows)).map(r=>r.map(cell).join(' ¦ '));
@@ -58,8 +60,9 @@ T('change: "siapa yang menambah" hanya yang naik',()=>{const a=ask('siapa yang m
 T('change: poin vs relatif dijelaskan',()=>{const a=ask('perubahan AAAA').answer;has(txt(a)+JSON.stringify(a.bullets),'poin')});
 T('change: Maret → basis nol rel "—"',()=>{const a=ask('perubahan AAAA bulan Maret').answer;const r=rowsOf(a).find(x=>x.indexOf('LO KHENG')>=0);has(r,'—')});
 T('change: bulan lalu → rentang Mar→Apr',()=>{const a=ask('perubahan AAAA dibanding bulan lalu').answer;has(a.headline,'31 Mar 2026');has(a.headline,'30 Apr 2026')});
-T('waktu: bulan tidak tersedia tidak diganti diam-diam',()=>{const a=ask('perubahan AAAA bulan Mei').answer;eq(a.status,'nodata');has(a.headline,'tidak tersedia');eq(a.tables.length,0)});
-T('waktu: bulan lalu tidak ada pada dataset berlubang',()=>{const a=ask('perubahan AAAA dibanding bulan lalu',null,M2).answer;eq(a.status,'nodata')});
+T('waktu: bulan tidak tersedia → dinyatakan jelas (tanpa fallback: nodata, tanpa tabel)',()=>{const a=askNF('perubahan AAAA bulan Mei').answer;eq(a.status,'nodata');has(a.headline,'tidak tersedia');eq(a.tables.length,0)});
+T('waktu: bulan tidak tersedia → fallback eksplisit ke data terbaru dengan permintaan maaf',()=>{const a=ask('perubahan AAAA bulan Mei').answer;eq(a.fallback,true);has(a.apology,'Maaf');has(a.apology,'tidak tersedia');has(a.apology,'30 Apr 2026')});
+T('waktu: bulan lalu tidak ada pada dataset berlubang',()=>{const a=askNF('perubahan AAAA dibanding bulan lalu',null,M2).answer;eq(a.status,'nodata')});
 T('waktu: periode terbaru = tanggal data terbaru (bukan hari ini)',()=>{const a=ask('pemegang AAAA terbaru').answer;has(a.headline,'30 Apr 2026')});
 T('waktu: snapshot ≠ tanggal transaksi (META)',()=>{const a=ask('data apa saja yang tersedia').answer;eq(a.intent,'META');has(txt(a),'snapshot');eq(a.tables[0].rows.length,4)});
 T('change: aksi korporasi → catatan total saham beredar',()=>{const a=ask('perubahan CCCC').answer;has(txt(a),'Total saham beredar')});
@@ -78,7 +81,7 @@ T('rank: limit "3 teratas distribusi asing"',()=>{const a=ask('tampilkan 3 terat
 T('rank: seluruh saham ikut (DDDD tidak ada di periode awal)',()=>{const a=ask('top 20 akumulasi').answer;has(rowsOf(a).join('\n'),'DDDD')});
 T('rank: keluarkan data tidak lengkap',()=>{const a=ask('saham dengan kenaikan terbesar sejak Januari keluarkan saham yang datanya tidak lengkap').answer;hasnt(rowsOf(a).join('\n'),'DDDD')});
 T('rank: "terbaik" = Skor Alpha + bukan rekomendasi',()=>{const a=ask('saham terbaik').answer;eq(a.intent,'RANK');has(txt(a),'bukan rekomendasi');has(txt(a),'Skor Alpha')});
-T('rank: sinyal akuisisi dilabeli indikasi',()=>{const a=ask('saham apa yang diakuisisi').answer;eq(a.intent,'SIGNAL');has(txt(a),'bukan akuisisi korporasi yang terkonfirmasi')});
+T('rank: sinyal akuisisi dilabeli indikasi',()=>{const a=askNF('saham apa yang diakuisisi').answer;eq(a.intent,'SIGNAL');has(txt(a),'bukan akuisisi korporasi yang terkonfirmasi')});
 T('rank: kriteria & dasar perhitungan tersedia',()=>{const a=ask('top 5 akumulasi asing').answer;eq(a.evidence.formulas.length>0,true);eq(a.evidence.periods.length>=2,true)});
 /* G. perbandingan, penjelasan, tindak lanjut */
 T('compare: dua saham',()=>{const a=ask('bandingkan AAAA vs EEEE').answer;eq(a.intent,'COMPARE');has(JSON.stringify(a.tables[0].rows),'Pemegang terbesar')});
@@ -95,7 +98,7 @@ T('jujur: transaksi aktual tidak ada',()=>{has(txt(ask('volume transaksi AAAA').
 T('jujur: beneficial owner tidak diklaim',()=>{has(txt(ask('siapa beneficial owner AAAA').answer),'beneficial')});
 T('jujur: relasi grup tidak ditebak dari nama',()=>{has(txt(ask('apakah Norway satu grup dengan UBS').answer),'kemiripan nama')});
 T('jujur: "naik berapa poin?" ambigu → klarifikasi',()=>{eq(ask('naik berapa poin?').answer.status,'partial')});
-T('jujur: crossing = indikasi',()=>{const a=ask('saham yang crossing').answer;eq(a.intent,'SIGNAL')});
+T('jujur: crossing = indikasi',()=>{const a=askNF('saham yang crossing').answer;eq(a.intent,'SIGNAL')});
 /* I. konten, bahasa, autocomplete, siklus data */
 T('konten: pertanyaan edukasi menemukan fitur/FAQ',()=>{const a=ask('cara menghitung average down').answer;eq(a.intent,'FEATURE');has(JSON.stringify(a.docs),'avg')});
 T('konten: arti sinyal distribusi → FAQ',()=>{const a=ask('apa arti sinyal distribusi').answer;has(JSON.stringify(a.docs||a.bullets),'distribusi')});
@@ -103,7 +106,7 @@ T('bahasa: Inggris',()=>{const a=ask('top 3 foreign accumulation',null,null,'en'
 T('bahasa: Inggris who holds',()=>{const a=ask('who are the largest holders of AAAA',null,null,'en').answer;eq(a.intent,'HOLDERS')});
 T('autocomplete: ticker, investor, periode',()=>{const o=O();const s1=E.suggest('AA',o),s2=E.suggest('raja',o),s3=E.suggest('mar',o);eq(s1.some(x=>x.label.indexOf('AAAA')===0),true);eq(s2.some(x=>x.kind==='inv'),true);eq(s3.some(x=>x.kind==='period'),true)});
 T('contoh dinamis memakai data nyata dataset',()=>{const ex=E.examples(O()).join(' ');has(ex,'AAAA')});
-T('siklus data: model baru memperbarui indeks',()=>{const periods=[{id:'x',date:'2026-01-31',rows:[{t:'HHHH',iss:'H',inv:'A',type:'',lf:'L',grp:'N',sh:1,pc:5}]},{id:'y',date:'2026-02-28',rows:[{t:'HHHH',iss:'H',inv:'A',type:'',lf:'L',grp:'N',sh:2,pc:6}]}];const m3=E.buildModel({periods});eq(E.ask('pemilik HHHH',null,O(m3)).answer.status,'ok');eq(E.ask('pemilik HHHH',null,O(M)).answer.status==='ok',false)});
+T('siklus data: model baru memperbarui indeks',()=>{const periods=[{id:'x',date:'2026-01-31',rows:[{t:'QQQQ',iss:'Q',inv:'A',type:'',lf:'L',grp:'N',sh:1,pc:5}]},{id:'y',date:'2026-02-28',rows:[{t:'QQQQ',iss:'Q',inv:'A',type:'',lf:'L',grp:'N',sh:2,pc:6}]}];const m3=E.buildModel({periods});eq(E.ask('pemilik QQQQ',null,O(m3)).answer.status,'ok');eq(E.ask('pemilik QQQQ',null,O(M)).answer.status==='ok',false)});
 T('performa: 40 pertanyaan beruntun pada fixture < 2 detik',()=>{const t0=Date.now();for(let i=0;i<40;i++)ask('top 5 akumulasi asing');const d=Date.now()-t0;if(d>2000)throw new Error(d+' ms')});
 T('keamanan: input HTML tidak dieksekusi di engine (string mentah, UI yang escape)',()=>{const a=ask('<img src=x onerror=alert(1)> AAAA').answer;eq(typeof a.headline,'string')});
 /* J. regresi dari uji data nyata */
@@ -115,4 +118,16 @@ T('regresi: topik baru bukan tindak lanjut ("saham" + ranking)',()=>{const r1=as
 T('regresi: ticker nyata EMAS tetap bisa dicari langsung',()=>{eq(ask('pemegang EMAS').answer.intent,'HOLDERS');eq(ask('pemegang EMAS').ctx.plan.tickers[0],'EMAS')});
 T('regresi: kata biasa (lalu) bukan nama investor',()=>{const a=ask('asing paling banyak jual bulan lalu').answer;eq(a.intent,'RANK')});
 T('regresi: headline ranking menyebut arah (penurunan)',()=>{const a=ask('asing paling banyak jual').answer;has(a.headline,'penurunan')});
+/* K. fallback & data terbaru */
+const M3=(()=>{const periods=DATES.map(d=>({id:d,date:d,label:lbl(d),src:'f',rows:[]}));SPEC.forEach(([t,iss,tot,hs])=>hs.forEach(([inv,type,lf,grp,pcs,shs,self])=>periods.forEach((p,pi)=>{const TT=Array.isArray(tot)?tot[pi]:tot;const pc=pcs?pcs[pi]:(shs[pi]/TT*100);if(pc==null)return;p.rows.push({t,iss,inv,type,lf,grp,sh:Math.round(TT*pc/100),pc,self:!!self})})));
+ const dup=JSON.parse(JSON.stringify(periods[3]));dup.id=dup.date='2026-04-29';dup.label=lbl('2026-04-29');periods.push(dup);return E.buildModel({periods})})();
+T('data terbaru: pasangan default membandingkan snapshot ≥20 hari (bukan hari sebelumnya)',()=>{const a=ask('perubahan kepemilikan AAAA',null,M3).answer;has(a.headline,'31 Mar 2026');hasnt(a.headline,'29 Apr 2026')});
+T('data terbaru: default memakai tanggal terbaru dataset',()=>{const a=ask('top 3 akumulasi',null,M3).answer;has(a.headline,'30 Apr 2026')});
+T('data terbaru: tak ada perubahan di interval terakhir → cari perubahan terakhir yang tercatat',()=>{const a=ask('perubahan HHHH').answer;eq(a.status,'ok');has(a.bullets.join(' '),'perubahan terakhir yang tercatat');has(a.headline,'31 Jan 2026')});
+T('fallback: kriteria terlalu detail → maaf + jawaban data terbaru',()=>{const r=ask('kenaikan asing JAYA');eq(r.answer.fallback,true);has(r.answer.apology,'Maaf');has(r.answer.apology,'30 Apr 2026');has(r.answer.title,'JAYA')});
+T('fallback: pertanyaan tak dipahami → maaf + ranking data terbaru',()=>{const r=ask('blablabla xyzqw sesuatu');eq(r.answer.fallback,true);has(r.answer.apology,'Maaf');eq(r.answer.intent,'RANK')});
+T('fallback: kode tak dikenal tetap meminta klarifikasi (bukan fallback)',()=>{const a=ask('pemegang ZZZZ').answer;eq(a.status,'ambiguous');eq(!!a.fallback,false)});
+T('fallback: klarifikasi "naik berapa poin?" tidak dialihkan',()=>{const a=ask('naik berapa poin?').answer;eq(!!a.fallback,false);eq(a.status,'partial')});
+T('fallback: tidak mengaburkan jawaban yang valid',()=>{const a=ask('pemilik AAAA').answer;eq(!!a.fallback,false)});
+T('jujur: kode tak dikenal pada ranking disebut, bukan diabaikan diam-diam',()=>{const a=ask('asing paling banyak beli ZZZZZ').answer;has(a.bullets.join(' '),'ZZZZZ')});
 console.log(log.map(l=>l.join('  ')).join('\n'));console.log('\nTotal:',pass+fail,'| lolos:',pass,'| gagal:',fail);process.exit(fail?1:0);
